@@ -7,6 +7,6 @@ const HomePage: React.FunctionComponent = () => {
       <HomeContainer />
     </Layout>
   );
-}
+};
 
 export default HomePage;
