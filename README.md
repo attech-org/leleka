@@ -9,3 +9,4 @@ Students demo project for training purposes.
 - typescript
 - styled-components
 - react-hook-forms
+- react-router-dom

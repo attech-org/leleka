@@ -1,19 +1,17 @@
 import React from "react";
-import styled from "styled-components";
+import { Routes, Route } from "react-router-dom";
+import AboutPage from "./pages/About";
+import HomePage from "./pages/Home";
 
-const Button = styled.button`
-  all: unset;
-  padding: 0.5rem 1rem;
-  background-color: violet;
-  border-radius: 5px;
-  text-transform: uppercase;
-`
-
-const App: React.FunctionComponent = () => (
-  <div>
-    Leleka is running...
-    <Button>hit me!</Button>
-  </div>
-);
+const App: React.FunctionComponent = () => {
+  return (
+    <div>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/about" element={<AboutPage />} />
+      </Routes>
+    </div>
+  );
+};
 
 export default App;
