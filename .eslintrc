@@ -6,7 +6,7 @@
     "plugin:jest/recommended",
     "plugin:prettier/recommended"
   ],
-  "plugins": ["react", "@typescript-eslint", "jest", "import"],
+  "plugins": ["react", "@typescript-eslint", "jest", "import", "jsx-a11y"],
   "env": {
     "browser": true,
     "es6": true,
@@ -25,6 +25,7 @@
     "sourceType": "module",
     "project": "./tsconfig.json"
   },
+
   "rules": {
     "linebreak-style": "off",
     "prettier/prettier": [
@@ -32,6 +33,73 @@
       {
         "endOfLine": "auto"
       }
+    ],
+    "@typescript-eslint/explicit-module-boundary-types": 0,
+    "@typescript-eslint/no-empty-interface": 0,
+    "@typescript-eslint/no-shadow": 2,
+    "@typescript-eslint/no-use-before-define": 2,
+    "@typescript-eslint/no-explicit-any": 2,
+    "@typescript-eslint/no-unused-vars": 2,
+    "curly": 2,
+    "default-param-last": 0,
+    "eslint-comments/no-unlimited-disable": 0,
+    "func-names": 2,
+    "implicit-arrow-linebreak": 0,
+    "import/default": 0,
+    "import/extensions": 0,
+    "import/named": 0,
+    "import/namespace": 0,
+    "import/no-extraneous-dependencies": [2, { "devDependencies": true }],
+    "import/no-named-as-default-member": 0,
+    "import/prefer-default-export": 0,
+    "jsx-a11y/alt-text": [1],
+    "no-console": [1, { "allow": ["warn", "error"] }],
+    "no-duplicate-imports": 2,
+    "no-shadow": 0,
+    "no-underscore-dangle": 0,
+    "no-use-before-define": 0,
+    "object-curly-newline": 0,
+    "operator-linebreak": 0,
+    "prefer-const": 2,
+    "react-hooks/exhaustive-deps": 0,
+    "react/display-name": 2,
+    "react/function-component-definition": [
+      2,
+      { "namedComponents": "arrow-function" }
+    ],
+    "react/jsx-boolean-value": 2,
+    "react/jsx-filename-extension": [
+      2,
+      { "extensions": [".js", ".jsx", ".ts", ".tsx"] }
+    ],
+    "react/jsx-key": 2,
+    "react/jsx-one-expression-per-line": 0,
+    "react/jsx-props-no-spreading": 0,
+    "react/jsx-uses-react": 0,
+    "react/jsx-uses-vars": 2,
+    "react/no-string-refs": 2,
+    "react/no-unknown-property": 2,
+    "react/prefer-stateless-function": 2,
+    "react/prop-types": 0,
+    "react/react-in-jsx-scope": 0,
+    "react/self-closing-comp": 2,
+    "import/order": [
+      2,
+      {
+        "groups": ["external", "internal"],
+        "newlines-between": "always",
+        "alphabetize": {
+          "order": "asc",
+          "caseInsensitive": true
+        }
+      }
     ]
+  },
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "extensions": [".js", ".jsx", ".ts", ".tsx"]
+      }
+    }
   }
 }
