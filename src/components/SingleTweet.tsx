@@ -2,7 +2,7 @@ import { Dropdown } from "react-bootstrap";
 // import * as Icon from "react-bootstrap-icons";
 import styled from "styled-components";
 
-import example from "./example.jpg";
+// import example from "./example.jpg";
 
 const Wrapper = styled.div`
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
@@ -115,7 +115,6 @@ const IconMessegeBg = styled(IconBg)`
 const IconLikeBg = styled(IconBg)`
   &:hover {
     background-color: rgb(249, 24, 128, 0.1);
-    fill: rgb(249, 24, 128);
   }
 `;
 const IconUploadBg = styled(IconBg)`
@@ -152,12 +151,12 @@ const IconUpload = styled(Icons)`
     fill: rgb(29, 155, 240);
   }
 `;
-const Example = styled.img``;
+// const Example = styled.img``;
 
 const SingleTweet = () => {
   return (
     <div>
-      <Example src={example} />
+      {/* <Example src={example} /> */}
       <Wrapper>
         <Author>
           <Logo src="https://pbs.twimg.com/profile_images/2204738923/justlviv_normal.jpg" />
