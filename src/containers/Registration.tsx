@@ -126,7 +126,7 @@ const Registration = () => {
                 maxLength={50}
               />
               <StyledCounterLabel>
-                {JSON.stringify(watch("userName").length)} / 50
+                {watch("userName") ? watch("userName").length : 0} / 50
               </StyledCounterLabel>
             </StyledFloatingLabel>
             <p className="text-danger">
