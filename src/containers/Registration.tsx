@@ -119,7 +119,7 @@ const Registration = () => {
             }}
             onSubmit={handleSubmit(submitForm)}
           >
-            <StyledFloatingLabel controlId="floatingInput" label="Ім'я">
+            <StyledFloatingLabel controlId="userNameInput" label="Ім'я">
               <StyledFormControl
                 {...register("userName")}
                 type="text"
@@ -134,7 +134,7 @@ const Registration = () => {
             <p className="text-danger">
               {errors.userName && errors?.userName?.message}
             </p>
-            <StyledFloatingLabel controlId="floatingInput" label="Ел. пошта">
+            <StyledFloatingLabel controlId="emailInput" label="Ел. пошта">
               <StyledFormControl
                 {...register("email")}
                 type="text"
@@ -146,7 +146,7 @@ const Registration = () => {
               {errors.email && errors?.email?.message}
             </p>
             <StyledFloatingLabel
-              controlId="floatingInput"
+              controlId="dateOfBirthInput"
               label="Дата народження"
             >
               <StyledFormControl
@@ -158,19 +158,20 @@ const Registration = () => {
             <p className="text-danger">
               {errors.dateOfBirth && errors?.dateOfBirth?.message}
             </p>
-            <StyledFloatingLabel controlId="floatingInput" label="Пароль">
+            <StyledFloatingLabel controlId="passwordInput" label="Пароль">
               <StyledFormControl
                 {...register("password")}
                 type="password"
                 name="password"
                 placeholder="Пароль"
+                autoComplete="on"
               />
             </StyledFloatingLabel>
             <p className="text-danger">
               {errors.password && errors?.password?.message}
             </p>
             <StyledFloatingLabel
-              controlId="floatingInput"
+              controlId="confirmPasswordInput"
               label="Підтвердіть пароль"
             >
               <StyledFormControl
@@ -178,6 +179,7 @@ const Registration = () => {
                 type="password"
                 name="confirmPassword"
                 placeholder="Підтвердіть пароль"
+                autoComplete="on"
               />
             </StyledFloatingLabel>
             <p className="text-danger">
