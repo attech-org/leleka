@@ -80,7 +80,6 @@ const schema = yup.object().shape({
 
 const Registration = () => {
   const [show, setShow] = useState(false);
-  const [nameLengthCounter, setNameLengthCounter] = useState(0);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -88,6 +87,7 @@ const Registration = () => {
   const {
     register,
     handleSubmit,
+    watch,
     formState: { errors },
   } = useForm<MyForm>({
     resolver: yupResolver(schema),
@@ -96,11 +96,6 @@ const Registration = () => {
   const submitForm = (data: MyForm) => {
     console.log(data);
     handleClose();
-  };
-
-  const nameFormHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-    e.preventDefault();
-    setNameLengthCounter(e.target.value.length);
   };
 
   return (
@@ -129,10 +124,10 @@ const Registration = () => {
                 name="userName"
                 placeholder="Ім'я"
                 maxLength={50}
-                autoFocus
-                onChange={nameFormHandler}
               />
-              <StyledCounterLabel>{nameLengthCounter} / 50</StyledCounterLabel>
+              <StyledCounterLabel>
+                {JSON.stringify(watch("userName").length)} / 50
+              </StyledCounterLabel>
             </StyledFloatingLabel>
             <p className="text-danger">
               {errors.userName && errors?.userName?.message}
