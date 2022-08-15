@@ -1,12 +1,8 @@
 import { Dropdown } from "react-bootstrap";
-// import * as Icon from "react-bootstrap-icons";
 import styled from "styled-components";
 
 const Wrapper = styled.div`
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  /* letter-spacing: -0.05em; */
   max-width: 598px;
-  /* border: solid 1px; */
   text-align: left;
   display: flex;
   flex-direction: row;
@@ -27,10 +23,7 @@ const Logo = styled.img`
   border-radius: 50%;
 `;
 const Author = styled.div`
-  /* height: 48px; */
-  /* background-color: #d4ffc7; */
   margin-top: 12px;
-  /* margin-bottom: 4px; */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -40,7 +33,6 @@ const NameSection = styled.div`
   width: 100%;
   display: flex;
   justify-content: space-between;
-  /* background-color: red; */
 `;
 const NameWrapper = styled.div`
   display: flex;
@@ -76,9 +68,11 @@ const SDropdownToggle = styled(Dropdown.Toggle)`
   padding: 0;
   border: none;
   margin-left: 20px;
+  &:hover {
+    background-color: white;
+  }
 `;
 const Answer = styled.div`
-  /* background-color: #15ff00; */
   width: 100%;
   display: flex;
 `;
@@ -93,8 +87,6 @@ const Text = styled.div`
   font-size: 1rem;
   letter-spacing: -0.02em;
   line-height: 1.6rem;
-  /* margin-top: 12px; */
-  /* background-color: #6d6fff; */
 `;
 
 const IconRow = styled.div`

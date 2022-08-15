@@ -1,20 +1,13 @@
 import { Dropdown } from "react-bootstrap";
-// import * as Icon from "react-bootstrap-icons";
 import styled from "styled-components";
 
-// import example from "./example.jpg";
-
 const Wrapper = styled.div`
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  /* letter-spacing: -0.05em; */
   max-width: 598px;
   padding: 0 16px;
-  /* border: solid 1px; */
   text-align: left;
 `;
 const Author = styled.div`
   height: 48px;
-  /* background-color: #d4ffc7; */
   margin-top: 12px;
   margin-bottom: 4px;
   display: flex;
@@ -52,6 +45,9 @@ const SDropdownToggle = styled(Dropdown.Toggle)`
   padding: 0;
   border: none;
   margin-left: 20px;
+  &:hover {
+    background-color: white;
+  }
 `;
 const Text = styled.div`
   font-size: 1.4rem;
@@ -151,12 +147,10 @@ const IconUpload = styled(Icons)`
     fill: rgb(29, 155, 240);
   }
 `;
-// const Example = styled.img``;
 
 const SingleTweet = () => {
   return (
     <div>
-      {/* <Example src={example} /> */}
       <Wrapper>
         <Author>
           <Logo src="https://pbs.twimg.com/profile_images/2204738923/justlviv_normal.jpg" />
