@@ -88,6 +88,7 @@ const Registration = () => {
     register,
     handleSubmit,
     watch,
+    reset,
     formState: { errors },
   } = useForm<MyForm>({
     resolver: yupResolver(schema),
@@ -96,6 +97,7 @@ const Registration = () => {
   const submitForm = (data: MyForm) => {
     console.log(data);
     handleClose();
+    reset();
   };
 
   return (
