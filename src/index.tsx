@@ -1,9 +1,13 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
+import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
+import { PersistGate } from "redux-persist/integration/react";
 
 import App from "./App";
+import { store, persistor } from "./redux/store";
 
+import "bootstrap/dist/css/bootstrap.min.css";
 import "./styles/reset.css";
 import "./i18n/i18n";
 
@@ -12,10 +16,12 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
-    <React.Suspense fallback="loading">
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
-    </React.Suspense>
+    <Provider store={store}>
+      <PersistGate loading={null} persistor={persistor}>
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </PersistGate>
+    </Provider>
   </React.StrictMode>
 );

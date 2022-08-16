@@ -1,0 +1,20 @@
+{
+  "userName": {
+    "required": "Name is required!"
+  },
+
+  "email": {
+    "required": "Email is required!",
+    "invalid": "Please enter a valid email format!"
+  },
+
+  "dateOfBirth": {
+    "required": "Birth date is required!"
+  },
+
+  "password": {
+    "required": "Password is required!",
+    "invalid": "Must Contain 8 Characters, One Uppercase, One Lowercase, One Number and One Special Case Character",
+    "mustMatch": "Password must match!"
+  }
+}
