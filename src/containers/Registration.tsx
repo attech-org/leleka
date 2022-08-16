@@ -1,22 +1,14 @@
 import { yupResolver } from "@hookform/resolvers/yup";
-import React, { useState } from "react";
-import { Modal, Button, Form, FloatingLabel } from "react-bootstrap";
-import "bootstrap/dist/css/bootstrap.css";
+import { useState } from "react";
+import { Button, Form, FloatingLabel } from "react-bootstrap";
 import { useForm } from "react-hook-form";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import * as yup from "yup";
 
-const WrapperDiv = styled.div`
-  > * {
-    font-family: TwitterChirp, -apple-system, BlinkMacSystemFont, "Segoe UI",
-      Roboto, Helvetica, Arial, sans-serif;
-  }
-`;
+export const windowTitle = "Створіть свій профіль";
 
-const StyledModalTitle = styled(Modal.Title)`
-  text-align: center;
-  font-weight: 700;
-  font-size: 2rem;
+const StyledForm = styled(Form)`
+  padding: 0 2rem;
 `;
 
 const StyledFormControl = styled(Form.Control)`
@@ -24,6 +16,12 @@ const StyledFormControl = styled(Form.Control)`
   padding: 2rem 0.75rem 2rem 1.7rem !important;
   height: 5.5rem !important;
   font-size: 1.5rem;
+
+  ${(props) =>
+    props.top &&
+    css`
+      margin-top: 0rem;
+    `}
 `;
 
 const StyledFloatingLabel = styled(FloatingLabel)`
@@ -44,14 +42,20 @@ const StyledCounterLabel = styled.label`
   opacity: 0;
   padding-right: 0;
   margin-right: 0;
-  min-width: 124%;
+  min-width: 125%;
   transform-origin: 0 0;
+`;
+
+const StyledButton = styled(Button)`
+  margin-top: 1rem;
+  border-radius: 9999px;
+  padding: 1rem;
 `;
 
 interface MyForm {
   userName: string;
   email: string;
-  dateOfBirth: Date;
+  dateOfBirth: string;
   password: string;
   confirmPassword: string;
 }
@@ -81,8 +85,7 @@ const schema = yup.object().shape({
 const Registration = () => {
   const [show, setShow] = useState(false);
 
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  const toggleShowState = () => setShow(!show);
 
   const {
     register,
@@ -96,113 +99,87 @@ const Registration = () => {
 
   const submitForm = (data: MyForm) => {
     console.log(data);
-    handleClose();
+    toggleShowState();
     reset();
   };
 
-  return (
-    <WrapperDiv>
-      <Button variant="primary" onClick={handleShow}>
-        Зареєструватися
-      </Button>
+  const watchUserName = watch("userName");
 
-      <Modal size="lg" centered show={show} onHide={handleClose}>
-        <Modal.Header closeButton style={{ margin: "0px" }}>
-          {" "}
-        </Modal.Header>
-        <StyledModalTitle>Створіть свій профіль</StyledModalTitle>
-        <Modal.Body>
-          <Form
-            style={{
-              paddingLeft: "2rem",
-              paddingRight: "2rem",
-            }}
-            onSubmit={handleSubmit(submitForm)}
-          >
-            <StyledFloatingLabel controlId="userNameInput" label="Ім'я">
-              <StyledFormControl
-                {...register("userName")}
-                type="text"
-                name="userName"
-                placeholder="Ім'я"
-                maxLength={50}
-              />
-              <StyledCounterLabel>
-                {watch("userName") ? watch("userName").length : 0} / 50
-              </StyledCounterLabel>
-            </StyledFloatingLabel>
-            <p className="text-danger">
-              {errors.userName && errors?.userName?.message}
-            </p>
-            <StyledFloatingLabel controlId="emailInput" label="Ел. пошта">
-              <StyledFormControl
-                {...register("email")}
-                type="text"
-                name="email"
-                placeholder="Ел. пошта"
-              />
-            </StyledFloatingLabel>
-            <p className="text-danger">
-              {errors.email && errors?.email?.message}
-            </p>
-            <StyledFloatingLabel
-              controlId="dateOfBirthInput"
-              label="Дата народження"
-            >
-              <StyledFormControl
-                {...register("dateOfBirth")}
-                type="date"
-                name="dateOfBirth"
-              />
-            </StyledFloatingLabel>
-            <p className="text-danger">
-              {errors.dateOfBirth && errors?.dateOfBirth?.message}
-            </p>
-            <StyledFloatingLabel controlId="passwordInput" label="Пароль">
-              <StyledFormControl
-                {...register("password")}
-                type="password"
-                name="password"
-                placeholder="Пароль"
-                autoComplete="on"
-              />
-            </StyledFloatingLabel>
-            <p className="text-danger">
-              {errors.password && errors?.password?.message}
-            </p>
-            <StyledFloatingLabel
-              controlId="confirmPasswordInput"
-              label="Підтвердіть пароль"
-            >
-              <StyledFormControl
-                {...register("confirmPassword")}
-                type="password"
-                name="confirmPassword"
-                placeholder="Підтвердіть пароль"
-                autoComplete="on"
-              />
-            </StyledFloatingLabel>
-            <p className="text-danger">
-              {errors.confirmPassword && errors?.confirmPassword?.message}
-            </p>
-            <div className="d-grid gap-2">
-              <Button
-                type="submit"
-                variant="secondary"
-                size="lg"
-                style={{
-                  marginTop: "1rem",
-                  borderRadius: "9999px",
-                  padding: "1rem",
-                }}
-              >
-                Зареєструватися
-              </Button>
-            </div>
-          </Form>
-        </Modal.Body>
-      </Modal>
-    </WrapperDiv>
+  return (
+    <>
+      <StyledForm onSubmit={handleSubmit(submitForm)}>
+        <StyledFloatingLabel controlId="userNameInput" label="Ім'я">
+          <StyledFormControl
+            top="true"
+            {...register("userName")}
+            type="text"
+            name="userName"
+            placeholder="Ім'я"
+            maxLength={50}
+          />
+          <StyledCounterLabel>
+            {watchUserName ? watchUserName.length : 0} / 50
+          </StyledCounterLabel>
+        </StyledFloatingLabel>
+        <p className="text-danger">
+          {errors.userName && errors?.userName?.message}
+        </p>
+        <StyledFloatingLabel controlId="emailInput" label="Ел. пошта">
+          <StyledFormControl
+            {...register("email")}
+            type="text"
+            name="email"
+            placeholder="Ел. пошта"
+          />
+        </StyledFloatingLabel>
+        <p className="text-danger">{errors.email && errors?.email?.message}</p>
+        <StyledFloatingLabel
+          controlId="dateOfBirthInput"
+          label="Дата народження"
+        >
+          <StyledFormControl
+            {...register("dateOfBirth")}
+            type="date"
+            name="dateOfBirth"
+          />
+        </StyledFloatingLabel>
+        <p className="text-danger">
+          {errors.dateOfBirth && errors?.dateOfBirth?.message}
+        </p>
+        <StyledFloatingLabel controlId="passwordInput" label="Пароль">
+          <StyledFormControl
+            {...register("password")}
+            type="password"
+            name="password"
+            placeholder="Пароль"
+            autoComplete="on"
+          />
+        </StyledFloatingLabel>
+        <p className="text-danger">
+          {errors.password && errors?.password?.message}
+        </p>
+        <StyledFloatingLabel
+          controlId="confirmPasswordInput"
+          label="Підтвердіть пароль"
+        >
+          <StyledFormControl
+            {...register("confirmPassword")}
+            type="password"
+            name="confirmPassword"
+            placeholder="Підтвердіть пароль"
+            autoComplete="on"
+          />
+        </StyledFloatingLabel>
+        <p className="text-danger">
+          {errors.confirmPassword && errors?.confirmPassword?.message}
+        </p>
+        <div className="d-grid gap-2">
+          <StyledButton type="submit" variant="secondary" size="lg">
+            Зареєструватися
+          </StyledButton>
+        </div>
+      </StyledForm>
+    </>
   );
 };
 
