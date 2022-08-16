@@ -1,5 +1,8 @@
+import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+
+import LanguageSwitcher from "./LanguageSwitcher";
 
 const GeneralContainer = styled.main`
   display: flex;
@@ -24,6 +27,7 @@ interface LayoutProps {
 }
 
 const Layout = ({ children, withoutNavigation }: LayoutProps) => {
+  const { t } = useTranslation();
   return (
     <>
       {!withoutNavigation && (
@@ -38,8 +42,14 @@ const Layout = ({ children, withoutNavigation }: LayoutProps) => {
       )}
       <GeneralContainer>
         <LeftPanel>left side</LeftPanel>
-        <div>{children}</div>
-        <RightPanel>right side</RightPanel>
+        <>
+          <div>{children}</div>
+          <p>{t("test")}</p>
+        </>
+        <RightPanel>
+          right side
+          <LanguageSwitcher />
+        </RightPanel>
       </GeneralContainer>
     </>
   );
