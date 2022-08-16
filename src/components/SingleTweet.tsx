@@ -147,8 +147,37 @@ const IconUpload = styled(Icons)`
     fill: rgb(29, 155, 240);
   }
 `;
+const Content = styled.div`
+  border-radius: 15px;
+  overflow: hidden;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+`;
+
+const ContentImage = styled.img`
+  width: ${(props: { fullImg: boolean }) => (props.fullImg ? "100%" : "49%")};
+  margin-bottom: 1%;
+`;
+
+const ContentVideo = styled.video`
+  width: 100%;
+`;
 
 const SingleTweet = () => {
+  const content: string[] = [];
+  const RandomizerContent = () => {
+    const amountConent: number = Math.floor(Math.random() * 5 + 1);
+    for (let i = 0; i < amountConent; i++) {
+      content.push(
+        `https://picsum.photos/${Math.floor(
+          Math.random() * 300 + 200
+        )}/${Math.floor(Math.random() * 200 + 100)}`
+      );
+    }
+  };
+  RandomizerContent();
+
   return (
     <div>
       <Wrapper>
@@ -181,6 +210,24 @@ const SingleTweet = () => {
           "Все, бля, я поняв, як блокування дальності знімати" - Андрій,
           мобілізований it-спеціаліст, член екіпажу HIMARS. 9 серпня 2022.
         </Text>
+        <Content>
+          {content.map((cont, index, arr) => {
+            return (
+              <ContentImage
+                src={cont}
+                key={index}
+                fullImg={
+                  arr.length == index + 1 && arr.length % 2 ? true : false
+                }
+              />
+            );
+          })}
+
+          <ContentVideo
+            src="https://video.twimg.com/ext_tw_video/1506247688261537793/pu/vid/640x360/EbN6H4_tATC8RFxc.mp4?tag=12"
+            controls
+          />
+        </Content>
         <DateRow>
           <Date>10:00 AM · 10 сер. 2022 р. - Leleka Web App</Date>
         </DateRow>
