@@ -5,7 +5,7 @@ const HomeContainer: React.FunctionComponent = () => {
   return (
     <>
       <div>Home container</div>
-      <p>{t("validation:userName.required")}</p>
+      <p>{t("test")}</p>
     </>
   );
 };

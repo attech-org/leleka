@@ -7,10 +7,11 @@ import HomePage from "./pages/Home";
 
 const App: React.FunctionComponent = () => {
   const { i18n } = useTranslation();
-  const setSearchParams = useSearchParams()[1];
+  const [searchParams, setSearchParams] = useSearchParams();
 
   useEffect(() => {
-    setSearchParams({ lng: i18n.resolvedLanguage });
+    searchParams.set("lng", i18n.resolvedLanguage);
+    setSearchParams(searchParams);
   }, [i18n.resolvedLanguage]);
 
   return (

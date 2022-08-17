@@ -5,7 +5,7 @@
 
   "email": {
     "required": "Потрібен email!",
-    "invalid": "Please enter a valid email format!"
+    "invalidFormat": "Please enter a valid email format!"
   },
 
   "dateOfBirth": {
@@ -14,7 +14,10 @@
 
   "password": {
     "required": "Потрібен пароль!",
-    "invalid": "Має містити 8 символів, один верхнього регістру, один нижнього регістру, одну цифру та один символ спеціального регістру",
-    "mustMatch": "Пароль повинен збігатись!"
+    "invalidFormat": "Має містити 8 символів, один верхнього регістру, один нижнього регістру, одну цифру та один символ спеціального регістру"
+  },
+
+  "confirmPassword": {
+    "match": "Пароль повинен збігатись!"
   }
 }

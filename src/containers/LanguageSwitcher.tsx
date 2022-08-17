@@ -15,19 +15,6 @@ const LanguageSwitcher = () => {
   };
 
   return (
-    // <div>
-    // {Object.keys(lngs).map((lng: string) => (
-    //   <button
-    //     type="submit"
-    //     key={lng}
-    //     onClick={() => i18n.changeLanguage(lng)}
-    //     disabled={i18n.resolvedLanguage === lng}
-    //   >
-    //     {lngs[lng]}
-    //   </button>
-    // ))}
-    // </div>
-
     <Form.Select
       size="sm"
       value={i18n.resolvedLanguage}
