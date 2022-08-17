@@ -2,6 +2,7 @@ import React from "react";
 import { Routes, Route } from "react-router-dom";
 
 import AboutPage from "./pages/About";
+import AuthorizationPage from "./pages/Authorization";
 import BookmarksPage from "./pages/Bookmarks";
 import ExplorePage from "./pages/Explore";
 import HomePage from "./pages/Home";
@@ -24,6 +25,7 @@ const App: React.FunctionComponent = () => {
         <Route path="/lists" element={<ListsPage />} />
         <Route path="/profile" element={<ProfilePage />} />
         <Route path="/more" element={<MorePage />} />
+        <Route path="/authorization" element={<AuthorizationPage />} />
       </Routes>
     </div>
   );
