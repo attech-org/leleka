@@ -10,7 +10,7 @@ const App: React.FunctionComponent = () => {
   const [searchParams, setSearchParams] = useSearchParams();
 
   useEffect(() => {
-    searchParams.set("lng", i18n.resolvedLanguage);
+    searchParams.set("lang", i18n.resolvedLanguage);
     setSearchParams(searchParams);
   }, [i18n.resolvedLanguage]);
 

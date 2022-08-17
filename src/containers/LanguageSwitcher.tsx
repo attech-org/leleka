@@ -2,7 +2,7 @@ import { ChangeEvent } from "react";
 import Form from "react-bootstrap/Form";
 import { useTranslation } from "react-i18next";
 
-const lngs: Record<string, string> = {
+const languages: Record<string, string> = {
   en: "English",
   ua: "Українська",
 };
@@ -20,9 +20,9 @@ const LanguageSwitcher = () => {
       value={i18n.resolvedLanguage}
       onChange={languageSwitchHandler}
     >
-      {Object.keys(lngs).map((lng: string) => (
-        <option key={lng} value={lng}>
-          {lngs[lng]}
+      {Object.keys(languages).map((lang: string) => (
+        <option key={lang} value={lang}>
+          {languages[lang]}
         </option>
       ))}
     </Form.Select>

@@ -9,7 +9,7 @@ import { store, persistor } from "./redux/store";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./styles/reset.css";
-import "./i18n/i18n";
+import "./services/i18n";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
