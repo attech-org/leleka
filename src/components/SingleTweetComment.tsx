@@ -1,4 +1,5 @@
 import { Dropdown } from "react-bootstrap";
+import { ThreeDots } from "react-bootstrap-icons";
 import styled from "styled-components";
 
 const Wrapper = styled.div`
@@ -19,8 +20,6 @@ const CommentWrapper = styled.div`
 const Logo = styled.img`
   width: 48px;
   height: 48px;
-  margin: 12px 12px 0 0;
-  border-radius: 50%;
 `;
 const Author = styled.div`
   margin-top: 12px;
@@ -38,7 +37,7 @@ const NameWrapper = styled.div`
   display: flex;
   flex-direction: row;
 `;
-const Name = styled.div`
+const Username = styled.div`
   font-weight: bold;
   font-size: 16px;
   height: 20px;
@@ -51,23 +50,23 @@ const NickName = styled.div`
   height: 20px;
   display: flex;
   align-items: center;
-  margin-left: 4px;
+  /* margin-left: 4px; */
 `;
 const Date = styled.div`
   color: rgb(83, 100, 113);
   height: 20px;
   display: flex;
   align-items: center;
-  margin-left: 4px;
+  /* margin-left: 4px; */
 `;
 const SDropdownToggle = styled(Dropdown.Toggle)`
   border-radius: 50%;
   background-color: white;
   width: 18.75px;
   height: 18.75px;
-  padding: 0;
+  /* padding: 0; */
   border: none;
-  margin-left: 20px;
+  /* margin-left: 20px; */
   &:hover {
     background-color: white;
   }
@@ -150,24 +149,25 @@ const SingleTweetComment = () => {
   return (
     <div>
       <Wrapper>
-        <Logo src="https://pbs.twimg.com/profile_images/2204738923/justlviv_normal.jpg" />
+        <Logo
+          className="rounded-circle mr-2 mt-2"
+          src="https://pbs.twimg.com/profile_images/2204738923/justlviv_normal.jpg"
+        />
         <CommentWrapper>
           <Author>
             <NameSection>
               <NameWrapper>
-                <Name>Ярослав Львівський</Name>
-                <NickName>@justlviv</NickName>
-                <Date>10 сер.</Date>
+                <Username>Ярослав Львівський</Username>
+                <NickName className="pl-1">@justlviv</NickName>
+                <Date className="pl-1">10 сер.</Date>
               </NameWrapper>
               <Dropdown>
-                <SDropdownToggle variant="success" id="dropdown-basic">
-                  <svg viewBox="0 0 24 24">
-                    <g stroke="grey">
-                      <circle cx="5" cy="10" r="2" />
-                      <circle cx="12" cy="10" r="2" />
-                      <circle cx="19" cy="10" r="2" />
-                    </g>
-                  </svg>
+                <SDropdownToggle
+                  variant="success"
+                  id="dropdown-basic"
+                  className="p-0"
+                >
+                  <ThreeDots color="black" />
                 </SDropdownToggle>
                 <Dropdown.Menu>
                   <Dropdown.Item href="#/action-1">Почати читати</Dropdown.Item>
