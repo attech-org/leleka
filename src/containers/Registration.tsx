@@ -1,67 +1,46 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useState } from "react";
-import { Button, Form, FloatingLabel } from "react-bootstrap";
+import { Button, Form } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import styled, { css } from "styled-components";
 import * as yup from "yup";
 
-export const windowTitle = "Створіть свій профіль";
+import ModalUniversal from "./ModalUniversal";
 
-const StyledForm = styled(Form)`
-  padding: 0 2rem;
-`;
+// export const windowTitle = "Створіть свій профіль";
 
-const StyledFormControl = styled(Form.Control)`
-  margin-top: 1rem;
-  padding: 2rem 0.75rem 2rem 1.7rem !important;
-  height: 5.5rem !important;
-  font-size: 1.5rem;
-
-  ${(props) =>
-    props.top &&
-    css`
-      margin-top: 0rem;
-    `}
-`;
-
-const StyledFloatingLabel = styled(FloatingLabel)`
-  font-size: 1.5rem;
-  label {
-    padding: 2rem 1.7rem;
-  }
-  .form-floating > .form-control:focus ~ label,
-  .form-control:not(:placeholder-shown) ~ label,
-  .form-control:focus ~ label {
-    transform: scale(0.8) translateY(-1.5rem) translateX(0);
-    opacity: 0.65 !important;
-  }
-`;
-
-const StyledCounterLabel = styled.label`
-  text-align: right;
-  opacity: 0;
-  padding-right: 0;
-  margin-right: 0;
-  min-width: 125%;
-  transform-origin: 0 0;
-`;
-
-const StyledButton = styled(Button)`
-  margin-top: 1rem;
-  border-radius: 9999px;
-  padding: 1rem;
-`;
-
-interface MyForm {
-  userName: string;
+interface RegistrationForm {
+  username: string;
   email: string;
   dateOfBirth: string;
   password: string;
   confirmPassword: string;
 }
 
+interface Label {
+  counter?: boolean;
+}
+
+const StyledFormFloating = styled(Form.Floating)`
+  .form-control:focus ~ label,
+  .form-control:not(:placeholder-shown) ~ label {
+    transform: scale(0.85) translateY(-1.3rem) translateX(0.15rem);
+  }
+`;
+
+const StyledLabel = styled.label<Label>`
+  padding-top: 2rem !important;
+  ${(props) =>
+    props.counter &&
+    css`
+      transform: scale(1) translateY(-1.5rem) translateX(0) !important;
+      font-size: calc(1.5rem * 0.85);
+      opacity: 0;
+    `}
+`;
+
 const schema = yup.object().shape({
-  userName: yup.string().required("Як вас звати?"),
+  username: yup.string().required("Як вас звати?"),
   email: yup
     .string()
     .email("Будь ласка, використовуйте формат електронної адреси")
@@ -85,6 +64,9 @@ const schema = yup.object().shape({
 const Registration = () => {
   const [show, setShow] = useState(false);
 
+  const registrationButtonName = "Зарегистрироваться";
+  const registrationTitle = "Створіть свій профіль";
+
   const toggleShowState = () => setShow(!show);
 
   const {
@@ -93,92 +75,114 @@ const Registration = () => {
     watch,
     reset,
     formState: { errors },
-  } = useForm<MyForm>({
+  } = useForm<RegistrationForm>({
     resolver: yupResolver(schema),
   });
 
-  const submitForm = (data: MyForm) => {
+  const submitForm = (data: RegistrationForm) => {
     console.log(data);
     toggleShowState();
     reset();
   };
 
-  const watchUserName = watch("userName");
+  const watchUserName = watch("username");
+
+  const registerForm = (
+    <Form className="px-4" onSubmit={handleSubmit(submitForm)}>
+      <StyledFormFloating className="fs-4">
+        <Form.Control
+          {...register("username")}
+          className="fs-4 py-5"
+          type="text"
+          name="username"
+          placeholder="Ім'я"
+          maxLength={50}
+        />
+        <StyledLabel className="pt-4 text-muted" htmlFor="floatingInputCustom">
+          Ім'я
+        </StyledLabel>
+        <StyledLabel
+          counter
+          className="pt-4 text-end"
+          htmlFor="floatingInputCustom"
+        >
+          {watchUserName ? watchUserName.length : 0} / 50
+        </StyledLabel>
+      </StyledFormFloating>
+      <p className="text-danger mt-1">{errors?.username?.message}</p>
+      <StyledFormFloating className="fs-4">
+        <Form.Control
+          className="mt-3 fs-4 py-5"
+          {...register("email")}
+          type="text"
+          name="email"
+          placeholder="Ел. пошта"
+        />
+        <StyledLabel className="pt-4 text-muted" htmlFor="floatingInputCustom">
+          Ел. пошта
+        </StyledLabel>
+      </StyledFormFloating>
+      <p className="text-danger mt-1">{errors?.email?.message}</p>
+      <StyledFormFloating className="fs-4">
+        <Form.Control
+          className="mt-3 fs-4 py-5"
+          {...register("dateOfBirth")}
+          type="date"
+          name="dateOfBirth"
+        />
+        <StyledLabel className="pt-4 text-muted" htmlFor="floatingInputCustom">
+          Дата народження
+        </StyledLabel>
+      </StyledFormFloating>
+      <p className="text-danger">{errors?.dateOfBirth?.message}</p>
+      <StyledFormFloating className="fs-4">
+        <Form.Control
+          className="mt-3 fs-4 py-5"
+          {...register("password")}
+          type="password"
+          name="password"
+          placeholder="Пароль"
+          autoComplete="on"
+        />
+        <StyledLabel className="pt-4 text-muted" htmlFor="floatingInputCustom">
+          Пароль
+        </StyledLabel>
+      </StyledFormFloating>
+      <p className="text-danger">{errors?.password?.message}</p>
+      <StyledFormFloating className="fs-4">
+        <Form.Control
+          className="mt-3 fs-4 py-5"
+          {...register("confirmPassword")}
+          type="password"
+          name="confirmPassword"
+          placeholder="Підтвердіть пароль"
+          autoComplete="on"
+        />
+        <StyledLabel className="pt-4 text-muted" htmlFor="floatingInputCustom">
+          Підтвердіть пароль
+        </StyledLabel>
+      </StyledFormFloating>
+      <p className="text-danger">{errors?.confirmPassword?.message}</p>
+      <div className="d-grid gap-2">
+        <Button
+          className="mt-3 p-4 square rounded-pill"
+          type="submit"
+          variant="secondary"
+          size="lg"
+        >
+          Зареєструватися
+        </Button>
+      </div>
+    </Form>
+  );
 
   return (
     <>
-      <StyledForm onSubmit={handleSubmit(submitForm)}>
-        <StyledFloatingLabel controlId="userNameInput" label="Ім'я">
-          <StyledFormControl
-            top="true"
-            {...register("userName")}
-            type="text"
-            name="userName"
-            placeholder="Ім'я"
-            maxLength={50}
-          />
-          <StyledCounterLabel>
-            {watchUserName ? watchUserName.length : 0} / 50
-          </StyledCounterLabel>
-        </StyledFloatingLabel>
-        <p className="text-danger">
-          {errors.userName && errors?.userName?.message}
-        </p>
-        <StyledFloatingLabel controlId="emailInput" label="Ел. пошта">
-          <StyledFormControl
-            {...register("email")}
-            type="text"
-            name="email"
-            placeholder="Ел. пошта"
-          />
-        </StyledFloatingLabel>
-        <p className="text-danger">{errors.email && errors?.email?.message}</p>
-        <StyledFloatingLabel
-          controlId="dateOfBirthInput"
-          label="Дата народження"
-        >
-          <StyledFormControl
-            {...register("dateOfBirth")}
-            type="date"
-            name="dateOfBirth"
-          />
-        </StyledFloatingLabel>
-        <p className="text-danger">
-          {errors.dateOfBirth && errors?.dateOfBirth?.message}
-        </p>
-        <StyledFloatingLabel controlId="passwordInput" label="Пароль">
-          <StyledFormControl
-            {...register("password")}
-            type="password"
-            name="password"
-            placeholder="Пароль"
-            autoComplete="on"
-          />
-        </StyledFloatingLabel>
-        <p className="text-danger">
-          {errors.password && errors?.password?.message}
-        </p>
-        <StyledFloatingLabel
-          controlId="confirmPasswordInput"
-          label="Підтвердіть пароль"
-        >
-          <StyledFormControl
-            {...register("confirmPassword")}
-            type="password"
-            name="confirmPassword"
-            placeholder="Підтвердіть пароль"
-            autoComplete="on"
-          />
-        </StyledFloatingLabel>
-        <p className="text-danger">
-          {errors.confirmPassword && errors?.confirmPassword?.message}
-        </p>
-        <div className="d-grid gap-2">
-          <StyledButton type="submit" variant="secondary" size="lg">
-            Зареєструватися
-          </StyledButton>
-        </div>
-      </StyledForm>
+      <ModalUniversal
+        buttonName={registrationButtonName}
+        title={registrationTitle}
+        content={registerForm}
+      />
     </>
   );
 };
