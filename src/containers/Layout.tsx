@@ -1,21 +1,30 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
+import { LeftPanel } from "../components/LeftPanel";
+import { RightPanel } from "../components/RightPanel";
+
 const GeneralContainer = styled.main`
-  display: flex;
-  justify-content: space-between;
-  width: 100vw;
-  height: 100vh;
+  display: grid;
+
+  grid-template-rows: 200vh; // optional
+  grid-template-columns: 25% 42% 33%;
+
+  @media (max-width: 1280px) {
+    grid-template-columns: 14% 48% 38%;
+  }
+  @media (max-width: 1000px) {
+    grid-template-columns: 19% 81%;
+  }
+
+  @media (max-width: 500px) {
+    grid-template-columns: 1fr;
+    grid-template-rows: calc(100vh - 50px) 50px;
+  }
 `;
 
-const LeftPanel = styled.section`
-  flex: 0 1 30%;
-  background-color: yellowgreen;
-`;
-
-const RightPanel = styled.section`
-  flex: 0 1 30%;
-  background-color: lightgreen;
+const Main = styled.main`
+  text-align: center;
 `;
 
 interface LayoutProps {
@@ -32,14 +41,15 @@ const Layout = ({ children, withoutNavigation }: LayoutProps) => {
             <li>
               <Link to="/">Home</Link>
               <Link to="/about">About</Link>
+              <Link to="/authorization">Authorization</Link>
             </li>
           </ul>
         </header>
       )}
       <GeneralContainer>
-        <LeftPanel>left side</LeftPanel>
-        <div>{children}</div>
-        <RightPanel>right side</RightPanel>
+        <LeftPanel />
+        <Main>{children}</Main>
+        <RightPanel />
       </GeneralContainer>
     </>
   );

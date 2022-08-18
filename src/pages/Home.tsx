@@ -3,9 +3,11 @@ import Layout from "../containers/Layout";
 
 const HomePage: React.FunctionComponent = () => {
   return (
-    <Layout>
-      <HomeContainer />
-    </Layout>
+    <>
+      <Layout>
+        <HomeContainer />
+      </Layout>
+    </>
   );
 };
 
