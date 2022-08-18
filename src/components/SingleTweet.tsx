@@ -116,7 +116,7 @@ const SingleTweet: React.FC<ISingleTweet> = ({
   const Green = "rgb(0, 186, 124)";
   const Red = "rgb(249, 24, 128)";
   const content: string[] = [];
-  const RandomizerContent = () => {
+  const RandomizerContent = (): void => {
     const amountContent: number = Math.floor(Math.random() * 5 + 1);
     for (let i = 0; i < amountContent; i++) {
       content.push(
