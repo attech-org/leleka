@@ -1,15 +1,15 @@
-// import { InputLine } from "../pages/InputLine";
-// import { CommentsList } from "./CommentsList";
-// import { TweetPage } from "./TweetPage";
+import { InputLine } from "../pages/InputLine";
+import { CommentsList } from "./CommentsList";
+import { TweetPage } from "./TweetPage";
 
 const HomeContainer: React.FunctionComponent = () => {
   return (
     <div>
       <div>Home container</div>
 
-      {/* <TweetPage />
+      <TweetPage />
       <InputLine />
-      <CommentsList /> */}
+      <CommentsList />
     </div>
   );
 };

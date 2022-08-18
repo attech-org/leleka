@@ -1,26 +1,9 @@
-import { Paper } from "@mui/material";
-
 import SingleTweetComment from "../pages/SingleTweetComment";
 
 export const CommentsList: React.FC = () => {
   return (
-    <Paper>
+    <div>
       <SingleTweetComment />
-      <SingleTweetComment />
-      <SingleTweetComment />
-      <SingleTweetComment />
-      <SingleTweetComment />
-      <SingleTweetComment />
-      <SingleTweetComment />
-      <SingleTweetComment />
-      <SingleTweetComment />
-      <SingleTweetComment />
-      <SingleTweetComment />
-      <SingleTweetComment />
-      <SingleTweetComment />
-      <SingleTweetComment />
-      <SingleTweetComment />
-      <SingleTweetComment />
-    </Paper>
+    </div>
   );
 };
