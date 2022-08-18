@@ -147,8 +147,8 @@ const SingleTweet = () => {
   const Red = "rgb(249, 24, 128)";
   const content: string[] = [];
   const RandomizerContent = () => {
-    const amountConent: number = Math.floor(Math.random() * 5 + 1);
-    for (let i = 0; i < amountConent; i++) {
+    const amountContent: number = Math.floor(Math.random() * 5 + 1);
+    for (let i = 0; i < amountContent; i++) {
       content.push(
         `https://picsum.photos/${Math.floor(
           Math.random() * 300 + 200
