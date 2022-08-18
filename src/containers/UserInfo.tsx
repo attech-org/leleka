@@ -9,7 +9,7 @@ const StyledCardBody = styled(Card.Body)`
   align-items: center;
 `;
 
-interface ISingleTweet {
+interface UserInfoInterface {
   headLogo: string;
   userLogo: string;
   username: string;
@@ -24,7 +24,7 @@ interface ISingleTweet {
   readersCount: number;
 }
 
-const UserInfo: React.FC<ISingleTweet> = ({
+const UserInfo: React.FC<UserInfoInterface> = ({
   headLogo,
   userLogo,
   flagLogo,
