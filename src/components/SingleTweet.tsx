@@ -90,8 +90,9 @@ const Content = styled.div`
 `;
 
 const ContentImage = styled.img`
-  width: ${(props: { fullImg: boolean }) => (props.fullImg ? "100%" : "49%")};
-  margin-bottom: 1%;
+  width: ${(props: { fullImg: boolean }) =>
+    props.fullImg ? "100%" : "calc(50% - 1px)"};
+  margin-bottom: 2px;
 `;
 
 const ContentVideo = styled.video`
