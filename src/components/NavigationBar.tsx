@@ -19,6 +19,7 @@ const StyledNav = styled(Nav)`
   a {
     color: black;
     text-decoration: none;
+    padding-left: 15px;
   }
 `;
 

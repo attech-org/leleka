@@ -1,7 +1,7 @@
 import Layout from "../containers/Layout";
 
 const BookmarksPage: React.FunctionComponent = () => {
-  return <Layout withoutNavigation>Bookmarks</Layout>;
+  return <Layout>Bookmarks</Layout>;
 };
 
 export default BookmarksPage;

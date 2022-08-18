@@ -1,4 +1,3 @@
-import { Twitter } from "react-bootstrap-icons";
 import styled from "styled-components";
 
 import NavigationBar from "./NavigationBar";
@@ -32,7 +31,6 @@ export const LeftPanel = () => {
   return (
     <Wrapper>
       <Div>
-        <Twitter />
         <NavigationBar />
       </Div>
     </Wrapper>

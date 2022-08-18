@@ -1,7 +1,7 @@
 import Layout from "../containers/Layout";
 
 const NotificationsPage: React.FunctionComponent = () => {
-  return <Layout withoutNavigation>Notifications</Layout>;
+  return <Layout>Notifications</Layout>;
 };
 
 export default NotificationsPage;
