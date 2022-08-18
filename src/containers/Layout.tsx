@@ -1,8 +1,8 @@
-import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 import { LeftPanel } from "../components/LeftPanel";
 import { RightPanel } from "../components/RightPanel";
+import { LinkWithQuery } from "./LinkWithLang";
 
 const GeneralContainer = styled.main`
   display: grid;
@@ -39,9 +39,9 @@ const Layout = ({ children, withoutNavigation }: LayoutProps) => {
         <header>
           <ul>
             <li>
-              <Link to="/">Home</Link>
-              <Link to="/about">About</Link>
-              <Link to="/authorization">Authorization</Link>
+              <LinkWithQuery to="/">Home</LinkWithQuery>
+              <LinkWithQuery to="/about">About</LinkWithQuery>
+              <LinkWithQuery to="/authorization">Authorization</LinkWithQuery>
             </li>
           </ul>
         </header>

@@ -1,23 +1,37 @@
 {
-  "userName": {
-    "required": "Name is required!"
+  "errors": {
+    "username": {
+      "required": "What's your name?"
+    },
+
+    "email": {
+      "required": "Enter an email address",
+      "invalidFormat": "Please, use valid email format"
+    },
+
+    "dateOfBirth": {
+      "required": "Enter your date of birth",
+      "invalidFormat": "Enter your date of birth"
+    },
+
+    "password": {
+      "required": "Enter your password",
+      "invalidFormat": "Must Contain 8 Characters, One Uppercase, One Lowercase, One Number and One Special Case Character"
+    },
+
+    "confirmPassword": {
+      "match": "Password must match"
+    }
   },
 
-  "email": {
-    "required": "Email is required!",
-    "invalidFormat": "Please enter a valid email format!"
-  },
-
-  "dateOfBirth": {
-    "required": "Birth date is required!"
-  },
-
-  "password": {
-    "required": "Password is required!",
-    "invalidFormat": "Must Contain 8 Characters, One Uppercase, One Lowercase, One Number and One Special Case Character"
-  },
-
-  "confirmPassword": {
-    "match": "Password must match!"
+  "fields": {
+    "buttonName": "Register",
+    "createProfile": "Create Your Profile",
+    "register": "Register",
+    "username": "Username",
+    "email": "Email",
+    "dateOfBirth": "Date of Birth",
+    "password": "Password",
+    "confirmPassword": "Confirm Password"
   }
 }
