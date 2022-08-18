@@ -7,7 +7,7 @@ interface LinkWithQueryProps {
   props?: unknown;
 }
 
-export const LinkWithQuery = ({
+export const LinkWithLanguageQueryParam = ({
   children,
   to,
   ...props

@@ -41,7 +41,7 @@ const StyledLabel = styled.label<Label>`
 `;
 
 const schema = yup.object().shape({
-  username: yup.string().required("validation:errors.username.required"),
+  username: yup.string().required("validation:errors.fullname.required"),
   email: yup
     .string()
     .email("validation:errors.email.invalidFormat")
@@ -104,7 +104,7 @@ const Registration = () => {
           maxLength={50}
         />
         <StyledLabel className="pt-4 text-muted" htmlFor="floatingInputCustom">
-          {t("validation:fields.username")}
+          {t("validation:fields.fullname")}
         </StyledLabel>
         <StyledLabel
           counter

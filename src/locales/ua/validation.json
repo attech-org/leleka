@@ -1,6 +1,6 @@
 {
   "errors": {
-    "username": {
+    "fullname": {
       "required": "Як вас звати?"
     },
 
@@ -28,7 +28,7 @@
     "buttonName": "Зареєструватись",
     "createProfile": "Створіть свій профіль",
     "register": "Зареєструватись",
-    "username": "Ім'я користувача",
+    "fullname": "Ім'я",
     "email": "Ел. пошта",
     "dateOfBirth": "Дата народження",
     "password": "Пароль",

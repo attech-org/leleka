@@ -1,6 +1,6 @@
 {
   "errors": {
-    "username": {
+    "fullname": {
       "required": "What's your name?"
     },
 
@@ -28,7 +28,7 @@
     "buttonName": "Register",
     "createProfile": "Create Your Profile",
     "register": "Register",
-    "username": "Username",
+    "fullname": "Name",
     "email": "Email",
     "dateOfBirth": "Date of Birth",
     "password": "Password",

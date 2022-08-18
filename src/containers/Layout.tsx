@@ -2,7 +2,6 @@ import styled from "styled-components";
 
 import { LeftPanel } from "../components/LeftPanel";
 import { RightPanel } from "../components/RightPanel";
-import { LinkWithQuery } from "./LinkWithLang";
 
 const GeneralContainer = styled.main`
   display: grid;
@@ -28,30 +27,16 @@ const Main = styled.main`
 `;
 
 interface LayoutProps {
-  withoutNavigation?: boolean;
   children?: React.ReactNode;
 }
 
-const Layout = ({ children, withoutNavigation }: LayoutProps) => {
+const Layout = ({ children }: LayoutProps) => {
   return (
-    <>
-      {!withoutNavigation && (
-        <header>
-          <ul>
-            <li>
-              <LinkWithQuery to="/">Home</LinkWithQuery>
-              <LinkWithQuery to="/about">About</LinkWithQuery>
-              <LinkWithQuery to="/authorization">Authorization</LinkWithQuery>
-            </li>
-          </ul>
-        </header>
-      )}
-      <GeneralContainer>
-        <LeftPanel />
-        <Main>{children}</Main>
-        <RightPanel />
-      </GeneralContainer>
-    </>
+    <GeneralContainer>
+      <LeftPanel />
+      <Main>{children}</Main>
+      <RightPanel />
+    </GeneralContainer>
   );
 };
 
