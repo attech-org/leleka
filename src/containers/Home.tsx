@@ -1,5 +1,13 @@
+import { useTranslation } from "react-i18next";
+
 const HomeContainer: React.FunctionComponent = () => {
-  return <div>Home container</div>;
+  const { t } = useTranslation();
+  return (
+    <>
+      <div>Home container</div>
+      <p>{t("test")}</p>
+    </>
+  );
 };
 
 export default HomeContainer;

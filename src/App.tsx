@@ -1,5 +1,6 @@
-import React from "react";
-import { Routes, Route } from "react-router-dom";
+import React, { useEffect } from "react";
+import { useTranslation } from "react-i18next";
+import { Routes, Route, useSearchParams } from "react-router-dom";
 
 import AboutPage from "./pages/About";
 import AuthorizationPage from "./pages/Authorization";
@@ -13,6 +14,14 @@ import NotificationsPage from "./pages/Notifications";
 import ProfilePage from "./pages/Profile";
 
 const App: React.FunctionComponent = () => {
+  const { i18n } = useTranslation();
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  useEffect(() => {
+    searchParams.set("lang", i18n.resolvedLanguage);
+    setSearchParams(searchParams);
+  }, [i18n.resolvedLanguage]);
+
   return (
     <div>
       <Routes>

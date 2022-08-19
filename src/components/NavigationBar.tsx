@@ -9,8 +9,9 @@ import {
   Hash,
   Envelope,
 } from "react-bootstrap-icons";
-import { Link } from "react-router-dom";
 import styled from "styled-components";
+
+import { LinkWithLanguageQueryParam } from "../containers/LinkWithLanguageQueryParam";
 
 const StyledNav = styled(Nav)`
   background-color: white;
@@ -29,49 +30,63 @@ const NavigationBar = () => {
       <Nav.Item>
         <Nav.Link>
           <House />
-          <Link to="/">Home</Link>
+          <LinkWithLanguageQueryParam to="/">Home</LinkWithLanguageQueryParam>
         </Nav.Link>
       </Nav.Item>
       <Nav.Item>
         <Nav.Link>
           <Hash />
-          <Link to="/explore">Explore</Link>
+          <LinkWithLanguageQueryParam to="/explore">
+            Explore
+          </LinkWithLanguageQueryParam>
         </Nav.Link>
       </Nav.Item>
       <Nav.Item>
         <Nav.Link>
           <Bell />
-          <Link to="/notifications">Notifications</Link>
+          <LinkWithLanguageQueryParam to="/notifications">
+            Notifications
+          </LinkWithLanguageQueryParam>
         </Nav.Link>
       </Nav.Item>
       <Nav.Item>
         <Nav.Link>
           <Envelope />
-          <Link to="/messages">Messages</Link>
+          <LinkWithLanguageQueryParam to="/messages">
+            Messages
+          </LinkWithLanguageQueryParam>
         </Nav.Link>
       </Nav.Item>
       <Nav.Item>
         <Nav.Link>
           <Bookmark />
-          <Link to="/bookmarks">Bookmarks</Link>
+          <LinkWithLanguageQueryParam to="/bookmarks">
+            Bookmarks
+          </LinkWithLanguageQueryParam>
         </Nav.Link>
       </Nav.Item>
       <Nav.Item>
         <Nav.Link>
           <CardText />
-          <Link to="/lists">Lists</Link>
+          <LinkWithLanguageQueryParam to="/lists">
+            Lists
+          </LinkWithLanguageQueryParam>
         </Nav.Link>
       </Nav.Item>
       <Nav.Item>
         <Nav.Link>
           <Person />
-          <Link to="/profile">Profile</Link>
+          <LinkWithLanguageQueryParam to="/profile">
+            Profile
+          </LinkWithLanguageQueryParam>
         </Nav.Link>
       </Nav.Item>
       <Nav.Item>
         <Nav.Link>
           <ChatDots />
-          <Link to="/more">More</Link>
+          <LinkWithLanguageQueryParam to="/more">
+            More
+          </LinkWithLanguageQueryParam>
         </Nav.Link>
       </Nav.Item>
     </StyledNav>

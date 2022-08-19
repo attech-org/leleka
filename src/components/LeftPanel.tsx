@@ -1,5 +1,6 @@
 import styled from "styled-components";
 
+import LanguageSwitcher from "../containers/LanguageSwitcher";
 import NavigationBar from "./NavigationBar";
 
 const Div = styled.div`
@@ -31,6 +32,7 @@ export const LeftPanel = () => {
   return (
     <Wrapper>
       <Div>
+        <LanguageSwitcher />
         <NavigationBar />
       </Div>
     </Wrapper>
