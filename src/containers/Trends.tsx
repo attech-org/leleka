@@ -29,12 +29,13 @@ const StyledButton = styled(Button)`
 const Trends = () => {
   return (
     <div className="bg-light m-4 rounded-3">
-      <div className="py-3 px-2 fs-3 fw-bold">Тренди для вас</div>
+      <div className="py-3 px-4 fs-3 fw-bold">Тренди для вас</div>
       <StyledLink
+        id="trendLink"
         href="#"
         className="text-decoration-none text-reset d-flex flex-row py-2"
       >
-        <Container className="pb-2">
+        <Container className="py-2 px-4">
           <p className="pb-1 text-secondary">Політика · Актуальне</p>
           <p className="pb-1 fs-5 fw-bold">Zaporizhzhia NPP</p>
           <span className="pb-1 text-secondary">Твітів: </span>
@@ -83,10 +84,11 @@ const Trends = () => {
         </div>
       </StyledLink>
       <StyledLink
+        id="trendLink"
         href="#"
         className="text-decoration-none text-reset d-flex flex-row py-2"
       >
-        <Container className="pb-2">
+        <Container className="py-2 px-4">
           <p className="pb-1 text-secondary">Україна · Актуальне</p>
           <p className="pb-1 fs-5 fw-bold">#anxiety</p>
           <span className="pb-1 text-secondary">Твітів: </span>
@@ -135,10 +137,11 @@ const Trends = () => {
         </div>
       </StyledLink>
       <StyledLink
+        id="trendLink"
         href="#"
         className="text-decoration-none text-reset d-flex flex-row py-2"
       >
-        <Container className="pb-2">
+        <Container className="py-2 px-4">
           <p className="pb-1 text-secondary">Україна · Актуальне</p>
           <p className="pb-1 fs-5 fw-bold">ATACMS</p>
           <span className="pb-1 text-secondary">Твітів: </span>
@@ -190,7 +193,7 @@ const Trends = () => {
         href="#"
         className="text-decoration-none text-reset d-flex flex-row py-2"
       >
-        <Container className="py-2">
+        <Container className="py-2 px-4">
           <p className="py-1 fs-5 text-primary">Показати більше</p>
         </Container>
       </StyledLink>
