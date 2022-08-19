@@ -55,7 +55,7 @@ const UserInfo: React.FC<UserInfoInterface> = ({
         <Row xs="auto" className="justify-content-end m-0">
           <Button
             variant="light"
-            className="p-2 justify-content-center align-items-center rounded-pill border border-1"
+            className="p-2 justify-content-center align-items-center rounded-pill border border-1 bg-white"
             type="button"
           >
             Змінити профіль
