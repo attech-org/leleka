@@ -1,5 +1,7 @@
 import styled from "styled-components";
 
+import Search from "../containers/Search";
+
 const Wrapper = styled.div`
   height: 150vh; // optional
 
@@ -16,6 +18,7 @@ export const RightPanel = () => {
   return (
     <Wrapper>
       <div>right side</div>
+      <Search />
     </Wrapper>
   );
 };
