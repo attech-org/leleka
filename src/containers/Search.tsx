@@ -4,7 +4,7 @@ import InputGroup from "react-bootstrap/InputGroup";
 import styled from "styled-components";
 
 const StyledForm = styled(Form)`
-  border: 2px solid white;
+  border: 2px solid transparent;
   :focus-within {
     color: rgb(29, 155, 240);
     border-color: rgb(29, 155, 240);
@@ -19,7 +19,7 @@ const StyledInputGroup = styled(InputGroup)`
 
 const Search = () => {
   return (
-    <StyledForm className="justify-content-center align-items-center mx-2 rounded-pill bg-light px-3 py-1">
+    <StyledForm className="justify-content-center align-items-center mx-4 my-2 rounded-pill bg-light px-3 py-1">
       <StyledInputGroup
         className="justify-content-center align-items-center bg-light"
         id="basic-addon1"
