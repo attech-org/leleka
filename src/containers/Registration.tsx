@@ -2,6 +2,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import { useForm } from "react-hook-form";
+import { useTranslation } from "react-i18next";
 import styled, { css } from "styled-components";
 import * as yup from "yup";
 
@@ -40,32 +41,36 @@ const StyledLabel = styled.label<Label>`
 `;
 
 const schema = yup.object().shape({
-  username: yup.string().required("Як вас звати?"),
+  username: yup.string().required("validation:errors.fullname.required"),
   email: yup
     .string()
-    .email("Будь ласка, використовуйте формат електронної адреси")
-    .required("Введіть адресу електронної пошти"),
+    .email("validation:errors.email.invalidFormat")
+    .required("validation:errors.email.required"),
   dateOfBirth: yup
     .date()
-    .typeError("Вкажіть вашу дату народження")
-    .required("Вкажіть вашу дату народження"),
+    .typeError("validation:errors.dateOfBirth.required")
+    .required("validation:errors.dateOfBirth.required"),
   password: yup
     .string()
     .matches(
       /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/,
-      "Пароль має складатися не менше ніж з 8 символів з яких як мінімум: один великий, один маленький, одна цифра, один спеціальний символ"
+      "validation:errors.password.invalidFormat"
     )
-    .required("Введіть ваш пароль"),
+    .required("validation:errors.email.required"),
   confirmPassword: yup
     .string()
-    .oneOf([yup.ref("password"), null], "Пароль має співпадати"),
+    .oneOf(
+      [yup.ref("password"), null],
+      "validation:errors.confirmPassword.match"
+    ),
 });
 
 const Registration = () => {
+  const { t } = useTranslation();
   const [show, setShow] = useState(false);
 
-  const registrationButtonName = "Зарегистрироваться";
-  const registrationTitle = "Створіть свій профіль";
+  const registrationButtonName = t("validation:fields.buttonName");
+  const registrationTitle = t("validation:fields.createProfile");
 
   const toggleShowState = () => setShow(!show);
 
@@ -99,7 +104,7 @@ const Registration = () => {
           maxLength={50}
         />
         <StyledLabel className="pt-4 text-muted" htmlFor="floatingInputCustom">
-          Ім'я
+          {t("validation:fields.fullname")}
         </StyledLabel>
         <StyledLabel
           counter
@@ -109,7 +114,11 @@ const Registration = () => {
           {watchUserName ? watchUserName.length : 0} / 50
         </StyledLabel>
       </StyledFormFloating>
-      <p className="text-danger mt-1">{errors?.username?.message}</p>
+      <p className="text-danger mt-1">
+        {errors.username &&
+          errors.username.message &&
+          t(`${errors.username.message}`)}
+      </p>
       <StyledFormFloating className="fs-4">
         <Form.Control
           className="mt-3 fs-4 py-5"
@@ -119,10 +128,12 @@ const Registration = () => {
           placeholder="Ел. пошта"
         />
         <StyledLabel className="pt-4 text-muted" htmlFor="floatingInputCustom">
-          Ел. пошта
+          {t("validation:fields.email")}
         </StyledLabel>
       </StyledFormFloating>
-      <p className="text-danger mt-1">{errors?.email?.message}</p>
+      <p className="text-danger mt-1">
+        {errors.email && errors.email.message && t(`${errors.email.message}`)}
+      </p>
       <StyledFormFloating className="fs-4">
         <Form.Control
           className="mt-3 fs-4 py-5"
@@ -131,10 +142,14 @@ const Registration = () => {
           name="dateOfBirth"
         />
         <StyledLabel className="pt-4 text-muted" htmlFor="floatingInputCustom">
-          Дата народження
+          {t("validation:fields.dateOfBirth")}
         </StyledLabel>
       </StyledFormFloating>
-      <p className="text-danger">{errors?.dateOfBirth?.message}</p>
+      <p className="text-danger">
+        {errors.dateOfBirth &&
+          errors.dateOfBirth.message &&
+          t(`${errors.dateOfBirth.message}`)}
+      </p>
       <StyledFormFloating className="fs-4">
         <Form.Control
           className="mt-3 fs-4 py-5"
@@ -145,10 +160,14 @@ const Registration = () => {
           autoComplete="on"
         />
         <StyledLabel className="pt-4 text-muted" htmlFor="floatingInputCustom">
-          Пароль
+          {t("validation:fields.password")}
         </StyledLabel>
       </StyledFormFloating>
-      <p className="text-danger">{errors?.password?.message}</p>
+      <p className="text-danger">
+        {errors.password &&
+          errors.password.message &&
+          t(`${errors.password.message}`)}
+      </p>
       <StyledFormFloating className="fs-4">
         <Form.Control
           className="mt-3 fs-4 py-5"
@@ -159,10 +178,14 @@ const Registration = () => {
           autoComplete="on"
         />
         <StyledLabel className="pt-4 text-muted" htmlFor="floatingInputCustom">
-          Підтвердіть пароль
+          {t("validation:fields.confirmPassword")}
         </StyledLabel>
       </StyledFormFloating>
-      <p className="text-danger">{errors?.confirmPassword?.message}</p>
+      <p className="text-danger">
+        {errors.confirmPassword &&
+          errors.confirmPassword.message &&
+          t(`${errors.confirmPassword.message}`)}
+      </p>
       <div className="d-grid gap-2">
         <Button
           className="mt-3 p-4 square rounded-pill"
@@ -170,7 +193,7 @@ const Registration = () => {
           variant="secondary"
           size="lg"
         >
-          Зареєструватися
+          {t("validation:fields.register")}
         </Button>
       </div>
     </Form>
