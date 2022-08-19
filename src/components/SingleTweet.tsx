@@ -9,6 +9,8 @@ import {
 } from "react-bootstrap-icons";
 import styled from "styled-components";
 
+import AttachedContent from "./AttachedContent";
+
 const Wrapper = styled.div`
   text-align: left;
 `;
@@ -81,24 +83,6 @@ interface ISingleTweet {
   likeCount: number;
 }
 
-const Content = styled.div`
-  border-radius: 15px;
-  overflow: hidden;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-`;
-
-const ContentImage = styled.img`
-  width: ${(props: { fullImg: boolean }) =>
-    props.fullImg ? "100%" : "calc(50% - 1px)"};
-  margin-bottom: 2px;
-`;
-
-const ContentVideo = styled.video`
-  width: 100%;
-`;
-
 const SingleTweet: React.FC<ISingleTweet> = ({
   userlogo,
   username,
@@ -116,18 +100,6 @@ const SingleTweet: React.FC<ISingleTweet> = ({
   const Blue = "rgb(29, 155, 240)";
   const Green = "rgb(0, 186, 124)";
   const Red = "rgb(249, 24, 128)";
-  const content: string[] = [];
-  const RandomizerContent = (): void => {
-    const amountContent: number = Math.floor(Math.random() * 5 + 1);
-    for (let i = 0; i < amountContent; i++) {
-      content.push(
-        `https://picsum.photos/${Math.floor(
-          Math.random() * 300 + 200
-        )}/${Math.floor(Math.random() * 200 + 100)}`
-      );
-    }
-  };
-  RandomizerContent();
 
   return (
     <div>
@@ -158,24 +130,7 @@ const SingleTweet: React.FC<ISingleTweet> = ({
           </NameSection>
         </Author>
         <Text className="py-2">{tweetText}</Text>
-        <Content>
-          {content.map((cont, index, arr) => {
-            return (
-              <ContentImage
-                src={cont}
-                key={index}
-                fullImg={
-                  arr.length == index + 1 && arr.length % 2 ? true : false
-                }
-              />
-            );
-          })}
-
-          <ContentVideo
-            src="https://video.twimg.com/ext_tw_video/1506247688261537793/pu/vid/640x360/EbN6H4_tATC8RFxc.mp4?tag=12"
-            controls
-          />
-        </Content>
+        <AttachedContent />
         <Date className="border-bottom py-3 fw-bold">
           {tweetDate} - {lelekaLink}
         </Date>
