@@ -23,6 +23,10 @@ const UserItemHeader = styled.div`
   height: 25%;
   display: flex;
 `;
+const UserFollowerItemContent = styled.p`
+  height: 75%;
+  display: flex;
+`;
 const LeftSectionWrapper = styled.div`
   flex: 1;
   order: 1;
@@ -34,10 +38,6 @@ const MiddleSectionWrapper = styled.div`
 const RightSectionWrapper = styled.div`
   flex: 1;
   order: 3;
-`;
-const UserItemContent = styled.p`
-  height: 75%;
-  display: flex;
 `;
 
 const ListItemWoFooter = (props: { user: MockUser }) => {
@@ -81,11 +81,11 @@ const ListItemWoFooter = (props: { user: MockUser }) => {
         </RightSectionWrapper>
       </UserItemHeader>
 
-      <UserItemContent>
+      <UserFollowerItemContent>
         <LeftSectionWrapper />
         <MiddleSectionWrapper>{user.userCaption}</MiddleSectionWrapper>
         <RightSectionWrapper />
-      </UserItemContent>
+      </UserFollowerItemContent>
     </LiWrapper>
   );
 };
