@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import SingleTweet from "../pages/SingleTweet";
+import SingleTweet from "../components/SingleTweet";
 
 const Wrap = styled.div`
   display: flex;
@@ -30,7 +30,17 @@ export const TweetPage: React.FC = (): React.ReactElement => {
       </Wrap>
       <div>
         Тут буде твіт (компонент)
-        <SingleTweet />
+        <SingleTweet
+          userlogo={""}
+          username={""}
+          userNickname={""}
+          tweetText={""}
+          tweetDate={""}
+          lelekaLink={""}
+          retweetCount={0}
+          tweetQuoteCount={0}
+          likeCount={0}
+        />
       </div>
     </div>
   );
