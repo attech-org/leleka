@@ -13,12 +13,12 @@ interface UserInfoInterface {
   headLogo: string;
   userLogo: string;
   username: string;
-  flagLogo: string;
+  flagLogo?: string;
   userNickname: string;
-  aboutMeText: string;
-  userLocation: string;
-  userEmail: string;
-  userBirthday: string;
+  aboutMeText?: string;
+  userLocation?: string;
+  userEmail?: string;
+  userBirthday?: string;
   registrationDate: string;
   inReadersCount: number;
   readersCount: number;
