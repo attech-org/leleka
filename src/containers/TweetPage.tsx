@@ -3,6 +3,7 @@ import { ArrowLeft } from "react-bootstrap-icons";
 import styled from "styled-components";
 
 import SingleTweet from "../components/SingleTweet";
+import { singleTweetData } from "../MOCKS/singleTweetPage";
 
 const Wrap = styled.div`
   display: flex;
@@ -22,17 +23,7 @@ export const TweetPage: React.FC = (): React.ReactElement => {
       </Wrap>
       <div>
         Тут буде твіт (компонент)
-        <SingleTweet
-          userlogo={""}
-          username={""}
-          userNickname={""}
-          tweetText={""}
-          tweetDate={""}
-          lelekaLink={""}
-          retweetCount={0}
-          tweetQuoteCount={0}
-          likeCount={0}
-        />
+        <SingleTweet {...singleTweetData} />
       </div>
     </div>
   );
