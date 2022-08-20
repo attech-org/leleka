@@ -1,6 +1,5 @@
+import { Form, InputGroup } from "react-bootstrap";
 import { Search as SearchIcon } from "react-bootstrap-icons";
-import Form from "react-bootstrap/Form";
-import InputGroup from "react-bootstrap/InputGroup";
 import styled from "styled-components";
 
 const StyledForm = styled(Form)`
