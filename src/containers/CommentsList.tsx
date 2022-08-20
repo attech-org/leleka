@@ -1,3 +1,5 @@
+import React from "react";
+
 import SingleTweetComment from "../components/SingleTweetComment";
 
 export const CommentsList: React.FC = () => {

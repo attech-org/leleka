@@ -1,11 +1,12 @@
-import { TweetPage } from "./TweetPage";
+import { useTranslation } from "react-i18next";
 
 const HomeContainer: React.FunctionComponent = () => {
+  const { t } = useTranslation();
   return (
-    <div>
+    <>
       <div>Home container</div>
-      <TweetPage />
-    </div>
+      <p>{t("test")}</p>
+    </>
   );
 };
 
