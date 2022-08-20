@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import Recomendations from "../containers/Recomendations";
+import Recommendations from "../containers/Recommendations";
 import Search from "../containers/Search";
 import Trends from "../containers/Trends";
 
@@ -21,7 +21,7 @@ export const RightPanel = () => {
     <Wrapper>
       <Search />
       <Trends />
-      <Recomendations />
+      <Recommendations />
     </Wrapper>
   );
 };

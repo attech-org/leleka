@@ -13,7 +13,7 @@ const StyledImage = styled(Image)`
   height: 4rem;
 `;
 
-const Recomendations = () => {
+const Recommendations = () => {
   return (
     <div className="bg-light m-4 rounded-3">
       <div className="py-3 px-4 fs-3 fw-bold">Рекомендовані</div>
@@ -78,4 +78,4 @@ const Recomendations = () => {
   );
 };
 
-export default Recomendations;
+export default Recommendations;
