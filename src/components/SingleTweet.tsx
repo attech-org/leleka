@@ -9,6 +9,8 @@ import {
 } from "react-bootstrap-icons";
 import styled from "styled-components";
 
+import AttachedContent from "./AttachedContent";
+
 const Wrapper = styled.div`
   text-align: left;
 `;
@@ -128,6 +130,7 @@ const SingleTweet: React.FC<ISingleTweet> = ({
           </NameSection>
         </Author>
         <Text className="py-2">{tweetText}</Text>
+        <AttachedContent />
         <Date className="border-bottom py-3 fw-bold">
           {tweetDate} - {lelekaLink}
         </Date>
