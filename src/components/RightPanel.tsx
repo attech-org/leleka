@@ -10,7 +10,7 @@ const Wrapper = styled.div`
   position: sticky;
   top: 0;
 
-  background-color: lightgreen;
+  background-color: white;
 
   @media (max-width: 1000px) {
     display: none;
