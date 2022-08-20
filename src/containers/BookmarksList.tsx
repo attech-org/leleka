@@ -1,5 +1,5 @@
 import React from "react";
-import { Navbar, Col, Row, Nav } from "react-bootstrap";
+import { Navbar, Row, Col, Nav } from "react-bootstrap";
 
 import Bookmark from "../components/SingleTweetComment";
 import { bookmarksData } from "../MOCKS/bookmarks";
