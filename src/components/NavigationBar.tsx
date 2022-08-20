@@ -27,68 +27,68 @@ const StyledNav = styled(Nav)`
 const NavigationBar = () => {
   return (
     <StyledNav className="flex-column" defaultActiveKey="/">
-      <Nav.Item>
-        <Nav.Link>
+      <Nav.Navbar.Text>
+        <Nav.Navbar.Text>
           <House />
           <LinkWithLanguageQueryParam to="/">Home</LinkWithLanguageQueryParam>
-        </Nav.Link>
-      </Nav.Item>
-      <Nav.Item>
-        <Nav.Link>
+        </Nav.Navbar.Text>
+      </Nav.Navbar.Text>
+      <Nav.Navbar.Text>
+        <Nav.Navbar.Text>
           <Hash />
           <LinkWithLanguageQueryParam to="/explore">
             Explore
           </LinkWithLanguageQueryParam>
-        </Nav.Link>
-      </Nav.Item>
-      <Nav.Item>
-        <Nav.Link>
+        </Nav.Navbar.Text>
+      </Nav.Navbar.Text>
+      <Nav.Navbar.Text>
+        <Nav.Navbar.Text>
           <Bell />
           <LinkWithLanguageQueryParam to="/notifications">
             Notifications
           </LinkWithLanguageQueryParam>
-        </Nav.Link>
-      </Nav.Item>
-      <Nav.Item>
-        <Nav.Link>
+        </Nav.Navbar.Text>
+      </Nav.Navbar.Text>
+      <Nav.Navbar.Text>
+        <Nav.Navbar.Text>
           <Envelope />
           <LinkWithLanguageQueryParam to="/messages">
             Messages
           </LinkWithLanguageQueryParam>
-        </Nav.Link>
-      </Nav.Item>
-      <Nav.Item>
-        <Nav.Link>
+        </Nav.Navbar.Text>
+      </Nav.Navbar.Text>
+      <Nav.Navbar.Text>
+        <Nav.Navbar.Text>
           <Bookmark />
           <LinkWithLanguageQueryParam to="/bookmarks">
             Bookmarks
           </LinkWithLanguageQueryParam>
-        </Nav.Link>
-      </Nav.Item>
-      <Nav.Item>
-        <Nav.Link>
+        </Nav.Navbar.Text>
+      </Nav.Navbar.Text>
+      <Nav.Navbar.Text>
+        <Nav.Navbar.Text>
           <CardText />
           <LinkWithLanguageQueryParam to="/lists">
             Lists
           </LinkWithLanguageQueryParam>
-        </Nav.Link>
-      </Nav.Item>
-      <Nav.Item>
-        <Nav.Link>
+        </Nav.Navbar.Text>
+      </Nav.Navbar.Text>
+      <Nav.Navbar.Text>
+        <Nav.Navbar.Text>
           <Person />
           <LinkWithLanguageQueryParam to="/profile">
             Profile
           </LinkWithLanguageQueryParam>
-        </Nav.Link>
-      </Nav.Item>
-      <Nav.Item>
-        <Nav.Link>
+        </Nav.Navbar.Text>
+      </Nav.Navbar.Text>
+      <Nav.Navbar.Text>
+        <Nav.Navbar.Text>
           <ChatDots />
           <LinkWithLanguageQueryParam to="/more">
             More
           </LinkWithLanguageQueryParam>
-        </Nav.Link>
-      </Nav.Item>
+        </Nav.Navbar.Text>
+      </Nav.Navbar.Text>
     </StyledNav>
   );
 };

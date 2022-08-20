@@ -1,5 +1,5 @@
 import React from "react";
-import { Navbar, Nav } from "react-bootstrap";
+import { Navbar, Col, Row, Nav } from "react-bootstrap";
 
 import Bookmark from "../components/SingleTweetComment";
 import { bookmarksData } from "../MOCKS/bookmarks";
@@ -8,15 +8,15 @@ const BookmarksList: React.FC = () => {
   return (
     <div>
       <Navbar sticky="top" expand="false" variant="light" bg="white">
-        <Nav>
-          <Nav>
-            <Nav>Bookmarks</Nav>
-            <Nav>@artlee4</Nav>
-          </Nav>
-          <Nav>
-            <Nav>dots</Nav>
-          </Nav>
-        </Nav>
+        <Row xs="auto" className=" justify-content-between">
+          <Col className="mx-2">
+            <Nav.Link>Bookmarks</Nav.Link>
+            <Nav.Link>@artlee4</Nav.Link>
+          </Col>
+          <Col className="mx-2">
+            <Nav.Link>dots</Nav.Link>
+          </Col>
+        </Row>
       </Navbar>
       {bookmarksData.map((item) => (
         <Bookmark
