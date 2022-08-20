@@ -8,6 +8,11 @@ const StyledLink = styled.a`
   }
 `;
 
+const StyledImage = styled(Image)`
+  width: 4rem;
+  height: 4rem;
+`;
+
 const Recomendations = () => {
   return (
     <div className="bg-light m-4 rounded-3">
@@ -18,9 +23,7 @@ const Recomendations = () => {
       >
         <div className="d-flex align-items-center ">
           <div>
-            <Image
-              className=""
-              style={{ height: "68px", width: "68px" }}
+            <StyledImage
               roundedCircle
               fluid
               src="https://mdbootstrap.com/img/new/slides/041.webp"
@@ -43,9 +46,7 @@ const Recomendations = () => {
       >
         <div className="d-flex align-items-center ">
           <div>
-            <Image
-              className=""
-              style={{ height: "68px", width: "68px" }}
+            <StyledImage
               roundedCircle
               fluid
               src="https://mdbcdn.b-cdn.net/img/new/standard/city/041.webp"
