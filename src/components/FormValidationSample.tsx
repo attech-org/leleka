@@ -6,7 +6,7 @@ import * as yup from "yup";
 interface MyForm {
   userName: string;
   email: string;
-  dateOfBirth: Date;
+  dateOfBirth: string;
   password: string;
   confirmPassword: string;
 }

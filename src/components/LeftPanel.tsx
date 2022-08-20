@@ -1,5 +1,8 @@
 import styled from "styled-components";
 
+import LanguageSwitcher from "../containers/LanguageSwitcher";
+import NavigationBar from "./NavigationBar";
+
 const Div = styled.div`
   position: fixed;
 
@@ -28,7 +31,10 @@ const Wrapper = styled.div`
 export const LeftPanel = () => {
   return (
     <Wrapper>
-      <Div>left side</Div>
+      <Div>
+        <LanguageSwitcher />
+        <NavigationBar />
+      </Div>
     </Wrapper>
   );
 };

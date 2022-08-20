@@ -9,6 +9,14 @@
     {
       "name": "Artem Ligerko",
       "email": "ligerko.aa@gmail.com"
+    },
+    {
+      "name": "Kirill Sergienko",
+      "email": "kirill.sergienko1989@gmail.com"
+    },
+    {
+      "name": "Mykyta Pysarev",
+      "email": "Mykyta.Pisarev@gmail.com"
     }
   ],
   "dependencies": {
@@ -19,10 +27,14 @@
     "@types/react": "^18.0.17",
     "@types/react-dom": "^18.0.6",
     "bootstrap": "^5.2.0",
+    "i18next": "^21.9.0",
+    "i18next-browser-languagedetector": "^6.1.5",
     "react": "^18.2.0",
     "react-bootstrap": "^2.5.0",
+    "react-bootstrap-icons": "^1.8.4",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.34.0",
+    "react-i18next": "^11.18.4",
     "react-redux": "^8.0.2",
     "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.1",
