@@ -41,6 +41,7 @@ const Layout = ({ children, withoutNavigation }: LayoutProps) => {
             <li>
               <Link to="/">Home</Link>
               <Link to="/about">About</Link>
+              <Link to="/followers">followers</Link>
             </li>
           </ul>
         </header>
