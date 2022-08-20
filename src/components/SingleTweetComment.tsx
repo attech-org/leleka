@@ -9,6 +9,8 @@ import {
 } from "react-bootstrap-icons";
 import styled from "styled-components";
 
+import AttachedContent from "./AttachedContent";
+
 const Wrapper = styled.div`
   text-align: left;
   display: flex;
@@ -193,6 +195,7 @@ const SingleTweetComment: React.FC<SingleTweetCommentInterface> = ({
             </Answer>
           </Author>
           <Text>{messegeText}</Text>
+          <AttachedContent />
           <IconRow>
             <IconBox>
               <IconBg
