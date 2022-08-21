@@ -1,7 +1,6 @@
 import { useTranslation } from "react-i18next";
 
-import { CommentsList } from "./CommentsList";
-import { TweetPage } from "./TweetPage";
+import FeedPost from "../components/FeedPost";
 
 const HomeContainer: React.FunctionComponent = () => {
   const { t } = useTranslation();
@@ -9,8 +8,7 @@ const HomeContainer: React.FunctionComponent = () => {
     <>
       <div>Home container</div>
       <p>{t("test")}</p>
-      <TweetPage />
-      <CommentsList />
+      <FeedPost />
     </>
   );
 };
