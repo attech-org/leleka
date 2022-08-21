@@ -71,7 +71,7 @@ const IconBg = styled.div<IIconBg>`
   }
 `;
 
-interface ISingleTweet {
+interface SingleTweetInterface {
   userlogo: string;
   username: string;
   userNickname: string;
@@ -83,7 +83,7 @@ interface ISingleTweet {
   likeCount: number;
 }
 
-const SingleTweet: React.FC<ISingleTweet> = ({
+const SingleTweet: React.FC<SingleTweetInterface> = ({
   userlogo,
   username,
   userNickname,

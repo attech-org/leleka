@@ -130,7 +130,7 @@ const Count = styled.div`
   align-items: center;
 `;
 
-export interface SingleTweetCommentInterface {
+interface SingleTweetCommentInterface {
   userlogo: string;
   username: string;
   userNickname: string;
