@@ -1,10 +1,5 @@
 // import axios from "axios";
 import { useEffect, useState } from "react";
-import { AiOutlineHeart } from "react-icons/ai";
-import { BiMessageRounded } from "react-icons/bi";
-import { FaRetweet } from "react-icons/fa";
-import { FiShare } from "react-icons/fi";
-import { MdVerified } from "react-icons/md";
 import styled from "styled-components";
 
 import { FeedPostData } from "../MOCKS/homeFeedPage";
