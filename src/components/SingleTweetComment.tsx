@@ -130,7 +130,7 @@ const Count = styled.div`
   align-items: center;
 `;
 
-interface ISingleTweetComment {
+interface SingleTweetCommentInterface {
   userlogo: string;
   username: string;
   userNickname: string;
@@ -142,7 +142,7 @@ interface ISingleTweetComment {
   likeCount: number;
 }
 
-const SingleTweetComment: React.FC<ISingleTweetComment> = ({
+const SingleTweetComment: React.FC<SingleTweetCommentInterface> = ({
   userlogo,
   username,
   userNickname,
