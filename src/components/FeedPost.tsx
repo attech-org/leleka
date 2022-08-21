@@ -1,5 +1,12 @@
 // import axios from "axios";
 import { useEffect, useState } from "react";
+import {
+  ArrowRepeat,
+  Chat,
+  FileCheck,
+  Heart,
+  Upload,
+} from "react-bootstrap-icons";
 import styled from "styled-components";
 
 import { FeedPostData } from "../MOCKS/homeFeedPage";
@@ -55,26 +62,26 @@ const HoverBackgroundRed = styled.div`
     transition-duration: 0.2s;
   }
 `;
-const StyledFaRetweet = styled(FaRetweet)`
+const StyledFaRetweet = styled(ArrowRepeat)`
   width: 20px;
   height: 20px;
 `;
 
-const StyledFiShare = styled(FiShare)`
+const StyledFiShare = styled(Upload)`
   width: 20px;
   height: 20px;
 `;
 
-const StyledBiMessageRounded = styled(BiMessageRounded)`
+const StyledBiMessageRounded = styled(Chat)`
   width: 20px;
   height: 20px;
 `;
 
-const StyledAiOutlineHeart = styled(AiOutlineHeart)`
+const StyledAiOutlineHeart = styled(Heart)`
   width: 20px;
   height: 20px;
 `;
-const StyledMdVerified = styled(MdVerified)`
+const StyledMdVerified = styled(FileCheck)`
   color: rgb(29, 155, 240);
   width: 20px;
   height: 24px;
