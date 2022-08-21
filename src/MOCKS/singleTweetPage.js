@@ -1,10 +1,11 @@
 export const singleTweetData = {
   userlogo: "",
-  username: "",
-  userNickname: "",
-  tweetText: "",
-  tweetDate: "",
-  lelekaLink: "",
+  username: "Xiaomi",
+  userNickname: "@Xiaomi",
+  tweetText:
+    "Need a break?🍃 We've prepared a #RelaxationDay audio for you to immersive yourself in nature. Put on your headphones and enjoy. Shot & recorded by #Xiaomi12Pro.",
+  tweetDate: "today",
+  lelekaLink: "1:00 PM · Aug 15, 2022·Sprinklr Publishing",
   retweetCount: 20,
   tweetQuoteCount: 4,
   likeCount: 154,
