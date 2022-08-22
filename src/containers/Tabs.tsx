@@ -5,35 +5,16 @@ interface TabsDataProps {
   content: string | null;
   key: string;
 }
-const tabsData = [
-  {
-    label: "Tweets",
-    content: null,
-    key: "Tweets",
-  },
 
-  {
-    label: "Tweets & replies",
-    content: null,
-    key: "Tweets & replies",
-  },
+interface TabsProps {
+  tabsData: TabsDataProps[];
+  defaultActiveKey: string;
+}
 
-  {
-    label: "Media",
-    content: null,
-    key: "Media",
-  },
-  {
-    label: "Likes",
-    content: null,
-    key: "Likes",
-  },
-];
-
-const TabsContainer: React.FunctionComponent = () => {
+const TabsContainer = ({ tabsData, defaultActiveKey }: TabsProps) => {
   return (
     <Tabs
-      defaultActiveKey="profile"
+      defaultActiveKey={defaultActiveKey}
       id="justify-tab-example"
       className="mb-3"
       fill
