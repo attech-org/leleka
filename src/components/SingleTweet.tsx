@@ -9,6 +9,8 @@ import {
 } from "react-bootstrap-icons";
 import styled from "styled-components";
 
+import AttachedContent from "./AttachedContent";
+
 const Wrapper = styled.div`
   text-align: left;
 `;
@@ -69,7 +71,7 @@ const IconBg = styled.div<IIconBg>`
   }
 `;
 
-interface ISingleTweet {
+interface SingleTweetInterface {
   userlogo: string;
   username: string;
   userNickname: string;
@@ -81,7 +83,7 @@ interface ISingleTweet {
   likeCount: number;
 }
 
-const SingleTweet: React.FC<ISingleTweet> = ({
+const SingleTweet: React.FC<SingleTweetInterface> = ({
   userlogo,
   username,
   userNickname,
@@ -128,6 +130,7 @@ const SingleTweet: React.FC<ISingleTweet> = ({
           </NameSection>
         </Author>
         <Text className="py-2">{tweetText}</Text>
+        <AttachedContent />
         <Date className="border-bottom py-3 fw-bold">
           {tweetDate} - {lelekaLink}
         </Date>

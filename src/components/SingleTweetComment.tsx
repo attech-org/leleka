@@ -9,6 +9,8 @@ import {
 } from "react-bootstrap-icons";
 import styled from "styled-components";
 
+import AttachedContent from "./AttachedContent";
+
 const Wrapper = styled.div`
   text-align: left;
   display: flex;
@@ -128,7 +130,7 @@ const Count = styled.div`
   align-items: center;
 `;
 
-interface ISingleTweetComment {
+interface SingleTweetCommentInterface {
   userlogo: string;
   username: string;
   userNickname: string;
@@ -140,7 +142,7 @@ interface ISingleTweetComment {
   likeCount: number;
 }
 
-const SingleTweetComment: React.FC<ISingleTweetComment> = ({
+const SingleTweetComment: React.FC<SingleTweetCommentInterface> = ({
   userlogo,
   username,
   userNickname,
@@ -193,6 +195,7 @@ const SingleTweetComment: React.FC<ISingleTweetComment> = ({
             </Answer>
           </Author>
           <Text>{messegeText}</Text>
+          <AttachedContent />
           <IconRow>
             <IconBox>
               <IconBg
