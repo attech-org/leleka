@@ -21,7 +21,7 @@ const Recommendations = () => {
         href="#"
         className="text-decoration-none text-reset d-flex py-2 px-4 align-items-center justify-content-between"
       >
-        <div className="d-flex align-items-center ">
+        <div className="d-flex align-items-center flex-shrink-0">
           <div>
             <StyledImage
               roundedCircle
@@ -44,7 +44,7 @@ const Recommendations = () => {
         href="#"
         className="text-decoration-none text-reset d-flex py-2 px-4 align-items-center justify-content-between"
       >
-        <div className="d-flex align-items-center ">
+        <div className="d-flex align-items-center flex-shrink-0">
           <div>
             <StyledImage
               roundedCircle
@@ -71,7 +71,7 @@ const Recommendations = () => {
         className="text-decoration-none text-reset d-flex flex-row py-2"
       >
         <Container className="py-2 px-4">
-          <p className="py-1 fs-5 text-primary">Показати більше</p>
+          <p className="py-1 fs-5 text-info">Показати більше</p>
         </Container>
       </StyledLink>
     </div>
