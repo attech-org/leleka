@@ -3,8 +3,6 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 
-import { registerUser } from "../services/api";
-
 interface MyForm {
   userName: string;
   email: string;
@@ -79,7 +77,7 @@ const FormValidationSample = () => {
           placeholder="Confirm password"
         />
         <p>{errors.confirmPassword && errors?.confirmPassword?.message}</p>
-        <button onClick={registerUser}>Submit</button>
+        <button>Submit</button>
       </form>
     </div>
   );

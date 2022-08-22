@@ -1,11 +1,11 @@
 import axios from "axios";
 
-function getLocalAccessToken() {
+const getLocalAccessToken = () => {
   return localStorage.getItem("accessToken");
-}
+};
 
 const getLocalRefreshToken = () => {
-  localStorage.getItem("refreshToken");
+  return localStorage.getItem("refreshToken");
 };
 
 const updateLocalAccessToken = (accessToken: string): void => {
@@ -30,7 +30,10 @@ instance.interceptors.request.use(
     const token = getLocalAccessToken();
     if (token) {
       // config.headers.Authorization = "Bearer " + token; // for Spring Boot back-end
-      config.headers["x-access-token"] = token; // for Node.js Express back-end
+      config.headers = {
+        ...config.headers,
+        ["x-access-token"]: token,
+      }; // for Node.js Express back-end
     }
     return config;
   },
@@ -62,7 +65,6 @@ instance.interceptors.response.use(
     return Promise.reject(err);
   }
 );
-export default instance;
 
 export const registerUser = async () => {
   try {
@@ -75,6 +77,32 @@ export const registerUser = async () => {
     localStorage.setItem("accessToken", accessToken);
     localStorage.setItem("refreshToken", refreshToken);
   } catch (err) {
-    console.log(err);
+    console.warn(err);
   }
 };
+
+export const testAuthorized = async () => {
+  try {
+    const res = await instance.get("/testAuthorized");
+    console.warn(res.data);
+  } catch (err) {
+    console.warn(err);
+  }
+};
+
+export const loginUser = async () => {
+  try {
+    const res = await instance.post("/auth/login", {
+      username: "koder",
+      password: "12345678",
+      email: "qwert@gmail.com",
+    });
+    const { accessToken, refreshToken } = res.data;
+    localStorage.setItem("accessToken", accessToken);
+    localStorage.setItem("refreshToken", refreshToken);
+  } catch (err) {
+    console.warn(err);
+  }
+};
+
+export default instance;
