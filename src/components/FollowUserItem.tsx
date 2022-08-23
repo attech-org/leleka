@@ -18,6 +18,7 @@ const LiWrapper = styled(ListGroupItem)`
     background-color: rgb(247, 247, 247);
     cursor: pointer;
   }
+  border: 0;
 `;
 const UserItemHeader = styled.div`
   height: 25%;
@@ -52,7 +53,7 @@ const ListItemWoFooter = (props: { user: MockUser }) => {
       <UserItemHeader>
         <LeftSectionWrapper>
           <OverlayTrigger
-            trigger="hover"
+            trigger={["hover", "focus"]}
             delay={{ show: 1000, hide: 6000 }}
             placement="auto"
             overlay={popover}
