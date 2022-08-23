@@ -1,77 +1,85 @@
-import { Button, Form, Row, Col, Container } from "react-bootstrap";
 import { EmojiSmile, Image as ImageIcon, Globe2 } from "react-bootstrap-icons";
 import styled from "styled-components";
 
-const StyledFormControl = styled(Form.Control)`
+const StyledCloseButton = styled.button`
+  border: none;
+  &:hover {
+    background-color: rgb(128, 128, 128, 0.2);
+  }
+`;
+const StyledTextArea = styled.textarea`
   &:focus {
     box-shadow: none;
   }
 `;
-const StyledButton = styled(Button)`
+const StyledButton = styled.button`
   &:hover {
-    box-shadow: none;
+    background-color: rgb(0, 0, 255, 0.1);
   }
 `;
 const StyledIcon = styled.div`
-  height: 32px;
-  width: 32px;
-  color: #2929ff;
+  color: rgb(0, 0, 255, 0.6);
+  &:hover {
+    background-color: rgb(0, 0, 255, 0.1);
+    cursor: pointer;
+  }
 `;
 
 const TweetCreationForm = () => {
+  const handleTweetButton = () => {
+    console.log("Tweeted");
+  };
+  const handleImgUpload = () => {
+    console.log("Img Upload");
+  };
+  const handleEmojiPaste = () => {
+    console.log("Emoji paste");
+  };
   return (
     <div>
-      <Container className="p-2">
-        <Row>
-          <Col xs={{ span: 1, offset: 0 }}>
-            <img
-              src="http://dummyimage.com/105x100.png/5fa2dd/ffffff"
-              width="48px"
-              height="48px"
-              className="me-auto rounded-circle"
-            />
-          </Col>
-          <Col xs={{ span: 11, offset: 0 }}>
-            <StyledFormControl
-              placeholder="Що відбувається?"
-              className="border-0"
-              size="lg"
-            />
-
-            <Container className="border-bottom">
-              <StyledButton
-                size="sm"
-                className="my-2 d-flex align-items-center secondary rounded-5 fw-bold text-primary bg-white border-0"
-              >
-                <Globe2 className="me-1" />
-                <span>Відповідати можусть усі користувачі</span>
-              </StyledButton>
-            </Container>
-
-            <Container>
-              <Row size="lg">
-                <Col
-                  xs={{ span: 1, offset: 0 }}
-                  className="d-flex justify-content-start align-items-center p-2"
-                >
-                  <StyledIcon>
-                    <ImageIcon className="mx-1" />
-                  </StyledIcon>
-                  <StyledIcon>
-                    <EmojiSmile className="mx-1" />
-                  </StyledIcon>
-                </Col>
-                <Col
-                  xs={{ span: 11, offset: 0 }}
-                  className="d-flex justify-content-end align-items-center p-2"
-                >
-                  <Button className="rounded-5">Твітнути</Button>
-                </Col>
-              </Row>
-            </Container>
-          </Col>
-        </Row>
-      </Container>
+      <div className="d-flex mx-2">
+        <StyledCloseButton className="btn p-1 rounded-circle">
+          <div className="btn-close" />
+        </StyledCloseButton>
+      </div>
+      <div className="border-0 p-3 d-flex text-start justify-content-start">
+        <div className="">
+          <img
+            className="rounded-circle"
+            src="http://dummyimage.com/105x100.png/5fa2dd/ffffff"
+            width="48px"
+            height="48px"
+          />
+        </div>
+        <div className="flex-grow-1 ms-2">
+          <StyledTextArea
+            className="form-control form-control-lg border-0 fs-5"
+            placeholder="Що відбувається?"
+          />
+          <div className="border-bottom py-1">
+            <StyledButton className="btn py-0 px-2 my-2 d-flex align-items-center secondary rounded-5 fw-bold text-primary border-0">
+              <Globe2 className="me-1" />
+              <span>Відповідати можусть усі користувачі</span>
+            </StyledButton>
+          </div>
+          <div className="d-flex justify-content-between">
+            <div className="d-flex p-2">
+              <StyledIcon className="rounded-circle" onClick={handleImgUpload}>
+                <ImageIcon className="m-2 fs-5" />
+              </StyledIcon>
+              <StyledIcon className="rounded-circle" onClick={handleEmojiPaste}>
+                <EmojiSmile className="m-2 fs-5" />
+              </StyledIcon>
+            </div>
+            <button
+              className="btn btn-primary rounded-5 d-flex align-items-center m-2"
+              onClick={handleTweetButton}
+            >
+              Твітнути
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
