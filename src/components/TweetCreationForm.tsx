@@ -43,15 +43,15 @@ const StyledPopover = styled(Popover)`
   }
 `;
 
-const TweetCreationForm = () => {
+const TweetCreationForm: React.FC = () => {
   const whoCanAnswer = "Усі можуть відповідати";
-  const handleTweetButton = () => {
+  const handleTweetButton = (): void => {
     console.log("Tweeted");
   };
-  const handleImgUpload = () => {
+  const handleImgUpload = (): void => {
     console.log("Img Upload");
   };
-  const handleEmojiPaste = () => {
+  const handleEmojiPaste = (): void => {
     console.log("Emoji paste");
   };
   return (
