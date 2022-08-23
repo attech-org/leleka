@@ -25,6 +25,11 @@ const StyledButton = styled.button`
     background-color: rgb(0, 0, 255, 0.1);
   }
 `;
+const StyledPopoverButton = styled.button`
+  &:hover {
+    background-color: rgb(240, 240, 240);
+  }
+`;
 const StyledIcon = styled.div`
   color: rgb(0, 0, 255, 0.6);
   &:hover {
@@ -37,9 +42,6 @@ const StyledPopover = styled(Popover)`
     display: none;
   }
 `;
-// const InvertColor = styled.div`
-//   filter: invert(100%);
-// `;
 
 const TweetCreationForm = () => {
   const whoCanAnswer = "Усі можуть відповідати";
@@ -81,14 +83,16 @@ const TweetCreationForm = () => {
                 key="bottom"
                 placement="bottom"
                 overlay={
-                  <StyledPopover className="p-2">
-                    <div className="fs-5 fw-bold">Хто може відповідати?</div>
-                    <div>
+                  <StyledPopover className="py-2 rounded-4">
+                    <div className="fs-6 fw-bold px-3 lh-sm">
+                      Хто може відповідати?
+                    </div>
+                    <div className="px-3 fs-6 lh-sm">
                       Визначте, хто може відповідати на цей твіт. Згадані особи
                       завжди можуть відповідати.
                     </div>
                     <div className="d-flex flex-column">
-                      <button className="btn py-0 px-2 my-2 d-flex align-items-center secondary rounded-5 text-primary border-0">
+                      <StyledPopoverButton className="btn py-0 px-3 py-2 d-flex align-items-center secondary rounded-0 text-primary border-0">
                         <div className="bg-primary me-2 p-2 d-flex justify-content-center align-items-center rounded-circle">
                           <Globe2 className="text-white fs-5 m-1" />
                         </div>
@@ -96,8 +100,8 @@ const TweetCreationForm = () => {
                         <div className="flex-grow-1 text-end fs-4">
                           <CheckLg />
                         </div>
-                      </button>
-                      <button className="btn py-0 px-2 my-2 d-flex align-items-center secondary rounded-5 text-primary border-0">
+                      </StyledPopoverButton>
+                      <StyledPopoverButton className="btn py-0 px-3 py-2 d-flex align-items-center secondary rounded-0 text-primary border-0">
                         <div className="bg-primary me-2 p-2 d-flex justify-content-center align-items-center rounded-circle">
                           <PersonCheck className="text-white fs-5 m-1" />
                         </div>
@@ -107,8 +111,8 @@ const TweetCreationForm = () => {
                         <div className="flex-grow-1 text-end fs-4">
                           <CheckLg />
                         </div>
-                      </button>
-                      <button className="btn py-0 px-2 my-2 d-flex align-items-center secondary rounded-5 text-primary border-0">
+                      </StyledPopoverButton>
+                      <StyledPopoverButton className="btn py-0 px-3 py-2 d-flex align-items-center secondary rounded-0 text-primary border-0">
                         <div className="bg-primary me-2 p-2 d-flex justify-content-center align-items-center rounded-circle">
                           <At className="text-white fs-5 m-1" />
                         </div>
@@ -118,7 +122,7 @@ const TweetCreationForm = () => {
                         <div className="flex-grow-1 text-end fs-4">
                           <CheckLg />
                         </div>
-                      </button>
+                      </StyledPopoverButton>
                     </div>
                   </StyledPopover>
                 }
