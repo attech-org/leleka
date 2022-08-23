@@ -1,4 +1,3 @@
-import React from "react";
 import { Image } from "react-bootstrap";
 import { HeartFill, ArrowRepeat } from "react-bootstrap-icons";
 import styled from "styled-components";
@@ -39,7 +38,7 @@ const SingleNotification = ({
     <div>
       <StyledSection
         role="button"
-        className="px-5 pt-3 text-decoration-none text-reset text-danger border-bottom"
+        className="px-3 pt-3 text-decoration-none text-reset text-danger border-bottom"
       >
         <div className="d-flex align-items-top">
           <div className="pt-1 px-3">
