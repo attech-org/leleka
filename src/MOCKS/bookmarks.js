@@ -1,17 +1,4 @@
-export const singleTweetData = {
-  userlogo: "",
-  username: "Xiaomi",
-  userNickname: "@Xiaomi",
-  tweetText:
-    "Need a break?🍃 We've prepared a #RelaxationDay audio for you to immersive yourself in nature. Put on your headphones and enjoy. Shot & recorded by #Xiaomi12Pro.",
-  tweetDate: "today",
-  lelekaLink: "1:00 PM · Aug 15, 2022·Sprinklr Publishing",
-  retweetCount: 20,
-  tweetQuoteCount: 4,
-  likeCount: 154,
-};
-
-export const tweetCommentsData = [
+export const bookmarksData = [
   {
     id: 1,
     userlogo: "http://dummyimage.com/105x100.png/5fa2dd/ffffff",
