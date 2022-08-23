@@ -1,5 +1,7 @@
 import axios from "axios";
 
+const URI = process.env.REACT_APP_URI;
+
 const getLocalAccessToken = () => {
   return localStorage.getItem("accessToken");
 };
@@ -13,14 +15,14 @@ const updateLocalAccessToken = (accessToken: string): void => {
 };
 
 const instance = axios.create({
-  baseURL: "http://localhost:3001/api", // /auth/login[,register]
+  baseURL: URI,
   headers: {
     "Content-Type": "application/json",
   },
 });
 
 function getRefreshToken() {
-  return instance.post("/auth/refreshtoken", {
+  return instance.post("/api/auth/refreshtoken", {
     refreshToken: getLocalRefreshToken(),
   });
 }
@@ -30,10 +32,9 @@ instance.interceptors.request.use(
     const token = getLocalAccessToken();
     if (token) {
       // config.headers.Authorization = "Bearer " + token; // for Spring Boot back-end
-      config.headers = {
-        ...config.headers,
-        ["x-access-token"]: token,
-      }; // for Node.js Express back-end
+      if (config.headers) {
+        config.headers["x-access-token"] = token; // for Node.js Express back-end
+      }
     }
     return config;
   },
@@ -48,7 +49,7 @@ instance.interceptors.response.use(
   },
   async (err) => {
     const originalConfig = err.config;
-    if (originalConfig.url !== "/auth/login" && err.response) {
+    if (originalConfig.url !== "/api/auth/login" && err.response) {
       // Access Token was expired
       if (err.response.status === 401 && !originalConfig._retry) {
         originalConfig._retry = true;
@@ -68,7 +69,7 @@ instance.interceptors.response.use(
 
 export const registerUser = async () => {
   try {
-    const res = await instance.post("/auth/register", {
+    const res = await instance.post("/api/auth/register", {
       username: "koder",
       password: "12345678",
       email: "qwert@gmail.com",
@@ -83,7 +84,7 @@ export const registerUser = async () => {
 
 export const testAuthorized = async () => {
   try {
-    const res = await instance.get("/testAuthorized");
+    const res = await instance.get("/api/testAuthorized");
     console.warn(res.data);
   } catch (err) {
     console.warn(err);
@@ -92,7 +93,7 @@ export const testAuthorized = async () => {
 
 export const loginUser = async () => {
   try {
-    const res = await instance.post("/auth/login", {
+    const res = await instance.post("/api/auth/login", {
       username: "koder",
       password: "12345678",
       email: "qwert@gmail.com",
