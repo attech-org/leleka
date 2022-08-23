@@ -1,4 +1,12 @@
-import { EmojiSmile, Image as ImageIcon, Globe2 } from "react-bootstrap-icons";
+import { OverlayTrigger, Popover } from "react-bootstrap";
+import {
+  EmojiSmile,
+  Image as ImageIcon,
+  Globe2,
+  CheckLg,
+  PersonCheck,
+  At,
+} from "react-bootstrap-icons";
 import styled from "styled-components";
 
 const StyledCloseButton = styled.button`
@@ -24,8 +32,17 @@ const StyledIcon = styled.div`
     cursor: pointer;
   }
 `;
+const StyledPopover = styled(Popover)`
+  .popover-arrow {
+    display: none;
+  }
+`;
+// const InvertColor = styled.div`
+//   filter: invert(100%);
+// `;
 
 const TweetCreationForm = () => {
+  const whoCanAnswer = "Усі можуть відповідати";
   const handleTweetButton = () => {
     console.log("Tweeted");
   };
@@ -57,10 +74,61 @@ const TweetCreationForm = () => {
             placeholder="Що відбувається?"
           />
           <div className="border-bottom py-1">
-            <StyledButton className="btn py-0 px-2 my-2 d-flex align-items-center secondary rounded-5 fw-bold text-primary border-0">
-              <Globe2 className="me-1" />
-              <span>Відповідати можусть усі користувачі</span>
-            </StyledButton>
+            <div>
+              <OverlayTrigger
+                rootClose
+                trigger="click"
+                key="bottom"
+                placement="bottom"
+                overlay={
+                  <StyledPopover className="p-2">
+                    <div className="fs-5 fw-bold">Хто може відповідати?</div>
+                    <div>
+                      Визначте, хто може відповідати на цей твіт. Згадані особи
+                      завжди можуть відповідати.
+                    </div>
+                    <div className="d-flex flex-column">
+                      <button className="btn py-0 px-2 my-2 d-flex align-items-center secondary rounded-5 text-primary border-0">
+                        <div className="bg-primary me-2 p-2 d-flex justify-content-center align-items-center rounded-circle">
+                          <Globe2 className="text-white fs-5 m-1" />
+                        </div>
+                        <div className="text-start text-black-50">Усі</div>
+                        <div className="flex-grow-1 text-end fs-4">
+                          <CheckLg />
+                        </div>
+                      </button>
+                      <button className="btn py-0 px-2 my-2 d-flex align-items-center secondary rounded-5 text-primary border-0">
+                        <div className="bg-primary me-2 p-2 d-flex justify-content-center align-items-center rounded-circle">
+                          <PersonCheck className="text-white fs-5 m-1" />
+                        </div>
+                        <div className="text-start text-black-50">
+                          Люди, котрих ви читаєте
+                        </div>
+                        <div className="flex-grow-1 text-end fs-4">
+                          <CheckLg />
+                        </div>
+                      </button>
+                      <button className="btn py-0 px-2 my-2 d-flex align-items-center secondary rounded-5 text-primary border-0">
+                        <div className="bg-primary me-2 p-2 d-flex justify-content-center align-items-center rounded-circle">
+                          <At className="text-white fs-5 m-1" />
+                        </div>
+                        <div className="text-start text-black-50">
+                          Лише особи яких ви згадали
+                        </div>
+                        <div className="flex-grow-1 text-end fs-4">
+                          <CheckLg />
+                        </div>
+                      </button>
+                    </div>
+                  </StyledPopover>
+                }
+              >
+                <StyledButton className="btn py-0 px-2 my-2 d-flex align-items-center secondary rounded-5 fw-bold text-primary border-0">
+                  <Globe2 className="me-1" />
+                  <span>{whoCanAnswer}</span>
+                </StyledButton>
+              </OverlayTrigger>
+            </div>
           </div>
           <div className="d-flex justify-content-between">
             <div className="d-flex p-2">
