@@ -1,11 +1,15 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Button } from "react-bootstrap";
+import {
+  Form,
+  Modal,
+  ModalBody,
+  ModalTitle,
+  Button,
+  Figure,
+  FormControlProps,
+} from "react-bootstrap";
+import { useForm, SubmitHandler } from "react-hook-form";
 import styled from "styled-components";
-//---------------------------------------------------------------------------
-// import FormSettingsUserData from "./FormSettingsUserData";import React, { useState } from "react";
-import { useForm, Controller, SubmitHandler } from "react-hook-form"; // --- my import
-import { Form, Modal, ModalBody, ModalTitle, FormSelect } from "react-bootstrap"; // --- my import
-import Figure from "react-bootstrap/Figure";
 
 const Div = styled.div`
   position: fixed;
@@ -44,19 +48,20 @@ export const LeftPanel = () => {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-  const { control, handleSubmit } = useForm<IFormInput>();
+  // const { control, handleSubmit } = useForm<IFormInput>();
 
   const [showImage, setShowImage] = useState(false);
+  const [showBgImage, setShowBgImage] = useState(false);
   const handleCloseimage = () => setShowImage(false);
   const handleShowImage = () => setShowImage(true);
 
-  const onSubmit: SubmitHandler<IFormInput> = (data) => {
-    console.log(data);
-  };
+  // const onSubmit: SubmitHandler<IFormInput> = (data) => {
+  //   console.log(data);
+  // };
 
   //------------------------------ avatar image ------------------------
-  const [fileAvatar, setFileAvatar] = useState(null);
-  const [previewAvatar, setPreviewAvatar] = useState(null);
+  const [fileAvatar, setFileAvatar] = useState();
+  const [previewAvatar, setPreviewAvatar] = useState();
   const fileRefAvatar = useRef();
 
   useEffect(() => {
@@ -114,7 +119,11 @@ export const LeftPanel = () => {
               <Figure>
                 {previewAvatar && (
                   <>
-                    <Figure.Image roundedCircle src={previewAvatar} alt="preview" />
+                    <Figure.Image
+                      roundedCircle
+                      src={previewAvatar}
+                      alt="preview"
+                    />
                   </>
                 )}
               </Figure>
@@ -125,10 +134,14 @@ export const LeftPanel = () => {
                 </Button>
                 {/*----added userPicture modal window -------*/}
                 <Modal show={showImage} onHide={handleCloseimage}>
-                  <Modal.Header closeButton></Modal.Header>
-                  <Form.Group controlId="formFile" className="mb-3">
+                  <Modal.Header closeButton />
+                  <Form.Group controlId="avatarFile" className="mb-3">
                     <Form.Label>Upload user avatar</Form.Label>
-                    <Form.Control id="photo" type="file" ref={fileRefAvatar} onChange={(e) => setFileAvatar(e.target.files[0])} />
+                    <Form.Control
+                      type="file"
+                      ref={fileRefAvatar}
+                      onChange={(e) => setFileAvatar(e.target.files[0])}
+                    />
                     <div className="d-grid gap-2">
                       <Button variant="danger" onClick={handleResetAvatar}>
                         Clear photo
@@ -142,21 +155,33 @@ export const LeftPanel = () => {
               <Figure>
                 {previewImage && (
                   <>
-                    <Figure.Image fluid rounded src={previewImage} alt="preview" />
+                    <Figure.Image
+                      fluid
+                      rounded
+                      src={previewImage}
+                      alt="preview"
+                    />
                   </>
                 )}
               </Figure>
               <Figure>
                 {/*----button userPicture added -------*/}
-                <Button variant="secondary" onClick={handleShowImage}>
+                <Button
+                  variant="secondary"
+                  onClick={() => setShowBgImage(true)}
+                >
                   User image
                 </Button>
                 {/*----added userPicture modal window -------*/}
-                <Modal show={showImage} onHide={handleCloseimage}>
-                  <Modal.Header closeButton></Modal.Header>
-                  <Form.Group controlId="formFile" className="mb-3">
+                <Modal show={showBgImage} onHide={() => setShowBgImage(false)}>
+                  <Modal.Header closeButton />
+                  <Form.Group controlId="bgFile" className="mb-3">
                     <Form.Label>Upload user picture</Form.Label>
-                    <Form.Control id="background" type="file" ref={fileRefImage} onChange={(e) => setFileImage(e.target.files[0])} />
+                    <Form.Control
+                      type="file"
+                      ref={fileRefImage}
+                      onChange={(e) => setFileImage(e.target.files[0])}
+                    />
                     <div className="d-grid gap-2">
                       <Button variant="danger" onClick={handleResetImage}>
                         Clear photo
