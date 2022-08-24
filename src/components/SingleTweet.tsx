@@ -1,15 +1,10 @@
 import React from "react";
 import { Dropdown } from "react-bootstrap";
-import {
-  ThreeDots,
-  Chat,
-  ArrowRepeat,
-  Heart,
-  Upload,
-} from "react-bootstrap-icons";
+import { ThreeDots, Chat, ArrowRepeat, Upload } from "react-bootstrap-icons";
 import styled from "styled-components";
 
 import AttachedContent from "./AttachedContent";
+import LikeButton from "./LikeButton/LikeButton";
 
 const Wrapper = styled.div`
   text-align: left;
@@ -162,13 +157,7 @@ const SingleTweet: React.FC<SingleTweetInterface> = ({
             iconColor={Red}
             className="m-0 p-0 rounded-circle row align-items-center justify-content-center"
           >
-            <Heart className="p-0 m-0" />
-          </IconBg>
-          <IconBg
-            iconBgColor={bgBlue}
-            iconColor={Blue}
-            className="m-0 p-0 rounded-circle row align-items-center justify-content-center"
-          >
+            <LikeButton likesCount={likeCount} />
             <Upload className="p-0 m-0" />
           </IconBg>
         </IconsBar>
