@@ -4,7 +4,7 @@ import { ThreeDots, Chat, ArrowRepeat, Upload } from "react-bootstrap-icons";
 import styled from "styled-components";
 
 import AttachedContent from "./AttachedContent";
-import LikeButton from "./LikeButton/LikeButton";
+import LikeButton from "./LikeButton";
 
 const Wrapper = styled.div`
   text-align: left;
@@ -130,8 +130,8 @@ interface SingleTweetCommentInterface {
   username: string;
   userNickname: string;
   responserUserNickname: string;
-  messegeText: string;
-  messegeDate: string;
+  messageText: string;
+  messageDate: string;
   answerCount: number;
   retweetCount: number;
   likeCount: number;
@@ -142,8 +142,8 @@ const SingleTweetComment: React.FC<SingleTweetCommentInterface> = ({
   username,
   userNickname,
   responserUserNickname,
-  messegeText,
-  messegeDate,
+  messageText,
+  messageDate,
   answerCount,
   retweetCount,
   likeCount,
@@ -163,7 +163,7 @@ const SingleTweetComment: React.FC<SingleTweetCommentInterface> = ({
               <NameWrapper>
                 <Username>{username}</Username>
                 <NickName className="pl-1">{userNickname}</NickName>
-                <Date className="pl-1">{messegeDate}</Date>
+                <Date className="pl-1">{messageDate}</Date>
               </NameWrapper>
               <Dropdown>
                 <SDropdownToggle
@@ -187,7 +187,7 @@ const SingleTweetComment: React.FC<SingleTweetCommentInterface> = ({
               <NickName>{responserUserNickname}</NickName>
             </Answer>
           </Author>
-          <Text>{messegeText}</Text>
+          <Text>{messageText}</Text>
           <AttachedContent />
           <IconRow>
             <IconBox>

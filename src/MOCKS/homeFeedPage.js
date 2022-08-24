@@ -2,11 +2,11 @@ export const FeedPostData = [
   {
     id: 1,
     fullName: "Modestia Dammarell",
-    userName: "mdammarell0",
-    userNameId: "mdammarell0",
-    messegeText:
+    username: "mdammarell0",
+    userNickname: "mdammarell0",
+    messageText:
       "Suspendisse potenti. In eleifend quam a odio. In hac habitasse platea dictumst.",
-    messegeDate: "4/7/2022",
+    messageDate: "4/7/2022",
     isVerified: true,
     picture: "http://dummyimage.com/198x100.png/ff4444/ffffff",
     userlogo: "http://dummyimage.com/145x100.png/ff4444/ffffff",
@@ -17,10 +17,10 @@ export const FeedPostData = [
   {
     id: 2,
     fullName: "Tracie Corden",
-    userName: "tcorden1",
-    userNameId: "tcorden1",
-    messegeText: "Pellentesque ultrices mattis odio. Donec vitae nisi.",
-    messegeDate: "6/14/2022",
+    username: "tcorden1",
+    userNickname: "tcorden1",
+    messageText: "Pellentesque ultrices mattis odio. Donec vitae nisi.",
+    messageDate: "6/14/2022",
     isVerified: true,
     picture: "http://dummyimage.com/221x100.png/dddddd/000000",
     userlogo: "http://dummyimage.com/128x100.png/5fa2dd/ffffff",
@@ -31,11 +31,11 @@ export const FeedPostData = [
   {
     id: 3,
     fullName: "Roselia Cardenas",
-    userName: "rcardenas2",
-    userNameId: "rcardenas2",
-    messegeText:
+    username: "rcardenas2",
+    userNickname: "rcardenas2",
+    messageText:
       "Duis ac nibh. Fusce lacus purus, aliquet at, feugiat non, pretium quis, lectus. Suspendisse potenti.",
-    messegeDate: "12/30/2021",
+    messageDate: "12/30/2021",
     isVerified: true,
     picture: "http://dummyimage.com/122x100.png/ff4444/ffffff",
     userlogo: "http://dummyimage.com/163x100.png/dddddd/000000",
@@ -46,10 +46,10 @@ export const FeedPostData = [
   {
     id: 4,
     fullName: "Rand Edgerly",
-    userName: "redgerly3",
-    userNameId: "redgerly3",
-    messegeText: "Morbi a ipsum.",
-    messegeDate: "7/9/2022",
+    username: "redgerly3",
+    userNickname: "redgerly3",
+    messageText: "Morbi a ipsum.",
+    messageDate: "7/9/2022",
     isVerified: false,
     picture: "http://dummyimage.com/191x100.png/dddddd/000000",
     userlogo: "http://dummyimage.com/162x100.png/dddddd/000000",
@@ -60,10 +60,10 @@ export const FeedPostData = [
   {
     id: 5,
     fullName: "Ian Stairs",
-    userName: "istairs4",
-    userNameId: "istairs4",
-    messegeText: "Aenean lectus.",
-    messegeDate: "2/22/2022",
+    username: "istairs4",
+    userNickname: "istairs4",
+    messageText: "Aenean lectus.",
+    messageDate: "2/22/2022",
     isVerified: true,
     picture: "http://dummyimage.com/163x100.png/dddddd/000000",
     userlogo: "http://dummyimage.com/215x100.png/dddddd/000000",
@@ -74,11 +74,11 @@ export const FeedPostData = [
   {
     id: 6,
     fullName: "Camel Mc Andrew",
-    userName: "cmc5",
-    userNameId: "cmc5",
-    messegeText:
+    username: "cmc5",
+    userNickname: "cmc5",
+    messageText:
       "Curabitur at ipsum ac tellus semper interdum. Mauris ullamcorper purus sit amet nulla. Quisque arcu libero, rutrum ac, lobortis vel, dapibus at, diam.",
-    messegeDate: "5/13/2022",
+    messageDate: "5/13/2022",
     isVerified: true,
     picture: "http://dummyimage.com/109x100.png/dddddd/000000",
     userlogo: "http://dummyimage.com/204x100.png/5fa2dd/ffffff",
@@ -89,10 +89,10 @@ export const FeedPostData = [
   {
     id: 7,
     fullName: "Pammie Ashmole",
-    userName: "pashmole6",
-    userNameId: "pashmole6",
-    messegeText: "Nunc rhoncus dui vel sem. Sed sagittis.",
-    messegeDate: "5/8/2022",
+    username: "pashmole6",
+    userNickname: "pashmole6",
+    messageText: "Nunc rhoncus dui vel sem. Sed sagittis.",
+    messageDate: "5/8/2022",
     isVerified: true,
     picture: "http://dummyimage.com/123x100.png/cc0000/ffffff",
     userlogo: "http://dummyimage.com/151x100.png/ff4444/ffffff",
@@ -103,11 +103,11 @@ export const FeedPostData = [
   {
     id: 8,
     fullName: "Lyndel Dast",
-    userName: "ldast7",
-    userNameId: "ldast7",
-    messegeText:
+    username: "ldast7",
+    userNickname: "ldast7",
+    messageText:
       "Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vivamus vestibulum sagittis sapien.",
-    messegeDate: "12/26/2021",
+    messageDate: "12/26/2021",
     isVerified: false,
     picture: "http://dummyimage.com/170x100.png/cc0000/ffffff",
     userlogo: "http://dummyimage.com/110x100.png/cc0000/ffffff",
@@ -118,10 +118,10 @@ export const FeedPostData = [
   {
     id: 9,
     fullName: "Kristan Tie",
-    userName: "ktie8",
-    userNameId: "ktie8",
-    messegeText: "In eleifend quam a odio.",
-    messegeDate: "1/24/2022",
+    username: "ktie8",
+    userNickname: "ktie8",
+    messageText: "In eleifend quam a odio.",
+    messageDate: "1/24/2022",
     isVerified: true,
     picture: "http://dummyimage.com/194x100.png/cc0000/ffffff",
     userlogo: "http://dummyimage.com/176x100.png/ff4444/ffffff",
@@ -132,10 +132,10 @@ export const FeedPostData = [
   {
     id: 10,
     fullName: "Wallache Chapelle",
-    userName: "wchapelle9",
-    userNameId: "wchapelle9",
-    messegeText: "Nulla justo.",
-    messegeDate: "4/2/2022",
+    username: "wchapelle9",
+    userNickname: "wchapelle9",
+    messageText: "Nulla justo.",
+    messageDate: "4/2/2022",
     isVerified: true,
     picture: "http://dummyimage.com/194x100.png/dddddd/000000",
     userlogo: "http://dummyimage.com/156x100.png/ff4444/ffffff",
@@ -146,10 +146,10 @@ export const FeedPostData = [
   {
     id: 11,
     fullName: "Ryann Feasby",
-    userName: "rfeasbya",
-    userNameId: "rfeasbya",
-    messegeText: "Morbi a ipsum. Integer a nibh.",
-    messegeDate: "12/2/2021",
+    username: "rfeasbya",
+    userNickname: "rfeasbya",
+    messageText: "Morbi a ipsum. Integer a nibh.",
+    messageDate: "12/2/2021",
     isVerified: true,
     picture: "http://dummyimage.com/128x100.png/dddddd/000000",
     userlogo: "http://dummyimage.com/234x100.png/ff4444/ffffff",
@@ -160,11 +160,11 @@ export const FeedPostData = [
   {
     id: 12,
     fullName: "Way O'Regan",
-    userName: "woreganb",
-    userNameId: "woreganb",
-    messegeText:
+    username: "woreganb",
+    userNickname: "woreganb",
+    messageText:
       "Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.",
-    messegeDate: "5/10/2022",
+    messageDate: "5/10/2022",
     isVerified: false,
     picture: "http://dummyimage.com/216x100.png/5fa2dd/ffffff",
     userlogo: "http://dummyimage.com/174x100.png/5fa2dd/ffffff",
@@ -175,10 +175,10 @@ export const FeedPostData = [
   {
     id: 13,
     fullName: "Corbett Peterffy",
-    userName: "cpeterffyc",
-    userNameId: "cpeterffyc",
-    messegeText: "Pellentesque viverra pede ac diam.",
-    messegeDate: "10/14/2021",
+    username: "cpeterffyc",
+    userNickname: "cpeterffyc",
+    messageText: "Pellentesque viverra pede ac diam.",
+    messageDate: "10/14/2021",
     isVerified: true,
     picture: "http://dummyimage.com/153x100.png/5fa2dd/ffffff",
     userlogo: "http://dummyimage.com/116x100.png/5fa2dd/ffffff",
@@ -189,11 +189,11 @@ export const FeedPostData = [
   {
     id: 14,
     fullName: "Gweneth Raikes",
-    userName: "graikesd",
-    userNameId: "graikesd",
-    messegeText:
+    username: "graikesd",
+    userNickname: "graikesd",
+    messageText:
       "Curabitur at ipsum ac tellus semper interdum. Mauris ullamcorper purus sit amet nulla. Quisque arcu libero, rutrum ac, lobortis vel, dapibus at, diam.",
-    messegeDate: "4/4/2022",
+    messageDate: "4/4/2022",
     isVerified: false,
     picture: "http://dummyimage.com/242x100.png/ff4444/ffffff",
     userlogo: "http://dummyimage.com/182x100.png/cc0000/ffffff",
@@ -204,10 +204,10 @@ export const FeedPostData = [
   {
     id: 15,
     fullName: "Doralyn Paraman",
-    userName: "dparamane",
-    userNameId: "dparamane",
-    messegeText: "Phasellus id sapien in sapien iaculis congue.",
-    messegeDate: "6/12/2022",
+    username: "dparamane",
+    userNickname: "dparamane",
+    messageText: "Phasellus id sapien in sapien iaculis congue.",
+    messageDate: "6/12/2022",
     isVerified: false,
     picture: "http://dummyimage.com/154x100.png/cc0000/ffffff",
     userlogo: "http://dummyimage.com/241x100.png/dddddd/000000",
@@ -218,10 +218,10 @@ export const FeedPostData = [
   {
     id: 16,
     fullName: "Keenan Noen",
-    userName: "knoenf",
-    userNameId: "knoenf",
-    messegeText: "Nulla tellus.",
-    messegeDate: "4/15/2022",
+    username: "knoenf",
+    userNickname: "knoenf",
+    messageText: "Nulla tellus.",
+    messageDate: "4/15/2022",
     isVerified: true,
     picture: "http://dummyimage.com/135x100.png/ff4444/ffffff",
     userlogo: "http://dummyimage.com/200x100.png/5fa2dd/ffffff",
@@ -232,11 +232,11 @@ export const FeedPostData = [
   {
     id: 17,
     fullName: "Quinta Ridsdale",
-    userName: "qridsdaleg",
-    userNameId: "qridsdaleg",
-    messegeText:
+    username: "qridsdaleg",
+    userNickname: "qridsdaleg",
+    messageText:
       "Maecenas ut massa quis augue luctus tincidunt. Nulla mollis molestie lorem. Quisque ut erat.",
-    messegeDate: "11/29/2021",
+    messageDate: "11/29/2021",
     isVerified: false,
     picture: "http://dummyimage.com/207x100.png/dddddd/000000",
     userlogo: "http://dummyimage.com/167x100.png/cc0000/ffffff",
@@ -247,11 +247,11 @@ export const FeedPostData = [
   {
     id: 18,
     fullName: "Cynthie Clee",
-    userName: "ccleeh",
-    userNameId: "ccleeh",
-    messegeText:
+    username: "ccleeh",
+    userNickname: "ccleeh",
+    messageText:
       "Etiam vel augue. Vestibulum rutrum rutrum neque. Aenean auctor gravida sem.",
-    messegeDate: "5/16/2022",
+    messageDate: "5/16/2022",
     isVerified: false,
     picture: "http://dummyimage.com/242x100.png/5fa2dd/ffffff",
     userlogo: "http://dummyimage.com/108x100.png/cc0000/ffffff",
@@ -262,11 +262,11 @@ export const FeedPostData = [
   {
     id: 19,
     fullName: "Karie Rix",
-    userName: "krixi",
-    userNameId: "krixi",
-    messegeText:
+    username: "krixi",
+    userNickname: "krixi",
+    messageText:
       "Aliquam sit amet diam in magna bibendum imperdiet. Nullam orci pede, venenatis non, sodales sed, tincidunt eu, felis.",
-    messegeDate: "1/15/2022",
+    messageDate: "1/15/2022",
     isVerified: false,
     picture: "http://dummyimage.com/101x100.png/dddddd/000000",
     userlogo: "http://dummyimage.com/233x100.png/cc0000/ffffff",
@@ -277,11 +277,11 @@ export const FeedPostData = [
   {
     id: 20,
     fullName: "Kittie Laugheran",
-    userName: "klaugheranj",
-    userNameId: "klaugheranj",
-    messegeText:
+    username: "klaugheranj",
+    userNickname: "klaugheranj",
+    messageText:
       "Nam ultrices, libero non mattis pulvinar, nulla pede ullamcorper augue, a suscipit nulla elit ac nulla.",
-    messegeDate: "1/13/2022",
+    messageDate: "1/13/2022",
     isVerified: true,
     picture: "http://dummyimage.com/234x100.png/ff4444/ffffff",
     userlogo: "http://dummyimage.com/181x100.png/5fa2dd/ffffff",
@@ -292,10 +292,10 @@ export const FeedPostData = [
   {
     id: 21,
     fullName: "Alic Chrippes",
-    userName: "achrippesk",
-    userNameId: "achrippesk",
-    messegeText: "Fusce posuere felis sed lacus.",
-    messegeDate: "5/31/2022",
+    username: "achrippesk",
+    userNickname: "achrippesk",
+    messageText: "Fusce posuere felis sed lacus.",
+    messageDate: "5/31/2022",
     isVerified: true,
     picture: "http://dummyimage.com/185x100.png/dddddd/000000",
     userlogo: "http://dummyimage.com/192x100.png/5fa2dd/ffffff",
@@ -306,11 +306,11 @@ export const FeedPostData = [
   {
     id: 22,
     fullName: "Tucky Brandsma",
-    userName: "tbrandsmal",
-    userNameId: "tbrandsmal",
-    messegeText:
+    username: "tbrandsmal",
+    userNickname: "tbrandsmal",
+    messageText:
       "Quisque id justo sit amet sapien dignissim vestibulum. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nulla dapibus dolor vel est.",
-    messegeDate: "12/3/2021",
+    messageDate: "12/3/2021",
     isVerified: true,
     picture: "http://dummyimage.com/226x100.png/cc0000/ffffff",
     userlogo: "http://dummyimage.com/143x100.png/dddddd/000000",
@@ -321,11 +321,11 @@ export const FeedPostData = [
   {
     id: 23,
     fullName: "Akim Semrad",
-    userName: "asemradm",
-    userNameId: "asemradm",
-    messegeText:
+    username: "asemradm",
+    userNickname: "asemradm",
+    messageText:
       "Proin leo odio, porttitor id, consequat in, consequat ut, nulla. Sed accumsan felis. Ut at dolor quis odio consequat varius.",
-    messegeDate: "4/28/2022",
+    messageDate: "4/28/2022",
     isVerified: false,
     picture: "http://dummyimage.com/189x100.png/dddddd/000000",
     userlogo: "http://dummyimage.com/111x100.png/ff4444/ffffff",
@@ -336,11 +336,11 @@ export const FeedPostData = [
   {
     id: 24,
     fullName: "Kippar Spragge",
-    userName: "kspraggen",
-    userNameId: "kspraggen",
-    messegeText:
+    username: "kspraggen",
+    userNickname: "kspraggen",
+    messageText:
       "Cras in purus eu magna vulputate luctus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.",
-    messegeDate: "5/18/2022",
+    messageDate: "5/18/2022",
     isVerified: false,
     picture: "http://dummyimage.com/115x100.png/cc0000/ffffff",
     userlogo: "http://dummyimage.com/243x100.png/ff4444/ffffff",
@@ -351,10 +351,10 @@ export const FeedPostData = [
   {
     id: 25,
     fullName: "Kipper Rysom",
-    userName: "krysomo",
-    userNameId: "krysomo",
-    messegeText: "Duis at velit eu est congue elementum.",
-    messegeDate: "8/11/2022",
+    username: "krysomo",
+    userNickname: "krysomo",
+    messageText: "Duis at velit eu est congue elementum.",
+    messageDate: "8/11/2022",
     isVerified: false,
     picture: "http://dummyimage.com/165x100.png/dddddd/000000",
     userlogo: "http://dummyimage.com/126x100.png/dddddd/000000",
@@ -365,11 +365,11 @@ export const FeedPostData = [
   {
     id: 26,
     fullName: "Judy Beltzner",
-    userName: "jbeltznerp",
-    userNameId: "jbeltznerp",
-    messegeText:
+    username: "jbeltznerp",
+    userNickname: "jbeltznerp",
+    messageText:
       "Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede. Morbi porttitor lorem id ligula. Suspendisse ornare consequat lectus.",
-    messegeDate: "6/20/2022",
+    messageDate: "6/20/2022",
     isVerified: true,
     picture: "http://dummyimage.com/140x100.png/cc0000/ffffff",
     userlogo: "http://dummyimage.com/184x100.png/dddddd/000000",
@@ -380,11 +380,11 @@ export const FeedPostData = [
   {
     id: 27,
     fullName: "Aaron Von Salzberg",
-    userName: "avonq",
-    userNameId: "avonq",
-    messegeText:
+    username: "avonq",
+    userNickname: "avonq",
+    messageText:
       "Cras in purus eu magna vulputate luctus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vivamus vestibulum sagittis sapien.",
-    messegeDate: "1/24/2022",
+    messageDate: "1/24/2022",
     isVerified: true,
     picture: "http://dummyimage.com/157x100.png/cc0000/ffffff",
     userlogo: "http://dummyimage.com/167x100.png/ff4444/ffffff",
@@ -395,10 +395,10 @@ export const FeedPostData = [
   {
     id: 28,
     fullName: "Adria Crosser",
-    userName: "acrosserr",
-    userNameId: "acrosserr",
-    messegeText: "Vivamus vel nulla eget eros elementum pellentesque.",
-    messegeDate: "1/3/2022",
+    username: "acrosserr",
+    userNickname: "acrosserr",
+    messageText: "Vivamus vel nulla eget eros elementum pellentesque.",
+    messageDate: "1/3/2022",
     isVerified: true,
     picture: "http://dummyimage.com/195x100.png/cc0000/ffffff",
     userlogo: "http://dummyimage.com/105x100.png/ff4444/ffffff",
@@ -409,11 +409,11 @@ export const FeedPostData = [
   {
     id: 29,
     fullName: "Cecil Morratt",
-    userName: "cmorratts",
-    userNameId: "cmorratts",
-    messegeText:
+    username: "cmorratts",
+    userNickname: "cmorratts",
+    messageText:
       "Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede. Morbi porttitor lorem id ligula. Suspendisse ornare consequat lectus.",
-    messegeDate: "8/8/2022",
+    messageDate: "8/8/2022",
     isVerified: true,
     picture: "http://dummyimage.com/245x100.png/dddddd/000000",
     userlogo: "http://dummyimage.com/165x100.png/5fa2dd/ffffff",
@@ -424,10 +424,10 @@ export const FeedPostData = [
   {
     id: 30,
     fullName: "Si Deftie",
-    userName: "sdeftiet",
-    userNameId: "sdeftiet",
-    messegeText: "Nulla facilisi. Cras non velit nec nisi vulputate nonummy.",
-    messegeDate: "8/3/2022",
+    username: "sdeftiet",
+    userNickname: "sdeftiet",
+    messageText: "Nulla facilisi. Cras non velit nec nisi vulputate nonummy.",
+    messageDate: "8/3/2022",
     isVerified: false,
     picture: "http://dummyimage.com/195x100.png/dddddd/000000",
     userlogo: "http://dummyimage.com/143x100.png/cc0000/ffffff",
@@ -438,11 +438,11 @@ export const FeedPostData = [
   {
     id: 31,
     fullName: "Karly Willshire",
-    userName: "kwillshireu",
-    userNameId: "kwillshireu",
-    messegeText:
+    username: "kwillshireu",
+    userNickname: "kwillshireu",
+    messageText:
       "Morbi odio odio, elementum eu, interdum eu, tincidunt in, leo. Maecenas pulvinar lobortis est.",
-    messegeDate: "9/16/2021",
+    messageDate: "9/16/2021",
     isVerified: true,
     picture: "http://dummyimage.com/117x100.png/dddddd/000000",
     userlogo: "http://dummyimage.com/229x100.png/5fa2dd/ffffff",
@@ -453,11 +453,11 @@ export const FeedPostData = [
   {
     id: 32,
     fullName: "Lucretia Rosetti",
-    userName: "lrosettiv",
-    userNameId: "lrosettiv",
-    messegeText:
+    username: "lrosettiv",
+    userNickname: "lrosettiv",
+    messageText:
       "In blandit ultrices enim. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Proin interdum mauris non ligula pellentesque ultrices.",
-    messegeDate: "8/28/2021",
+    messageDate: "8/28/2021",
     isVerified: false,
     picture: "http://dummyimage.com/144x100.png/5fa2dd/ffffff",
     userlogo: "http://dummyimage.com/114x100.png/dddddd/000000",
@@ -468,11 +468,11 @@ export const FeedPostData = [
   {
     id: 33,
     fullName: "Alma Girt",
-    userName: "agirtw",
-    userNameId: "agirtw",
-    messegeText:
+    username: "agirtw",
+    userNickname: "agirtw",
+    messageText:
       "Nullam porttitor lacus at turpis. Donec posuere metus vitae ipsum. Aliquam non mauris.",
-    messegeDate: "9/8/2021",
+    messageDate: "9/8/2021",
     isVerified: true,
     picture: "http://dummyimage.com/140x100.png/ff4444/ffffff",
     userlogo: "http://dummyimage.com/129x100.png/cc0000/ffffff",
@@ -483,11 +483,11 @@ export const FeedPostData = [
   {
     id: 34,
     fullName: "Alic Bartholomieu",
-    userName: "abartholomieux",
-    userNameId: "abartholomieux",
-    messegeText:
+    username: "abartholomieux",
+    userNickname: "abartholomieux",
+    messageText:
       "Mauris ullamcorper purus sit amet nulla. Quisque arcu libero, rutrum ac, lobortis vel, dapibus at, diam.",
-    messegeDate: "3/7/2022",
+    messageDate: "3/7/2022",
     isVerified: true,
     picture: "http://dummyimage.com/161x100.png/cc0000/ffffff",
     userlogo: "http://dummyimage.com/235x100.png/ff4444/ffffff",
@@ -498,10 +498,10 @@ export const FeedPostData = [
   {
     id: 35,
     fullName: "Davidde Littlechild",
-    userName: "dlittlechildy",
-    userNameId: "dlittlechildy",
-    messegeText: "Duis at velit eu est congue elementum.",
-    messegeDate: "11/12/2021",
+    username: "dlittlechildy",
+    userNickname: "dlittlechildy",
+    messageText: "Duis at velit eu est congue elementum.",
+    messageDate: "11/12/2021",
     isVerified: false,
     picture: "http://dummyimage.com/198x100.png/dddddd/000000",
     userlogo: "http://dummyimage.com/116x100.png/5fa2dd/ffffff",
@@ -512,11 +512,11 @@ export const FeedPostData = [
   {
     id: 36,
     fullName: "Gerald Dooland",
-    userName: "gdoolandz",
-    userNameId: "gdoolandz",
-    messegeText:
+    username: "gdoolandz",
+    userNickname: "gdoolandz",
+    messageText:
       "Maecenas ut massa quis augue luctus tincidunt. Nulla mollis molestie lorem. Quisque ut erat.",
-    messegeDate: "5/19/2022",
+    messageDate: "5/19/2022",
     isVerified: false,
     picture: "http://dummyimage.com/168x100.png/ff4444/ffffff",
     userlogo: "http://dummyimage.com/104x100.png/cc0000/ffffff",
@@ -527,10 +527,10 @@ export const FeedPostData = [
   {
     id: 37,
     fullName: "Cordelie Tolomelli",
-    userName: "ctolomelli10",
-    userNameId: "ctolomelli10",
-    messegeText: "Integer a nibh.",
-    messegeDate: "11/20/2021",
+    username: "ctolomelli10",
+    userNickname: "ctolomelli10",
+    messageText: "Integer a nibh.",
+    messageDate: "11/20/2021",
     isVerified: false,
     picture: "http://dummyimage.com/182x100.png/ff4444/ffffff",
     userlogo: "http://dummyimage.com/155x100.png/5fa2dd/ffffff",
@@ -541,11 +541,11 @@ export const FeedPostData = [
   {
     id: 38,
     fullName: "Sebastiano McAnellye",
-    userName: "smcanellye11",
-    userNameId: "smcanellye11",
-    messegeText:
+    username: "smcanellye11",
+    userNickname: "smcanellye11",
+    messageText:
       "Nulla ac enim. In tempor, turpis nec euismod scelerisque, quam turpis adipiscing lorem, vitae mattis nibh ligula nec sem.",
-    messegeDate: "10/5/2021",
+    messageDate: "10/5/2021",
     isVerified: true,
     picture: "http://dummyimage.com/197x100.png/dddddd/000000",
     userlogo: "http://dummyimage.com/114x100.png/ff4444/ffffff",
@@ -556,10 +556,10 @@ export const FeedPostData = [
   {
     id: 39,
     fullName: "Britta Delgardillo",
-    userName: "bdelgardillo12",
-    userNameId: "bdelgardillo12",
-    messegeText: "In congue. Etiam justo.",
-    messegeDate: "11/7/2021",
+    username: "bdelgardillo12",
+    userNickname: "bdelgardillo12",
+    messageText: "In congue. Etiam justo.",
+    messageDate: "11/7/2021",
     isVerified: true,
     picture: "http://dummyimage.com/143x100.png/cc0000/ffffff",
     userlogo: "http://dummyimage.com/179x100.png/ff4444/ffffff",
@@ -570,10 +570,10 @@ export const FeedPostData = [
   {
     id: 40,
     fullName: "Cynthie Filipchikov",
-    userName: "cfilipchikov13",
-    userNameId: "cfilipchikov13",
-    messegeText: "Proin at turpis a pede posuere nonummy.",
-    messegeDate: "8/3/2022",
+    username: "cfilipchikov13",
+    userNickname: "cfilipchikov13",
+    messageText: "Proin at turpis a pede posuere nonummy.",
+    messageDate: "8/3/2022",
     isVerified: true,
     picture: "http://dummyimage.com/194x100.png/5fa2dd/ffffff",
     userlogo: "http://dummyimage.com/249x100.png/ff4444/ffffff",
@@ -584,10 +584,10 @@ export const FeedPostData = [
   {
     id: 41,
     fullName: "Elinor Dockray",
-    userName: "edockray14",
-    userNameId: "edockray14",
-    messegeText: "Vivamus in felis eu sapien cursus vestibulum. Proin eu mi.",
-    messegeDate: "9/29/2021",
+    username: "edockray14",
+    userNickname: "edockray14",
+    messageText: "Vivamus in felis eu sapien cursus vestibulum. Proin eu mi.",
+    messageDate: "9/29/2021",
     isVerified: false,
     picture: "http://dummyimage.com/119x100.png/5fa2dd/ffffff",
     userlogo: "http://dummyimage.com/176x100.png/ff4444/ffffff",
@@ -598,11 +598,11 @@ export const FeedPostData = [
   {
     id: 42,
     fullName: "Cal Sweetland",
-    userName: "csweetland15",
-    userNameId: "csweetland15",
-    messegeText:
+    username: "csweetland15",
+    userNickname: "csweetland15",
+    messageText:
       "Etiam justo. Etiam pretium iaculis justo. In hac habitasse platea dictumst.",
-    messegeDate: "10/8/2021",
+    messageDate: "10/8/2021",
     isVerified: false,
     picture: "http://dummyimage.com/247x100.png/ff4444/ffffff",
     userlogo: "http://dummyimage.com/110x100.png/cc0000/ffffff",
@@ -613,11 +613,11 @@ export const FeedPostData = [
   {
     id: 43,
     fullName: "Tybie Getsham",
-    userName: "tgetsham16",
-    userNameId: "tgetsham16",
-    messegeText:
+    username: "tgetsham16",
+    userNickname: "tgetsham16",
+    messageText:
       "Maecenas ut massa quis augue luctus tincidunt. Nulla mollis molestie lorem. Quisque ut erat.",
-    messegeDate: "7/9/2022",
+    messageDate: "7/9/2022",
     isVerified: true,
     picture: "http://dummyimage.com/235x100.png/5fa2dd/ffffff",
     userlogo: "http://dummyimage.com/185x100.png/dddddd/000000",
@@ -628,11 +628,11 @@ export const FeedPostData = [
   {
     id: 44,
     fullName: "Wilmer Doogood",
-    userName: "wdoogood17",
-    userNameId: "wdoogood17",
-    messegeText:
+    username: "wdoogood17",
+    userNickname: "wdoogood17",
+    messageText:
       "Suspendisse ornare consequat lectus. In est risus, auctor sed, tristique in, tempus sit amet, sem. Fusce consequat.",
-    messegeDate: "10/11/2021",
+    messageDate: "10/11/2021",
     isVerified: false,
     picture: "http://dummyimage.com/105x100.png/dddddd/000000",
     userlogo: "http://dummyimage.com/109x100.png/ff4444/ffffff",
@@ -643,11 +643,11 @@ export const FeedPostData = [
   {
     id: 45,
     fullName: "Mark Preedy",
-    userName: "mpreedy18",
-    userNameId: "mpreedy18",
-    messegeText:
+    username: "mpreedy18",
+    userNickname: "mpreedy18",
+    messageText:
       "Pellentesque eget nunc. Donec quis orci eget orci vehicula condimentum. Curabitur in libero ut massa volutpat convallis.",
-    messegeDate: "11/24/2021",
+    messageDate: "11/24/2021",
     isVerified: true,
     picture: "http://dummyimage.com/117x100.png/dddddd/000000",
     userlogo: "http://dummyimage.com/137x100.png/dddddd/000000",
@@ -658,10 +658,10 @@ export const FeedPostData = [
   {
     id: 46,
     fullName: "Alecia Hinge",
-    userName: "ahinge19",
-    userNameId: "ahinge19",
-    messegeText: "Duis consequat dui nec nisi volutpat eleifend.",
-    messegeDate: "4/25/2022",
+    username: "ahinge19",
+    userNickname: "ahinge19",
+    messageText: "Duis consequat dui nec nisi volutpat eleifend.",
+    messageDate: "4/25/2022",
     isVerified: true,
     picture: "http://dummyimage.com/210x100.png/5fa2dd/ffffff",
     userlogo: "http://dummyimage.com/209x100.png/dddddd/000000",
@@ -672,11 +672,11 @@ export const FeedPostData = [
   {
     id: 47,
     fullName: "Flo Tinniswood",
-    userName: "ftinniswood1a",
-    userNameId: "ftinniswood1a",
-    messegeText:
+    username: "ftinniswood1a",
+    userNickname: "ftinniswood1a",
+    messageText:
       "Praesent blandit lacinia erat. Vestibulum sed magna at nunc commodo placerat. Praesent blandit.",
-    messegeDate: "4/18/2022",
+    messageDate: "4/18/2022",
     isVerified: true,
     picture: "http://dummyimage.com/112x100.png/ff4444/ffffff",
     userlogo: "http://dummyimage.com/230x100.png/dddddd/000000",
@@ -687,11 +687,11 @@ export const FeedPostData = [
   {
     id: 48,
     fullName: "Andreas Quoit",
-    userName: "aquoit1b",
-    userNameId: "aquoit1b",
-    messegeText:
+    username: "aquoit1b",
+    userNickname: "aquoit1b",
+    messageText:
       "Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Duis faucibus accumsan odio. Curabitur convallis.",
-    messegeDate: "8/5/2022",
+    messageDate: "8/5/2022",
     isVerified: true,
     picture: "http://dummyimage.com/179x100.png/cc0000/ffffff",
     userlogo: "http://dummyimage.com/141x100.png/dddddd/000000",
@@ -702,11 +702,11 @@ export const FeedPostData = [
   {
     id: 49,
     fullName: "Raeann Galliver",
-    userName: "rgalliver1c",
-    userNameId: "rgalliver1c",
-    messegeText:
+    username: "rgalliver1c",
+    userNickname: "rgalliver1c",
+    messageText:
       "Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec pharetra, magna vestibulum aliquet ultrices, erat tortor sollicitudin mi, sit amet lobortis sapien sapien non mi. Integer ac neque.",
-    messegeDate: "4/18/2022",
+    messageDate: "4/18/2022",
     isVerified: true,
     picture: "http://dummyimage.com/118x100.png/dddddd/000000",
     userlogo: "http://dummyimage.com/126x100.png/cc0000/ffffff",
@@ -717,11 +717,11 @@ export const FeedPostData = [
   {
     id: 50,
     fullName: "Rachelle Pottes",
-    userName: "rpottes1d",
-    userNameId: "rpottes1d",
-    messegeText:
+    username: "rpottes1d",
+    userNickname: "rpottes1d",
+    messageText:
       "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Proin risus. Praesent lectus.",
-    messegeDate: "3/30/2022",
+    messageDate: "3/30/2022",
     isVerified: false,
     picture: "http://dummyimage.com/115x100.png/cc0000/ffffff",
     userlogo: "http://dummyimage.com/246x100.png/ff4444/ffffff",
@@ -732,11 +732,11 @@ export const FeedPostData = [
   {
     id: 51,
     fullName: "Shadow Gornal",
-    userName: "sgornal1e",
-    userNameId: "sgornal1e",
-    messegeText:
+    username: "sgornal1e",
+    userNickname: "sgornal1e",
+    messageText:
       "Ut tellus. Nulla ut erat id mauris vulputate elementum. Nullam varius.",
-    messegeDate: "7/26/2022",
+    messageDate: "7/26/2022",
     isVerified: true,
     picture: "http://dummyimage.com/238x100.png/5fa2dd/ffffff",
     userlogo: "http://dummyimage.com/123x100.png/ff4444/ffffff",
@@ -747,11 +747,11 @@ export const FeedPostData = [
   {
     id: 52,
     fullName: "Miquela Pering",
-    userName: "mpering1f",
-    userNameId: "mpering1f",
-    messegeText:
+    username: "mpering1f",
+    userNickname: "mpering1f",
+    messageText:
       "Nam congue, risus semper porta volutpat, quam pede lobortis ligula, sit amet eleifend pede libero quis orci. Nullam molestie nibh in lectus. Pellentesque at nulla.",
-    messegeDate: "11/28/2021",
+    messageDate: "11/28/2021",
     isVerified: true,
     picture: "http://dummyimage.com/129x100.png/dddddd/000000",
     userlogo: "http://dummyimage.com/183x100.png/5fa2dd/ffffff",
@@ -762,10 +762,10 @@ export const FeedPostData = [
   {
     id: 53,
     fullName: "Trenton Brecken",
-    userName: "tbrecken1g",
-    userNameId: "tbrecken1g",
-    messegeText: "Nunc purus. Phasellus in felis.",
-    messegeDate: "11/16/2021",
+    username: "tbrecken1g",
+    userNickname: "tbrecken1g",
+    messageText: "Nunc purus. Phasellus in felis.",
+    messageDate: "11/16/2021",
     isVerified: false,
     picture: "http://dummyimage.com/243x100.png/dddddd/000000",
     userlogo: "http://dummyimage.com/207x100.png/5fa2dd/ffffff",
@@ -776,10 +776,10 @@ export const FeedPostData = [
   {
     id: 54,
     fullName: "Erskine Glandfield",
-    userName: "eglandfield1h",
-    userNameId: "eglandfield1h",
-    messegeText: "Cras pellentesque volutpat dui.",
-    messegeDate: "10/19/2021",
+    username: "eglandfield1h",
+    userNickname: "eglandfield1h",
+    messageText: "Cras pellentesque volutpat dui.",
+    messageDate: "10/19/2021",
     isVerified: false,
     picture: "http://dummyimage.com/128x100.png/5fa2dd/ffffff",
     userlogo: "http://dummyimage.com/142x100.png/cc0000/ffffff",
@@ -790,11 +790,11 @@ export const FeedPostData = [
   {
     id: 55,
     fullName: "Amalea Langhorne",
-    userName: "alanghorne1i",
-    userNameId: "alanghorne1i",
-    messegeText:
+    username: "alanghorne1i",
+    userNickname: "alanghorne1i",
+    messageText:
       "Nunc nisl. Duis bibendum, felis sed interdum venenatis, turpis enim blandit mi, in porttitor pede justo eu massa. Donec dapibus.",
-    messegeDate: "9/16/2021",
+    messageDate: "9/16/2021",
     isVerified: false,
     picture: "http://dummyimage.com/191x100.png/ff4444/ffffff",
     userlogo: "http://dummyimage.com/215x100.png/ff4444/ffffff",
@@ -805,11 +805,11 @@ export const FeedPostData = [
   {
     id: 56,
     fullName: "Melitta Maffei",
-    userName: "mmaffei1j",
-    userNameId: "mmaffei1j",
-    messegeText:
+    username: "mmaffei1j",
+    userNickname: "mmaffei1j",
+    messageText:
       "Maecenas rhoncus aliquam lacus. Morbi quis tortor id nulla ultrices aliquet. Maecenas leo odio, condimentum id, luctus nec, molestie sed, justo.",
-    messegeDate: "5/13/2022",
+    messageDate: "5/13/2022",
     isVerified: false,
     picture: "http://dummyimage.com/108x100.png/dddddd/000000",
     userlogo: "http://dummyimage.com/207x100.png/cc0000/ffffff",
@@ -820,11 +820,11 @@ export const FeedPostData = [
   {
     id: 57,
     fullName: "Adella Berzins",
-    userName: "aberzins1k",
-    userNameId: "aberzins1k",
-    messegeText:
+    username: "aberzins1k",
+    userNickname: "aberzins1k",
+    messageText:
       "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Proin interdum mauris non ligula pellentesque ultrices. Phasellus id sapien in sapien iaculis congue.",
-    messegeDate: "10/12/2021",
+    messageDate: "10/12/2021",
     isVerified: true,
     picture: "http://dummyimage.com/231x100.png/dddddd/000000",
     userlogo: "http://dummyimage.com/111x100.png/ff4444/ffffff",
@@ -835,11 +835,11 @@ export const FeedPostData = [
   {
     id: 58,
     fullName: "Cecil Cowser",
-    userName: "ccowser1l",
-    userNameId: "ccowser1l",
-    messegeText:
+    username: "ccowser1l",
+    userNickname: "ccowser1l",
+    messageText:
       "Donec quis orci eget orci vehicula condimentum. Curabitur in libero ut massa volutpat convallis.",
-    messegeDate: "2/8/2022",
+    messageDate: "2/8/2022",
     isVerified: false,
     picture: "http://dummyimage.com/147x100.png/cc0000/ffffff",
     userlogo: "http://dummyimage.com/128x100.png/ff4444/ffffff",
@@ -850,11 +850,11 @@ export const FeedPostData = [
   {
     id: 59,
     fullName: "Nari Hollows",
-    userName: "nhollows1m",
-    userNameId: "nhollows1m",
-    messegeText:
+    username: "nhollows1m",
+    userNickname: "nhollows1m",
+    messageText:
       "Cras mi pede, malesuada in, imperdiet et, commodo vulputate, justo. In blandit ultrices enim.",
-    messegeDate: "9/18/2021",
+    messageDate: "9/18/2021",
     isVerified: true,
     picture: "http://dummyimage.com/202x100.png/dddddd/000000",
     userlogo: "http://dummyimage.com/117x100.png/ff4444/ffffff",
@@ -865,11 +865,11 @@ export const FeedPostData = [
   {
     id: 60,
     fullName: "Leilah Glossup",
-    userName: "lglossup1n",
-    userNameId: "lglossup1n",
-    messegeText:
+    username: "lglossup1n",
+    userNickname: "lglossup1n",
+    messageText:
       "Duis aliquam convallis nunc. Proin at turpis a pede posuere nonummy.",
-    messegeDate: "9/11/2021",
+    messageDate: "9/11/2021",
     isVerified: false,
     picture: "http://dummyimage.com/188x100.png/ff4444/ffffff",
     userlogo: "http://dummyimage.com/250x100.png/cc0000/ffffff",
@@ -880,11 +880,11 @@ export const FeedPostData = [
   {
     id: 61,
     fullName: "Cristobal Goodspeed",
-    userName: "cgoodspeed1o",
-    userNameId: "cgoodspeed1o",
-    messegeText:
+    username: "cgoodspeed1o",
+    userNickname: "cgoodspeed1o",
+    messageText:
       "Mauris enim leo, rhoncus sed, vestibulum sit amet, cursus id, turpis. Integer aliquet, massa id lobortis convallis, tortor risus dapibus augue, vel accumsan tellus nisi eu orci. Mauris lacinia sapien quis libero.",
-    messegeDate: "9/6/2021",
+    messageDate: "9/6/2021",
     isVerified: false,
     picture: "http://dummyimage.com/106x100.png/cc0000/ffffff",
     userlogo: "http://dummyimage.com/235x100.png/cc0000/ffffff",
@@ -895,11 +895,11 @@ export const FeedPostData = [
   {
     id: 62,
     fullName: "Anett McSkin",
-    userName: "amcskin1p",
-    userNameId: "amcskin1p",
-    messegeText:
+    username: "amcskin1p",
+    userNickname: "amcskin1p",
+    messageText:
       "Vivamus vestibulum sagittis sapien. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.",
-    messegeDate: "5/24/2022",
+    messageDate: "5/24/2022",
     isVerified: true,
     picture: "http://dummyimage.com/167x100.png/cc0000/ffffff",
     userlogo: "http://dummyimage.com/156x100.png/ff4444/ffffff",
@@ -910,11 +910,11 @@ export const FeedPostData = [
   {
     id: 63,
     fullName: "Seana Ballintime",
-    userName: "sballintime1q",
-    userNameId: "sballintime1q",
-    messegeText:
+    username: "sballintime1q",
+    userNickname: "sballintime1q",
+    messageText:
       "Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede. Morbi porttitor lorem id ligula.",
-    messegeDate: "2/15/2022",
+    messageDate: "2/15/2022",
     isVerified: false,
     picture: "http://dummyimage.com/181x100.png/dddddd/000000",
     userlogo: "http://dummyimage.com/193x100.png/5fa2dd/ffffff",
@@ -925,10 +925,10 @@ export const FeedPostData = [
   {
     id: 64,
     fullName: "Bertha Walley",
-    userName: "bwalley1r",
-    userNameId: "bwalley1r",
-    messegeText: "Integer non velit.",
-    messegeDate: "1/28/2022",
+    username: "bwalley1r",
+    userNickname: "bwalley1r",
+    messageText: "Integer non velit.",
+    messageDate: "1/28/2022",
     isVerified: true,
     picture: "http://dummyimage.com/235x100.png/cc0000/ffffff",
     userlogo: "http://dummyimage.com/187x100.png/ff4444/ffffff",
@@ -939,10 +939,10 @@ export const FeedPostData = [
   {
     id: 65,
     fullName: "Don Keveren",
-    userName: "dkeveren1s",
-    userNameId: "dkeveren1s",
-    messegeText: "Phasellus id sapien in sapien iaculis congue.",
-    messegeDate: "8/5/2022",
+    username: "dkeveren1s",
+    userNickname: "dkeveren1s",
+    messageText: "Phasellus id sapien in sapien iaculis congue.",
+    messageDate: "8/5/2022",
     isVerified: true,
     picture: "http://dummyimage.com/217x100.png/ff4444/ffffff",
     userlogo: "http://dummyimage.com/114x100.png/5fa2dd/ffffff",
@@ -953,11 +953,11 @@ export const FeedPostData = [
   {
     id: 66,
     fullName: "Corissa Ciobutaro",
-    userName: "cciobutaro1t",
-    userNameId: "cciobutaro1t",
-    messegeText:
+    username: "cciobutaro1t",
+    userNickname: "cciobutaro1t",
+    messageText:
       "Maecenas tincidunt lacus at velit. Vivamus vel nulla eget eros elementum pellentesque. Quisque porta volutpat erat.",
-    messegeDate: "11/29/2021",
+    messageDate: "11/29/2021",
     isVerified: false,
     picture: "http://dummyimage.com/220x100.png/ff4444/ffffff",
     userlogo: "http://dummyimage.com/158x100.png/dddddd/000000",
@@ -968,11 +968,11 @@ export const FeedPostData = [
   {
     id: 67,
     fullName: "Emlen Parnaby",
-    userName: "eparnaby1u",
-    userNameId: "eparnaby1u",
-    messegeText:
+    username: "eparnaby1u",
+    userNickname: "eparnaby1u",
+    messageText:
       "Donec diam neque, vestibulum eget, vulputate ut, ultrices vel, augue. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec pharetra, magna vestibulum aliquet ultrices, erat tortor sollicitudin mi, sit amet lobortis sapien sapien non mi.",
-    messegeDate: "9/15/2021",
+    messageDate: "9/15/2021",
     isVerified: false,
     picture: "http://dummyimage.com/129x100.png/cc0000/ffffff",
     userlogo: "http://dummyimage.com/102x100.png/dddddd/000000",
@@ -983,11 +983,11 @@ export const FeedPostData = [
   {
     id: 68,
     fullName: "Eliza Boniface",
-    userName: "eboniface1v",
-    userNameId: "eboniface1v",
-    messegeText:
+    username: "eboniface1v",
+    userNickname: "eboniface1v",
+    messageText:
       "Sed vel enim sit amet nunc viverra dapibus. Nulla suscipit ligula in lacus.",
-    messegeDate: "12/10/2021",
+    messageDate: "12/10/2021",
     isVerified: false,
     picture: "http://dummyimage.com/144x100.png/5fa2dd/ffffff",
     userlogo: "http://dummyimage.com/134x100.png/dddddd/000000",
@@ -998,10 +998,10 @@ export const FeedPostData = [
   {
     id: 69,
     fullName: "Violette Normandale",
-    userName: "vnormandale1w",
-    userNameId: "vnormandale1w",
-    messegeText: "Proin interdum mauris non ligula pellentesque ultrices.",
-    messegeDate: "6/30/2022",
+    username: "vnormandale1w",
+    userNickname: "vnormandale1w",
+    messageText: "Proin interdum mauris non ligula pellentesque ultrices.",
+    messageDate: "6/30/2022",
     isVerified: true,
     picture: "http://dummyimage.com/221x100.png/ff4444/ffffff",
     userlogo: "http://dummyimage.com/162x100.png/dddddd/000000",
@@ -1012,11 +1012,11 @@ export const FeedPostData = [
   {
     id: 70,
     fullName: "Meghan Farrant",
-    userName: "mfarrant1x",
-    userNameId: "mfarrant1x",
-    messegeText:
+    username: "mfarrant1x",
+    userNickname: "mfarrant1x",
+    messageText:
       "Maecenas leo odio, condimentum id, luctus nec, molestie sed, justo.",
-    messegeDate: "3/1/2022",
+    messageDate: "3/1/2022",
     isVerified: false,
     picture: "http://dummyimage.com/107x100.png/5fa2dd/ffffff",
     userlogo: "http://dummyimage.com/123x100.png/cc0000/ffffff",
@@ -1027,10 +1027,10 @@ export const FeedPostData = [
   {
     id: 71,
     fullName: "Merill Haggus",
-    userName: "mhaggus1y",
-    userNameId: "mhaggus1y",
-    messegeText: "Integer a nibh. In quis justo.",
-    messegeDate: "8/1/2022",
+    username: "mhaggus1y",
+    userNickname: "mhaggus1y",
+    messageText: "Integer a nibh. In quis justo.",
+    messageDate: "8/1/2022",
     isVerified: false,
     picture: "http://dummyimage.com/177x100.png/cc0000/ffffff",
     userlogo: "http://dummyimage.com/198x100.png/ff4444/ffffff",
@@ -1041,10 +1041,10 @@ export const FeedPostData = [
   {
     id: 72,
     fullName: "Georgeanna Auten",
-    userName: "gauten1z",
-    userNameId: "gauten1z",
-    messegeText: "Aliquam erat volutpat.",
-    messegeDate: "7/19/2022",
+    username: "gauten1z",
+    userNickname: "gauten1z",
+    messageText: "Aliquam erat volutpat.",
+    messageDate: "7/19/2022",
     isVerified: false,
     picture: "http://dummyimage.com/206x100.png/5fa2dd/ffffff",
     userlogo: "http://dummyimage.com/156x100.png/cc0000/ffffff",
@@ -1055,11 +1055,11 @@ export const FeedPostData = [
   {
     id: 73,
     fullName: "Rip Skillen",
-    userName: "rskillen20",
-    userNameId: "rskillen20",
-    messegeText:
+    username: "rskillen20",
+    userNickname: "rskillen20",
+    messageText:
       "Duis ac nibh. Fusce lacus purus, aliquet at, feugiat non, pretium quis, lectus. Suspendisse potenti.",
-    messegeDate: "5/31/2022",
+    messageDate: "5/31/2022",
     isVerified: true,
     picture: "http://dummyimage.com/166x100.png/5fa2dd/ffffff",
     userlogo: "http://dummyimage.com/204x100.png/cc0000/ffffff",
@@ -1070,10 +1070,10 @@ export const FeedPostData = [
   {
     id: 74,
     fullName: "Livvie Pullinger",
-    userName: "lpullinger21",
-    userNameId: "lpullinger21",
-    messegeText: "Integer ac neque.",
-    messegeDate: "2/18/2022",
+    username: "lpullinger21",
+    userNickname: "lpullinger21",
+    messageText: "Integer ac neque.",
+    messageDate: "2/18/2022",
     isVerified: true,
     picture: "http://dummyimage.com/243x100.png/cc0000/ffffff",
     userlogo: "http://dummyimage.com/162x100.png/cc0000/ffffff",
@@ -1084,11 +1084,11 @@ export const FeedPostData = [
   {
     id: 75,
     fullName: "Anton MacManus",
-    userName: "amacmanus22",
-    userNameId: "amacmanus22",
-    messegeText:
+    username: "amacmanus22",
+    userNickname: "amacmanus22",
+    messageText:
       "Pellentesque viverra pede ac diam. Cras pellentesque volutpat dui.",
-    messegeDate: "2/25/2022",
+    messageDate: "2/25/2022",
     isVerified: false,
     picture: "http://dummyimage.com/205x100.png/cc0000/ffffff",
     userlogo: "http://dummyimage.com/184x100.png/5fa2dd/ffffff",
@@ -1099,10 +1099,10 @@ export const FeedPostData = [
   {
     id: 76,
     fullName: "Joelie Mancell",
-    userName: "jmancell23",
-    userNameId: "jmancell23",
-    messegeText: "In congue.",
-    messegeDate: "8/7/2022",
+    username: "jmancell23",
+    userNickname: "jmancell23",
+    messageText: "In congue.",
+    messageDate: "8/7/2022",
     isVerified: false,
     picture: "http://dummyimage.com/185x100.png/dddddd/000000",
     userlogo: "http://dummyimage.com/240x100.png/ff4444/ffffff",
@@ -1113,11 +1113,11 @@ export const FeedPostData = [
   {
     id: 77,
     fullName: "Merrill Standfield",
-    userName: "mstandfield24",
-    userNameId: "mstandfield24",
-    messegeText:
+    username: "mstandfield24",
+    userNickname: "mstandfield24",
+    messageText:
       "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Proin risus. Praesent lectus.",
-    messegeDate: "8/25/2021",
+    messageDate: "8/25/2021",
     isVerified: true,
     picture: "http://dummyimage.com/202x100.png/ff4444/ffffff",
     userlogo: "http://dummyimage.com/240x100.png/ff4444/ffffff",
@@ -1128,11 +1128,11 @@ export const FeedPostData = [
   {
     id: 78,
     fullName: "Consalve Lingard",
-    userName: "clingard25",
-    userNameId: "clingard25",
-    messegeText:
+    username: "clingard25",
+    userNickname: "clingard25",
+    messageText:
       "Integer ac leo. Pellentesque ultrices mattis odio. Donec vitae nisi.",
-    messegeDate: "7/24/2022",
+    messageDate: "7/24/2022",
     isVerified: false,
     picture: "http://dummyimage.com/137x100.png/ff4444/ffffff",
     userlogo: "http://dummyimage.com/108x100.png/ff4444/ffffff",
@@ -1143,10 +1143,10 @@ export const FeedPostData = [
   {
     id: 79,
     fullName: "Konstanze Di Napoli",
-    userName: "kdi26",
-    userNameId: "kdi26",
-    messegeText: "Aenean lectus. Pellentesque eget nunc.",
-    messegeDate: "4/19/2022",
+    username: "kdi26",
+    userNickname: "kdi26",
+    messageText: "Aenean lectus. Pellentesque eget nunc.",
+    messageDate: "4/19/2022",
     isVerified: false,
     picture: "http://dummyimage.com/141x100.png/ff4444/ffffff",
     userlogo: "http://dummyimage.com/230x100.png/ff4444/ffffff",
@@ -1157,11 +1157,11 @@ export const FeedPostData = [
   {
     id: 80,
     fullName: "Shurlock McIlmurray",
-    userName: "smcilmurray27",
-    userNameId: "smcilmurray27",
-    messegeText:
+    username: "smcilmurray27",
+    userNickname: "smcilmurray27",
+    messageText:
       "Nulla justo. Aliquam quis turpis eget elit sodales scelerisque.",
-    messegeDate: "7/26/2022",
+    messageDate: "7/26/2022",
     isVerified: true,
     picture: "http://dummyimage.com/118x100.png/dddddd/000000",
     userlogo: "http://dummyimage.com/106x100.png/ff4444/ffffff",
@@ -1172,10 +1172,10 @@ export const FeedPostData = [
   {
     id: 81,
     fullName: "Powell Wedlake",
-    userName: "pwedlake28",
-    userNameId: "pwedlake28",
-    messegeText: "Quisque porta volutpat erat.",
-    messegeDate: "9/9/2021",
+    username: "pwedlake28",
+    userNickname: "pwedlake28",
+    messageText: "Quisque porta volutpat erat.",
+    messageDate: "9/9/2021",
     isVerified: true,
     picture: "http://dummyimage.com/207x100.png/cc0000/ffffff",
     userlogo: "http://dummyimage.com/199x100.png/ff4444/ffffff",
@@ -1186,11 +1186,11 @@ export const FeedPostData = [
   {
     id: 82,
     fullName: "Aliza Kurt",
-    userName: "akurt29",
-    userNameId: "akurt29",
-    messegeText:
+    username: "akurt29",
+    userNickname: "akurt29",
+    messageText:
       "Vestibulum ac est lacinia nisi venenatis tristique. Fusce congue, diam id ornare imperdiet, sapien urna pretium nisl, ut volutpat sapien arcu sed augue. Aliquam erat volutpat.",
-    messegeDate: "6/7/2022",
+    messageDate: "6/7/2022",
     isVerified: false,
     picture: "http://dummyimage.com/114x100.png/cc0000/ffffff",
     userlogo: "http://dummyimage.com/213x100.png/cc0000/ffffff",
@@ -1201,11 +1201,11 @@ export const FeedPostData = [
   {
     id: 83,
     fullName: "Sybille Kennford",
-    userName: "skennford2a",
-    userNameId: "skennford2a",
-    messegeText:
+    username: "skennford2a",
+    userNickname: "skennford2a",
+    messageText:
       "Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nulla dapibus dolor vel est.",
-    messegeDate: "3/25/2022",
+    messageDate: "3/25/2022",
     isVerified: false,
     picture: "http://dummyimage.com/139x100.png/cc0000/ffffff",
     userlogo: "http://dummyimage.com/104x100.png/5fa2dd/ffffff",
@@ -1216,10 +1216,10 @@ export const FeedPostData = [
   {
     id: 84,
     fullName: "Rafaello Lamke",
-    userName: "rlamke2b",
-    userNameId: "rlamke2b",
-    messegeText: "Proin risus. Praesent lectus.",
-    messegeDate: "11/18/2021",
+    username: "rlamke2b",
+    userNickname: "rlamke2b",
+    messageText: "Proin risus. Praesent lectus.",
+    messageDate: "11/18/2021",
     isVerified: true,
     picture: "http://dummyimage.com/146x100.png/cc0000/ffffff",
     userlogo: "http://dummyimage.com/141x100.png/cc0000/ffffff",
@@ -1230,11 +1230,11 @@ export const FeedPostData = [
   {
     id: 85,
     fullName: "Terrell Peplaw",
-    userName: "tpeplaw2c",
-    userNameId: "tpeplaw2c",
-    messegeText:
+    username: "tpeplaw2c",
+    userNickname: "tpeplaw2c",
+    messageText:
       "Nullam varius. Nulla facilisi. Cras non velit nec nisi vulputate nonummy.",
-    messegeDate: "5/17/2022",
+    messageDate: "5/17/2022",
     isVerified: false,
     picture: "http://dummyimage.com/228x100.png/ff4444/ffffff",
     userlogo: "http://dummyimage.com/211x100.png/cc0000/ffffff",
@@ -1245,11 +1245,11 @@ export const FeedPostData = [
   {
     id: 86,
     fullName: "Dean Cattrall",
-    userName: "dcattrall2d",
-    userNameId: "dcattrall2d",
-    messegeText:
+    username: "dcattrall2d",
+    userNickname: "dcattrall2d",
+    messageText:
       "Quisque erat eros, viverra eget, congue eget, semper rutrum, nulla. Nunc purus.",
-    messegeDate: "10/7/2021",
+    messageDate: "10/7/2021",
     isVerified: false,
     picture: "http://dummyimage.com/131x100.png/dddddd/000000",
     userlogo: "http://dummyimage.com/114x100.png/ff4444/ffffff",
@@ -1260,11 +1260,11 @@ export const FeedPostData = [
   {
     id: 87,
     fullName: "Augy Letty",
-    userName: "aletty2e",
-    userNameId: "aletty2e",
-    messegeText:
+    username: "aletty2e",
+    userNickname: "aletty2e",
+    messageText:
       "In sagittis dui vel nisl. Duis ac nibh. Fusce lacus purus, aliquet at, feugiat non, pretium quis, lectus.",
-    messegeDate: "7/6/2022",
+    messageDate: "7/6/2022",
     isVerified: false,
     picture: "http://dummyimage.com/182x100.png/ff4444/ffffff",
     userlogo: "http://dummyimage.com/217x100.png/ff4444/ffffff",
@@ -1275,10 +1275,10 @@ export const FeedPostData = [
   {
     id: 88,
     fullName: "Tobias MacPaike",
-    userName: "tmacpaike2f",
-    userNameId: "tmacpaike2f",
-    messegeText: "Phasellus id sapien in sapien iaculis congue.",
-    messegeDate: "1/4/2022",
+    username: "tmacpaike2f",
+    userNickname: "tmacpaike2f",
+    messageText: "Phasellus id sapien in sapien iaculis congue.",
+    messageDate: "1/4/2022",
     isVerified: false,
     picture: "http://dummyimage.com/236x100.png/ff4444/ffffff",
     userlogo: "http://dummyimage.com/193x100.png/cc0000/ffffff",
@@ -1289,11 +1289,11 @@ export const FeedPostData = [
   {
     id: 89,
     fullName: "Lane Isaksen",
-    userName: "lisaksen2g",
-    userNameId: "lisaksen2g",
-    messegeText:
+    username: "lisaksen2g",
+    userNickname: "lisaksen2g",
+    messageText:
       "Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Duis faucibus accumsan odio. Curabitur convallis.",
-    messegeDate: "12/30/2021",
+    messageDate: "12/30/2021",
     isVerified: false,
     picture: "http://dummyimage.com/216x100.png/ff4444/ffffff",
     userlogo: "http://dummyimage.com/138x100.png/dddddd/000000",
@@ -1304,10 +1304,10 @@ export const FeedPostData = [
   {
     id: 90,
     fullName: "Shanon Monkman",
-    userName: "smonkman2h",
-    userNameId: "smonkman2h",
-    messegeText: "Nunc rhoncus dui vel sem. Sed sagittis.",
-    messegeDate: "1/28/2022",
+    username: "smonkman2h",
+    userNickname: "smonkman2h",
+    messageText: "Nunc rhoncus dui vel sem. Sed sagittis.",
+    messageDate: "1/28/2022",
     isVerified: true,
     picture: "http://dummyimage.com/127x100.png/5fa2dd/ffffff",
     userlogo: "http://dummyimage.com/220x100.png/cc0000/ffffff",
@@ -1318,11 +1318,11 @@ export const FeedPostData = [
   {
     id: 91,
     fullName: "Modesta Heninghem",
-    userName: "mheninghem2i",
-    userNameId: "mheninghem2i",
-    messegeText:
+    username: "mheninghem2i",
+    userNickname: "mheninghem2i",
+    messageText:
       "Duis aliquam convallis nunc. Proin at turpis a pede posuere nonummy. Integer non velit.",
-    messegeDate: "9/13/2021",
+    messageDate: "9/13/2021",
     isVerified: false,
     picture: "http://dummyimage.com/200x100.png/ff4444/ffffff",
     userlogo: "http://dummyimage.com/250x100.png/ff4444/ffffff",
@@ -1333,11 +1333,11 @@ export const FeedPostData = [
   {
     id: 92,
     fullName: "Doroteya Sultan",
-    userName: "dsultan2j",
-    userNameId: "dsultan2j",
-    messegeText:
+    username: "dsultan2j",
+    userNickname: "dsultan2j",
+    messageText:
       "Proin at turpis a pede posuere nonummy. Integer non velit. Donec diam neque, vestibulum eget, vulputate ut, ultrices vel, augue.",
-    messegeDate: "9/26/2021",
+    messageDate: "9/26/2021",
     isVerified: true,
     picture: "http://dummyimage.com/204x100.png/cc0000/ffffff",
     userlogo: "http://dummyimage.com/126x100.png/dddddd/000000",
@@ -1348,11 +1348,11 @@ export const FeedPostData = [
   {
     id: 93,
     fullName: "Karol Bathurst",
-    userName: "kbathurst2k",
-    userNameId: "kbathurst2k",
-    messegeText:
+    username: "kbathurst2k",
+    userNickname: "kbathurst2k",
+    messageText:
       "Duis bibendum, felis sed interdum venenatis, turpis enim blandit mi, in porttitor pede justo eu massa.",
-    messegeDate: "1/13/2022",
+    messageDate: "1/13/2022",
     isVerified: false,
     picture: "http://dummyimage.com/104x100.png/5fa2dd/ffffff",
     userlogo: "http://dummyimage.com/244x100.png/5fa2dd/ffffff",
@@ -1363,10 +1363,10 @@ export const FeedPostData = [
   {
     id: 94,
     fullName: "Winn Rudolph",
-    userName: "wrudolph2l",
-    userNameId: "wrudolph2l",
-    messegeText: "Proin interdum mauris non ligula pellentesque ultrices.",
-    messegeDate: "5/14/2022",
+    username: "wrudolph2l",
+    userNickname: "wrudolph2l",
+    messageText: "Proin interdum mauris non ligula pellentesque ultrices.",
+    messageDate: "5/14/2022",
     isVerified: false,
     picture: "http://dummyimage.com/235x100.png/cc0000/ffffff",
     userlogo: "http://dummyimage.com/132x100.png/dddddd/000000",
@@ -1377,10 +1377,10 @@ export const FeedPostData = [
   {
     id: 95,
     fullName: "Husain Beaty",
-    userName: "hbeaty2m",
-    userNameId: "hbeaty2m",
-    messegeText: "Phasellus id sapien in sapien iaculis congue.",
-    messegeDate: "1/13/2022",
+    username: "hbeaty2m",
+    userNickname: "hbeaty2m",
+    messageText: "Phasellus id sapien in sapien iaculis congue.",
+    messageDate: "1/13/2022",
     isVerified: true,
     picture: "http://dummyimage.com/146x100.png/cc0000/ffffff",
     userlogo: "http://dummyimage.com/129x100.png/cc0000/ffffff",
@@ -1391,11 +1391,11 @@ export const FeedPostData = [
   {
     id: 96,
     fullName: "Donica Ramsell",
-    userName: "dramsell2n",
-    userNameId: "dramsell2n",
-    messegeText:
+    username: "dramsell2n",
+    userNickname: "dramsell2n",
+    messageText:
       "In est risus, auctor sed, tristique in, tempus sit amet, sem.",
-    messegeDate: "7/1/2022",
+    messageDate: "7/1/2022",
     isVerified: true,
     picture: "http://dummyimage.com/129x100.png/ff4444/ffffff",
     userlogo: "http://dummyimage.com/159x100.png/dddddd/000000",
@@ -1406,11 +1406,11 @@ export const FeedPostData = [
   {
     id: 97,
     fullName: "Dexter Carabine",
-    userName: "dcarabine2o",
-    userNameId: "dcarabine2o",
-    messegeText:
+    username: "dcarabine2o",
+    userNickname: "dcarabine2o",
+    messageText:
       "Proin leo odio, porttitor id, consequat in, consequat ut, nulla.",
-    messegeDate: "5/19/2022",
+    messageDate: "5/19/2022",
     isVerified: true,
     picture: "http://dummyimage.com/158x100.png/dddddd/000000",
     userlogo: "http://dummyimage.com/205x100.png/cc0000/ffffff",
@@ -1421,10 +1421,10 @@ export const FeedPostData = [
   {
     id: 98,
     fullName: "Dreddy Gallehock",
-    userName: "dgallehock2p",
-    userNameId: "dgallehock2p",
-    messegeText: "Nulla nisl.",
-    messegeDate: "12/17/2021",
+    username: "dgallehock2p",
+    userNickname: "dgallehock2p",
+    messageText: "Nulla nisl.",
+    messageDate: "12/17/2021",
     isVerified: false,
     picture: "http://dummyimage.com/199x100.png/ff4444/ffffff",
     userlogo: "http://dummyimage.com/220x100.png/5fa2dd/ffffff",
@@ -1435,11 +1435,11 @@ export const FeedPostData = [
   {
     id: 99,
     fullName: "Forbes Pooley",
-    userName: "fpooley2q",
-    userNameId: "fpooley2q",
-    messegeText:
+    username: "fpooley2q",
+    userNickname: "fpooley2q",
+    messageText:
       "In quis justo. Maecenas rhoncus aliquam lacus. Morbi quis tortor id nulla ultrices aliquet.",
-    messegeDate: "6/23/2022",
+    messageDate: "6/23/2022",
     isVerified: true,
     picture: "http://dummyimage.com/133x100.png/dddddd/000000",
     userlogo: "http://dummyimage.com/209x100.png/5fa2dd/ffffff",
@@ -1450,11 +1450,11 @@ export const FeedPostData = [
   {
     id: 100,
     fullName: "Eugen Condliffe",
-    userName: "econdliffe2r",
-    userNameId: "econdliffe2r",
-    messegeText:
+    username: "econdliffe2r",
+    userNickname: "econdliffe2r",
+    messageText:
       "Fusce posuere felis sed lacus. Morbi sem mauris, laoreet ut, rhoncus aliquet, pulvinar sed, nisl.",
-    messegeDate: "12/30/2021",
+    messageDate: "12/30/2021",
     isVerified: false,
     picture: "http://dummyimage.com/174x100.png/ff4444/ffffff",
     userlogo: "http://dummyimage.com/143x100.png/dddddd/000000",

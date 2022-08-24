@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import * as yup from "yup";
 
 interface MyForm {
-  userName: string;
+  username: string;
   email: string;
   dateOfBirth: string;
   password: string;
@@ -12,7 +12,7 @@ interface MyForm {
 }
 
 const sampleSchema = yup.object().shape({
-  userName: yup.string().required("Name is required!"),
+  username: yup.string().required("Name is required!"),
   email: yup
     .string()
     .email("Please enter a valid email format!")
@@ -48,12 +48,12 @@ const FormValidationSample = () => {
       <div>Sample of react-hook-form and Yap</div>
       <form onSubmit={handleSubmit(submitForm)}>
         <input
-          {...register("userName")}
+          {...register("username")}
           type="text"
-          name="userName"
+          name="username"
           placeholder="Name"
         />
-        <p>{errors.userName && errors?.userName?.message}</p>
+        <p>{errors.username && errors?.username?.message}</p>
         <input
           {...register("email")}
           type="text"

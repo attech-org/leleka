@@ -85,12 +85,13 @@ const Registration = () => {
   });
 
   const submitForm = (data: RegistrationForm) => {
+    // eslint-disable-next-line no-console
     console.log(data);
     toggleShowState();
     reset();
   };
 
-  const watchUserName = watch("username");
+  const watchusername = watch("username");
 
   const registerForm = (
     <Form className="px-4" onSubmit={handleSubmit(submitForm)}>
@@ -111,7 +112,7 @@ const Registration = () => {
           className="pt-4 text-end"
           htmlFor="floatingInputCustom"
         >
-          {watchUserName ? watchUserName.length : 0} / 50
+          {watchusername ? watchusername.length : 0} / 50
         </StyledLabel>
       </StyledFormFloating>
       <p className="text-danger mt-1">

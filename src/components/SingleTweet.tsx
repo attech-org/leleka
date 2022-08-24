@@ -4,7 +4,7 @@ import { ThreeDots, Chat, ArrowRepeat, Upload } from "react-bootstrap-icons";
 import styled from "styled-components";
 
 import AttachedContent from "./AttachedContent";
-import LikeButton from "./LikeButton/LikeButton";
+import LikeButton from "./LikeButton";
 
 const Wrapper = styled.div`
   text-align: left;
@@ -22,7 +22,7 @@ const NameSection = styled.div`
   justify-content: space-between;
 `;
 const NameWrapper = styled.div``;
-const StyledUsername = styled.div`
+const Styledusername = styled.div`
   font-size: 16px;
   height: 20px;
   display: flex;
@@ -103,9 +103,9 @@ const SingleTweet: React.FC<SingleTweetInterface> = ({
           <Logo className="rounded-circle" src={userlogo} />
           <NameSection>
             <NameWrapper>
-              <StyledUsername className="pl-2 fw-bold">
+              <Styledusername className="pl-2 fw-bold">
                 {username}
-              </StyledUsername>
+              </Styledusername>
               <StyledNickname>{userNickname}</StyledNickname>
             </NameWrapper>
             <Dropdown>

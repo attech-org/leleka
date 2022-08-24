@@ -13,11 +13,11 @@ import styled from "styled-components";
 import * as yup from "yup";
 
 interface MyForm {
-  userName: string;
+  username: string;
 }
 
 const sampleSchema = yup.object().shape({
-  userName: yup.string().required("Name is required!"),
+  username: yup.string().required("Name is required!"),
 });
 
 const StyledContainer = styled(Container)`
@@ -92,19 +92,19 @@ const LoginForm = () => {
 
           <div className="form-floating mb-3">
             <input
-              {...register("userName")}
+              {...register("username")}
               type="text"
-              name="userName"
+              name="username"
               className="form-control"
               id="floatingInput"
               placeholder="Name"
             />
             <label>Phone, email, or username</label>
           </div>
-          {errors.userName && (
+          {errors.username && (
             <div className="position-absolute start-0 end-0 bottom-0 text-center mb-5 text-white">
               <span className="bg-primary rounded-1 px-4 p-3">
-                {errors?.userName?.message}
+                {errors?.username?.message}
               </span>
             </div>
           )}
