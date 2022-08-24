@@ -10,7 +10,6 @@ import {
 import styled from "styled-components";
 
 const StyledCloseButton = styled.button`
-  border: none;
   &:hover {
     background-color: rgb(128, 128, 128, 0.2);
   }
@@ -57,8 +56,8 @@ const TweetCreationForm: React.FC = () => {
   return (
     <div>
       <div className="d-flex mx-2">
-        <StyledCloseButton className="btn p-1 rounded-circle">
-          <div className="btn-close" />
+        <StyledCloseButton className="btn p-1 rounded-circle border-0">
+          <div className="btn-close " />
         </StyledCloseButton>
       </div>
       <div className="border-0 p-3 d-flex text-start justify-content-start">
