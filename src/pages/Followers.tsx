@@ -1,13 +1,22 @@
 import React, { useEffect, useState } from "react";
-import { ListGroup } from "react-bootstrap";
+import { ListGroup, ListGroupItem } from "react-bootstrap";
+import styled from "styled-components";
 
-import ListItemWoFooter from "../components/FollowUserItem";
-//import HomeContainer from "../containers/Home";
+import FollowerUserItem from "../components/FollowUserItem";
 import InfiniteList from "../containers/InfiniteList";
 import Layout from "../containers/Layout";
 import { FollowStatus } from "../types/constants";
 import { MockUser, PaginationParamsResult } from "../types/mock-api-types";
 
+const LiWrapper = styled(ListGroupItem)`
+  width: 100%;
+  text-align: start;
+  &:hover {
+    background-color: rgb(247, 247, 247);
+    cursor: pointer;
+  }
+  border: 0;
+`;
 function sleep(ms: number) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
@@ -38,9 +47,7 @@ const RecomendedFollowsPage: React.FunctionComponent = () => {
         followers: Math.floor(Math.random() * 1000),
         following: Math.floor(Math.random() * 1000),
       });
-      console.log(id);
     }
-    console.log(mockData);
     await sleep(2000);
     setMockUsers({
       docs: [...(mockUsers?.docs || []), ...mockData],
@@ -60,7 +67,9 @@ const RecomendedFollowsPage: React.FunctionComponent = () => {
             showMore={fetchAndProcessData}
             data={mockUsers}
             itemComponent={(itemData) => (
-              <ListItemWoFooter key={itemData.id} user={itemData} />
+              <LiWrapper>
+                <FollowerUserItem key={itemData.id} user={itemData} />
+              </LiWrapper>
             )}
           />
         </ListGroup>

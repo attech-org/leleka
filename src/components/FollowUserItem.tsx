@@ -1,25 +1,10 @@
-import {
-  Image,
-  Anchor,
-  ListGroupItem,
-  Popover,
-  OverlayTrigger,
-} from "react-bootstrap";
+import { Image, Anchor, Popover, OverlayTrigger } from "react-bootstrap";
 import styled from "styled-components";
 
 import { MockUser } from "../types/mock-api-types";
-import FollowCard from "./FollowUserCard";
 import FollowButton from "./FollowUserDialogueButton";
+import FollowCard from "./UserCard";
 
-const LiWrapper = styled(ListGroupItem)`
-  width: 100%;
-  text-align: start;
-  &:hover {
-    background-color: rgb(247, 247, 247);
-    cursor: pointer;
-  }
-  border: 0;
-`;
 const UserItemHeader = styled.div`
   height: 25%;
   display: flex;
@@ -41,15 +26,14 @@ const RightSectionWrapper = styled.div`
   order: 3;
 `;
 
-const ListItemWoFooter = (props: { user: MockUser }) => {
-  const user = props.user;
+const FollowerUserItem = ({ user }: { user: MockUser }) => {
   const popover = (
     <Popover>
       <FollowCard user={user} />
     </Popover>
   );
   return (
-    <LiWrapper>
+    <>
       <UserItemHeader>
         <LeftSectionWrapper>
           <OverlayTrigger
@@ -87,7 +71,7 @@ const ListItemWoFooter = (props: { user: MockUser }) => {
         <MiddleSectionWrapper>{user.userCaption}</MiddleSectionWrapper>
         <RightSectionWrapper />
       </UserFollowerItemContent>
-    </LiWrapper>
+    </>
   );
 };
-export default ListItemWoFooter;
+export default FollowerUserItem;

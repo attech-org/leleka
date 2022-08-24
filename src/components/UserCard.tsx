@@ -9,8 +9,7 @@ const HeaderSection = styled.div`
   justify-content: space-between;
 `;
 
-const FollowerUserCard = (props: { user: MockUser }) => {
-  const user = props.user;
+const FollowerUserCard = ({ user }: { user: MockUser }) => {
   return (
     <Card>
       <Card.Body>
