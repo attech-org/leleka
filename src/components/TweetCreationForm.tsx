@@ -7,6 +7,7 @@ import {
   PersonCheck,
   At,
 } from "react-bootstrap-icons";
+import { useTranslation } from "react-i18next";
 import styled from "styled-components";
 
 const StyledCloseButton = styled.button`
@@ -43,7 +44,10 @@ const StyledPopover = styled(Popover)`
 `;
 
 const TweetCreationForm: React.FC = () => {
-  const whoCanAnswer = "Усі можуть відповідати";
+  const { t } = useTranslation();
+  const whoCanAnswer = t(
+    "translation:tweetCreationForm.whoCanAnswer.button.all"
+  );
   const handleTweetButton = (): void => {
     console.log("Tweeted");
   };
@@ -57,7 +61,7 @@ const TweetCreationForm: React.FC = () => {
     <div>
       <div className="d-flex mx-2">
         <StyledCloseButton className="btn p-1 rounded-circle border-0">
-          <div className="btn-close " />
+          <div className="btn-close" />
         </StyledCloseButton>
       </div>
       <div className="border-0 p-3 d-flex text-start justify-content-start">
@@ -72,7 +76,7 @@ const TweetCreationForm: React.FC = () => {
         <div className="flex-grow-1 ms-2">
           <StyledTextArea
             className="form-control form-control-lg border-0 fs-5"
-            placeholder="Що відбувається?"
+            placeholder={t("translation:tweetCreationForm.inputField")}
           />
           <div className="border-bottom py-1">
             <div>
@@ -84,18 +88,25 @@ const TweetCreationForm: React.FC = () => {
                 overlay={
                   <StyledPopover className="py-2 rounded-4">
                     <div className="fs-6 fw-bold px-3 lh-sm">
-                      Хто може відповідати?
+                      {t(
+                        "translation:tweetCreationForm.whoCanAnswer.popover.header"
+                      )}
                     </div>
                     <div className="px-3 fs-6 lh-sm">
-                      Визначте, хто може відповідати на цей твіт. Згадані особи
-                      завжди можуть відповідати.
+                      {t(
+                        "translation:tweetCreationForm.whoCanAnswer.popover.text"
+                      )}
                     </div>
                     <div className="d-flex flex-column">
                       <StyledPopoverButton className="btn py-0 px-3 py-2 d-flex align-items-center secondary rounded-0 text-primary border-0">
                         <div className="bg-primary me-2 p-2 d-flex justify-content-center align-items-center rounded-circle">
                           <Globe2 className="text-white fs-5 m-1" />
                         </div>
-                        <div className="text-start text-black-50">Усі</div>
+                        <div className="text-start text-black-50">
+                          {t(
+                            "translation:tweetCreationForm.whoCanAnswer.popover.all"
+                          )}
+                        </div>
                         <div className="flex-grow-1 text-end fs-4">
                           <CheckLg />
                         </div>
@@ -105,7 +116,9 @@ const TweetCreationForm: React.FC = () => {
                           <PersonCheck className="text-white fs-5 m-1" />
                         </div>
                         <div className="text-start text-black-50">
-                          Люди, котрих ви читаєте
+                          {t(
+                            "translation:tweetCreationForm.whoCanAnswer.popover.follow"
+                          )}
                         </div>
                         <div className="flex-grow-1 text-end fs-4">
                           <CheckLg />
@@ -116,7 +129,9 @@ const TweetCreationForm: React.FC = () => {
                           <At className="text-white fs-5 m-1" />
                         </div>
                         <div className="text-start text-black-50">
-                          Лише особи яких ви згадали
+                          {t(
+                            "translation:tweetCreationForm.whoCanAnswer.popover.mention"
+                          )}
                         </div>
                         <div className="flex-grow-1 text-end fs-4">
                           <CheckLg />
@@ -146,7 +161,7 @@ const TweetCreationForm: React.FC = () => {
               className="btn btn-primary rounded-5 d-flex align-items-center m-2"
               onClick={handleTweetButton}
             >
-              Твітнути
+              {t("translation:tweetCreationForm.tweetButton")}
             </button>
           </div>
         </div>
