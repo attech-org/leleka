@@ -1,5 +1,6 @@
 import { Button } from "react-bootstrap";
 import { Gear } from "react-bootstrap-icons";
+import { useTranslation } from "react-i18next";
 import styled from "styled-components";
 
 import FeedPost from "../components/FeedPost";
@@ -33,14 +34,16 @@ const notifications: JSX.Element[] = notificationPageMocks.map(
 );
 
 const NotificationsList = () => {
+  const { t } = useTranslation();
+
   const tabsData = [
     {
-      label: "Усі",
+      label: t("notifications:tabsLabel.all"),
       content: notifications,
       key: "All",
     },
     {
-      label: "Згадки",
+      label: t("notifications:tabsLabel.mentions"),
       content: <FeedPost />,
       key: "Mentions",
     },
@@ -49,7 +52,7 @@ const NotificationsList = () => {
   return (
     <div className="border-start border-end">
       <div className="d-flex justify-content-between p-2 align-items-center justify-content-center">
-        <h1 className="fs-4 fw-bold ps-3">Сповіщення</h1>
+        <h1 className="fs-4 fw-bold ps-3">{t("notifications:title")}</h1>
         <div>
           <StyledButton
             variant="link"

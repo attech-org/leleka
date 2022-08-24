@@ -1,5 +1,6 @@
 import { Image } from "react-bootstrap";
 import { HeartFill, ArrowRepeat } from "react-bootstrap-icons";
+import { useTranslation } from "react-i18next";
 import styled from "styled-components";
 
 const StyledSection = styled.section`
@@ -13,9 +14,6 @@ const StyledImage = styled(Image)`
   width: 2.5rem;
   height: 2.5rem;
 `;
-
-const liked = "вподобав(ла)";
-const retweeted = "ретвітнув(ла)";
 
 export interface SingleNotificationInterface {
   id?: string;
@@ -34,6 +32,10 @@ const SingleNotification = ({
   mentionedTweets,
   retweet,
 }: SingleNotificationInterface) => {
+  const { t } = useTranslation();
+
+  const liked = t("notifications:fields.liked");
+  const retweeted = t("notifications:fields.retweeted");
   return (
     <div>
       <StyledSection
@@ -57,7 +59,8 @@ const SingleNotification = ({
             <div className="pb-3 text-start" id={id}>
               <span className="fs-5 fw-bold">{username}</span>{" "}
               <span className="fs-5">
-                {retweet ? retweeted : liked} ваших твітів:
+                {retweet ? retweeted : liked}{" "}
+                {t("notifications:fields.yourTweets")}
               </span>{" "}
               <span className="fs-5">{mentionedTweets}</span>
             </div>
@@ -66,7 +69,7 @@ const SingleNotification = ({
             </div>
             <div className="pb-3 text-start text-secondary">
               <a href="#" className="text-decoration-none py-1 fs-5 link-info">
-                Показати всі
+                {t("notifications:links.showAll")}
               </a>
             </div>
           </div>
