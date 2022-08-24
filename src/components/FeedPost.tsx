@@ -1,15 +1,10 @@
 // import axios from "axios";
 import { useEffect, useState } from "react";
-import {
-  ArrowRepeat,
-  Chat,
-  FileCheck,
-  Heart,
-  Upload,
-} from "react-bootstrap-icons";
+import { ArrowRepeat, Chat, FileCheck, Upload } from "react-bootstrap-icons";
 import styled from "styled-components";
 
 import { FeedPostData } from "../MOCKS/homeFeedPage";
+import LikeButton from "./LikeButton/LikeButton";
 
 const Logo = styled.img`
   height: 48px;
@@ -37,11 +32,6 @@ const StatisticOfRetweets = styled.div`
     color: rgb(41, 228, 166);
   }
 `;
-const StatisticOfLikes = styled.div`
-  :hover {
-    color: rgb(255, 0, 119);
-  }
-`;
 
 const HoverBackgroundBlue = styled.div`
   :hover {
@@ -56,12 +46,7 @@ const HoverBackgroundGreen = styled.div`
     transition-duration: 0.2s;
   }
 `;
-const HoverBackgroundRed = styled.div`
-  :hover {
-    background: rgb(247, 224, 235);
-    transition-duration: 0.2s;
-  }
-`;
+
 const StyledFaRetweet = styled(ArrowRepeat)`
   width: 20px;
   height: 20px;
@@ -77,10 +62,6 @@ const StyledBiMessageRounded = styled(Chat)`
   height: 20px;
 `;
 
-const StyledAiOutlineHeart = styled(Heart)`
-  width: 20px;
-  height: 20px;
-`;
 const StyledMdVerified = styled(FileCheck)`
   color: rgb(29, 155, 240);
   width: 20px;
@@ -203,14 +184,7 @@ const FeedPost = () => {
                 </HoverBackgroundGreen>
                 <div className="mx-1">{obj.retweetCount}</div>
               </StatisticOfRetweets>
-
-              <StatisticOfLikes className="d-flex align-items-center">
-                <HoverBackgroundRed className="p-2 rounded-circle d-flex justify-content-center align-items-center">
-                  <StyledAiOutlineHeart />
-                </HoverBackgroundRed>
-                <div className="mx-1">{obj.likeCount}</div>
-              </StatisticOfLikes>
-
+              <LikeButton likesCount={obj.likeCount} />
               <StatisticOfTweet className="d-flex align-items-center">
                 <HoverBackgroundBlue className="p-2 rounded-circle d-flex justify-content-center align-items-center">
                   <StyledFiShare />
