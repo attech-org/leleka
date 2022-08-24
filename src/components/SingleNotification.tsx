@@ -34,8 +34,6 @@ const SingleNotification = ({
 }: SingleNotificationInterface) => {
   const { t } = useTranslation();
 
-  const liked = t("notifications:fields.liked");
-  const retweeted = t("notifications:fields.retweeted");
   return (
     <div>
       <StyledSection
@@ -51,25 +49,27 @@ const SingleNotification = ({
             )}
           </div>
           <div>
-            <div className="fs-5 d-flex justify-content-start">
+            <div className="d-flex justify-content-start">
               <div className="pb-3 pe-1">
                 <StyledImage roundedCircle fluid src={userlogo} />
               </div>
             </div>
             <div className="pb-3 text-start" id={id}>
-              <span className="fs-5 fw-bold">{username}</span>{" "}
-              <span className="fs-5">
-                {retweet ? retweeted : liked}{" "}
-                {t("notifications:fields.yourTweets")}
+              <span className="fw-bold">{username}</span>{" "}
+              <span>
+                {retweet
+                  ? t("notifications.fields.retweeted")
+                  : t("notifications.fields.liked")}{" "}
+                {t("notifications.fields.yourTweets")}
               </span>{" "}
-              <span className="fs-5">{mentionedTweets}</span>
+              <span>{mentionedTweets}</span>
             </div>
             <div className="pb-3 text-start text-secondary">
-              <span className="fs-5">{content}</span>
+              <span>{content}</span>
             </div>
             <div className="pb-3 text-start text-secondary">
-              <a href="#" className="text-decoration-none py-1 fs-5 link-info">
-                {t("notifications:links.showAll")}
+              <a href="#" className="text-decoration-none py-1 link-info">
+                {t("notifications.links.showAll")}
               </a>
             </div>
           </div>

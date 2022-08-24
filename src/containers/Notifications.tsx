@@ -4,13 +4,12 @@ import { useTranslation } from "react-i18next";
 import styled from "styled-components";
 
 import FeedPost from "../components/FeedPost";
-import SingleNotification from "../components/SingleNotification";
-import { notificationPageMocks } from "../MOCKS/notificationsPage";
+import NotificationsPage from "./NotificationsPage";
 import TabsContainer from "./Tabs";
 
 const StyledButton = styled(Button)`
-  height: 40px;
-  width: 40px;
+  height: 2.5rem;
+  width: 2.5rem;
   :focus:not(:focus-visible) {
     box-shadow: none;
   }
@@ -19,31 +18,17 @@ const StyledButton = styled(Button)`
   }
 `;
 
-const notifications: JSX.Element[] = notificationPageMocks.map(
-  ({ id, username, userlogo, content, mentionedTweets, retweet }) => (
-    <SingleNotification
-      username={username}
-      userlogo={userlogo}
-      content={content}
-      mentionedTweets={mentionedTweets}
-      key={id}
-      id={String(id)}
-      retweet={retweet}
-    />
-  )
-);
-
 const NotificationsList = () => {
   const { t } = useTranslation();
 
   const tabsData = [
     {
-      label: t("notifications:tabsLabel.all"),
-      content: notifications,
+      label: t("notifications.tabsLabel.all"),
+      content: <NotificationsPage />,
       key: "All",
     },
     {
-      label: t("notifications:tabsLabel.mentions"),
+      label: t("notifications.tabsLabel.mentions"),
       content: <FeedPost />,
       key: "Mentions",
     },
@@ -52,7 +37,7 @@ const NotificationsList = () => {
   return (
     <div className="border-start border-end">
       <div className="d-flex justify-content-between p-2 align-items-center justify-content-center">
-        <h1 className="fs-4 fw-bold ps-3">{t("notifications:title")}</h1>
+        <h1 className="fs-5 fw-bold ps-3">{t("notifications.title")}</h1>
         <div>
           <StyledButton
             variant="link"

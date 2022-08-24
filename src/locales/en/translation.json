@@ -1,3 +1,18 @@
 {
-  "test": "English"
+  "test": "English",
+  "notifications": {
+    "fields": {
+      "liked": "liked",
+      "retweeted": "retweeted",
+      "yourTweets": "of your tweets:"
+    },
+    "links": {
+      "showAll": "Show all"
+    },
+    "tabsLabel": {
+      "all": "All",
+      "mentions": "Mentions"
+    },
+    "title": "Notifications"
+  }
 }

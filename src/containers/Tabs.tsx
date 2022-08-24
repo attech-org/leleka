@@ -13,7 +13,7 @@ const StyledTabs = styled(Tabs)`
 `;
 interface TabsDataProps {
   label: string;
-  content: JSX.Element | string | null | JSX.Element[];
+  content?: JSX.Element | string;
   key: string;
 }
 
@@ -36,7 +36,7 @@ const TabsContainer = ({ tabsData, defaultActiveKey }: TabsProps) => {
             eventKey={key}
             title={label}
             key={key}
-            tabClassName="border-0 border-bottom bg-white text-secondary fw-bold fs-5 p-4"
+            tabClassName="border-0 border-bottom bg-white text-secondary fw-bold p-4"
           >
             {content}
           </Tab>
