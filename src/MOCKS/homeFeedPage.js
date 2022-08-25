@@ -10,6 +10,8 @@ export const FeedPostData = [
     retweetCount: 37,
     tweetQuoteCount: 892,
     likeCount: 509,
+    isVerified: true,
+    commentCount: 20,
   },
   {
     id: 2,
