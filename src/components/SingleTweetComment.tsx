@@ -1,15 +1,10 @@
 import React from "react";
 import { Dropdown } from "react-bootstrap";
-import {
-  ThreeDots,
-  Chat,
-  ArrowRepeat,
-  Heart,
-  Upload,
-} from "react-bootstrap-icons";
+import { ThreeDots, Chat, ArrowRepeat, Upload } from "react-bootstrap-icons";
 import styled from "styled-components";
 
 import AttachedContent from "./AttachedContent";
+import LikeButton from "./LikeButton/LikeButton";
 
 const Wrapper = styled.div`
   text-align: left;
@@ -155,10 +150,8 @@ const SingleTweetComment: React.FC<SingleTweetCommentInterface> = ({
 }) => {
   const bgBlue = "rgb(29, 155, 240, 0.1)";
   const bgGreen = "rgb(0, 186, 124, 0.1)";
-  const bgRed = "rgb(249, 24, 128, 0.1)";
   const Blue = "rgb(29, 155, 240)";
   const Green = "rgb(0, 186, 124)";
-  const Red = "rgb(249, 24, 128)";
 
   return (
     <div>
@@ -217,16 +210,7 @@ const SingleTweetComment: React.FC<SingleTweetCommentInterface> = ({
               </IconBg>
               <Count>{retweetCount}</Count>
             </IconBox>
-            <IconBox>
-              <IconBg
-                iconBgColor={bgRed}
-                iconColor={Red}
-                className="m-0 p-0 rounded-circle row align-items-center justify-content-center"
-              >
-                <Heart className="p-0 m-0" />
-              </IconBg>
-              <Count>{likeCount}</Count>
-            </IconBox>
+            <LikeButton likesCount={likeCount} />
             <IconBox>
               <IconBg
                 iconBgColor={bgBlue}
