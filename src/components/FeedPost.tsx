@@ -77,17 +77,16 @@ const PostWrapper = styled.section`
 
 interface TweetPost {
   id: number;
-  fullName: string;
-  userName: string;
-  userNameId: string;
-  messegeText: string;
-  messegeDate: string;
-  isVerified: boolean;
-  picture: string;
+  username: string;
+  userNickname: string;
   userlogo: string;
-  commentCount: number;
+  tweetText: string;
+  tweetDate: string;
   retweetCount: number;
+  tweetQuoteCount: number;
   likeCount: number;
+  isVerified?: boolean;
+  commentCount?: number;
 }
 
 const FeedPost = () => {
@@ -148,26 +147,26 @@ const FeedPost = () => {
           <div className="flex-grow-1 lh-sm ">
             <div className="d-flex align-items-center px-3">
               <UnderlineHover className="fw-600 me-2 ">
-                {obj.fullName}
+                {obj.username}
               </UnderlineHover>
 
               {obj.isVerified && <StyledMdVerified />}
 
               <UnderlineHover className="text-secondary">
-                @{obj.userNameId}
+                @{obj.userNickname}
               </UnderlineHover>
               <div className="mx-1 pb-2 text-secondary d-flex justify-content-center align-items-center">
                 .
               </div>
 
               <UnderlineHover className="text-secondary">
-                {obj.messegeDate}
+                {obj.tweetDate}
               </UnderlineHover>
             </div>
             <div className="px-3 py 4">
-              <span>{obj.messegeText}</span>
+              <span>{obj.tweetText}</span>
 
-              <img className="rounded-4 w-100 mt-3" alt="" src={obj.picture} />
+              <img className="rounded-4 w-100 mt-3" alt="" src={obj.userlogo} />
             </div>
 
             <div className="w-75 ms-5 d-flex justify-content-between align-items-center">
