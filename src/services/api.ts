@@ -1,4 +1,5 @@
 import axios from "axios";
+import jwt_decode, { JwtPayload } from "jwt-decode";
 
 const URI = process.env.REACT_APP_URI;
 
@@ -28,12 +29,24 @@ function getRefreshToken() {
 }
 
 instance.interceptors.request.use(
-  (config) => {
+  async (config) => {
     const token = getLocalAccessToken();
     if (token) {
-      // config.headers.Authorization = "Bearer " + token; // for Spring Boot back-end
-      if (config.headers) {
-        config.headers["x-access-token"] = token; // for Node.js Express back-end
+      // Access Token was expired
+      const decoder = jwt_decode<JwtPayload>(token);
+      if (decoder.exp) {
+        if (Date.now() >= decoder.exp * 1000 - 10000) {
+          localStorage.setItem("accessToken", "");
+          const rs = await getRefreshToken();
+          const { accessToken } = rs.data;
+          updateLocalAccessToken(accessToken);
+          if (config.headers) {
+            config.headers.Authorization = "Bearer " + accessToken;
+          }
+          // instance.defaults.headers.common.Authorization = "Bearer " + accessToken;
+        } else if (config.headers) {
+          config.headers.Authorization = "Bearer " + token;
+        }
       }
     }
     return config;
