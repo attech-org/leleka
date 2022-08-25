@@ -61,6 +61,20 @@ const BookmarksList: React.FC = () => {
           </div>
         </StyledDiv>
       </StyledNavbar>
+
+      {/* <InfiniteScroll
+        pageStart={0}
+        loadMore={() => )}
+        hasMore={true || false}
+        loader={
+          <div className="loader" key={0}>
+            Loading ...
+          </div>
+        }
+      >
+        {items}
+      </InfiniteScroll> */}
+
       {bookmarksData.map((item) => (
         <Bookmark
           key={item.id}
