@@ -1,79 +1,8 @@
 // import axios from "axios";
 import { useEffect, useState } from "react";
-import { ArrowRepeat, Chat, FileCheck, Upload } from "react-bootstrap-icons";
-import styled from "styled-components";
 
 import { FeedPostData } from "../MOCKS/homeFeedPage";
-import LikeButton from "./LikeButton/LikeButton";
-
-const Logo = styled.img`
-  height: 48px;
-  width: 48px;
-  object-fit: cover;
-`;
-
-const UnderlineHover = styled.span`
-  transition-duration: 0.2s;
-
-  :hover {
-    text-decoration: underline;
-  }
-`;
-
-const StatisticOfTweet = styled.div`
-  transition-duration: 0.2s;
-  :hover {
-    color: rgb(0, 153, 255);
-  }
-`;
-
-const StatisticOfRetweets = styled.div`
-  :hover {
-    color: rgb(41, 228, 166);
-  }
-`;
-
-const HoverBackgroundBlue = styled.div`
-  :hover {
-    background: rgb(230, 241, 248);
-    transition-duration: 0.2s;
-  }
-`;
-
-const HoverBackgroundGreen = styled.div`
-  :hover {
-    background: rgb(222, 241, 235);
-    transition-duration: 0.2s;
-  }
-`;
-
-const StyledFaRetweet = styled(ArrowRepeat)`
-  width: 20px;
-  height: 20px;
-`;
-
-const StyledFiShare = styled(Upload)`
-  width: 20px;
-  height: 20px;
-`;
-
-const StyledBiMessageRounded = styled(Chat)`
-  width: 20px;
-  height: 20px;
-`;
-
-const StyledMdVerified = styled(FileCheck)`
-  color: rgb(29, 155, 240);
-  width: 20px;
-  height: 24px;
-`;
-
-const PostWrapper = styled.section`
-  transition-duration: 0.2s;
-  :hover {
-    background: rgba(0, 0, 0, 0.03);
-  }
-`;
+import SingleTweet from "./SingleTweet";
 
 interface TweetPost {
   id: number;
@@ -134,67 +63,33 @@ const FeedPost = () => {
     };
   }, []);
 
-  return (
-    <>
-      {posts.map((obj) => (
-        <PostWrapper
-          className="border border-bottom-0 border-grey px-3 py-3 text-start d-flex justify-content-start fs-6"
-          role="button"
-          key={obj.id}
-        >
-          <Logo className="rounded-circle" src={obj.userlogo} alt="" />
-
-          <div className="flex-grow-1 lh-sm ">
-            <div className="d-flex align-items-center px-3">
-              <UnderlineHover className="fw-600 me-2 ">
-                {obj.username}
-              </UnderlineHover>
-
-              {obj.isVerified && <StyledMdVerified />}
-
-              <UnderlineHover className="text-secondary">
-                @{obj.userNickname}
-              </UnderlineHover>
-              <div className="mx-1 pb-2 text-secondary d-flex justify-content-center align-items-center">
-                .
-              </div>
-
-              <UnderlineHover className="text-secondary">
-                {obj.tweetDate}
-              </UnderlineHover>
-            </div>
-            <div className="px-3 py 4">
-              <span>{obj.tweetText}</span>
-
-              <img className="rounded-4 w-100 mt-3" alt="" src={obj.userlogo} />
-            </div>
-
-            <div className="w-75 ms-5 d-flex justify-content-between align-items-center">
-              <StatisticOfTweet className="d-flex align-items-center">
-                <HoverBackgroundBlue className="p-2 rounded-circle d-flex justify-content-center align-items-center">
-                  <StyledBiMessageRounded />
-                </HoverBackgroundBlue>
-                <div className="mx-1">{obj.commentCount}</div>
-              </StatisticOfTweet>
-
-              <StatisticOfRetweets className="d-flex align-items-center">
-                <HoverBackgroundGreen className="p-2 rounded-circle d-flex justify-content-center align-items-center">
-                  <StyledFaRetweet />
-                </HoverBackgroundGreen>
-                <div className="mx-1">{obj.retweetCount}</div>
-              </StatisticOfRetweets>
-              <LikeButton likesCount={obj.likeCount} />
-              <StatisticOfTweet className="d-flex align-items-center">
-                <HoverBackgroundBlue className="p-2 rounded-circle d-flex justify-content-center align-items-center">
-                  <StyledFiShare />
-                </HoverBackgroundBlue>
-              </StatisticOfTweet>
-            </div>
-          </div>
-        </PostWrapper>
-      ))}
-    </>
+  const Post = posts.map(
+    ({
+      userlogo,
+      username,
+      userNickname,
+      tweetText,
+      tweetDate,
+      retweetCount,
+      tweetQuoteCount,
+      likeCount,
+      id,
+    }) => (
+      <SingleTweet
+        key={id}
+        userlogo={userlogo}
+        username={username}
+        userNickname={userNickname}
+        tweetText={tweetText}
+        tweetDate={tweetDate}
+        retweetCount={retweetCount}
+        tweetQuoteCount={tweetQuoteCount}
+        likeCount={likeCount}
+      />
+    )
   );
+
+  return <>{Post}</>;
 };
 
 export default FeedPost;
