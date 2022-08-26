@@ -1,22 +1,11 @@
 export const FeedPostData = [
   {
-    id: 1,
-    fullName: "Modestia Dammarell",
-    userName: "mdammarell0",
-    userNameId: "mdammarell0",
-    messegeText:
-      "Suspendisse potenti. In eleifend quam a odio. In hac habitasse platea dictumst.",
-    messegeDate: "4/7/2022",
-    isVerified: true,
-    commentCount: 20,
-  },
-  {
     id: 2,
     fullName: "Tracie Corden",
-    userName: "tcorden1",
-    userNameId: "tcorden1",
-    messegeText: "Pellentesque ultrices mattis odio. Donec vitae nisi.",
-    messegeDate: "6/14/2022",
+    username: "tcorden1",
+    userNickname: "tcorden1",
+    messageText: "Pellentesque ultrices mattis odio. Donec vitae nisi.",
+    messageDate: "6/14/2022",
     isVerified: true,
     picture: "http://dummyimage.com/221x100.png/dddddd/000000",
     userlogo: "http://dummyimage.com/128x100.png/5fa2dd/ffffff",
