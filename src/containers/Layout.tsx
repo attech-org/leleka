@@ -7,13 +7,13 @@ const GeneralContainer = styled.main`
   display: grid;
 
   grid-template-rows: 200vh; // optional
-  grid-template-columns: 25% 42% 33%;
+  grid-template-columns: 20% 50% 30%;
 
   @media (max-width: 1280px) {
-    grid-template-columns: 14% 48% 38%;
+    grid-template-columns: 5% 58% 37%;
   }
   @media (max-width: 1000px) {
-    grid-template-columns: 19% 81%;
+    grid-template-columns: 7% 93%;
   }
 
   @media (max-width: 500px) {
@@ -32,7 +32,7 @@ interface LayoutProps {
 
 const Layout = ({ children }: LayoutProps) => {
   return (
-    <GeneralContainer>
+    <GeneralContainer className="container">
       <LeftPanel />
       <Main>{children}</Main>
       <RightPanel />
