@@ -25,7 +25,7 @@ const Search = () => {
       >
         <SearchIcon size={20} className="ms-1" />
         <Form.Control
-          className="border-0 bg-light px-3"
+          className="border-0 bg-light px-3 fs-6"
           size="lg"
           type="text"
           placeholder="Пошук у твіттері"

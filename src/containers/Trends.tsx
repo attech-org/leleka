@@ -21,15 +21,21 @@ const StyledPopover = styled(Popover)`
 `;
 
 const StyledButton = styled(Button)`
+  height: 40px;
+  width: 40px;
   :focus:not(:focus-visible) {
     box-shadow: none;
+  }
+  :hover {
+    color: rgb(29, 155, 240) !important;
+    background-color: rgba(29, 155, 240, 0.1) !important;
   }
 `;
 
 const Trends = () => {
   return (
     <div className="bg-light m-4 rounded-3">
-      <div className="py-3 px-4 fs-3 fw-bold">Тренди для вас</div>
+      <div className="py-3 px-4 fs-5 fw-bold">Тренди для вас</div>
       <StyledLink
         id="trendLink"
         href="#"
@@ -37,7 +43,7 @@ const Trends = () => {
       >
         <Container className="py-2 px-4">
           <p className="pb-1 text-secondary">Політика · Актуальне</p>
-          <p className="pb-1 fs-5 fw-bold">Zaporizhzhia NPP</p>
+          <p className="pb-1 fw-bold">Zaporizhzhia NPP</p>
           <span className="pb-1 text-secondary">Твітів: </span>
           <span className="pb-1 text-secondary">8 038</span>
         </Container>
@@ -77,7 +83,10 @@ const Trends = () => {
               </StyledPopover>
             }
           >
-            <StyledButton className="text-secondary" variant="link">
+            <StyledButton
+              className="text-secondary me-3 p-0 rounded-circle"
+              variant="link"
+            >
               <ThreeDots size={24} />
             </StyledButton>
           </OverlayTrigger>
@@ -90,7 +99,7 @@ const Trends = () => {
       >
         <Container className="py-2 px-4">
           <p className="pb-1 text-secondary">Україна · Актуальне</p>
-          <p className="pb-1 fs-5 fw-bold">#anxiety</p>
+          <p className="pb-1 fw-bold">#anxiety</p>
           <span className="pb-1 text-secondary">Твітів: </span>
           <span className="pb-1 text-secondary">5 038</span>
         </Container>
@@ -130,7 +139,10 @@ const Trends = () => {
               </StyledPopover>
             }
           >
-            <StyledButton className="text-secondary" variant="link">
+            <StyledButton
+              className="text-secondary me-3 p-0 rounded-circle"
+              variant="link"
+            >
               <ThreeDots size={24} />
             </StyledButton>
           </OverlayTrigger>
@@ -143,7 +155,7 @@ const Trends = () => {
       >
         <Container className="py-2 px-4">
           <p className="pb-1 text-secondary">Україна · Актуальне</p>
-          <p className="pb-1 fs-5 fw-bold">ATACMS</p>
+          <p className="pb-1 fw-bold">ATACMS</p>
           <span className="pb-1 text-secondary">Твітів: </span>
           <span className="pb-1 text-secondary">2 770</span>
         </Container>
@@ -183,7 +195,10 @@ const Trends = () => {
               </StyledPopover>
             }
           >
-            <StyledButton className="text-secondary" variant="link">
+            <StyledButton
+              className="text-secondary me-3 p-0 rounded-circle"
+              variant="link"
+            >
               <ThreeDots size={24} />
             </StyledButton>
           </OverlayTrigger>
@@ -194,7 +209,7 @@ const Trends = () => {
         className="text-decoration-none text-reset d-flex flex-row py-2"
       >
         <Container className="py-2 px-4">
-          <p className="py-1 fs-5 text-primary">Показати більше</p>
+          <p className="py-1 text-info">Показати більше</p>
         </Container>
       </StyledLink>
     </div>
