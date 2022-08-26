@@ -18,5 +18,20 @@
         "mention": "Лище особи, яких ви згадали"
       }
     }
+  },
+  "notifications": {
+    "fields": {
+      "liked": "вподобав(ла)",
+      "retweeted": "ретвітнув(ла)",
+      "yourTweets": "ваших твітів:"
+    },
+    "links": {
+      "showAll": "Показати всі"
+    },
+    "tabsLabel": {
+      "all": "Усі",
+      "mentions": "Згадки"
+    },
+    "title": "Сповіщення"
   }
 }
