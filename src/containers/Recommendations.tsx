@@ -9,17 +9,17 @@ const StyledLink = styled.a`
 `;
 
 const StyledImage = styled(Image)`
-  width: 4rem;
-  height: 4rem;
+  width: 3rem;
+  height: 3rem;
 `;
 
 const Recommendations = () => {
   return (
-    <div className="bg-light m-4 rounded-3">
-      <div className="py-3 px-4 fs-5 fw-bold">Рекомендовані</div>
+    <div className="bg-light mx-1 my-2 rounded-3">
+      <div className="py-3 px-3 fs-5 fw-bold">Рекомендовані</div>
       <StyledLink
         href="#"
-        className="text-decoration-none text-reset d-flex py-2 px-4 align-items-center justify-content-between"
+        className="text-decoration-none text-reset d-flex py-2 px-3 align-items-center justify-content-between"
       >
         <div className="d-flex align-items-center flex-shrink-0">
           <div>
@@ -29,20 +29,24 @@ const Recommendations = () => {
               src="https://mdbootstrap.com/img/new/slides/041.webp"
             />
           </div>
-          <div className="p-3">
+          <div className="px-3">
             <p className="pb-1 fw-bold">Кібердімон 🇺🇦</p>
             <p className="pb-1 text-secondary">@dp_standup</p>
           </div>
         </div>
         <div>
-          <Button className="rounded-pill fw-bold px-3" variant="dark">
+          <Button
+            className="rounded-pill fw-bold px-2"
+            variant="dark"
+            size="sm"
+          >
             Читати
           </Button>
         </div>
       </StyledLink>
       <StyledLink
         href="#"
-        className="text-decoration-none text-reset d-flex py-2 px-4 align-items-center justify-content-between"
+        className="text-decoration-none text-reset d-flex py-2 px-3 align-items-center justify-content-between"
       >
         <div className="d-flex align-items-center flex-shrink-0">
           <div>
@@ -52,15 +56,16 @@ const Recommendations = () => {
               src="https://mdbcdn.b-cdn.net/img/new/standard/city/041.webp"
             />
           </div>
-          <div className="p-3">
+          <div className="px-3">
             <p className="pb-1 fw-bold">medgoblin</p>
             <p className="pb-1 text-secondary">@med_goblin</p>
           </div>
         </div>
         <div>
           <Button
-            className="rounded-pill fw-bold px-3"
+            className="rounded-pill fw-bold px-2"
             variant="outline-secondary"
+            size="sm"
           >
             Читає(те)
           </Button>
