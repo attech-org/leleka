@@ -1446,11 +1446,11 @@ export const FeedPostData = [
   {
     id: 100,
     fullName: "Eugen Condliffe",
-    userName: "econdliffe2r",
-    userNameId: "econdliffe2r",
-    messegeText:
+    username: "econdliffe2r",
+    userNickname: "econdliffe2r",
+    messageText:
       "Fusce posuere felis sed lacus. Morbi sem mauris, laoreet ut, rhoncus aliquet, pulvinar sed, nisl.",
-    messegeDate: "12/30/2021",
+    messageDate: "12/30/2021",
     isVerified: false,
     picture: "http://dummyimage.com/174x100.png/ff4444/ffffff",
     userlogo: "http://dummyimage.com/143x100.png/dddddd/000000",
