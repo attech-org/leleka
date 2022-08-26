@@ -23,10 +23,10 @@ const Search = () => {
         className="justify-content-center align-items-center bg-light"
         id="basic-addon1"
       >
-        <SearchIcon size={20} className="ms-1" />
+        <SearchIcon size={18} className="ms-1" />
         <Form.Control
           className="border-0 bg-light px-3 fs-6"
-          size="lg"
+          size="sm"
           type="text"
           placeholder="Пошук у твіттері"
         />
