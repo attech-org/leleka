@@ -12,7 +12,7 @@ import {
 import styled from "styled-components";
 
 import AttachedContent from "./AttachedContent";
-import LikeButton from "./LikeButton/LikeButton";
+import LikeButton from "./LikeButton";
 
 const StyledLink = styled.a`
   transition: 0.3s;

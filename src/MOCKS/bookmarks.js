@@ -5,9 +5,9 @@ export const bookmarksData = [
     username: "Grant Nuzzi",
     userNickname: "gnuzzi0",
     responserUserNickname: "gnuzzi0",
-    messegeText:
+    messageText:
       "Phasellus in felis. Donec semper sapien a libero. Nam dui.\n\nProin leo odio, porttitor id, consequat in, consequat ut, nulla. Sed accumsan felis. Ut at dolor quis odio consequat varius.\n\nInteger ac leo. Pellentesque ultrices mattis odio. Donec vitae nisi.",
-    messegeDate: "1/24/2022",
+    messageDate: "1/24/2022",
     answerCount: 50,
     retweetCount: 21,
     likeCount: 70,
@@ -18,9 +18,9 @@ export const bookmarksData = [
     username: "Starla Northbridge",
     userNickname: "snorthbridge1",
     responserUserNickname: "snorthbridge1",
-    messegeText:
+    messageText:
       "Duis aliquam convallis nunc. Proin at turpis a pede posuere nonummy. Integer non velit.",
-    messegeDate: "7/25/2022",
+    messageDate: "7/25/2022",
     answerCount: 34,
     retweetCount: 23,
     likeCount: 33,
@@ -31,9 +31,9 @@ export const bookmarksData = [
     username: "Sharia Girardi",
     userNickname: "sgirardi2",
     responserUserNickname: "sgirardi2",
-    messegeText:
+    messageText:
       "Integer tincidunt ante vel ipsum. Praesent blandit lacinia erat. Vestibulum sed magna at nunc commodo placerat.\n\nPraesent blandit. Nam nulla. Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede.",
-    messegeDate: "11/18/2021",
+    messageDate: "11/18/2021",
     answerCount: 79,
     retweetCount: 55,
     likeCount: 76,
@@ -44,9 +44,9 @@ export const bookmarksData = [
     username: "Konstantin Grabham",
     userNickname: "kgrabham3",
     responserUserNickname: "kgrabham3",
-    messegeText:
+    messageText:
       "Vestibulum quam sapien, varius ut, blandit non, interdum in, ante. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Duis faucibus accumsan odio. Curabitur convallis.\n\nDuis consequat dui nec nisi volutpat eleifend. Donec ut dolor. Morbi vel lectus in quam fringilla rhoncus.",
-    messegeDate: "12/12/2021",
+    messageDate: "12/12/2021",
     answerCount: 59,
     retweetCount: 66,
     likeCount: 33,
@@ -57,9 +57,9 @@ export const bookmarksData = [
     username: "Alysa Brabyn",
     userNickname: "abrabyn4",
     responserUserNickname: "abrabyn4",
-    messegeText:
+    messageText:
       "Duis consequat dui nec nisi volutpat eleifend. Donec ut dolor. Morbi vel lectus in quam fringilla rhoncus.\n\nMauris enim leo, rhoncus sed, vestibulum sit amet, cursus id, turpis. Integer aliquet, massa id lobortis convallis, tortor risus dapibus augue, vel accumsan tellus nisi eu orci. Mauris lacinia sapien quis libero.",
-    messegeDate: "1/25/2022",
+    messageDate: "1/25/2022",
     answerCount: 92,
     retweetCount: 82,
     likeCount: 92,
@@ -70,9 +70,9 @@ export const bookmarksData = [
     username: "Benton Carter",
     userNickname: "bcarter5",
     responserUserNickname: "bcarter5",
-    messegeText:
+    messageText:
       "Curabitur gravida nisi at nibh. In hac habitasse platea dictumst. Aliquam augue quam, sollicitudin vitae, consectetuer eget, rutrum at, lorem.\n\nInteger tincidunt ante vel ipsum. Praesent blandit lacinia erat. Vestibulum sed magna at nunc commodo placerat.\n\nPraesent blandit. Nam nulla. Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede.",
-    messegeDate: "7/21/2022",
+    messageDate: "7/21/2022",
     answerCount: 22,
     retweetCount: 26,
     likeCount: 43,
@@ -83,9 +83,9 @@ export const bookmarksData = [
     username: "Avivah Rogans",
     userNickname: "arogans6",
     responserUserNickname: "arogans6",
-    messegeText:
+    messageText:
       "Maecenas tristique, est et tempus semper, est quam pharetra magna, ac consequat metus sapien ut nunc. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Mauris viverra diam vitae quam. Suspendisse potenti.\n\nNullam porttitor lacus at turpis. Donec posuere metus vitae ipsum. Aliquam non mauris.",
-    messegeDate: "1/2/2022",
+    messageDate: "1/2/2022",
     answerCount: 53,
     retweetCount: 92,
     likeCount: 31,
@@ -96,9 +96,9 @@ export const bookmarksData = [
     username: "Joella Blazeby",
     userNickname: "jblazeby7",
     responserUserNickname: "jblazeby7",
-    messegeText:
+    messageText:
       "Suspendisse potenti. In eleifend quam a odio. In hac habitasse platea dictumst.\n\nMaecenas ut massa quis augue luctus tincidunt. Nulla mollis molestie lorem. Quisque ut erat.",
-    messegeDate: "2/20/2022",
+    messageDate: "2/20/2022",
     answerCount: 48,
     retweetCount: 37,
     likeCount: 55,
@@ -109,9 +109,9 @@ export const bookmarksData = [
     username: "Madeline Runham",
     userNickname: "mrunham8",
     responserUserNickname: "mrunham8",
-    messegeText:
+    messageText:
       "Integer tincidunt ante vel ipsum. Praesent blandit lacinia erat. Vestibulum sed magna at nunc commodo placerat.\n\nPraesent blandit. Nam nulla. Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede.\n\nMorbi porttitor lorem id ligula. Suspendisse ornare consequat lectus. In est risus, auctor sed, tristique in, tempus sit amet, sem.",
-    messegeDate: "4/11/2022",
+    messageDate: "4/11/2022",
     answerCount: 68,
     retweetCount: 15,
     likeCount: 92,
@@ -122,9 +122,9 @@ export const bookmarksData = [
     username: "Alfie Sheepy",
     userNickname: "asheepy9",
     responserUserNickname: "asheepy9",
-    messegeText:
+    messageText:
       "Fusce consequat. Nulla nisl. Nunc nisl.\n\nDuis bibendum, felis sed interdum venenatis, turpis enim blandit mi, in porttitor pede justo eu massa. Donec dapibus. Duis at velit eu est congue elementum.\n\nIn hac habitasse platea dictumst. Morbi vestibulum, velit id pretium iaculis, diam erat fermentum justo, nec condimentum neque sapien placerat ante. Nulla justo.",
-    messegeDate: "1/9/2022",
+    messageDate: "1/9/2022",
     answerCount: 43,
     retweetCount: 25,
     likeCount: 48,
@@ -135,9 +135,9 @@ export const bookmarksData = [
     username: "Rip Blowing",
     userNickname: "rblowinga",
     responserUserNickname: "rblowinga",
-    messegeText:
+    messageText:
       "Quisque id justo sit amet sapien dignissim vestibulum. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nulla dapibus dolor vel est. Donec odio justo, sollicitudin ut, suscipit a, feugiat et, eros.\n\nVestibulum ac est lacinia nisi venenatis tristique. Fusce congue, diam id ornare imperdiet, sapien urna pretium nisl, ut volutpat sapien arcu sed augue. Aliquam erat volutpat.",
-    messegeDate: "4/8/2022",
+    messageDate: "4/8/2022",
     answerCount: 55,
     retweetCount: 81,
     likeCount: 90,
@@ -148,9 +148,9 @@ export const bookmarksData = [
     username: "Cedric Trimming",
     userNickname: "ctrimmingb",
     responserUserNickname: "ctrimmingb",
-    messegeText:
+    messageText:
       "Mauris enim leo, rhoncus sed, vestibulum sit amet, cursus id, turpis. Integer aliquet, massa id lobortis convallis, tortor risus dapibus augue, vel accumsan tellus nisi eu orci. Mauris lacinia sapien quis libero.",
-    messegeDate: "1/5/2022",
+    messageDate: "1/5/2022",
     answerCount: 16,
     retweetCount: 78,
     likeCount: 83,
@@ -161,9 +161,9 @@ export const bookmarksData = [
     username: "Robbyn Duerden",
     userNickname: "rduerdenc",
     responserUserNickname: "rduerdenc",
-    messegeText:
+    messageText:
       "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Proin risus. Praesent lectus.\n\nVestibulum quam sapien, varius ut, blandit non, interdum in, ante. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Duis faucibus accumsan odio. Curabitur convallis.",
-    messegeDate: "10/4/2021",
+    messageDate: "10/4/2021",
     answerCount: 30,
     retweetCount: 67,
     likeCount: 81,
@@ -174,9 +174,9 @@ export const bookmarksData = [
     username: "Alphard Gillis",
     userNickname: "agillisd",
     responserUserNickname: "agillisd",
-    messegeText:
+    messageText:
       "Aenean lectus. Pellentesque eget nunc. Donec quis orci eget orci vehicula condimentum.",
-    messegeDate: "6/18/2022",
+    messageDate: "6/18/2022",
     answerCount: 86,
     retweetCount: 85,
     likeCount: 91,
@@ -187,9 +187,9 @@ export const bookmarksData = [
     username: "Celestia Dael",
     userNickname: "cdaele",
     responserUserNickname: "cdaele",
-    messegeText:
+    messageText:
       "Suspendisse potenti. In eleifend quam a odio. In hac habitasse platea dictumst.",
-    messegeDate: "6/7/2022",
+    messageDate: "6/7/2022",
     answerCount: 66,
     retweetCount: 56,
     likeCount: 44,
@@ -200,9 +200,9 @@ export const bookmarksData = [
     username: "Garald MacLure",
     userNickname: "gmacluref",
     responserUserNickname: "gmacluref",
-    messegeText:
+    messageText:
       "In quis justo. Maecenas rhoncus aliquam lacus. Morbi quis tortor id nulla ultrices aliquet.",
-    messegeDate: "9/11/2021",
+    messageDate: "9/11/2021",
     answerCount: 23,
     retweetCount: 36,
     likeCount: 21,
@@ -213,9 +213,9 @@ export const bookmarksData = [
     username: "North Chasson",
     userNickname: "nchassong",
     responserUserNickname: "nchassong",
-    messegeText:
+    messageText:
       "Maecenas tristique, est et tempus semper, est quam pharetra magna, ac consequat metus sapien ut nunc. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Mauris viverra diam vitae quam. Suspendisse potenti.\n\nNullam porttitor lacus at turpis. Donec posuere metus vitae ipsum. Aliquam non mauris.\n\nMorbi non lectus. Aliquam sit amet diam in magna bibendum imperdiet. Nullam orci pede, venenatis non, sodales sed, tincidunt eu, felis.",
-    messegeDate: "12/6/2021",
+    messageDate: "12/6/2021",
     answerCount: 75,
     retweetCount: 67,
     likeCount: 58,
@@ -226,9 +226,9 @@ export const bookmarksData = [
     username: "Yvor Epinoy",
     userNickname: "yepinoyh",
     responserUserNickname: "yepinoyh",
-    messegeText:
+    messageText:
       "Aliquam quis turpis eget elit sodales scelerisque. Mauris sit amet eros. Suspendisse accumsan tortor quis turpis.",
-    messegeDate: "2/2/2022",
+    messageDate: "2/2/2022",
     answerCount: 47,
     retweetCount: 39,
     likeCount: 56,
@@ -239,9 +239,9 @@ export const bookmarksData = [
     username: "Ninette Sedworth",
     userNickname: "nsedworthi",
     responserUserNickname: "nsedworthi",
-    messegeText:
+    messageText:
       "Maecenas ut massa quis augue luctus tincidunt. Nulla mollis molestie lorem. Quisque ut erat.\n\nCurabitur gravida nisi at nibh. In hac habitasse platea dictumst. Aliquam augue quam, sollicitudin vitae, consectetuer eget, rutrum at, lorem.",
-    messegeDate: "4/29/2022",
+    messageDate: "4/29/2022",
     answerCount: 17,
     retweetCount: 64,
     likeCount: 27,
@@ -252,9 +252,9 @@ export const bookmarksData = [
     username: "Iormina Horsfield",
     userNickname: "ihorsfieldj",
     responserUserNickname: "ihorsfieldj",
-    messegeText:
+    messageText:
       "Praesent id massa id nisl venenatis lacinia. Aenean sit amet justo. Morbi ut odio.",
-    messegeDate: "4/15/2022",
+    messageDate: "4/15/2022",
     answerCount: 35,
     retweetCount: 67,
     likeCount: 86,
@@ -265,9 +265,9 @@ export const bookmarksData = [
     username: "Cordy Elkins",
     userNickname: "celkinsk",
     responserUserNickname: "celkinsk",
-    messegeText:
+    messageText:
       "Fusce posuere felis sed lacus. Morbi sem mauris, laoreet ut, rhoncus aliquet, pulvinar sed, nisl. Nunc rhoncus dui vel sem.",
-    messegeDate: "2/11/2022",
+    messageDate: "2/11/2022",
     answerCount: 39,
     retweetCount: 26,
     likeCount: 68,
@@ -278,9 +278,9 @@ export const bookmarksData = [
     username: "Bill Cruden",
     userNickname: "bcrudenl",
     responserUserNickname: "bcrudenl",
-    messegeText:
+    messageText:
       "Cras non velit nec nisi vulputate nonummy. Maecenas tincidunt lacus at velit. Vivamus vel nulla eget eros elementum pellentesque.\n\nQuisque porta volutpat erat. Quisque erat eros, viverra eget, congue eget, semper rutrum, nulla. Nunc purus.",
-    messegeDate: "8/24/2021",
+    messageDate: "8/24/2021",
     answerCount: 77,
     retweetCount: 69,
     likeCount: 75,
@@ -291,9 +291,9 @@ export const bookmarksData = [
     username: "Henry Goering",
     userNickname: "hgoeringm",
     responserUserNickname: "hgoeringm",
-    messegeText:
+    messageText:
       "Etiam vel augue. Vestibulum rutrum rutrum neque. Aenean auctor gravida sem.\n\nPraesent id massa id nisl venenatis lacinia. Aenean sit amet justo. Morbi ut odio.",
-    messegeDate: "7/24/2022",
+    messageDate: "7/24/2022",
     answerCount: 49,
     retweetCount: 89,
     likeCount: 48,
@@ -304,9 +304,9 @@ export const bookmarksData = [
     username: "Teena Johananoff",
     userNickname: "tjohananoffn",
     responserUserNickname: "tjohananoffn",
-    messegeText:
+    messageText:
       "Duis consequat dui nec nisi volutpat eleifend. Donec ut dolor. Morbi vel lectus in quam fringilla rhoncus.",
-    messegeDate: "6/9/2022",
+    messageDate: "6/9/2022",
     answerCount: 74,
     retweetCount: 85,
     likeCount: 74,
@@ -317,9 +317,9 @@ export const bookmarksData = [
     username: "Pavlov Amori",
     userNickname: "pamorio",
     responserUserNickname: "pamorio",
-    messegeText:
+    messageText:
       "In hac habitasse platea dictumst. Etiam faucibus cursus urna. Ut tellus.",
-    messegeDate: "9/16/2021",
+    messageDate: "9/16/2021",
     answerCount: 51,
     retweetCount: 75,
     likeCount: 66,
@@ -330,9 +330,9 @@ export const bookmarksData = [
     username: "Silvie Louisot",
     userNickname: "slouisotp",
     responserUserNickname: "slouisotp",
-    messegeText:
+    messageText:
       "Mauris enim leo, rhoncus sed, vestibulum sit amet, cursus id, turpis. Integer aliquet, massa id lobortis convallis, tortor risus dapibus augue, vel accumsan tellus nisi eu orci. Mauris lacinia sapien quis libero.\n\nNullam sit amet turpis elementum ligula vehicula consequat. Morbi a ipsum. Integer a nibh.\n\nIn quis justo. Maecenas rhoncus aliquam lacus. Morbi quis tortor id nulla ultrices aliquet.",
-    messegeDate: "7/3/2022",
+    messageDate: "7/3/2022",
     answerCount: 59,
     retweetCount: 66,
     likeCount: 68,
@@ -343,9 +343,9 @@ export const bookmarksData = [
     username: "Hercule Stithe",
     userNickname: "hstitheq",
     responserUserNickname: "hstitheq",
-    messegeText:
+    messageText:
       "Quisque porta volutpat erat. Quisque erat eros, viverra eget, congue eget, semper rutrum, nulla. Nunc purus.\n\nPhasellus in felis. Donec semper sapien a libero. Nam dui.\n\nProin leo odio, porttitor id, consequat in, consequat ut, nulla. Sed accumsan felis. Ut at dolor quis odio consequat varius.",
-    messegeDate: "3/17/2022",
+    messageDate: "3/17/2022",
     answerCount: 66,
     retweetCount: 93,
     likeCount: 75,
@@ -356,9 +356,9 @@ export const bookmarksData = [
     username: "Warde Traut",
     userNickname: "wtrautr",
     responserUserNickname: "wtrautr",
-    messegeText:
+    messageText:
       "Curabitur at ipsum ac tellus semper interdum. Mauris ullamcorper purus sit amet nulla. Quisque arcu libero, rutrum ac, lobortis vel, dapibus at, diam.",
-    messegeDate: "8/7/2022",
+    messageDate: "8/7/2022",
     answerCount: 28,
     retweetCount: 70,
     likeCount: 64,
@@ -369,9 +369,9 @@ export const bookmarksData = [
     username: "Harri Garbar",
     userNickname: "hgarbars",
     responserUserNickname: "hgarbars",
-    messegeText:
+    messageText:
       "Duis bibendum, felis sed interdum venenatis, turpis enim blandit mi, in porttitor pede justo eu massa. Donec dapibus. Duis at velit eu est congue elementum.\n\nIn hac habitasse platea dictumst. Morbi vestibulum, velit id pretium iaculis, diam erat fermentum justo, nec condimentum neque sapien placerat ante. Nulla justo.\n\nAliquam quis turpis eget elit sodales scelerisque. Mauris sit amet eros. Suspendisse accumsan tortor quis turpis.",
-    messegeDate: "12/24/2021",
+    messageDate: "12/24/2021",
     answerCount: 52,
     retweetCount: 89,
     likeCount: 16,
@@ -382,9 +382,9 @@ export const bookmarksData = [
     username: "Mercie Escalante",
     userNickname: "mescalantet",
     responserUserNickname: "mescalantet",
-    messegeText:
+    messageText:
       "Duis aliquam convallis nunc. Proin at turpis a pede posuere nonummy. Integer non velit.\n\nDonec diam neque, vestibulum eget, vulputate ut, ultrices vel, augue. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec pharetra, magna vestibulum aliquet ultrices, erat tortor sollicitudin mi, sit amet lobortis sapien sapien non mi. Integer ac neque.",
-    messegeDate: "11/23/2021",
+    messageDate: "11/23/2021",
     answerCount: 37,
     retweetCount: 35,
     likeCount: 50,
@@ -395,9 +395,9 @@ export const bookmarksData = [
     username: "Myrvyn Cammiemile",
     userNickname: "mcammiemileu",
     responserUserNickname: "mcammiemileu",
-    messegeText:
+    messageText:
       "Donec diam neque, vestibulum eget, vulputate ut, ultrices vel, augue. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec pharetra, magna vestibulum aliquet ultrices, erat tortor sollicitudin mi, sit amet lobortis sapien sapien non mi. Integer ac neque.",
-    messegeDate: "7/3/2022",
+    messageDate: "7/3/2022",
     answerCount: 80,
     retweetCount: 25,
     likeCount: 36,
@@ -408,9 +408,9 @@ export const bookmarksData = [
     username: "Khalil Wrightim",
     userNickname: "kwrightimv",
     responserUserNickname: "kwrightimv",
-    messegeText:
+    messageText:
       "Duis bibendum, felis sed interdum venenatis, turpis enim blandit mi, in porttitor pede justo eu massa. Donec dapibus. Duis at velit eu est congue elementum.",
-    messegeDate: "4/25/2022",
+    messageDate: "4/25/2022",
     answerCount: 40,
     retweetCount: 52,
     likeCount: 43,
@@ -421,9 +421,9 @@ export const bookmarksData = [
     username: "Isacco Albery",
     userNickname: "ialberyw",
     responserUserNickname: "ialberyw",
-    messegeText:
+    messageText:
       "Duis bibendum, felis sed interdum venenatis, turpis enim blandit mi, in porttitor pede justo eu massa. Donec dapibus. Duis at velit eu est congue elementum.\n\nIn hac habitasse platea dictumst. Morbi vestibulum, velit id pretium iaculis, diam erat fermentum justo, nec condimentum neque sapien placerat ante. Nulla justo.\n\nAliquam quis turpis eget elit sodales scelerisque. Mauris sit amet eros. Suspendisse accumsan tortor quis turpis.",
-    messegeDate: "3/23/2022",
+    messageDate: "3/23/2022",
     answerCount: 86,
     retweetCount: 81,
     likeCount: 64,
@@ -434,9 +434,9 @@ export const bookmarksData = [
     username: "Clark Clough",
     userNickname: "ccloughx",
     responserUserNickname: "ccloughx",
-    messegeText:
+    messageText:
       "Curabitur in libero ut massa volutpat convallis. Morbi odio odio, elementum eu, interdum eu, tincidunt in, leo. Maecenas pulvinar lobortis est.",
-    messegeDate: "1/19/2022",
+    messageDate: "1/19/2022",
     answerCount: 47,
     retweetCount: 77,
     likeCount: 83,
@@ -447,9 +447,9 @@ export const bookmarksData = [
     username: "Eleanora Vautre",
     userNickname: "evautrey",
     responserUserNickname: "evautrey",
-    messegeText:
+    messageText:
       "Cras non velit nec nisi vulputate nonummy. Maecenas tincidunt lacus at velit. Vivamus vel nulla eget eros elementum pellentesque.",
-    messegeDate: "12/11/2021",
+    messageDate: "12/11/2021",
     answerCount: 64,
     retweetCount: 29,
     likeCount: 37,
@@ -460,9 +460,9 @@ export const bookmarksData = [
     username: "Taffy Chastanet",
     userNickname: "tchastanetz",
     responserUserNickname: "tchastanetz",
-    messegeText:
+    messageText:
       "Vestibulum quam sapien, varius ut, blandit non, interdum in, ante. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Duis faucibus accumsan odio. Curabitur convallis.",
-    messegeDate: "7/10/2022",
+    messageDate: "7/10/2022",
     answerCount: 25,
     retweetCount: 79,
     likeCount: 49,
@@ -473,9 +473,9 @@ export const bookmarksData = [
     username: "Arturo De Morena",
     userNickname: "ade10",
     responserUserNickname: "ade10",
-    messegeText:
+    messageText:
       "Nullam porttitor lacus at turpis. Donec posuere metus vitae ipsum. Aliquam non mauris.\n\nMorbi non lectus. Aliquam sit amet diam in magna bibendum imperdiet. Nullam orci pede, venenatis non, sodales sed, tincidunt eu, felis.\n\nFusce posuere felis sed lacus. Morbi sem mauris, laoreet ut, rhoncus aliquet, pulvinar sed, nisl. Nunc rhoncus dui vel sem.",
-    messegeDate: "3/14/2022",
+    messageDate: "3/14/2022",
     answerCount: 21,
     retweetCount: 51,
     likeCount: 30,
@@ -486,9 +486,9 @@ export const bookmarksData = [
     username: "Sax Putley",
     userNickname: "sputley11",
     responserUserNickname: "sputley11",
-    messegeText:
+    messageText:
       "Nullam sit amet turpis elementum ligula vehicula consequat. Morbi a ipsum. Integer a nibh.\n\nIn quis justo. Maecenas rhoncus aliquam lacus. Morbi quis tortor id nulla ultrices aliquet.",
-    messegeDate: "7/28/2022",
+    messageDate: "7/28/2022",
     answerCount: 83,
     retweetCount: 87,
     likeCount: 42,
@@ -499,9 +499,9 @@ export const bookmarksData = [
     username: "Elmer Mc Gorley",
     userNickname: "emc12",
     responserUserNickname: "emc12",
-    messegeText:
+    messageText:
       "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Proin risus. Praesent lectus.\n\nVestibulum quam sapien, varius ut, blandit non, interdum in, ante. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Duis faucibus accumsan odio. Curabitur convallis.",
-    messegeDate: "9/18/2021",
+    messageDate: "9/18/2021",
     answerCount: 20,
     retweetCount: 36,
     likeCount: 54,
@@ -512,9 +512,9 @@ export const bookmarksData = [
     username: "Giustina Marlor",
     userNickname: "gmarlor13",
     responserUserNickname: "gmarlor13",
-    messegeText:
+    messageText:
       "Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vivamus vestibulum sagittis sapien. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.\n\nEtiam vel augue. Vestibulum rutrum rutrum neque. Aenean auctor gravida sem.",
-    messegeDate: "5/17/2022",
+    messageDate: "5/17/2022",
     answerCount: 85,
     retweetCount: 66,
     likeCount: 51,
@@ -525,9 +525,9 @@ export const bookmarksData = [
     username: "Caldwell Willcocks",
     userNickname: "cwillcocks14",
     responserUserNickname: "cwillcocks14",
-    messegeText:
+    messageText:
       "Proin eu mi. Nulla ac enim. In tempor, turpis nec euismod scelerisque, quam turpis adipiscing lorem, vitae mattis nibh ligula nec sem.\n\nDuis aliquam convallis nunc. Proin at turpis a pede posuere nonummy. Integer non velit.\n\nDonec diam neque, vestibulum eget, vulputate ut, ultrices vel, augue. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec pharetra, magna vestibulum aliquet ultrices, erat tortor sollicitudin mi, sit amet lobortis sapien sapien non mi. Integer ac neque.",
-    messegeDate: "12/30/2021",
+    messageDate: "12/30/2021",
     answerCount: 62,
     retweetCount: 50,
     likeCount: 31,
@@ -538,9 +538,9 @@ export const bookmarksData = [
     username: "Tate Wedon",
     userNickname: "twedon15",
     responserUserNickname: "twedon15",
-    messegeText:
+    messageText:
       "Maecenas tristique, est et tempus semper, est quam pharetra magna, ac consequat metus sapien ut nunc. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Mauris viverra diam vitae quam. Suspendisse potenti.\n\nNullam porttitor lacus at turpis. Donec posuere metus vitae ipsum. Aliquam non mauris.",
-    messegeDate: "2/10/2022",
+    messageDate: "2/10/2022",
     answerCount: 63,
     retweetCount: 30,
     likeCount: 24,
@@ -551,9 +551,9 @@ export const bookmarksData = [
     username: "Janene Robuchon",
     userNickname: "jrobuchon16",
     responserUserNickname: "jrobuchon16",
-    messegeText:
+    messageText:
       "Duis bibendum, felis sed interdum venenatis, turpis enim blandit mi, in porttitor pede justo eu massa. Donec dapibus. Duis at velit eu est congue elementum.\n\nIn hac habitasse platea dictumst. Morbi vestibulum, velit id pretium iaculis, diam erat fermentum justo, nec condimentum neque sapien placerat ante. Nulla justo.\n\nAliquam quis turpis eget elit sodales scelerisque. Mauris sit amet eros. Suspendisse accumsan tortor quis turpis.",
-    messegeDate: "10/3/2021",
+    messageDate: "10/3/2021",
     answerCount: 20,
     retweetCount: 88,
     likeCount: 87,
@@ -564,9 +564,9 @@ export const bookmarksData = [
     username: "Ninon Pallatina",
     userNickname: "npallatina17",
     responserUserNickname: "npallatina17",
-    messegeText:
+    messageText:
       "Duis aliquam convallis nunc. Proin at turpis a pede posuere nonummy. Integer non velit.",
-    messegeDate: "5/14/2022",
+    messageDate: "5/14/2022",
     answerCount: 26,
     retweetCount: 79,
     likeCount: 56,
@@ -577,9 +577,9 @@ export const bookmarksData = [
     username: "Rania Aggott",
     userNickname: "raggott18",
     responserUserNickname: "raggott18",
-    messegeText:
+    messageText:
       "Integer tincidunt ante vel ipsum. Praesent blandit lacinia erat. Vestibulum sed magna at nunc commodo placerat.",
-    messegeDate: "9/5/2021",
+    messageDate: "9/5/2021",
     answerCount: 44,
     retweetCount: 36,
     likeCount: 87,
@@ -590,9 +590,9 @@ export const bookmarksData = [
     username: "Valli Hufton",
     userNickname: "vhufton19",
     responserUserNickname: "vhufton19",
-    messegeText:
+    messageText:
       "Suspendisse potenti. In eleifend quam a odio. In hac habitasse platea dictumst.",
-    messegeDate: "5/8/2022",
+    messageDate: "5/8/2022",
     answerCount: 93,
     retweetCount: 79,
     likeCount: 60,
@@ -603,9 +603,9 @@ export const bookmarksData = [
     username: "Sheffie Bew",
     userNickname: "sbew1a",
     responserUserNickname: "sbew1a",
-    messegeText:
+    messageText:
       "Morbi porttitor lorem id ligula. Suspendisse ornare consequat lectus. In est risus, auctor sed, tristique in, tempus sit amet, sem.\n\nFusce consequat. Nulla nisl. Nunc nisl.",
-    messegeDate: "1/8/2022",
+    messageDate: "1/8/2022",
     answerCount: 39,
     retweetCount: 59,
     likeCount: 73,
@@ -616,9 +616,9 @@ export const bookmarksData = [
     username: "Almeria Sharville",
     userNickname: "asharville1b",
     responserUserNickname: "asharville1b",
-    messegeText:
+    messageText:
       "Fusce posuere felis sed lacus. Morbi sem mauris, laoreet ut, rhoncus aliquet, pulvinar sed, nisl. Nunc rhoncus dui vel sem.\n\nSed sagittis. Nam congue, risus semper porta volutpat, quam pede lobortis ligula, sit amet eleifend pede libero quis orci. Nullam molestie nibh in lectus.\n\nPellentesque at nulla. Suspendisse potenti. Cras in purus eu magna vulputate luctus.",
-    messegeDate: "8/23/2021",
+    messageDate: "8/23/2021",
     answerCount: 25,
     retweetCount: 48,
     likeCount: 83,
@@ -629,9 +629,9 @@ export const bookmarksData = [
     username: "Tillie MacGorman",
     userNickname: "tmacgorman1c",
     responserUserNickname: "tmacgorman1c",
-    messegeText:
+    messageText:
       "Pellentesque at nulla. Suspendisse potenti. Cras in purus eu magna vulputate luctus.\n\nCum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vivamus vestibulum sagittis sapien. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.\n\nEtiam vel augue. Vestibulum rutrum rutrum neque. Aenean auctor gravida sem.",
-    messegeDate: "5/5/2022",
+    messageDate: "5/5/2022",
     answerCount: 79,
     retweetCount: 43,
     likeCount: 70,
@@ -642,9 +642,9 @@ export const bookmarksData = [
     username: "Raynard Korb",
     userNickname: "rkorb1d",
     responserUserNickname: "rkorb1d",
-    messegeText:
+    messageText:
       "Nulla ut erat id mauris vulputate elementum. Nullam varius. Nulla facilisi.\n\nCras non velit nec nisi vulputate nonummy. Maecenas tincidunt lacus at velit. Vivamus vel nulla eget eros elementum pellentesque.\n\nQuisque porta volutpat erat. Quisque erat eros, viverra eget, congue eget, semper rutrum, nulla. Nunc purus.",
-    messegeDate: "7/22/2022",
+    messageDate: "7/22/2022",
     answerCount: 15,
     retweetCount: 26,
     likeCount: 15,
@@ -655,9 +655,9 @@ export const bookmarksData = [
     username: "Kippie Quinnelly",
     userNickname: "kquinnelly1e",
     responserUserNickname: "kquinnelly1e",
-    messegeText:
+    messageText:
       "Cras mi pede, malesuada in, imperdiet et, commodo vulputate, justo. In blandit ultrices enim. Lorem ipsum dolor sit amet, consectetuer adipiscing elit.\n\nProin interdum mauris non ligula pellentesque ultrices. Phasellus id sapien in sapien iaculis congue. Vivamus metus arcu, adipiscing molestie, hendrerit at, vulputate vitae, nisl.\n\nAenean lectus. Pellentesque eget nunc. Donec quis orci eget orci vehicula condimentum.",
-    messegeDate: "5/5/2022",
+    messageDate: "5/5/2022",
     answerCount: 57,
     retweetCount: 41,
     likeCount: 72,
@@ -668,9 +668,9 @@ export const bookmarksData = [
     username: "Gale Holworth",
     userNickname: "gholworth1f",
     responserUserNickname: "gholworth1f",
-    messegeText:
+    messageText:
       "Praesent id massa id nisl venenatis lacinia. Aenean sit amet justo. Morbi ut odio.\n\nCras mi pede, malesuada in, imperdiet et, commodo vulputate, justo. In blandit ultrices enim. Lorem ipsum dolor sit amet, consectetuer adipiscing elit.\n\nProin interdum mauris non ligula pellentesque ultrices. Phasellus id sapien in sapien iaculis congue. Vivamus metus arcu, adipiscing molestie, hendrerit at, vulputate vitae, nisl.",
-    messegeDate: "7/29/2022",
+    messageDate: "7/29/2022",
     answerCount: 39,
     retweetCount: 91,
     likeCount: 18,
@@ -681,9 +681,9 @@ export const bookmarksData = [
     username: "Adriano Andresser",
     userNickname: "aandresser1g",
     responserUserNickname: "aandresser1g",
-    messegeText:
+    messageText:
       "Duis bibendum, felis sed interdum venenatis, turpis enim blandit mi, in porttitor pede justo eu massa. Donec dapibus. Duis at velit eu est congue elementum.",
-    messegeDate: "10/1/2021",
+    messageDate: "10/1/2021",
     answerCount: 17,
     retweetCount: 81,
     likeCount: 62,
@@ -694,9 +694,9 @@ export const bookmarksData = [
     username: "Jenelle McKall",
     userNickname: "jmckall1h",
     responserUserNickname: "jmckall1h",
-    messegeText:
+    messageText:
       "Integer tincidunt ante vel ipsum. Praesent blandit lacinia erat. Vestibulum sed magna at nunc commodo placerat.\n\nPraesent blandit. Nam nulla. Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede.",
-    messegeDate: "12/30/2021",
+    messageDate: "12/30/2021",
     answerCount: 83,
     retweetCount: 60,
     likeCount: 81,
@@ -707,9 +707,9 @@ export const bookmarksData = [
     username: "Rosana Squirrel",
     userNickname: "rsquirrel1i",
     responserUserNickname: "rsquirrel1i",
-    messegeText:
+    messageText:
       "Proin interdum mauris non ligula pellentesque ultrices. Phasellus id sapien in sapien iaculis congue. Vivamus metus arcu, adipiscing molestie, hendrerit at, vulputate vitae, nisl.\n\nAenean lectus. Pellentesque eget nunc. Donec quis orci eget orci vehicula condimentum.\n\nCurabitur in libero ut massa volutpat convallis. Morbi odio odio, elementum eu, interdum eu, tincidunt in, leo. Maecenas pulvinar lobortis est.",
-    messegeDate: "12/2/2021",
+    messageDate: "12/2/2021",
     answerCount: 38,
     retweetCount: 21,
     likeCount: 85,
@@ -720,9 +720,9 @@ export const bookmarksData = [
     username: "Knox Getten",
     userNickname: "kgetten1j",
     responserUserNickname: "kgetten1j",
-    messegeText:
+    messageText:
       "Fusce consequat. Nulla nisl. Nunc nisl.\n\nDuis bibendum, felis sed interdum venenatis, turpis enim blandit mi, in porttitor pede justo eu massa. Donec dapibus. Duis at velit eu est congue elementum.\n\nIn hac habitasse platea dictumst. Morbi vestibulum, velit id pretium iaculis, diam erat fermentum justo, nec condimentum neque sapien placerat ante. Nulla justo.",
-    messegeDate: "6/23/2022",
+    messageDate: "6/23/2022",
     answerCount: 91,
     retweetCount: 63,
     likeCount: 88,
@@ -733,8 +733,8 @@ export const bookmarksData = [
     username: "Gertrudis Wardingly",
     userNickname: "gwardingly1k",
     responserUserNickname: "gwardingly1k",
-    messegeText: "In congue. Etiam justo. Etiam pretium iaculis justo.",
-    messegeDate: "1/21/2022",
+    messageText: "In congue. Etiam justo. Etiam pretium iaculis justo.",
+    messageDate: "1/21/2022",
     answerCount: 68,
     retweetCount: 63,
     likeCount: 34,
@@ -745,9 +745,9 @@ export const bookmarksData = [
     username: "Jilly Reaveley",
     userNickname: "jreaveley1l",
     responserUserNickname: "jreaveley1l",
-    messegeText:
+    messageText:
       "In hac habitasse platea dictumst. Etiam faucibus cursus urna. Ut tellus.\n\nNulla ut erat id mauris vulputate elementum. Nullam varius. Nulla facilisi.",
-    messegeDate: "12/8/2021",
+    messageDate: "12/8/2021",
     answerCount: 24,
     retweetCount: 29,
     likeCount: 54,
@@ -758,9 +758,9 @@ export const bookmarksData = [
     username: "Adrian Janeway",
     userNickname: "ajaneway1m",
     responserUserNickname: "ajaneway1m",
-    messegeText:
+    messageText:
       "Maecenas ut massa quis augue luctus tincidunt. Nulla mollis molestie lorem. Quisque ut erat.\n\nCurabitur gravida nisi at nibh. In hac habitasse platea dictumst. Aliquam augue quam, sollicitudin vitae, consectetuer eget, rutrum at, lorem.\n\nInteger tincidunt ante vel ipsum. Praesent blandit lacinia erat. Vestibulum sed magna at nunc commodo placerat.",
-    messegeDate: "2/20/2022",
+    messageDate: "2/20/2022",
     answerCount: 83,
     retweetCount: 25,
     likeCount: 31,
@@ -771,9 +771,9 @@ export const bookmarksData = [
     username: "Corri Lockyer",
     userNickname: "clockyer1n",
     responserUserNickname: "clockyer1n",
-    messegeText:
+    messageText:
       "Vestibulum quam sapien, varius ut, blandit non, interdum in, ante. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Duis faucibus accumsan odio. Curabitur convallis.\n\nDuis consequat dui nec nisi volutpat eleifend. Donec ut dolor. Morbi vel lectus in quam fringilla rhoncus.\n\nMauris enim leo, rhoncus sed, vestibulum sit amet, cursus id, turpis. Integer aliquet, massa id lobortis convallis, tortor risus dapibus augue, vel accumsan tellus nisi eu orci. Mauris lacinia sapien quis libero.",
-    messegeDate: "6/30/2022",
+    messageDate: "6/30/2022",
     answerCount: 49,
     retweetCount: 91,
     likeCount: 79,
@@ -784,9 +784,9 @@ export const bookmarksData = [
     username: "Winny Battman",
     userNickname: "wbattman1o",
     responserUserNickname: "wbattman1o",
-    messegeText:
+    messageText:
       "Vestibulum ac est lacinia nisi venenatis tristique. Fusce congue, diam id ornare imperdiet, sapien urna pretium nisl, ut volutpat sapien arcu sed augue. Aliquam erat volutpat.\n\nIn congue. Etiam justo. Etiam pretium iaculis justo.",
-    messegeDate: "12/26/2021",
+    messageDate: "12/26/2021",
     answerCount: 68,
     retweetCount: 16,
     likeCount: 36,
@@ -797,9 +797,9 @@ export const bookmarksData = [
     username: "Alfredo Romao",
     userNickname: "aromao1p",
     responserUserNickname: "aromao1p",
-    messegeText:
+    messageText:
       "Vestibulum quam sapien, varius ut, blandit non, interdum in, ante. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Duis faucibus accumsan odio. Curabitur convallis.",
-    messegeDate: "6/15/2022",
+    messageDate: "6/15/2022",
     answerCount: 84,
     retweetCount: 83,
     likeCount: 88,
@@ -810,9 +810,9 @@ export const bookmarksData = [
     username: "Ellyn Upsale",
     userNickname: "eupsale1q",
     responserUserNickname: "eupsale1q",
-    messegeText:
+    messageText:
       "In hac habitasse platea dictumst. Etiam faucibus cursus urna. Ut tellus.",
-    messegeDate: "1/20/2022",
+    messageDate: "1/20/2022",
     answerCount: 40,
     retweetCount: 20,
     likeCount: 79,
@@ -823,9 +823,9 @@ export const bookmarksData = [
     username: "Anderson Stanlack",
     userNickname: "astanlack1r",
     responserUserNickname: "astanlack1r",
-    messegeText:
+    messageText:
       "Curabitur in libero ut massa volutpat convallis. Morbi odio odio, elementum eu, interdum eu, tincidunt in, leo. Maecenas pulvinar lobortis est.\n\nPhasellus sit amet erat. Nulla tempus. Vivamus in felis eu sapien cursus vestibulum.\n\nProin eu mi. Nulla ac enim. In tempor, turpis nec euismod scelerisque, quam turpis adipiscing lorem, vitae mattis nibh ligula nec sem.",
-    messegeDate: "7/10/2022",
+    messageDate: "7/10/2022",
     answerCount: 57,
     retweetCount: 64,
     likeCount: 48,
@@ -836,9 +836,9 @@ export const bookmarksData = [
     username: "Sigvard Frost",
     userNickname: "sfrost1s",
     responserUserNickname: "sfrost1s",
-    messegeText:
+    messageText:
       "Nullam sit amet turpis elementum ligula vehicula consequat. Morbi a ipsum. Integer a nibh.\n\nIn quis justo. Maecenas rhoncus aliquam lacus. Morbi quis tortor id nulla ultrices aliquet.",
-    messegeDate: "12/22/2021",
+    messageDate: "12/22/2021",
     answerCount: 48,
     retweetCount: 15,
     likeCount: 62,
@@ -849,9 +849,9 @@ export const bookmarksData = [
     username: "Malina O'Sesnane",
     userNickname: "mosesnane1t",
     responserUserNickname: "mosesnane1t",
-    messegeText:
+    messageText:
       "Curabitur gravida nisi at nibh. In hac habitasse platea dictumst. Aliquam augue quam, sollicitudin vitae, consectetuer eget, rutrum at, lorem.",
-    messegeDate: "9/29/2021",
+    messageDate: "9/29/2021",
     answerCount: 56,
     retweetCount: 26,
     likeCount: 69,
@@ -862,9 +862,9 @@ export const bookmarksData = [
     username: "Pammi Hexam",
     userNickname: "phexam1u",
     responserUserNickname: "phexam1u",
-    messegeText:
+    messageText:
       "Nullam sit amet turpis elementum ligula vehicula consequat. Morbi a ipsum. Integer a nibh.\n\nIn quis justo. Maecenas rhoncus aliquam lacus. Morbi quis tortor id nulla ultrices aliquet.",
-    messegeDate: "9/18/2021",
+    messageDate: "9/18/2021",
     answerCount: 68,
     retweetCount: 49,
     likeCount: 75,
@@ -875,9 +875,9 @@ export const bookmarksData = [
     username: "Gayla Geikie",
     userNickname: "ggeikie1v",
     responserUserNickname: "ggeikie1v",
-    messegeText:
+    messageText:
       "Duis bibendum. Morbi non quam nec dui luctus rutrum. Nulla tellus.\n\nIn sagittis dui vel nisl. Duis ac nibh. Fusce lacus purus, aliquet at, feugiat non, pretium quis, lectus.\n\nSuspendisse potenti. In eleifend quam a odio. In hac habitasse platea dictumst.",
-    messegeDate: "10/21/2021",
+    messageDate: "10/21/2021",
     answerCount: 71,
     retweetCount: 87,
     likeCount: 75,
@@ -888,9 +888,9 @@ export const bookmarksData = [
     username: "Belinda Maffin",
     userNickname: "bmaffin1w",
     responserUserNickname: "bmaffin1w",
-    messegeText:
+    messageText:
       "Praesent id massa id nisl venenatis lacinia. Aenean sit amet justo. Morbi ut odio.",
-    messegeDate: "9/28/2021",
+    messageDate: "9/28/2021",
     answerCount: 33,
     retweetCount: 30,
     likeCount: 81,
@@ -901,9 +901,9 @@ export const bookmarksData = [
     username: "North Raigatt",
     userNickname: "nraigatt1x",
     responserUserNickname: "nraigatt1x",
-    messegeText:
+    messageText:
       "Maecenas leo odio, condimentum id, luctus nec, molestie sed, justo. Pellentesque viverra pede ac diam. Cras pellentesque volutpat dui.\n\nMaecenas tristique, est et tempus semper, est quam pharetra magna, ac consequat metus sapien ut nunc. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Mauris viverra diam vitae quam. Suspendisse potenti.",
-    messegeDate: "6/17/2022",
+    messageDate: "6/17/2022",
     answerCount: 79,
     retweetCount: 67,
     likeCount: 60,
@@ -914,9 +914,9 @@ export const bookmarksData = [
     username: "Malchy Hinkens",
     userNickname: "mhinkens1y",
     responserUserNickname: "mhinkens1y",
-    messegeText:
+    messageText:
       "Aliquam quis turpis eget elit sodales scelerisque. Mauris sit amet eros. Suspendisse accumsan tortor quis turpis.",
-    messegeDate: "4/11/2022",
+    messageDate: "4/11/2022",
     answerCount: 67,
     retweetCount: 55,
     likeCount: 36,
@@ -927,9 +927,9 @@ export const bookmarksData = [
     username: "Martyn Lehrmann",
     userNickname: "mlehrmann1z",
     responserUserNickname: "mlehrmann1z",
-    messegeText:
+    messageText:
       "Nullam porttitor lacus at turpis. Donec posuere metus vitae ipsum. Aliquam non mauris.",
-    messegeDate: "8/13/2022",
+    messageDate: "8/13/2022",
     answerCount: 78,
     retweetCount: 63,
     likeCount: 23,
@@ -940,9 +940,9 @@ export const bookmarksData = [
     username: "Guenna Chree",
     userNickname: "gchree20",
     responserUserNickname: "gchree20",
-    messegeText:
+    messageText:
       "Aliquam quis turpis eget elit sodales scelerisque. Mauris sit amet eros. Suspendisse accumsan tortor quis turpis.",
-    messegeDate: "11/29/2021",
+    messageDate: "11/29/2021",
     answerCount: 18,
     retweetCount: 26,
     likeCount: 93,
@@ -953,9 +953,9 @@ export const bookmarksData = [
     username: "Maye Wretham",
     userNickname: "mwretham21",
     responserUserNickname: "mwretham21",
-    messegeText:
+    messageText:
       "Sed ante. Vivamus tortor. Duis mattis egestas metus.\n\nAenean fermentum. Donec ut mauris eget massa tempor convallis. Nulla neque libero, convallis eget, eleifend luctus, ultricies eu, nibh.\n\nQuisque id justo sit amet sapien dignissim vestibulum. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nulla dapibus dolor vel est. Donec odio justo, sollicitudin ut, suscipit a, feugiat et, eros.",
-    messegeDate: "11/12/2021",
+    messageDate: "11/12/2021",
     answerCount: 65,
     retweetCount: 47,
     likeCount: 60,
@@ -966,9 +966,9 @@ export const bookmarksData = [
     username: "Abbott Sedworth",
     userNickname: "asedworth22",
     responserUserNickname: "asedworth22",
-    messegeText:
+    messageText:
       "Integer tincidunt ante vel ipsum. Praesent blandit lacinia erat. Vestibulum sed magna at nunc commodo placerat.\n\nPraesent blandit. Nam nulla. Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede.",
-    messegeDate: "11/12/2021",
+    messageDate: "11/12/2021",
     answerCount: 84,
     retweetCount: 27,
     likeCount: 60,
@@ -979,9 +979,9 @@ export const bookmarksData = [
     username: "Valentin Midlane",
     userNickname: "vmidlane23",
     responserUserNickname: "vmidlane23",
-    messegeText:
+    messageText:
       "Suspendisse potenti. In eleifend quam a odio. In hac habitasse platea dictumst.",
-    messegeDate: "4/12/2022",
+    messageDate: "4/12/2022",
     answerCount: 71,
     retweetCount: 50,
     likeCount: 20,
@@ -992,9 +992,9 @@ export const bookmarksData = [
     username: "Taite Casado",
     userNickname: "tcasado24",
     responserUserNickname: "tcasado24",
-    messegeText:
+    messageText:
       "Vestibulum quam sapien, varius ut, blandit non, interdum in, ante. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Duis faucibus accumsan odio. Curabitur convallis.\n\nDuis consequat dui nec nisi volutpat eleifend. Donec ut dolor. Morbi vel lectus in quam fringilla rhoncus.",
-    messegeDate: "9/27/2021",
+    messageDate: "9/27/2021",
     answerCount: 60,
     retweetCount: 15,
     likeCount: 46,
@@ -1005,9 +1005,9 @@ export const bookmarksData = [
     username: "Kaylee Wildish",
     userNickname: "kwildish25",
     responserUserNickname: "kwildish25",
-    messegeText:
+    messageText:
       "In congue. Etiam justo. Etiam pretium iaculis justo.\n\nIn hac habitasse platea dictumst. Etiam faucibus cursus urna. Ut tellus.\n\nNulla ut erat id mauris vulputate elementum. Nullam varius. Nulla facilisi.",
-    messegeDate: "9/6/2021",
+    messageDate: "9/6/2021",
     answerCount: 83,
     retweetCount: 38,
     likeCount: 76,
@@ -1018,9 +1018,9 @@ export const bookmarksData = [
     username: "Patrice Blewis",
     userNickname: "pblewis26",
     responserUserNickname: "pblewis26",
-    messegeText:
+    messageText:
       "Proin leo odio, porttitor id, consequat in, consequat ut, nulla. Sed accumsan felis. Ut at dolor quis odio consequat varius.\n\nInteger ac leo. Pellentesque ultrices mattis odio. Donec vitae nisi.",
-    messegeDate: "10/18/2021",
+    messageDate: "10/18/2021",
     answerCount: 55,
     retweetCount: 30,
     likeCount: 78,
@@ -1031,9 +1031,9 @@ export const bookmarksData = [
     username: "Van Boick",
     userNickname: "vboick27",
     responserUserNickname: "vboick27",
-    messegeText:
+    messageText:
       "Suspendisse potenti. In eleifend quam a odio. In hac habitasse platea dictumst.",
-    messegeDate: "2/15/2022",
+    messageDate: "2/15/2022",
     answerCount: 17,
     retweetCount: 25,
     likeCount: 67,
@@ -1044,9 +1044,9 @@ export const bookmarksData = [
     username: "Rainer Sullens",
     userNickname: "rsullens28",
     responserUserNickname: "rsullens28",
-    messegeText:
+    messageText:
       "In sagittis dui vel nisl. Duis ac nibh. Fusce lacus purus, aliquet at, feugiat non, pretium quis, lectus.\n\nSuspendisse potenti. In eleifend quam a odio. In hac habitasse platea dictumst.",
-    messegeDate: "1/9/2022",
+    messageDate: "1/9/2022",
     answerCount: 65,
     retweetCount: 93,
     likeCount: 84,
@@ -1057,9 +1057,9 @@ export const bookmarksData = [
     username: "Kerianne Minifie",
     userNickname: "kminifie29",
     responserUserNickname: "kminifie29",
-    messegeText:
+    messageText:
       "Proin eu mi. Nulla ac enim. In tempor, turpis nec euismod scelerisque, quam turpis adipiscing lorem, vitae mattis nibh ligula nec sem.",
-    messegeDate: "12/12/2021",
+    messageDate: "12/12/2021",
     answerCount: 75,
     retweetCount: 38,
     likeCount: 65,
@@ -1070,9 +1070,9 @@ export const bookmarksData = [
     username: "Symon Nowaczyk",
     userNickname: "snowaczyk2a",
     responserUserNickname: "snowaczyk2a",
-    messegeText:
+    messageText:
       "Quisque porta volutpat erat. Quisque erat eros, viverra eget, congue eget, semper rutrum, nulla. Nunc purus.",
-    messegeDate: "4/22/2022",
+    messageDate: "4/22/2022",
     answerCount: 15,
     retweetCount: 41,
     likeCount: 35,
@@ -1083,9 +1083,9 @@ export const bookmarksData = [
     username: "Sascha Worrill",
     userNickname: "sworrill2b",
     responserUserNickname: "sworrill2b",
-    messegeText:
+    messageText:
       "Curabitur in libero ut massa volutpat convallis. Morbi odio odio, elementum eu, interdum eu, tincidunt in, leo. Maecenas pulvinar lobortis est.\n\nPhasellus sit amet erat. Nulla tempus. Vivamus in felis eu sapien cursus vestibulum.\n\nProin eu mi. Nulla ac enim. In tempor, turpis nec euismod scelerisque, quam turpis adipiscing lorem, vitae mattis nibh ligula nec sem.",
-    messegeDate: "7/10/2022",
+    messageDate: "7/10/2022",
     answerCount: 42,
     retweetCount: 71,
     likeCount: 91,
@@ -1096,9 +1096,9 @@ export const bookmarksData = [
     username: "Dwain Kelleher",
     userNickname: "dkelleher2c",
     responserUserNickname: "dkelleher2c",
-    messegeText:
+    messageText:
       "Donec diam neque, vestibulum eget, vulputate ut, ultrices vel, augue. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec pharetra, magna vestibulum aliquet ultrices, erat tortor sollicitudin mi, sit amet lobortis sapien sapien non mi. Integer ac neque.\n\nDuis bibendum. Morbi non quam nec dui luctus rutrum. Nulla tellus.",
-    messegeDate: "3/7/2022",
+    messageDate: "3/7/2022",
     answerCount: 27,
     retweetCount: 92,
     likeCount: 46,
@@ -1109,9 +1109,9 @@ export const bookmarksData = [
     username: "Skipp Laphorn",
     userNickname: "slaphorn2d",
     responserUserNickname: "slaphorn2d",
-    messegeText:
+    messageText:
       "Nullam porttitor lacus at turpis. Donec posuere metus vitae ipsum. Aliquam non mauris.\n\nMorbi non lectus. Aliquam sit amet diam in magna bibendum imperdiet. Nullam orci pede, venenatis non, sodales sed, tincidunt eu, felis.\n\nFusce posuere felis sed lacus. Morbi sem mauris, laoreet ut, rhoncus aliquet, pulvinar sed, nisl. Nunc rhoncus dui vel sem.",
-    messegeDate: "8/28/2021",
+    messageDate: "8/28/2021",
     answerCount: 26,
     retweetCount: 83,
     likeCount: 82,
@@ -1122,9 +1122,9 @@ export const bookmarksData = [
     username: "D'arcy Hullin",
     userNickname: "dhullin2e",
     responserUserNickname: "dhullin2e",
-    messegeText:
+    messageText:
       "Proin interdum mauris non ligula pellentesque ultrices. Phasellus id sapien in sapien iaculis congue. Vivamus metus arcu, adipiscing molestie, hendrerit at, vulputate vitae, nisl.\n\nAenean lectus. Pellentesque eget nunc. Donec quis orci eget orci vehicula condimentum.\n\nCurabitur in libero ut massa volutpat convallis. Morbi odio odio, elementum eu, interdum eu, tincidunt in, leo. Maecenas pulvinar lobortis est.",
-    messegeDate: "4/6/2022",
+    messageDate: "4/6/2022",
     answerCount: 48,
     retweetCount: 47,
     likeCount: 42,
@@ -1135,9 +1135,9 @@ export const bookmarksData = [
     username: "Roland Bodker",
     userNickname: "rbodker2f",
     responserUserNickname: "rbodker2f",
-    messegeText:
+    messageText:
       "Morbi porttitor lorem id ligula. Suspendisse ornare consequat lectus. In est risus, auctor sed, tristique in, tempus sit amet, sem.",
-    messegeDate: "11/24/2021",
+    messageDate: "11/24/2021",
     answerCount: 23,
     retweetCount: 51,
     likeCount: 23,
@@ -1148,9 +1148,9 @@ export const bookmarksData = [
     username: "Hilton Skillitt",
     userNickname: "hskillitt2g",
     responserUserNickname: "hskillitt2g",
-    messegeText:
+    messageText:
       "Vestibulum quam sapien, varius ut, blandit non, interdum in, ante. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Duis faucibus accumsan odio. Curabitur convallis.\n\nDuis consequat dui nec nisi volutpat eleifend. Donec ut dolor. Morbi vel lectus in quam fringilla rhoncus.\n\nMauris enim leo, rhoncus sed, vestibulum sit amet, cursus id, turpis. Integer aliquet, massa id lobortis convallis, tortor risus dapibus augue, vel accumsan tellus nisi eu orci. Mauris lacinia sapien quis libero.",
-    messegeDate: "12/13/2021",
+    messageDate: "12/13/2021",
     answerCount: 16,
     retweetCount: 86,
     likeCount: 36,
@@ -1161,9 +1161,9 @@ export const bookmarksData = [
     username: "Kaylyn Segrave",
     userNickname: "ksegrave2h",
     responserUserNickname: "ksegrave2h",
-    messegeText:
+    messageText:
       "Morbi porttitor lorem id ligula. Suspendisse ornare consequat lectus. In est risus, auctor sed, tristique in, tempus sit amet, sem.\n\nFusce consequat. Nulla nisl. Nunc nisl.",
-    messegeDate: "4/2/2022",
+    messageDate: "4/2/2022",
     answerCount: 88,
     retweetCount: 18,
     likeCount: 90,
@@ -1174,9 +1174,9 @@ export const bookmarksData = [
     username: "Umberto Bleakley",
     userNickname: "ubleakley2i",
     responserUserNickname: "ubleakley2i",
-    messegeText:
+    messageText:
       "Curabitur gravida nisi at nibh. In hac habitasse platea dictumst. Aliquam augue quam, sollicitudin vitae, consectetuer eget, rutrum at, lorem.\n\nInteger tincidunt ante vel ipsum. Praesent blandit lacinia erat. Vestibulum sed magna at nunc commodo placerat.",
-    messegeDate: "4/29/2022",
+    messageDate: "4/29/2022",
     answerCount: 38,
     retweetCount: 58,
     likeCount: 77,
@@ -1187,9 +1187,9 @@ export const bookmarksData = [
     username: "Kareem Mc Curlye",
     userNickname: "kmc2j",
     responserUserNickname: "kmc2j",
-    messegeText:
+    messageText:
       "Duis bibendum, felis sed interdum venenatis, turpis enim blandit mi, in porttitor pede justo eu massa. Donec dapibus. Duis at velit eu est congue elementum.\n\nIn hac habitasse platea dictumst. Morbi vestibulum, velit id pretium iaculis, diam erat fermentum justo, nec condimentum neque sapien placerat ante. Nulla justo.\n\nAliquam quis turpis eget elit sodales scelerisque. Mauris sit amet eros. Suspendisse accumsan tortor quis turpis.",
-    messegeDate: "10/8/2021",
+    messageDate: "10/8/2021",
     answerCount: 79,
     retweetCount: 48,
     likeCount: 62,
@@ -1200,9 +1200,9 @@ export const bookmarksData = [
     username: "Mattie Coogan",
     userNickname: "mcoogan2k",
     responserUserNickname: "mcoogan2k",
-    messegeText:
+    messageText:
       "Donec diam neque, vestibulum eget, vulputate ut, ultrices vel, augue. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec pharetra, magna vestibulum aliquet ultrices, erat tortor sollicitudin mi, sit amet lobortis sapien sapien non mi. Integer ac neque.\n\nDuis bibendum. Morbi non quam nec dui luctus rutrum. Nulla tellus.\n\nIn sagittis dui vel nisl. Duis ac nibh. Fusce lacus purus, aliquet at, feugiat non, pretium quis, lectus.",
-    messegeDate: "11/28/2021",
+    messageDate: "11/28/2021",
     answerCount: 44,
     retweetCount: 82,
     likeCount: 39,
@@ -1213,9 +1213,9 @@ export const bookmarksData = [
     username: "Fina Sousa",
     userNickname: "fsousa2l",
     responserUserNickname: "fsousa2l",
-    messegeText:
+    messageText:
       "Quisque id justo sit amet sapien dignissim vestibulum. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nulla dapibus dolor vel est. Donec odio justo, sollicitudin ut, suscipit a, feugiat et, eros.",
-    messegeDate: "1/4/2022",
+    messageDate: "1/4/2022",
     answerCount: 17,
     retweetCount: 53,
     likeCount: 69,
@@ -1226,9 +1226,9 @@ export const bookmarksData = [
     username: "Marcile McMenemy",
     userNickname: "mmcmenemy2m",
     responserUserNickname: "mmcmenemy2m",
-    messegeText:
+    messageText:
       "Cras mi pede, malesuada in, imperdiet et, commodo vulputate, justo. In blandit ultrices enim. Lorem ipsum dolor sit amet, consectetuer adipiscing elit.\n\nProin interdum mauris non ligula pellentesque ultrices. Phasellus id sapien in sapien iaculis congue. Vivamus metus arcu, adipiscing molestie, hendrerit at, vulputate vitae, nisl.",
-    messegeDate: "2/10/2022",
+    messageDate: "2/10/2022",
     answerCount: 40,
     retweetCount: 84,
     likeCount: 34,
@@ -1239,9 +1239,9 @@ export const bookmarksData = [
     username: "Beauregard Usmar",
     userNickname: "busmar2n",
     responserUserNickname: "busmar2n",
-    messegeText:
+    messageText:
       "Nulla ut erat id mauris vulputate elementum. Nullam varius. Nulla facilisi.\n\nCras non velit nec nisi vulputate nonummy. Maecenas tincidunt lacus at velit. Vivamus vel nulla eget eros elementum pellentesque.",
-    messegeDate: "8/6/2022",
+    messageDate: "8/6/2022",
     answerCount: 78,
     retweetCount: 69,
     likeCount: 92,
@@ -1252,9 +1252,9 @@ export const bookmarksData = [
     username: "Izzy Cornthwaite",
     userNickname: "icornthwaite2o",
     responserUserNickname: "icornthwaite2o",
-    messegeText:
+    messageText:
       "In hac habitasse platea dictumst. Etiam faucibus cursus urna. Ut tellus.\n\nNulla ut erat id mauris vulputate elementum. Nullam varius. Nulla facilisi.\n\nCras non velit nec nisi vulputate nonummy. Maecenas tincidunt lacus at velit. Vivamus vel nulla eget eros elementum pellentesque.",
-    messegeDate: "9/11/2021",
+    messageDate: "9/11/2021",
     answerCount: 49,
     retweetCount: 31,
     likeCount: 49,
@@ -1265,9 +1265,9 @@ export const bookmarksData = [
     username: "Alvera Hulbert",
     userNickname: "ahulbert2p",
     responserUserNickname: "ahulbert2p",
-    messegeText:
+    messageText:
       "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Proin risus. Praesent lectus.\n\nVestibulum quam sapien, varius ut, blandit non, interdum in, ante. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Duis faucibus accumsan odio. Curabitur convallis.\n\nDuis consequat dui nec nisi volutpat eleifend. Donec ut dolor. Morbi vel lectus in quam fringilla rhoncus.",
-    messegeDate: "5/3/2022",
+    messageDate: "5/3/2022",
     answerCount: 32,
     retweetCount: 31,
     likeCount: 75,
@@ -1278,9 +1278,9 @@ export const bookmarksData = [
     username: "Edin Tremolieres",
     userNickname: "etremolieres2q",
     responserUserNickname: "etremolieres2q",
-    messegeText:
+    messageText:
       "Maecenas ut massa quis augue luctus tincidunt. Nulla mollis molestie lorem. Quisque ut erat.\n\nCurabitur gravida nisi at nibh. In hac habitasse platea dictumst. Aliquam augue quam, sollicitudin vitae, consectetuer eget, rutrum at, lorem.",
-    messegeDate: "2/20/2022",
+    messageDate: "2/20/2022",
     answerCount: 92,
     retweetCount: 82,
     likeCount: 64,
@@ -1291,9 +1291,9 @@ export const bookmarksData = [
     username: "Sybilla Brisard",
     userNickname: "sbrisard2r",
     responserUserNickname: "sbrisard2r",
-    messegeText:
+    messageText:
       "Vestibulum quam sapien, varius ut, blandit non, interdum in, ante. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Duis faucibus accumsan odio. Curabitur convallis.",
-    messegeDate: "10/15/2021",
+    messageDate: "10/15/2021",
     answerCount: 52,
     retweetCount: 21,
     likeCount: 88,
