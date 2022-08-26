@@ -15,7 +15,7 @@ const StyledImage = styled(Image)`
 
 const Recommendations = () => {
   return (
-    <div className="bg-light m-4 rounded-3">
+    <div className="bg-light mx-1 my-2 rounded-3">
       <div className="py-3 px-3 fs-5 fw-bold">Рекомендовані</div>
       <StyledLink
         href="#"

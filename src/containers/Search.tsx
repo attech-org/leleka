@@ -18,7 +18,7 @@ const StyledInputGroup = styled(InputGroup)`
 
 const Search = () => {
   return (
-    <StyledForm className="justify-content-center align-items-center mx-4 my-2 rounded-pill bg-light px-3 py-1">
+    <StyledForm className="justify-content-center align-items-center mx-1 my-2 rounded-pill bg-light px-3 py-1">
       <StyledInputGroup
         className="justify-content-center align-items-center bg-light"
         id="basic-addon1"

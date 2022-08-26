@@ -34,7 +34,7 @@ const StyledButton = styled(Button)`
 
 const Trends = () => {
   return (
-    <div className="bg-light m-4 rounded-3">
+    <div className="bg-light my-3 mx-1 rounded-3">
       <div className="py-3 px-3 fs-5 fw-bold">Тренди для вас</div>
       <StyledLink
         id="trendLink"

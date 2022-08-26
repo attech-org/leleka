@@ -4,20 +4,13 @@ import LanguageSwitcher from "../containers/LanguageSwitcher";
 import NavigationBar from "./NavigationBar";
 
 const Div = styled.div`
-  height: 100vh;
-
   background-color: yellowgreen;
 `;
 
-const Wrapper = styled.div`
-  @media (max-width: 500px) {
-    width: 100%;
-    order: 1;
-  }
-`;
+const Wrapper = styled.div``;
 export const LeftPanel = () => {
   return (
-    <Wrapper>
+    <Wrapper className="col-xl-2 col-lg-2 col-md-1 col-sm-1 col-12">
       <Div>
         <LanguageSwitcher />
         <NavigationBar />

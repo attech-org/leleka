@@ -3,24 +3,7 @@ import styled from "styled-components";
 import { LeftPanel } from "../components/LeftPanel";
 import { RightPanel } from "../components/RightPanel";
 
-const GeneralContainer = styled.main`
-  display: grid;
-
-  grid-template-rows: 200vh; // optional
-  grid-template-columns: 20% 49% 31%;
-
-  @media (max-width: 1280px) {
-    grid-template-columns: 5% 63% 38%;
-  }
-  @media (max-width: 1000px) {
-    grid-template-columns: 7% 93%;
-  }
-
-  @media (max-width: 500px) {
-    grid-template-columns: 1fr;
-    grid-template-rows: calc(100vh - 50px) 50px;
-  }
-`;
+const GeneralContainer = styled.main``;
 
 const Main = styled.main`
   text-align: center;
@@ -32,10 +15,14 @@ interface LayoutProps {
 
 const Layout = ({ children }: LayoutProps) => {
   return (
-    <GeneralContainer className="container">
-      <LeftPanel />
-      <Main>{children}</Main>
-      <RightPanel />
+    <GeneralContainer className="container-xxl">
+      <div className="row">
+        <LeftPanel />
+        <Main className="col-xl-6 col-lg-6 col-md-11 col-sm-11 col-12">
+          {children}
+        </Main>
+        <RightPanel />
+      </div>
     </GeneralContainer>
   );
 };
