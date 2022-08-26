@@ -1,3 +1,37 @@
 {
-  "test": "English"
+  "test": "English",
+
+  "tweetCreationForm": {
+    "inputField": "What`s happening?",
+    "tweetButton": "Tweet",
+    "whoCanAnswer": {
+      "button": {
+        "all": "Everyone can reply",
+        "followers": "People you follow can reply",
+        "following": "Only people you mention can reply"
+      },
+      "popover": {
+        "header": "Who can reply?",
+        "text": "Choose who can reply to this Tweet. Anyone mentioned can always reply.",
+        "all": "Everyone",
+        "follow": "People you follow",
+        "mention": "Only people you mention"
+      }
+    }
+  },
+  "notifications": {
+    "fields": {
+      "liked": "liked",
+      "retweeted": "retweeted",
+      "yourTweets": "of your tweets:"
+    },
+    "links": {
+      "showAll": "Show all"
+    },
+    "tabsLabel": {
+      "all": "All",
+      "mentions": "Mentions"
+    },
+    "title": "Notifications"
+  }
 }
