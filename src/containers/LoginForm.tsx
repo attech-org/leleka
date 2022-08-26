@@ -12,6 +12,8 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import * as yup from "yup";
 
+import ModalUniversal from "./ModalUniversal";
+
 interface MyForm {
   userName: string;
 }
@@ -40,7 +42,7 @@ const LoginForm = () => {
     reset();
   };
 
-  return (
+  const LoginFormContainer = (
     <StyledContainer className=" rounded-4 p-2">
       <header className="d-flex justify-content-between align-items-center">
         <OverlayTrigger
@@ -131,6 +133,16 @@ const LoginForm = () => {
         </Form>
       </section>
     </StyledContainer>
+  );
+
+  return (
+    <>
+      <ModalUniversal
+        buttonName={"Login"}
+        title={"Login"}
+        content={LoginFormContainer}
+      />
+    </>
   );
 };
 
