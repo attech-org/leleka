@@ -7,10 +7,10 @@ const GeneralContainer = styled.main`
   display: grid;
 
   grid-template-rows: 200vh; // optional
-  grid-template-columns: 20% 50% 30%;
+  grid-template-columns: 20% 45% 35%;
 
   @media (max-width: 1280px) {
-    grid-template-columns: 5% 58% 37%;
+    grid-template-columns: 5% 50% 45%;
   }
   @media (max-width: 1000px) {
     grid-template-columns: 7% 93%;
