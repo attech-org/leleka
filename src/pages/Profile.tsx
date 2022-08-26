@@ -5,24 +5,24 @@ const ProfilePage: React.FunctionComponent = () => {
   const tabsData = [
     {
       label: "Tweets",
-      content: null,
+      content: "Tweets",
       key: "Tweets",
     },
 
     {
       label: "Tweets & replies",
-      content: null,
+      content: "Tweets & replies",
       key: "Tweets & replies",
     },
 
     {
       label: "Media",
-      content: null,
+      content: "Media",
       key: "Media",
     },
     {
       label: "Likes",
-      content: null,
+      content: "Likes",
       key: "Likes",
     },
   ];
