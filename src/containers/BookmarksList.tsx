@@ -82,8 +82,8 @@ const BookmarksList: React.FC = () => {
           username={item.username}
           userNickname={item.userNickname}
           responserUserNickname={item.responserUserNickname}
-          messegeText={item.messegeText}
-          messegeDate={item.messegeDate}
+          messageText={item.messageText}
+          messageDate={item.messageDate}
           answerCount={item.answerCount}
           retweetCount={item.retweetCount}
           likeCount={item.likeCount}
