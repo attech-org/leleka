@@ -1,6 +1,9 @@
+import { Nav } from "react-bootstrap";
 import Tab from "react-bootstrap/Tab";
 import Tabs from "react-bootstrap/Tabs";
 import styled from "styled-components";
+
+import { LinkWithLanguageQueryParam } from "../containers/LinkWithLanguageQueryParam";
 
 const StyledTabs = styled(Tabs)`
   .nav-link:hover {
@@ -15,6 +18,7 @@ interface TabsDataProps {
   label: string;
   content?: JSX.Element | string;
   key: string;
+  route: string;
 }
 
 interface TabsProps {
@@ -30,7 +34,7 @@ const TabsContainer = ({ tabsData, defaultActiveKey }: TabsProps) => {
       fill
       variant="flat"
     >
-      {tabsData.map(({ label, content, key }: TabsDataProps) => {
+      {tabsData.map(({ label, content, key, route }: TabsDataProps) => {
         return (
           <Tab
             eventKey={key}
@@ -38,7 +42,8 @@ const TabsContainer = ({ tabsData, defaultActiveKey }: TabsProps) => {
             key={key}
             tabClassName="border-0 border-bottom bg-white text-secondary fw-bold p-4"
           >
-            {content}
+            <Nav.Link key={key} as={LinkWithLanguageQueryParam} to={route} />
+            {content} {route}
           </Tab>
         );
       })}

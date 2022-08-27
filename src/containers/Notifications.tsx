@@ -26,11 +26,13 @@ const NotificationsList = () => {
       label: t("notifications.tabsLabel.all"),
       content: <NotificationsPage />,
       key: "All",
+      route: "/",
     },
     {
       label: t("notifications.tabsLabel.mentions"),
       content: <FeedPost />,
       key: "Mentions",
+      route: "/",
     },
   ];
 
