@@ -1,11 +1,12 @@
 import Layout from "../containers/Layout";
+import ProfileTweetsPage from "../containers/ProfileTweets";
 import TabsContainer from "../containers/Tabs";
 
 const ProfilePage: React.FunctionComponent = () => {
   const tabsData = [
     {
       label: "Tweets",
-      content: "Tweets",
+      content: <ProfileTweetsPage />,
       key: "Tweets",
     },
 

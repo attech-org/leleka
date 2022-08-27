@@ -75,7 +75,7 @@ import { FeedPostData } from "../MOCKS/homeFeedPage";
 //   }
 // `;
 
-interface TweetPost {
+export interface TweetPost {
   id: number;
   fullName: string;
   username: string;
