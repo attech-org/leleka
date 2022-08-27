@@ -5,6 +5,18 @@ interface TabKeyProps {
   tabKey: string;
 }
 
+export const switchTabRoutes = (e: string) => {
+  switch (e) {
+    case "Tweets":
+      return "/profile";
+    case "Tweets & replies":
+      return "/profile/with_replies";
+    case "Media":
+      return "/profile/media";
+    case "Likes":
+      return "/profile/likes";
+  }
+};
 const ProfilePage: React.FunctionComponent<TabKeyProps> = ({ tabKey }) => {
   const tabsData = [
     {
@@ -39,18 +51,6 @@ const ProfilePage: React.FunctionComponent<TabKeyProps> = ({ tabKey }) => {
     <Layout>
       Profile
       <TabsContainer tabsData={tabsData} defaultActiveKey={tabKey} />
-      <ul className="nav">
-        <li className="nav-item">
-          <a className="nav-link active" aria-current="page" href="#">
-            Active
-          </a>
-        </li>
-        <li className="nav-item">
-          <a className="nav-link" href="/profile/likes">
-            Link
-          </a>
-        </li>
-      </ul>
     </Layout>
   );
 };
