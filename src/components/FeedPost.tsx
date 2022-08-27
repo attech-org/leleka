@@ -4,7 +4,7 @@ import { ArrowRepeat, Chat, FileCheck, Upload } from "react-bootstrap-icons";
 import styled from "styled-components";
 
 import { FeedPostData } from "../MOCKS/homeFeedPage";
-import LikeButton from "./LikeButton/LikeButton";
+import LikeButton from "./LikeButton";
 
 const Logo = styled.img`
   height: 48px;
