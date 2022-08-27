@@ -1,10 +1,7 @@
-import { Nav } from "react-bootstrap";
 import Tab from "react-bootstrap/Tab";
 import Tabs from "react-bootstrap/Tabs";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-
-import { LinkWithLanguageQueryParam } from "../containers/LinkWithLanguageQueryParam";
 
 const StyledTabs = styled(Tabs)`
   .nav-link:hover {
@@ -37,27 +34,14 @@ const TabsContainer = ({ tabsData, defaultActiveKey }: TabsProps) => {
       fill
       variant="flat"
       onSelect={(e) => {
-        console.log(e);
-        switch (e) {
-          case "Tweets":
-            navigate("/profile");
-            break;
-          case "Tweets & replies":
-            navigate("/profile/with_replies");
-            break;
-          case "Media":
-            navigate("/profile/media");
-            break;
-          case "Likes":
-            navigate("/profile/likes");
-            break;
-
-          default:
-            break;
-        }
+        tabsData.map(({ key, route }: TabsDataProps) => {
+          if (key === e) {
+            navigate(route);
+          }
+        });
       }}
     >
-      {tabsData.map(({ label, content, key, route }: TabsDataProps) => {
+      {tabsData.map(({ label, content, key }: TabsDataProps) => {
         return (
           <Tab
             eventKey={key}
@@ -65,9 +49,7 @@ const TabsContainer = ({ tabsData, defaultActiveKey }: TabsProps) => {
             key={key}
             tabClassName="border-0 border-bottom bg-white text-secondary fw-bold p-4"
           >
-            <Nav.Link key={key} as={LinkWithLanguageQueryParam} to={route}>
-              {content}
-            </Nav.Link>
+            {content}
           </Tab>
         );
       })}

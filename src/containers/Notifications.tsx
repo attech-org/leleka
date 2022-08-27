@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 import styled from "styled-components";
 
 import FeedPost from "../components/FeedPost";
+import { TabKeyProps } from "../types/tabs-types";
 import NotificationsPage from "./NotificationsPage";
 import TabsContainer from "./Tabs";
 
@@ -18,21 +19,21 @@ const StyledButton = styled(Button)`
   }
 `;
 
-const NotificationsList = () => {
+const NotificationsList = ({ tabKey }: TabKeyProps) => {
   const { t } = useTranslation();
 
   const tabsData = [
     {
       label: t("notifications.tabsLabel.all"),
-      content: <NotificationsPage />,
+      content: <NotificationsPage tabKey="All" />,
       key: "All",
-      route: "/",
+      route: "/notifications",
     },
     {
       label: t("notifications.tabsLabel.mentions"),
       content: <FeedPost />,
       key: "Mentions",
-      route: "/",
+      route: "/notifications/mentions",
     },
   ];
 
@@ -52,7 +53,7 @@ const NotificationsList = () => {
           </StyledButton>
         </div>
       </div>
-      <TabsContainer tabsData={tabsData} defaultActiveKey="All" />
+      <TabsContainer tabsData={tabsData} defaultActiveKey={tabKey} />
     </div>
   );
 };

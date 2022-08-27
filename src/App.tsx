@@ -29,7 +29,14 @@ const App: React.FunctionComponent = () => {
         <Route path="/" element={<HomePage />} />
         <Route path="/about" element={<AboutPage />} />
         <Route path="/explore" element={<ExplorePage />} />
-        <Route path="/notifications" element={<NotificationsPage />} />
+        <Route
+          path="/notifications"
+          element={<NotificationsPage tabKey="All" />}
+        />
+        <Route
+          path="/notifications/mentions"
+          element={<NotificationsPage tabKey="Mentions" />}
+        />
         <Route path="/messages" element={<MessagesPage />} />
         <Route path="/bookmarks" element={<BookmarksPage />} />
         <Route path="/lists" element={<ListsPage />} />
