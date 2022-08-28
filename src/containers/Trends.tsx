@@ -1,6 +1,8 @@
-import { Container, OverlayTrigger, Popover, Button } from "react-bootstrap";
-import { ThreeDots, EmojiFrown } from "react-bootstrap-icons";
+import { Container } from "react-bootstrap";
 import styled from "styled-components";
+
+import { TrendItem } from "../components/TrendItem";
+import { MockTrend } from "../types/mock-api-types";
 
 const StyledLink = styled.a`
   transition: 0.3s;
@@ -9,203 +11,38 @@ const StyledLink = styled.a`
   }
 `;
 
-const StyledPopover = styled(Popover)`
-  --bs-popover-max-width: 500px;
-  inset: 45px -45px auto auto !important;
-  .popover-arrow {
-    display: none;
-  }
-  .popover-body {
-    padding: 0;
-  }
-`;
-
-const StyledButton = styled(Button)`
-  height: 40px;
-  width: 40px;
-  :focus:not(:focus-visible) {
-    box-shadow: none;
-  }
-  :hover {
-    color: rgb(29, 155, 240) !important;
-    background-color: rgba(29, 155, 240, 0.1) !important;
-  }
-`;
-
 const Trends = () => {
+  const trends: Array<MockTrend> = [
+    {
+      id: "1",
+      categoryName: "Полытика",
+      categoryValue: "Aktyalne",
+      contentRefName: "zaporiska AES",
+      tweetsCount: 1234,
+    },
+    {
+      id: "2",
+      categoryName: "trending",
+      categoryValue: "Ukraine",
+      contentRefName: "zaporiska AES",
+      tweetsCount: 1234,
+    },
+    {
+      id: "3",
+      categoryName: "Полытика",
+      categoryValue: "Aktyalne",
+      contentRefName: "zaporiska AES",
+      tweetsCount: 1234,
+    },
+  ];
   return (
     <div className="bg-light my-3 mx-1 rounded-3">
       <div className="py-3 px-3 fs-5 fw-bold">Тренди для вас</div>
+      {trends.map((tr) => (
+        <TrendItem key={tr.id} trend={tr} />
+      ))}
       <StyledLink
-        id="trendLink"
-        href="#"
-        className="text-decoration-none text-reset d-flex flex-row py-2"
-      >
-        <Container className="py-2 px-3">
-          <p className="pb-1 text-secondary">Політика · Актуальне</p>
-          <p className="pb-1 fw-bold">Zaporizhzhia NPP</p>
-          <span className="pb-1 text-secondary">Твітів: </span>
-          <span className="pb-1 text-secondary">8 038</span>
-        </Container>
-        <div className="align-items-start align-top">
-          <OverlayTrigger
-            transition
-            rootClose
-            trigger="click"
-            key="left"
-            placement="left"
-            overlay={
-              <StyledPopover id="popover-positioned-left">
-                <Popover.Body>
-                  <p>
-                    <StyledLink
-                      className="text-decoration-none text-reset d-flex flex-row p-2 fs-5"
-                      href="#"
-                    >
-                      <span className="px-3">
-                        <EmojiFrown />
-                      </span>
-                      Цей твіт мене не цікавить
-                    </StyledLink>
-                  </p>
-                  <p>
-                    <StyledLink
-                      className="text-decoration-none text-reset d-flex flex-row p-2 fs-5"
-                      href="#"
-                    >
-                      <span className="px-3">
-                        <EmojiFrown />
-                      </span>
-                      Цей тренд шкідливий або містить багато спаму
-                    </StyledLink>
-                  </p>
-                </Popover.Body>
-              </StyledPopover>
-            }
-          >
-            <StyledButton
-              className="text-secondary me-2 p-0 rounded-circle"
-              variant="link"
-            >
-              <ThreeDots size={20} />
-            </StyledButton>
-          </OverlayTrigger>
-        </div>
-      </StyledLink>
-      <StyledLink
-        id="trendLink"
-        href="#"
-        className="text-decoration-none text-reset d-flex flex-row py-2"
-      >
-        <Container className="py-2 px-3">
-          <p className="pb-1 text-secondary">Україна · Актуальне</p>
-          <p className="pb-1 fw-bold">#anxiety</p>
-          <span className="pb-1 text-secondary">Твітів: </span>
-          <span className="pb-1 text-secondary">5 038</span>
-        </Container>
-        <div className="align-items-start align-top">
-          <OverlayTrigger
-            transition
-            rootClose
-            trigger="click"
-            key="left"
-            placement="left"
-            overlay={
-              <StyledPopover id="popover-positioned-left">
-                <Popover.Body>
-                  <p>
-                    <StyledLink
-                      className="text-decoration-none text-reset d-flex flex-row p-2 fs-5"
-                      href="#"
-                    >
-                      <span className="px-3">
-                        <EmojiFrown />
-                      </span>
-                      Цей твіт мене не цікавить
-                    </StyledLink>
-                  </p>
-                  <p>
-                    <StyledLink
-                      className="text-decoration-none text-reset d-flex flex-row p-2 fs-5"
-                      href="#"
-                    >
-                      <span className="px-3">
-                        <EmojiFrown />
-                      </span>
-                      Цей тренд шкідливий або містить багато спаму
-                    </StyledLink>
-                  </p>
-                </Popover.Body>
-              </StyledPopover>
-            }
-          >
-            <StyledButton
-              className="text-secondary me-2 p-0 rounded-circle"
-              variant="link"
-            >
-              <ThreeDots size={20} />
-            </StyledButton>
-          </OverlayTrigger>
-        </div>
-      </StyledLink>
-      <StyledLink
-        id="trendLink"
-        href="#"
-        className="text-decoration-none text-reset d-flex flex-row py-2"
-      >
-        <Container className="py-2 px-3">
-          <p className="pb-1 text-secondary">Україна · Актуальне</p>
-          <p className="pb-1 fw-bold">ATACMS</p>
-          <span className="pb-1 text-secondary">Твітів: </span>
-          <span className="pb-1 text-secondary">2 770</span>
-        </Container>
-        <div className="align-items-start align-top">
-          <OverlayTrigger
-            transition
-            rootClose
-            trigger="click"
-            key="left"
-            placement="left"
-            overlay={
-              <StyledPopover id="popover-positioned-left">
-                <Popover.Body>
-                  <p>
-                    <StyledLink
-                      className="text-decoration-none text-reset d-flex flex-row p-2 fs-5"
-                      href="#"
-                    >
-                      <span className="px-3">
-                        <EmojiFrown />
-                      </span>
-                      Цей твіт мене не цікавить
-                    </StyledLink>
-                  </p>
-                  <p>
-                    <StyledLink
-                      className="text-decoration-none text-reset d-flex flex-row p-2 fs-5"
-                      href="#"
-                    >
-                      <span className="px-3">
-                        <EmojiFrown />
-                      </span>
-                      Цей тренд шкідливий або містить багато спаму
-                    </StyledLink>
-                  </p>
-                </Popover.Body>
-              </StyledPopover>
-            }
-          >
-            <StyledButton
-              className="text-secondary me-2 p-0 rounded-circle"
-              variant="link"
-            >
-              <ThreeDots size={20} />
-            </StyledButton>
-          </OverlayTrigger>
-        </div>
-      </StyledLink>
-      <StyledLink
-        href="#"
+        href="/trends"
         className="text-decoration-none text-reset d-flex flex-row py-2"
       >
         <Container className="py-2 px-3">

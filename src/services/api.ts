@@ -1,7 +1,7 @@
 import axios from "axios";
 import jwt_decode, { JwtPayload } from "jwt-decode";
 
-const URI = process.env.REACT_APP_URI;
+const URI = process.env.REACT_APP_SERVER_URL;
 
 const getLocalAccessToken = () => {
   return localStorage.getItem("accessToken");
@@ -70,7 +70,7 @@ instance.interceptors.response.use(
           const rs = await getRefreshToken();
           const { accessToken } = rs.data;
           updateLocalAccessToken(accessToken);
-          return instance(originalConfig);
+          return await instance(originalConfig);
         } catch (_error) {
           return Promise.reject(_error);
         }

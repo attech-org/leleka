@@ -8,8 +8,8 @@ const Wrapper = styled.div``;
 export const RightPanel = () => {
   return (
     <Wrapper className="col-xl-4 col-lg-4">
-      <Search />
-      <Trends />
+      <Search placeholder="Пошук у твіттері" />
+      {!window.location.pathname.includes("/trends") && <Trends />}
       <Recommendations />
     </Wrapper>
   );

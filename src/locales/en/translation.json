@@ -33,5 +33,14 @@
       "mentions": "Mentions"
     },
     "title": "Notifications"
+  },
+  "profile": {
+    "tabsLabel": {
+      "tweets": "Tweets",
+      "tweetsWithReplies": "Tweets & replies",
+      "media": "Media",
+      "likes": "Likes"
+    },
+    "title": "Profile"
   }
 }

@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { ListGroup, ListGroupItem } from "react-bootstrap";
+import { ListGroup, ListGroupItem, TabContainer } from "react-bootstrap";
 import styled from "styled-components";
 
-import FollowerUserItem from "../components/FollowUserItem";
+import { SinglePageHeader } from "../components/PageHeader";
+import { TrendItem } from "../components/TrendItem";
 import InfiniteList from "../containers/InfiniteList";
 import Layout from "../containers/Layout";
-import { FollowStatus } from "../types/constants";
-import { MockUser, PaginationParamsResult } from "../types/mock-api-types";
+import { MockTrend, PaginationParamsResult } from "../types/mock-api-types";
 
 const LiWrapper = styled(ListGroupItem)`
   width: 100%;
@@ -21,11 +21,10 @@ function sleep(ms: number) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
 const RecomendedFollowsPage: React.FunctionComponent = () => {
-  const [mockUsers, setMockUsers] =
-    useState<PaginationParamsResult<MockUser>>();
+  const [mockTrends, setMockTrends] = useState<PaginationParamsResult>();
 
   const fetchAndProcessData = async (page = 1) => {
-    const mockData: Array<MockUser> = [];
+    const mockData: Array<MockTrend> = [];
     const tempPage = page === 1 ? 0 : page;
 
     for (let i = tempPage * 10; i < tempPage * 10 + 10; i++) {
@@ -34,24 +33,16 @@ const RecomendedFollowsPage: React.FunctionComponent = () => {
         .substring(1);
       const suffix: string = i.toString();
       mockData.push({
-        followStatus:
-          i % 2 == 0 ? FollowStatus.FOLLOWED : FollowStatus.UNFOLLOWED,
         id: id,
-        userFirstName: "firstName" + suffix,
-        userLastName: "last name" + suffix,
-        userName: "user name" + suffix,
-        userUrl: "qweqwe",
-        userPhotoUrl:
-          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRyF9H3AGaJdh8zjSZlc4yX3ZSdDGw-kijLQQ&usqp=CAU",
-        userCaption:
-          "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.  ",
-        followers: Math.floor(Math.random() * 1000),
-        following: Math.floor(Math.random() * 1000),
+        categoryName: "category name" + suffix,
+        categoryValue: "category value" + suffix,
+        tweetsCount: Math.floor(Math.random() * 1000),
+        contentRefName: "Zaporizska aes",
       });
     }
     await sleep(2000);
-    setMockUsers({
-      docs: [...(mockUsers?.docs || []), ...mockData],
+    setMockTrends({
+      docs: [...(mockTrends?.docs || []), ...mockData],
       hasNextPage: true,
       limit: 10,
       page: page + 1,
@@ -62,14 +53,16 @@ const RecomendedFollowsPage: React.FunctionComponent = () => {
   }, []);
   return (
     <Layout>
-      {mockUsers && (
+      <SinglePageHeader pageName="Trends" />
+      <TabContainer />
+      {mockTrends && (
         <ListGroup>
           <InfiniteList
             showMore={fetchAndProcessData}
-            data={mockUsers}
+            data={mockTrends}
             itemComponent={(itemData) => (
               <LiWrapper>
-                <FollowerUserItem key={itemData.id} user={itemData} />
+                <TrendItem key={itemData.id} trend={itemData} />
               </LiWrapper>
             )}
           />
