@@ -1,79 +1,7 @@
-// import axios from "axios";
 import { useEffect, useState } from "react";
-// import { ArrowRepeat, Chat, FileCheck, Upload } from "react-bootstrap-icons";
-// import styled from "styled-components";
 
-import SingleTweet from "../components/SingleTweet";
+import FeedSingleTweet from "../components/FeedSingleTweet";
 import { FeedPostData } from "../MOCKS/homeFeedPage";
-
-// const Logo = styled.img`
-//   height: 48px;
-//   width: 48px;
-//   object-fit: cover;
-// `;
-
-// const UnderlineHover = styled.span`
-//   transition-duration: 0.2s;
-
-//   :hover {
-//     text-decoration: underline;
-//   }
-// `;
-
-// const StatisticOfTweet = styled.div`
-//   transition-duration: 0.2s;
-//   :hover {
-//     color: rgb(0, 153, 255);
-//   }
-// `;
-
-// const StatisticOfRetweets = styled.div`
-//   :hover {
-//     color: rgb(41, 228, 166);
-//   }
-// `;
-
-// const HoverBackgroundBlue = styled.div`
-//   :hover {
-//     background: rgb(230, 241, 248);
-//     transition-duration: 0.2s;
-//   }
-// `;
-
-// const HoverBackgroundGreen = styled.div`
-//   :hover {
-//     background: rgb(222, 241, 235);
-//     transition-duration: 0.2s;
-//   }
-// `;
-
-// const StyledFaRetweet = styled(ArrowRepeat)`
-//   width: 20px;
-//   height: 20px;
-// `;
-
-// const StyledFiShare = styled(Upload)`
-//   width: 20px;
-//   height: 20px;
-// `;
-
-// const StyledBiMessageRounded = styled(Chat)`
-//   width: 20px;
-//   height: 20px;
-// `;
-
-// const StyledMdVerified = styled(FileCheck)`
-//   color: rgb(29, 155, 240);
-//   width: 20px;
-//   height: 24px;
-// `;
-
-// const PostWrapper = styled.section`
-//   transition-duration: 0.2s;
-//   :hover {
-//     background: rgba(0, 0, 0, 0.03);
-//   }
-// `;
 
 interface TweetPost {
   id: number;
@@ -144,25 +72,27 @@ const FeedPost = () => {
           retweetCount,
           userNickname,
           userlogo,
-          // isVerified,
+          isVerified,
           // fullName,
           username,
           messageText,
           messageDate,
-          // commentCount,
-          // picture,
+          commentCount,
+          picture,
         }) => (
-          <SingleTweet
+          <FeedSingleTweet
             key={id}
+            id={id}
             likeCount={likeCount}
             retweetCount={retweetCount}
-            lelekaLink={"http://localhost:3000"}
+            isVerified={isVerified}
             tweetDate={messageDate}
-            tweetQuoteCount={0}
+            commentCount={commentCount}
             tweetText={messageText}
             userNickname={userNickname}
             userlogo={userlogo}
             username={username}
+            picture={picture}
           />
         )
       )}

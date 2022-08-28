@@ -3,7 +3,7 @@ import { Gear } from "react-bootstrap-icons";
 import { useTranslation } from "react-i18next";
 import styled from "styled-components";
 
-import FeedPost from "../components/FeedPost";
+import FeedPost from "./FeedPosts";
 import NotificationsPage from "./NotificationsPage";
 import TabsContainer from "./Tabs";
 
