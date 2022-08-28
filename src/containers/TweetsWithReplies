@@ -1,0 +1,14 @@
+import SingleTweet from "../components/SingleTweet";
+import { FeedPostData } from "../MOCKS/homeFeedPage";
+import InfiniteList from "./InfiniteList";
+
+
+export const TweetsWithReplies = () => {
+  return (
+    <InfiniteList
+      itemComponent={(itemData) => <SingleTweet key={itemData.id} {...itemData}}
+      data={FeedPostData}
+      showMore={() => {}}
+    />
+  );
+};
