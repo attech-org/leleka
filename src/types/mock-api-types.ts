@@ -15,9 +15,8 @@ export interface MockUser extends DbEntity {
   followers?: number;
 }
 
-export interface PaginationParamsResult {
-  // eslint-disable-next-line
-  docs: Array<any>;
+export interface PaginationParamsResult<T> {
+  docs: Array<T>;
   limit: number;
   hasNextPage: boolean;
   page: number;
