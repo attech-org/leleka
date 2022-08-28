@@ -97,7 +97,7 @@ const IconBg = styled.div<IIconBg>`
   }
 `;
 
-interface SingleTweetInterface {
+export interface SingleTweetInterface {
   userlogo: string;
   username: string;
   userNickname: string;
