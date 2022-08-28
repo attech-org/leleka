@@ -3,8 +3,8 @@ import { Gear } from "react-bootstrap-icons";
 import { useTranslation } from "react-i18next";
 import styled from "styled-components";
 
-import FeedPost from "../components/FeedPost";
 import { TabKeyProps } from "../types/tabs-types";
+import FeedPost from "./FeedPosts";
 import NotificationsPage from "./NotificationsPage";
 import TabsContainer from "./Tabs";
 
@@ -25,14 +25,14 @@ const NotificationsList = ({ tabKey }: TabKeyProps) => {
   const tabsData = [
     {
       label: t("notifications.tabsLabel.all"),
-      content: <NotificationsPage tabKey="All" />,
-      key: "All",
+      content: <NotificationsPage tabKey="all" />, // tabKey="all" prop is not required for logic, but requiered for TypeScript
+      key: "all",
       route: "/notifications",
     },
     {
       label: t("notifications.tabsLabel.mentions"),
       content: <FeedPost />,
-      key: "Mentions",
+      key: "mentions",
       route: "/notifications/mentions",
     },
   ];

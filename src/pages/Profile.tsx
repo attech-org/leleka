@@ -25,27 +25,27 @@ const ProfilePage = ({ tabKey }: TabKeyProps) => {
     {
       label: t("profile.tabsLabel.tweets"),
       content: "Tweets",
-      key: "Tweets",
+      key: "tweets",
       route: "/profile",
     },
 
     {
       label: t("profile.tabsLabel.tweetsWithReplies"),
       content: "Tweets & replies",
-      key: "Tweets & replies",
+      key: "tweets-with-replies",
       route: "/profile/with_replies",
     },
 
     {
       label: t("profile.tabsLabel.media"),
       content: "Media",
-      key: "Media",
+      key: "media",
       route: "/profile/media",
     },
     {
       label: t("profile.tabsLabel.likes"),
       content: "Likes",
-      key: "Likes",
+      key: "likes",
       route: "/profile/likes",
     },
   ];
