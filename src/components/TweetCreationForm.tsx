@@ -49,13 +49,13 @@ const TweetCreationForm: React.FC = () => {
     "translation:tweetCreationForm.whoCanAnswer.button.all"
   );
   const handleTweetButton = (): void => {
-    console.log("Tweeted");
+    console.warn("Tweeted");
   };
   const handleImgUpload = (): void => {
-    console.log("Img Upload");
+    console.warn("Img Upload");
   };
   const handleEmojiPaste = (): void => {
-    console.log("Emoji paste");
+    console.warn("Emoji paste");
   };
   return (
     <div>
@@ -71,6 +71,7 @@ const TweetCreationForm: React.FC = () => {
             src="http://dummyimage.com/105x100.png/5fa2dd/ffffff"
             width="48px"
             height="48px"
+            alt="avatar"
           />
         </div>
         <div className="flex-grow-1 ms-2">

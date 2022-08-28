@@ -70,7 +70,7 @@ instance.interceptors.response.use(
           const rs = await getRefreshToken();
           const { accessToken } = rs.data;
           updateLocalAccessToken(accessToken);
-          return await instance(originalConfig);
+          return instance(originalConfig);
         } catch (_error) {
           return Promise.reject(_error);
         }
