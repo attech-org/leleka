@@ -29,11 +29,24 @@ const App: React.FunctionComponent = () => {
         <Route path="/" element={<HomePage />} />
         <Route path="/about" element={<AboutPage />} />
         <Route path="/explore" element={<ExplorePage />} />
-        <Route path="/notifications" element={<NotificationsPage />} />
+        <Route
+          path="/notifications"
+          element={<NotificationsPage tabKey="all" />}
+        />
+        <Route
+          path="/notifications/mentions"
+          element={<NotificationsPage tabKey="mentions" />}
+        />
         <Route path="/messages" element={<MessagesPage />} />
         <Route path="/bookmarks" element={<BookmarksPage />} />
         <Route path="/lists" element={<ListsPage />} />
-        <Route path="/profile" element={<ProfilePage />} />
+        <Route path="/profile" element={<ProfilePage tabKey="tweets" />} />
+        <Route
+          path="/profile/with_replies"
+          element={<ProfilePage tabKey="tweets-with-replies" />}
+        />
+        <Route path="/profile/media" element={<ProfilePage tabKey="media" />} />
+        <Route path="/profile/likes" element={<ProfilePage tabKey="likes" />} />
         <Route path="/more" element={<MorePage />} />
         <Route path="/authorization" element={<AuthorizationPage />} />
         <Route path="/followers" element={<Followers />} />

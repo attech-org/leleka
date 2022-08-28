@@ -3,6 +3,7 @@ import { Gear } from "react-bootstrap-icons";
 import { useTranslation } from "react-i18next";
 import styled from "styled-components";
 
+import { TabKeyProps } from "../types/tabs-types";
 import FeedPost from "./FeedPosts";
 import NotificationsPage from "./NotificationsPage";
 import TabsContainer from "./Tabs";
@@ -18,19 +19,21 @@ const StyledButton = styled(Button)`
   }
 `;
 
-const NotificationsList = () => {
+const NotificationsList = ({ tabKey }: TabKeyProps) => {
   const { t } = useTranslation();
 
   const tabsData = [
     {
       label: t("notifications.tabsLabel.all"),
-      content: <NotificationsPage />,
-      key: "All",
+      content: <NotificationsPage tabKey="all" />, // tabKey="all" prop is not required for logic, but requiered for TypeScript
+      key: "all",
+      route: "/notifications",
     },
     {
       label: t("notifications.tabsLabel.mentions"),
       content: <FeedPost />,
-      key: "Mentions",
+      key: "mentions",
+      route: "/notifications/mentions",
     },
   ];
 
@@ -50,7 +53,7 @@ const NotificationsList = () => {
           </StyledButton>
         </div>
       </div>
-      <TabsContainer tabsData={tabsData} defaultActiveKey="All" />
+      <TabsContainer tabsData={tabsData} defaultActiveKey={tabKey} />
     </div>
   );
 };
