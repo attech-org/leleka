@@ -28,14 +28,14 @@ export const TrendItem = ({ trend }: { trend: MockTrend }) => {
       <ContextMenu
         contextItems={[
           {
-            itemId: trend.id,
+            itemId: `context_menu_trend_${trend.id}__interested`,
             contextItemText: "Цей твіт мене не цікавить",
             onClick: async () => {
               return;
             },
           },
           {
-            itemId: trend.id,
+            itemId: `context_menu_trend_${trend.id}__spam_report`,
             contextItemText: "Цей тренд шкідливий або містить багато спаму",
             onClick: async () => {
               return;
