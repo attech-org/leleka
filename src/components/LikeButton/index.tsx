@@ -26,7 +26,6 @@ const Like = styled.div`
   display: flex;
   align-items: center;
   height: 38.5px;
-  width: 20%;
   &:hover {
     color: ${Red};
   }
