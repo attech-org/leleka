@@ -1,5 +1,6 @@
 import Layout from "../containers/Layout";
 import TabsContainer from "../containers/Tabs";
+import { TweetsWithReplies } from "../containers/TweetsWithReplies";
 
 const ProfilePage: React.FunctionComponent = () => {
   const tabsData = [
@@ -11,7 +12,7 @@ const ProfilePage: React.FunctionComponent = () => {
 
     {
       label: "Tweets & replies",
-      content: "Tweets & replies",
+      content: { TweetsWithReplies },
       key: "Tweets & replies",
     },
 
