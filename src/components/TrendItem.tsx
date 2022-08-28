@@ -2,7 +2,7 @@ import { Container } from "react-bootstrap";
 import styled from "styled-components";
 
 import { MockTrend } from "../types/mock-api-types";
-import { DotsDropDown } from "./ThreeDotedButton";
+import { ContextMenu } from "./ContextMenu";
 
 const StyledLink = styled.a`
   transition: 0.3s;
@@ -25,7 +25,24 @@ export const TrendItem = ({ trend }: { trend: MockTrend }) => {
         <span className="pb-1 text-secondary">Твітів: </span>
         <span className="pb-1 text-secondary">{trend.tweetsCount}</span>
       </Container>
-      <DotsDropDown />
+      <ContextMenu
+        contextItems={[
+          {
+            itemId: trend.id,
+            contextItemText: "Цей твіт мене не цікавить",
+            onClick: async () => {
+              return;
+            },
+          },
+          {
+            itemId: trend.id,
+            contextItemText: "Цей тренд шкідливий або містить багато спаму",
+            onClick: async () => {
+              return;
+            },
+          },
+        ]}
+      />
     </StyledLink>
   );
 };

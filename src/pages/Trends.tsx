@@ -37,7 +37,7 @@ const RecomendedFollowsPage: React.FunctionComponent = () => {
         categoryName: "category name" + suffix,
         categoryValue: "category value" + suffix,
         tweetsCount: Math.floor(Math.random() * 1000),
-        contentRefName: "Zaporizska ass",
+        contentRefName: "Zaporizska aes",
       });
     }
     await sleep(2000);
@@ -53,7 +53,7 @@ const RecomendedFollowsPage: React.FunctionComponent = () => {
   }, []);
   return (
     <Layout>
-      <SinglePageHeader />
+      <SinglePageHeader pageName="Trends" />
       <TabContainer />
       {mockTrends && (
         <ListGroup>

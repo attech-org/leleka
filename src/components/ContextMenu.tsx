@@ -2,10 +2,11 @@ import { OverlayTrigger, Popover, Button } from "react-bootstrap";
 import { ThreeDots, EmojiFrown } from "react-bootstrap-icons";
 import styled from "styled-components";
 
-const StyledLink = styled.a`
+const StyledLink = styled.div`
   transition: 0.3s;
   :hover {
     background-color: rgba(0, 0, 0, 0.03);
+    cursor: pointer;
   }
 `;
 
@@ -32,7 +33,16 @@ const StyledButton = styled(Button)`
   }
 `;
 
-export const DotsDropDown = () => {
+export interface ContextMenuItemProp {
+  itemId: string;
+  contextItemText: string;
+  onClick: (id?: string) => void;
+}
+export const ContextMenu = ({
+  contextItems,
+}: {
+  contextItems: Array<ContextMenuItemProp>;
+}) => {
   return (
     <div className="align-items-start align-top">
       <OverlayTrigger
@@ -44,28 +54,23 @@ export const DotsDropDown = () => {
         overlay={
           <StyledPopover id="popover-positioned-left">
             <Popover.Body>
-              <p>
-                <StyledLink
-                  className="text-decoration-none text-reset d-flex flex-row p-2 fs-5"
-                  href="#"
-                >
-                  <span className="px-3">
-                    <EmojiFrown />
-                  </span>
-                  Цей твіт мене не цікавить
-                </StyledLink>
-              </p>
-              <p>
-                <StyledLink
-                  className="text-decoration-none text-reset d-flex flex-row p-2 fs-5"
-                  href="#"
-                >
-                  <span className="px-3">
-                    <EmojiFrown />
-                  </span>
-                  Цей тренд шкідливий або містить багато спаму
-                </StyledLink>
-              </p>
+              {contextItems &&
+                contextItems.map((ci) => {
+                  return (
+                    <StyledLink
+                      key={ci.itemId}
+                      className="text-decoration-none text-reset d-flex flex-row p-2 fs-5"
+                      onClick={() => {
+                        ci.onClick();
+                      }}
+                    >
+                      <span className="px-3">
+                        <EmojiFrown />
+                      </span>
+                      {ci.contextItemText}
+                    </StyledLink>
+                  );
+                })}
             </Popover.Body>
           </StyledPopover>
         }
