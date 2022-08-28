@@ -13,6 +13,7 @@ import MessagesPage from "./pages/Messages";
 import MorePage from "./pages/More";
 import NotificationsPage from "./pages/Notifications";
 import ProfilePage from "./pages/Profile";
+import Trends from "./pages/Trends";
 
 const App: React.FunctionComponent = () => {
   const { i18n } = useTranslation();
@@ -50,6 +51,7 @@ const App: React.FunctionComponent = () => {
         <Route path="/more" element={<MorePage />} />
         <Route path="/authorization" element={<AuthorizationPage />} />
         <Route path="/followers" element={<Followers />} />
+        <Route path="/trends" element={<Trends />} />
       </Routes>
     </div>
   );

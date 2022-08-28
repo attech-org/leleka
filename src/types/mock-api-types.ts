@@ -21,3 +21,11 @@ export interface PaginationParamsResult<T> {
   hasNextPage: boolean;
   page: number;
 }
+
+export interface MockTrend extends DbEntity {
+  categoryName: string;
+  categoryValue: string;
+  contentRefName: string;
+
+  tweetsCount: number;
+}
