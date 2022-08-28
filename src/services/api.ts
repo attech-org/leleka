@@ -1,7 +1,7 @@
 import axios from "axios";
 import jwt_decode, { JwtPayload } from "jwt-decode";
 
-const URI = process.env.REACT_APP_URI;
+const URI = process.env.REACT_APP_SERVER_URL;
 
 const getLocalAccessToken = () => {
   return localStorage.getItem("accessToken");

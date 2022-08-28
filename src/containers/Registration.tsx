@@ -203,7 +203,7 @@ const Registration = () => {
   return (
     <>
       <ModalUniversal
-        buttonName={registrationButtonName}
+        button={registrationButtonName}
         title={registrationTitle}
         content={registerForm}
       />

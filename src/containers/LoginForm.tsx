@@ -139,7 +139,7 @@ const LoginForm = () => {
   return (
     <>
       <ModalUniversal
-        buttonName={"Login"}
+        button={"Login"}
         title={"Login"}
         content={LoginFormContainer}
       />
