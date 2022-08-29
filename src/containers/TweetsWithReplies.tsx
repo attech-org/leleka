@@ -8,7 +8,17 @@ export const TweetsWithReplies = () => {
       data={FeedPostData}
       showMore={() => {}}
       itemComponent={(itemData) => (
-        <SingleTweet key={itemData.id} {...itemData} />
+        <SingleTweet
+          userlogo={""}
+          username={""}
+          userNickname={""}
+          tweetText={""}
+          tweetDate={""}
+          retweetCount={0}
+          tweetQuoteCount={0}
+          likeCount={0}
+          {...itemData}
+        />
       )}
     />
   );
