@@ -9,6 +9,7 @@ import {
   Flag,
   ThreeDots,
 } from "react-bootstrap-icons";
+import { useTranslation } from "react-i18next";
 import styled from "styled-components";
 
 import LikeButton from "./LikeButton/index";
@@ -117,6 +118,7 @@ const FeedSingleTweet = ({
   retweetCount,
   likeCount,
 }: Tweet) => {
+  const { t } = useTranslation();
   return (
     <>
       <PostWrapper
@@ -163,7 +165,7 @@ const FeedSingleTweet = ({
                           <span className="px-2">
                             <PersonX />
                           </span>
-                          Не читати {userNickname}
+                          {`${t("SingleTweetMenu.stopFollow")} ${userNickname}`}
                         </StyledLink>
                       </p>
                       <p>
@@ -174,7 +176,9 @@ const FeedSingleTweet = ({
                           <span className="px-2">
                             <ClipboardPlus />
                           </span>
-                          Додати {userNickname} до списку
+                          {`${t("SingleTweetMenu.add")} ${userNickname} ${t(
+                            "SingleTweetMenu.toList"
+                          )}`}
                         </StyledLink>
                       </p>
                       <p>
@@ -185,7 +189,7 @@ const FeedSingleTweet = ({
                           <span className="px-2">
                             <Flag />
                           </span>
-                          Поскаржитись на твіт
+                          {t("SingleTweetMenu.report")}
                         </StyledLink>
                       </p>
                     </Popover.Body>
