@@ -28,12 +28,11 @@ const LinkPreview = ({ url }: PropsUrl) => {
   const [response, setResponse] = useState(MOCK);
 
   useEffect(() => {
-    customFetcher(url).then((res) => {
-      if (res.image[0] !== "h") {
-        res.image = "https://" + res.hostname + res.image;
-      }
+    const getResponse = async () => {
+      const res = await customFetcher(url);
       setResponse(res);
-    });
+    };
+    getResponse();
   }, []);
 
   return (
@@ -49,7 +48,9 @@ const LinkPreview = ({ url }: PropsUrl) => {
           variant="light"
         >
           {response.siteName}
-          <span className="mb-1 mx-1">.</span>
+          {response.siteName !== "" && response.hostname !== "" && (
+            <span className="mb-1 mx-1">.</span>
+          )}
           {response.hostname}
         </Button>
       </Card.Body>
