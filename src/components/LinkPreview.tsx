@@ -27,11 +27,12 @@ const LinkPreview = ({ url }: PropsUrl) => {
 
   const [response, setResponse] = useState(MOCK);
 
+  const getResponse = async () => {
+    const res = await customFetcher(url);
+    setResponse(res);
+  };
+
   useEffect(() => {
-    const getResponse = async () => {
-      const res = await customFetcher(url);
-      setResponse(res);
-    };
     getResponse();
   }, []);
 
