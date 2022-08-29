@@ -15,7 +15,7 @@ export interface MockUser extends DbEntity {
   followers?: number;
 }
 
-export interface PaginationParamsResult<T> {
+export interface PaginationParamsResult<T = object> {
   docs: Array<T>;
   limit: number;
   hasNextPage: boolean;

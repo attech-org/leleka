@@ -21,7 +21,8 @@ function sleep(ms: number) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
 const RecomendedFollowsPage: React.FunctionComponent = () => {
-  const [mockTrends, setMockTrends] = useState<PaginationParamsResult>();
+  const [mockTrends, setMockTrends] =
+    useState<PaginationParamsResult<MockTrend>>();
 
   const fetchAndProcessData = async (page = 1) => {
     const mockData: Array<MockTrend> = [];
@@ -57,7 +58,7 @@ const RecomendedFollowsPage: React.FunctionComponent = () => {
       <TabContainer />
       {mockTrends && (
         <ListGroup>
-          <InfiniteList
+          <InfiniteList<MockTrend>
             showMore={fetchAndProcessData}
             data={mockTrends}
             itemComponent={(itemData) => (
