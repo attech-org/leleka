@@ -1,25 +1,11 @@
 import { useEffect, useState } from "react";
 
 import FeedSingleTweet from "../components/FeedSingleTweet";
-import { FeedPostData } from "../MOCKS/homeFeedPage";
+import MOCKTweets from "../MOCKS/tweets";
+import { Tweet } from "../types";
 
-interface TweetPost {
-  id: number;
-  fullName: string;
-  username: string;
-  userNickname: string;
-  messageText: string;
-  messageDate: string;
-  isVerified: boolean;
-  picture: string;
-  userlogo: string;
-  commentCount: number;
-  retweetCount: number;
-  likeCount: number;
-}
-
-const FeedPost = () => {
-  const [posts, setPosts] = useState<TweetPost[]>([]);
+const FeedPostsContainer = () => {
+  const [posts, setPosts] = useState<Tweet[]>([]);
   // const [currentPage, setCurrentPage] = useState(1);
   const [firstArg, setFirstArg] = useState(0);
   const [secondArg, setSecondArg] = useState(10);
@@ -51,7 +37,7 @@ const FeedPost = () => {
 
       setFirstArg((prevState) => prevState + 5);
       setSecondArg((prevState) => prevState + 5);
-      setPosts([...posts, ...FeedPostData.slice(firstArg, secondArg)]);
+      setPosts([...posts, ...MOCKTweets.slice(firstArg, secondArg)]);
       setIsFetching(false);
     }
   }, [isFetching]);
@@ -65,39 +51,11 @@ const FeedPost = () => {
 
   return (
     <>
-      {posts.map(
-        ({
-          id,
-          likeCount,
-          retweetCount,
-          userNickname,
-          userlogo,
-          isVerified,
-          // fullName,
-          username,
-          messageText,
-          messageDate,
-          commentCount,
-          picture,
-        }) => (
-          <FeedSingleTweet
-            key={id}
-            id={id}
-            likeCount={likeCount}
-            retweetCount={retweetCount}
-            isVerified={isVerified}
-            tweetDate={messageDate}
-            commentCount={commentCount}
-            tweetText={messageText}
-            userNickname={userNickname}
-            userlogo={userlogo}
-            username={username}
-            picture={picture}
-          />
-        )
-      )}
+      {posts.map((postData) => (
+        <FeedSingleTweet key={postData.id} {...postData} />
+      ))}
     </>
   );
 };
 
-export default FeedPost;
+export default FeedPostsContainer;
