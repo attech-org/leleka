@@ -12,6 +12,7 @@ import {
 import { useTranslation } from "react-i18next";
 import styled from "styled-components";
 
+import { Tweet } from "../types";
 import LikeButton from "./LikeButton/index";
 
 const PostWrapper = styled.section`
@@ -91,20 +92,6 @@ const StyledButton = styled(Button)`
   }
 `;
 
-interface Tweet {
-  id: number;
-  username: string;
-  userNickname: string;
-  tweetText: string;
-  tweetDate: string;
-  isVerified?: boolean;
-  picture?: string;
-  userlogo: string;
-  commentCount: number;
-  retweetCount: number;
-  likeCount: number;
-}
-
 const FeedSingleTweet = ({
   id,
   username,
@@ -112,7 +99,6 @@ const FeedSingleTweet = ({
   tweetText,
   tweetDate,
   isVerified,
-  picture,
   userlogo,
   commentCount,
   retweetCount,
@@ -208,7 +194,7 @@ const FeedSingleTweet = ({
           <div className="px-3 py-2">
             <div className="">{tweetText}</div>
 
-            <img className="w-100 rounded-4 mt-3" alt="" src={picture} />
+            <img className="w-100 rounded-4 mt-3" alt="" src={userlogo} />
           </div>
           <div className="px-3 d-flex justify-content-between align-items-center">
             <StatisticOfTweet className="d-flex align-items-center justify-content-center">
