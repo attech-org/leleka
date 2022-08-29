@@ -49,7 +49,7 @@ const LinkPreview = ({ url }: PropsUrl) => {
           variant="light"
         >
           {response.siteName}
-          {response.siteName !== "" && response.hostname !== "" && (
+          {response.siteName && response.hostname && (
             <span className="mb-1 mx-1">.</span>
           )}
           {response.hostname}
