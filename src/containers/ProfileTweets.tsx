@@ -1,24 +1,24 @@
 import React, { useEffect, useState } from "react";
 
 import SingleTweet from "../components/SingleTweet";
-import { FeedPostData } from "../MOCKS/homeFeedPage";
-// import { FollowStatus } from "../types/constants";
+import MOCKTweets from "../MOCKS/tweets";
+import { Tweet } from "../types";
 import { PaginationParamsResult } from "../types/mock-api-types";
-import { TweetPost } from "./FeedPosts";
 import InfiniteList from "./InfiniteList";
-// import Layout from "./Layout";
 
 function sleep(ms: number) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
-const ProfileTweetsPage: React.FunctionComponent = () => {
-  const [mockUsers, setMockUsers] = useState<PaginationParamsResult>();
-  const [firstArg, setFirstArg] = useState(0);
-  const [secondArg, setSecondArg] = useState(10);
+const ProfileTweets: React.FunctionComponent = () => {
+  const [mockUsers, setMockUsers] = useState<PaginationParamsResult<Tweet>>();
 
-  const fetchAndProcessData = async (page = 0) => {
-    const mockData: Array<TweetPost> = FeedPostData.slice(firstArg, secondArg);
+  const fetchData = async (page = 0) => {
+    let firstArg = 0;
+    if (mockUsers?.docs.length) {
+      firstArg = mockUsers?.docs.length + 1;
+    }
+    const mockData: Array<Tweet> = MOCKTweets.slice(firstArg, firstArg + 10);
 
     await sleep(2000);
     setMockUsers({
@@ -27,20 +27,17 @@ const ProfileTweetsPage: React.FunctionComponent = () => {
       limit: 10,
       page: page + 1,
     });
-
-    setFirstArg((prevState) => prevState + 10);
-    setSecondArg((prevState) => prevState + 10);
   };
 
   useEffect(() => {
-    fetchAndProcessData();
+    fetchData();
   }, []);
 
   return (
     <>
       {mockUsers && (
-        <InfiniteList
-          showMore={fetchAndProcessData}
+        <InfiniteList<Tweet>
+          showMore={fetchData}
           data={mockUsers}
           itemComponent={(itemData) => (
             <SingleTweet key={itemData.id} {...itemData} />
@@ -51,4 +48,4 @@ const ProfileTweetsPage: React.FunctionComponent = () => {
   );
 };
 
-export default ProfileTweetsPage;
+export default ProfileTweets;

@@ -11,6 +11,7 @@ import {
 } from "react-bootstrap-icons";
 import styled from "styled-components";
 
+import { Tweet } from "../types";
 import AttachedContent from "./AttachedContent";
 import LikeButton from "./LikeButton";
 
@@ -97,19 +98,7 @@ const IconBg = styled.div<IIconBg>`
   }
 `;
 
-interface SingleTweetInterface {
-  userlogo: string;
-  username: string;
-  userNickname: string;
-  tweetText: string;
-  tweetDate: string;
-  lelekaLink?: string;
-  retweetCount: number;
-  tweetQuoteCount: number;
-  likeCount: number;
-}
-
-const SingleTweet: React.FC<SingleTweetInterface> = ({
+const SingleTweet: React.FC<Tweet> = ({
   userlogo,
   username,
   userNickname,
