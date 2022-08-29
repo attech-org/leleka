@@ -61,6 +61,7 @@ const BookmarksList: React.FC = () => {
           </div>
         </StyledDiv>
       </StyledNavbar>
+
       {bookmarksData.map((item) => (
         <Bookmark
           key={item.id}

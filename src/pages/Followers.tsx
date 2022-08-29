@@ -21,7 +21,8 @@ function sleep(ms: number) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
 const RecomendedFollowsPage: React.FunctionComponent = () => {
-  const [mockUsers, setMockUsers] = useState<PaginationParamsResult>();
+  const [mockUsers, setMockUsers] =
+    useState<PaginationParamsResult<MockUser>>();
 
   const fetchAndProcessData = async (page = 1) => {
     const mockData: Array<MockUser> = [];
