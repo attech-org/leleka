@@ -11,6 +11,7 @@ export default [
     retweetCount: 84,
     tweetQuoteCount: 88,
     likeCount: 69,
+    isVerified: true,
   },
   {
     id: "1085d719-a9a2-49bf-a8e5-71ff96b01e3d",
@@ -39,6 +40,7 @@ export default [
     retweetCount: 20,
     tweetQuoteCount: 64,
     likeCount: 90,
+    isVerified: true,
   },
   {
     id: "7a50a39d-e848-47ed-929d-ccc415c3a81e",
@@ -67,6 +69,7 @@ export default [
     retweetCount: 37,
     tweetQuoteCount: 55,
     likeCount: 99,
+    isVerified: true,
   },
   {
     id: "ea94b655-d92c-4b13-a778-0af31bcb680f",
@@ -94,6 +97,7 @@ export default [
     retweetCount: 13,
     tweetQuoteCount: 8,
     likeCount: 74,
+    isVerified: true,
   },
   {
     id: "18850358-a3e0-4eee-95c3-2ba1d902ebf3",
