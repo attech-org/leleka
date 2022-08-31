@@ -1,18 +1,16 @@
 import InfiniteScroll from "react-infinite-scroller";
 
 import { PaginationParamsResult } from "../types/mock-api-types";
-export interface InfiniteScrollerListProps {
-  // eslint-disable-next-line
-  showMore(page: number): any;
-  data: PaginationParamsResult;
-  // eslint-disable-next-line
-  itemComponent: (item: any) => JSX.Element;
+export interface InfiniteScrollerListProps<T> {
+  showMore(page: number): void;
+  data: PaginationParamsResult<T>;
+  itemComponent: (item: T) => JSX.Element;
 }
-const InfiniteList = ({
+const InfiniteList = <T extends object>({
   data,
   itemComponent,
   showMore,
-}: InfiniteScrollerListProps) => {
+}: InfiniteScrollerListProps<T>) => {
   return (
     <InfiniteScroll
       loadMore={showMore}

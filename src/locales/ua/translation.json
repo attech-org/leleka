@@ -33,5 +33,20 @@
       "mentions": "Згадки"
     },
     "title": "Сповіщення"
+  },
+  "profile": {
+    "tabsLabel": {
+      "tweets": "Твіти",
+      "tweetsWithReplies": "Твіти і відповіді",
+      "media": "Медіафайли",
+      "likes": "Вподобання"
+    },
+    "title": "Профіль"
+  },
+  "SingleTweetMenu": {
+    "stopFollow": "Не читати",
+    "add": "Додати",
+    "toList": "до списку",
+    "report": "Поскаржитись на твіт"
   }
 }

@@ -15,10 +15,17 @@ export interface MockUser extends DbEntity {
   followers?: number;
 }
 
-export interface PaginationParamsResult {
-  // eslint-disable-next-line
-  docs: Array<any>;
+export interface PaginationParamsResult<T = object> {
+  docs: Array<T>;
   limit: number;
   hasNextPage: boolean;
   page: number;
+}
+
+export interface MockTrend extends DbEntity {
+  categoryName: string;
+  categoryValue: string;
+  contentRefName: string;
+
+  tweetsCount: number;
 }

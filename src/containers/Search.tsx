@@ -16,7 +16,7 @@ const StyledInputGroup = styled(InputGroup)`
   }
 `;
 
-const Search = () => {
+const Search = ({ placeholder }: { placeholder: string }) => {
   return (
     <StyledForm className="justify-content-center align-items-center mx-1 my-2 rounded-pill bg-light px-3 py-1">
       <StyledInputGroup
@@ -28,7 +28,7 @@ const Search = () => {
           className="border-0 bg-light px-3 fs-6"
           size="sm"
           type="text"
-          placeholder="Пошук у твіттері"
+          placeholder={placeholder}
         />
       </StyledInputGroup>
     </StyledForm>

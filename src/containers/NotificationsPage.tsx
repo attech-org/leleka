@@ -1,5 +1,6 @@
 import SingleNotification from "../components/SingleNotification";
 import { notificationPageMocks } from "../MOCKS/notificationsPage";
+import { TabKeyProps } from "../types/tabs-types";
 
 const Notifications = notificationPageMocks.map(
   ({ id, username, userlogo, content, mentionedTweets, retweet }) => (
@@ -15,8 +16,13 @@ const Notifications = notificationPageMocks.map(
   )
 );
 
-const NotificationsPage = () => {
-  return <>{Notifications}</>;
+const NotificationsPage = ({ tabKey }: TabKeyProps) => {
+  return (
+    <>
+      {Notifications}
+      tabKey={tabKey}
+    </>
+  );
 };
 
 export default NotificationsPage;

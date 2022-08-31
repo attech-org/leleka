@@ -17,6 +17,7 @@ interface TabsDataProps {
   label: string;
   content?: JSX.Element | string;
   key: string;
+  route: string;
 }
 
 interface LinkTabsDataProps {
@@ -35,12 +36,21 @@ interface LinkTabsProps {
 }
 
 const TabsContainer = ({ tabsData, defaultActiveKey }: TabsProps) => {
+  const navigate = useNavigate();
+
   return (
     <StyledTabs
       defaultActiveKey={defaultActiveKey}
       id="justify-tab-example"
       fill
       variant="flat"
+      onSelect={(e) => {
+        tabsData.map(({ key, route }: TabsDataProps) => {
+          if (key === e) {
+            navigate(route);
+          }
+        });
+      }}
     >
       {tabsData.map(({ label, content, key }: TabsDataProps) => {
         return (
