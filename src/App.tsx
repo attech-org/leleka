@@ -7,6 +7,7 @@ import AuthorizationPage from "./pages/Authorization";
 import BookmarksPage from "./pages/Bookmarks";
 import ExplorePage from "./pages/Explore";
 import Followers from "./pages/Followers";
+import Following from "./pages/Following";
 import HomePage from "./pages/Home";
 import ListsPage from "./pages/Lists";
 import MessagesPage from "./pages/Messages";
@@ -37,6 +38,7 @@ const App: React.FunctionComponent = () => {
         <Route path="/more" element={<MorePage />} />
         <Route path="/authorization" element={<AuthorizationPage />} />
         <Route path="/followers" element={<Followers />} />
+        <Route path="/following" element={<Following />} />
       </Routes>
     </div>
   );

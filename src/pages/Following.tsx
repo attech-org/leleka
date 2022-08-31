@@ -74,7 +74,7 @@ const RecomendedFollowsPage: React.FunctionComponent = () => {
   }, []);
   return (
     <Layout>
-      <LinkTabsContainer tabsData={tabsData} defaultActiveKey={"/followers"} />
+      <LinkTabsContainer tabsData={tabsData} defaultActiveKey={"/following"} />
       {mockUsers && (
         <ListGroup>
           <InfiniteList
