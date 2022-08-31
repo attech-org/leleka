@@ -4,7 +4,8 @@ import { useEffect, useState } from "react";
 // import styled from "styled-components";
 
 import SingleTweet from "../components/SingleTweet";
-import { FeedPostData } from "../MOCKS/homeFeedPage";
+import MOCKTweets from "../MOCKS/tweets";
+import { Tweet } from "../types";
 
 // const Logo = styled.img`
 //   height: 48px;
@@ -75,23 +76,8 @@ import { FeedPostData } from "../MOCKS/homeFeedPage";
 //   }
 // `;
 
-interface TweetPost {
-  id: number;
-  fullName: string;
-  username: string;
-  userNickname: string;
-  messageText: string;
-  messageDate: string;
-  isVerified: boolean;
-  picture: string;
-  userlogo: string;
-  commentCount: number;
-  retweetCount: number;
-  likeCount: number;
-}
-
-const FeedPost = () => {
-  const [posts, setPosts] = useState<TweetPost[]>([]);
+const FeedPostsContainer = () => {
+  const [posts, setPosts] = useState<Tweet[]>([]);
   // const [currentPage, setCurrentPage] = useState(1);
   const [firstArg, setFirstArg] = useState(0);
   const [secondArg, setSecondArg] = useState(10);
@@ -123,7 +109,7 @@ const FeedPost = () => {
 
       setFirstArg((prevState) => prevState + 5);
       setSecondArg((prevState) => prevState + 5);
-      setPosts([...posts, ...FeedPostData.slice(firstArg, secondArg)]);
+      setPosts([...posts, ...MOCKTweets.slice(firstArg, secondArg)]);
       setIsFetching(false);
     }
   }, [isFetching]);
@@ -137,37 +123,11 @@ const FeedPost = () => {
 
   return (
     <>
-      {posts.map(
-        ({
-          id,
-          likeCount,
-          retweetCount,
-          userNickname,
-          userlogo,
-          // isVerified,
-          // fullName,
-          username,
-          messageText,
-          messageDate,
-          // commentCount,
-          // picture,
-        }) => (
-          <SingleTweet
-            key={id}
-            likeCount={likeCount}
-            retweetCount={retweetCount}
-            lelekaLink={"http://localhost:3000"}
-            tweetDate={messageDate}
-            tweetQuoteCount={0}
-            tweetText={messageText}
-            userNickname={userNickname}
-            userlogo={userlogo}
-            username={username}
-          />
-        )
-      )}
+      {posts.map((postData) => (
+        <SingleTweet key={postData.id} {...postData} />
+      ))}
     </>
   );
 };
 
-export default FeedPost;
+export default FeedPostsContainer;
