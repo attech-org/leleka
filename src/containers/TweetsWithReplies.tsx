@@ -7,20 +7,7 @@ export const TweetsWithReplies: React.FunctionComponent = () => {
     <InfiniteList
       data={tweets}
       showMore={() => {}}
-      itemComponent={(itemData) => (
-        <SingleTweet
-          id={""}
-          userlogo={""}
-          username={""}
-          userNickname={""}
-          tweetText={""}
-          tweetDate={""}
-          retweetCount={0}
-          tweetQuoteCount={0}
-          likeCount={0}
-          {...itemData}
-        />
-      )}
+      itemComponent={(itemData) => <SingleTweet {...itemData} />}
     />
   );
 };
