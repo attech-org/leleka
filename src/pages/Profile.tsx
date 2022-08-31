@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 import styled from "styled-components";
 
 import Layout from "../containers/Layout";
+import ProfileTweets from "../containers/ProfileTweets";
 import TabsContainer from "../containers/Tabs";
 import { TabKeyProps } from "../types/tabs-types";
 
@@ -24,7 +25,7 @@ const ProfilePage = ({ tabKey }: TabKeyProps) => {
   const tabsData = [
     {
       label: t("profile.tabsLabel.tweets"),
-      content: "Tweets",
+      content: <ProfileTweets />,
       key: "tweets",
       route: "/profile",
     },
