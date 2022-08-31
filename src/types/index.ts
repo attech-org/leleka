@@ -9,4 +9,6 @@ export interface Tweet {
   retweetCount: number;
   tweetQuoteCount: number;
   likeCount: number;
+  commentCount?: number;
+  isVerified?: boolean;
 }
