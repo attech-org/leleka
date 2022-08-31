@@ -24,7 +24,7 @@ const sampleSchema = yup.object().shape({
 
 const StyledContainer = styled(Container)`
   height: 650px;
-  width: auto;
+  width: 600px;
 `;
 
 const LoginForm = () => {
@@ -44,7 +44,7 @@ const LoginForm = () => {
   };
 
   const LoginFormContainer = (
-    <StyledContainer className=" rounded-4 p-2">
+    <StyledContainer className="rounded-4 p-2">
       <header className="d-flex justify-content-between align-items-center">
         <OverlayTrigger
           key={"bottom"}
@@ -64,7 +64,7 @@ const LoginForm = () => {
       </header>
 
       <section className="w-50 mt-4 m-auto d-grid gap-4">
-        <h1 className="fs-1 fw-700 ">Sign in to Twitter</h1>
+        <h1 className="text-nowrap fs-1 fw-700 ">Sign in to Twitter</h1>
 
         <Form onSubmit={handleSubmit(submitForm)} className="d-grid gap-2 ">
           <Button
