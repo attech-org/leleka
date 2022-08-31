@@ -12,8 +12,8 @@ interface ILikeButton {
 const bgRed = "rgb(249, 24, 128, 0.1)";
 const Red = "rgb(249, 24, 128)";
 const IconBg = styled.button`
-  height: 38.5px;
-  width: 38.5px;
+  height: 32px;
+  width: 32px;
   border: none;
   background-color: transparent;
   &:hover {
@@ -56,7 +56,7 @@ const LikeButton: React.FC<ILikeButton> = (
   return (
     <Like>
       <IconBg
-        className="m-0 p-0 rounded-circle row align-items-center justify-content-center)"
+        className="m-0 p-0 rounded-circle align-items-center justify-content-center)"
         data-bs-toggle="tooltip-primary"
         data-bs-placement="bottom"
         data-bs-custom-class="red-tooltip"
