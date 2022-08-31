@@ -1,4 +1,4 @@
-import SingleTweet from "../components/SingleTweet";
+import FeedSingleTweet from "../components/FeedSingleTweet";
 import MOCKTweets from "../MOCKS/tweets";
 import { Tweet } from "../types";
 import InfiniteList from "./InfiniteList";
@@ -16,7 +16,7 @@ const FeedPostsContainer = () => {
       <InfiniteList<Tweet>
         showMore={() => {}}
         data={mockPagination}
-        itemComponent={(itemData) => <SingleTweet {...itemData} />}
+        itemComponent={(itemData) => <FeedSingleTweet {...itemData} />}
       />
     </>
   );
