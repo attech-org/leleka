@@ -42,5 +42,11 @@
       "likes": "Likes"
     },
     "title": "Profile"
+  },
+  "SingleTweetMenu": {
+    "stopFollow": "Stop follow",
+    "add": "Add",
+    "toList": "to list",
+    "report": "Report the tweet"
   }
 }
