@@ -1,21 +1,16 @@
 import styled from "styled-components";
 
-const Wrapper = styled.div`
-  height: 150vh; // optional
+import Recommendations from "../containers/Recommendations";
+import Search from "../containers/Search";
+import Trends from "../containers/Trends";
 
-  position: sticky;
-  top: 0;
-
-  background-color: lightgreen;
-
-  @media (max-width: 1000px) {
-    display: none;
-  }
-`;
+const Wrapper = styled.div``;
 export const RightPanel = () => {
   return (
-    <Wrapper>
-      <div>right side</div>
+    <Wrapper className="col-xl-4 col-lg-4">
+      <Search placeholder="Пошук у твіттері" />
+      {!window.location.pathname.includes("/trends") && <Trends />}
+      <Recommendations />
     </Wrapper>
   );
 };

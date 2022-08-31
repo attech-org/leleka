@@ -1,56 +1,29 @@
-import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 import { LeftPanel } from "../components/LeftPanel";
 import { RightPanel } from "../components/RightPanel";
 
-const GeneralContainer = styled.main`
-  display: grid;
-
-  grid-template-rows: 200vh; // optional
-  grid-template-columns: 25% 42% 33%;
-
-  @media (max-width: 1280px) {
-    grid-template-columns: 14% 48% 38%;
-  }
-  @media (max-width: 1000px) {
-    grid-template-columns: 19% 81%;
-  }
-
-  @media (max-width: 500px) {
-    grid-template-columns: 1fr;
-    grid-template-rows: calc(100vh - 50px) 50px;
-  }
-`;
+const GeneralContainer = styled.main``;
 
 const Main = styled.main`
   text-align: center;
 `;
 
 interface LayoutProps {
-  withoutNavigation?: boolean;
   children?: React.ReactNode;
 }
 
-const Layout = ({ children, withoutNavigation }: LayoutProps) => {
+const Layout = ({ children }: LayoutProps) => {
   return (
-    <>
-      {!withoutNavigation && (
-        <header>
-          <ul>
-            <li>
-              <Link to="/">Home</Link>
-              <Link to="/about">About</Link>
-            </li>
-          </ul>
-        </header>
-      )}
-      <GeneralContainer>
+    <GeneralContainer className="container-xxl">
+      <div className="row">
         <LeftPanel />
-        <Main>{children}</Main>
+        <Main className="col-xl-6 col-lg-6 col-md-11 col-sm-11 col-12">
+          {children}
+        </Main>
         <RightPanel />
-      </GeneralContainer>
-    </>
+      </div>
+    </GeneralContainer>
   );
 };
 
