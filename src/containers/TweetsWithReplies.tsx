@@ -1,14 +1,15 @@
 import SingleTweet from "../components/SingleTweet";
-import { FeedPostData } from "../MOCKS/homeFeedPage";
+import tweets from "../MOCKS/tweets";
 import InfiniteList from "./InfiniteList";
 
 export const TweetsWithReplies = () => {
   return (
     <InfiniteList
-      data={FeedPostData}
+      data={tweets}
       showMore={() => {}}
       itemComponent={(itemData) => (
         <SingleTweet
+          id={""}
           userlogo={""}
           username={""}
           userNickname={""}
