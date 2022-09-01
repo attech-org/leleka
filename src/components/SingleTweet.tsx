@@ -3,7 +3,7 @@ import { Popover, OverlayTrigger, Button } from "react-bootstrap";
 import {
   ThreeDots,
   Chat,
-  ArrowRepeat,
+  // RetweetButton,
   Upload,
   PersonX,
   ClipboardPlus,
@@ -14,6 +14,7 @@ import styled from "styled-components";
 import { Tweet } from "../types";
 import AttachedContent from "./AttachedContent";
 import LikeButton from "./LikeButton";
+import RetweetButton from "./RetweetButton";
 
 const StyledLink = styled.a`
   transition: 0.3s;
@@ -209,7 +210,7 @@ const SingleTweet: React.FC<Tweet> = ({
             iconColor={Green}
             className="m-0 p-0 rounded-circle row align-items-center justify-content-center"
           >
-            <ArrowRepeat className="p-0 m-0" />
+            <RetweetButton retweetCount={retweetCount} />
           </IconBg>
           <IconBg
             iconBgColor={""}
