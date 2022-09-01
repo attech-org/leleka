@@ -1,15 +1,19 @@
 import { Button } from "react-bootstrap";
 import { Gear } from "react-bootstrap-icons";
 import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 import Layout from "../containers/Layout";
+import Media from "../containers/ProfileMedia";
 import ProfileTweets from "../containers/ProfileTweets";
 import TabsContainer from "../containers/Tabs";
 import { TabKeyProps } from "../types/tabs-types";
 
 const ProfilePage = ({ tabKey }: TabKeyProps) => {
   const { t } = useTranslation();
+  const { i18n } = useTranslation();
+  const navigate = useNavigate();
 
   const StyledButton = styled(Button)`
     height: 2.5rem;
@@ -19,6 +23,14 @@ const ProfilePage = ({ tabKey }: TabKeyProps) => {
     }
     :hover {
       background-color: rgba(15, 20, 25, 0.1) !important;
+    }
+  `;
+
+  const UnderlineHover = styled.span`
+    transition-duration: 0.2s;
+
+    :hover {
+      text-decoration: underline;
     }
   `;
 
@@ -39,7 +51,7 @@ const ProfilePage = ({ tabKey }: TabKeyProps) => {
 
     {
       label: t("profile.tabsLabel.media"),
-      content: "Media",
+      content: <Media />,
       key: "media",
       route: "/profile/media",
     },
@@ -67,6 +79,27 @@ const ProfilePage = ({ tabKey }: TabKeyProps) => {
               />
             </StyledButton>
           </div>
+        </div>
+        <div className="d-flex pb-4">
+          <UnderlineHover
+            className="d-flex ps-4"
+            onClick={() => {
+              navigate("/following" + "?lang=" + i18n.resolvedLanguage);
+            }}
+          >
+            <p className="fw-bold">546</p>
+            <p className="ps-2">{t("profile.following")}</p>
+          </UnderlineHover>
+
+          <UnderlineHover
+            className="d-flex ps-4"
+            onClick={() => {
+              navigate("/followers" + "?lang=" + i18n.resolvedLanguage);
+            }}
+          >
+            <p className="fw-bold">122</p>
+            <p className="ps-2">{t("profile.followers")}</p>
+          </UnderlineHover>
         </div>
         <TabsContainer tabsData={tabsData} defaultActiveKey={tabKey} />
       </div>

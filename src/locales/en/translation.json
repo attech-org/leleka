@@ -41,7 +41,9 @@
       "media": "Media",
       "likes": "Likes"
     },
-    "title": "Profile"
+    "title": "Profile",
+    "followers": "Followers",
+    "following": "Following"
   },
   "SingleTweetMenu": {
     "stopFollow": "Stop follow",
