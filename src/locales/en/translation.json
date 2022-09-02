@@ -48,5 +48,18 @@
     "add": "Add",
     "toList": "to list",
     "report": "Report the tweet"
+  },
+  "retweetButton": {
+    "retweet": "Retweet",
+    "undoRetweet": "Undo Retweet",
+    "popover": {
+      "retweet": "Retweet",
+      "undoRetweet": "Undo Retweet",
+      "quote": "Quote Tweet"
+    }
+  },
+  "likeButton": {
+    "like": "Like",
+    "unlike": "Unlike"
   }
 }
