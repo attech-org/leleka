@@ -2,7 +2,7 @@ import { Popover, OverlayTrigger, Button } from "react-bootstrap";
 import {
   ArrowRepeat,
   Chat,
-  PatchCheckFill,
+  // PatchCheckFill,
   Upload,
   PersonX,
   ClipboardPlus,
@@ -12,7 +12,7 @@ import {
 import { useTranslation } from "react-i18next";
 import styled from "styled-components";
 
-import { Tweet } from "../types";
+import { Tweet2 } from "../types";
 import LikeButton from "./LikeButton/index";
 
 const PostWrapper = styled.section`
@@ -93,43 +93,45 @@ const StyledButton = styled(Button)`
 `;
 
 const FeedSingleTweet = ({
-  id,
-  username,
-  userNickname,
-  tweetText,
-  tweetDate,
-  isVerified,
-  userlogo,
-  commentCount,
-  retweetCount,
-  likeCount,
-}: Tweet) => {
+  _id,
+  createdAt,
+  authorId,
+  content,
+  // repliedTo,
+  // updatedAt,
+  stats: { likes, retweets, comments },
+}: Tweet2) => {
   const { t } = useTranslation();
   return (
     <>
       <PostWrapper
         className="border border-bottom-0 border-grey px-3 py-3 text-start d-flex fs-6"
         role="button"
-        key={id}
+        key={_id}
       >
-        <Logo className="rounded-circle" src={userlogo} alt="" />
+        {/* TODO: backend should add aggregation for author */}
+        <Logo
+          className="rounded-circle"
+          src={"http://webmeup.com/upload/blog/lead-image-105.png"}
+          alt=""
+        />
 
         <div className="w-100">
           <div className="d-flex justify-content-between">
             <div className="d-flex align-items-center px-3 flex-wrap">
               <UnderlineHover className="fw-600 pe-1 fw-bold">
-                {username}
+                {authorId}
               </UnderlineHover>
 
-              {isVerified && (
+              {/* {isVerified && (
                 <PatchCheckFill size={20} className="text-info pe-1" />
-              )}
-              <a className="text-muted text-decoration-none">@{userNickname}</a>
+              )} */}
+              <a className="text-muted text-decoration-none">@{authorId}</a>
               <div className="mx-1 text-secondary d-flex justify-content-center align-items-center">
                 ·
               </div>
               <UnderlineHover className="text-secondary">
-                {tweetDate}
+                {createdAt}
               </UnderlineHover>
             </div>
 
@@ -151,7 +153,7 @@ const FeedSingleTweet = ({
                           <span className="px-2">
                             <PersonX />
                           </span>
-                          {`${t("SingleTweetMenu.stopFollow")} ${userNickname}`}
+                          {`${t("SingleTweetMenu.stopFollow")} ${authorId}`}
                         </StyledLink>
                       </p>
                       <p>
@@ -162,7 +164,7 @@ const FeedSingleTweet = ({
                           <span className="px-2">
                             <ClipboardPlus />
                           </span>
-                          {`${t("SingleTweetMenu.add")} ${userNickname} ${t(
+                          {`${t("SingleTweetMenu.add")} ${authorId} ${t(
                             "SingleTweetMenu.toList"
                           )}`}
                         </StyledLink>
@@ -192,25 +194,31 @@ const FeedSingleTweet = ({
             </div>
           </div>
           <div className="px-3 py-2">
-            <div className="">{tweetText}</div>
+            <div className="">{content}</div>
 
-            <img className="w-100 rounded-4 mt-3" alt="" src={userlogo} />
+            <img
+              className="w-100 rounded-4 mt-3"
+              alt=""
+              src={
+                "https://burst.shopifycdn.com/photos/person-holds-a-book-over-a-stack-and-turns-the-page.jpg?width=1200&format=pjpg&exif=0&iptc=0"
+              }
+            />
           </div>
           <div className="px-3 d-flex justify-content-between align-items-center">
             <StatisticOfTweet className="d-flex align-items-center justify-content-center">
               <HoverBackgroundBlue className="p-2 rounded-circle d-flex justify-content-center align-items-center">
                 <Chat size="16" />
               </HoverBackgroundBlue>
-              <div className="px-1">{commentCount}</div>
+              <div className="px-1">{comments}</div>
             </StatisticOfTweet>
 
             <StatisticOfRetweets className="d-flex align-items-center">
               <HoverBackgroundGreen className="p-2 rounded-circle d-flex justify-content-center align-items-center">
                 <ArrowRepeat size="16" />
               </HoverBackgroundGreen>
-              <div className="px-1">{retweetCount}</div>
+              <div className="px-1">{retweets}</div>
             </StatisticOfRetweets>
-            <LikeButton likesCount={likeCount} />
+            <LikeButton likesCount={likes} />
             <StatisticOfTweet className="d-flex align-items-center">
               <HoverBackgroundBlue className="p-2 rounded-circle d-flex justify-content-center align-items-center">
                 <Upload size="16" />
