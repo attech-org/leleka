@@ -1,4 +1,5 @@
 import { Container } from "react-bootstrap";
+import { useTranslation } from "react-i18next";
 import styled from "styled-components";
 
 import { TrendItem } from "../components/TrendItem";
@@ -35,9 +36,10 @@ const Trends = () => {
       tweetsCount: 1234,
     },
   ];
+  const { t } = useTranslation();
   return (
     <div className="bg-light my-3 mx-1 rounded-3">
-      <div className="py-3 px-3 fs-5 fw-bold">Тренди для вас</div>
+      <div className="py-3 px-3 fs-5 fw-bold">{t("trends.windowTitle")}</div>
       {trends.map((tr) => (
         <TrendItem key={tr.id} trend={tr} />
       ))}
@@ -46,7 +48,7 @@ const Trends = () => {
         className="text-decoration-none text-reset d-flex flex-row py-2"
       >
         <Container className="py-2 px-3">
-          <p className="py-1 text-info">Показати більше</p>
+          <p className="py-1 text-info">{t("common.showMore")}</p>
         </Container>
       </StyledLink>
     </div>

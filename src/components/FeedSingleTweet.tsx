@@ -1,6 +1,5 @@
 import { Popover, OverlayTrigger, Button } from "react-bootstrap";
 import {
-  ArrowRepeat,
   Chat,
   // PatchCheckFill,
   Upload,
@@ -13,7 +12,8 @@ import { useTranslation } from "react-i18next";
 import styled from "styled-components";
 
 import { Tweet2 } from "../types";
-import LikeButton from "./LikeButton/index";
+import LikeButton from "./LikeButton";
+import RetweetButton from "./RetweetButton";
 
 const PostWrapper = styled.section`
   transition-duration: 0.2s;
@@ -42,22 +42,9 @@ const StatisticOfTweet = styled.div`
   }
 `;
 
-const StatisticOfRetweets = styled.div`
-  :hover {
-    color: rgb(41, 228, 166);
-  }
-`;
-
 const HoverBackgroundBlue = styled.div`
   :hover {
     background: rgb(230, 241, 248);
-    transition-duration: 0.2s;
-  }
-`;
-
-const HoverBackgroundGreen = styled.div`
-  :hover {
-    background: rgb(222, 241, 235);
     transition-duration: 0.2s;
   }
 `;
@@ -211,13 +198,7 @@ const FeedSingleTweet = ({
               </HoverBackgroundBlue>
               <div className="px-1">{comments}</div>
             </StatisticOfTweet>
-
-            <StatisticOfRetweets className="d-flex align-items-center">
-              <HoverBackgroundGreen className="p-2 rounded-circle d-flex justify-content-center align-items-center">
-                <ArrowRepeat size="16" />
-              </HoverBackgroundGreen>
-              <div className="px-1">{retweets}</div>
-            </StatisticOfRetweets>
+            <RetweetButton retweetCount={retweets} />
             <LikeButton likesCount={likes} />
             <StatisticOfTweet className="d-flex align-items-center">
               <HoverBackgroundBlue className="p-2 rounded-circle d-flex justify-content-center align-items-center">

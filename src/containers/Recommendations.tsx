@@ -1,4 +1,5 @@
 import { Container, Button, Image } from "react-bootstrap";
+import { useTranslation } from "react-i18next";
 import styled from "styled-components";
 
 const StyledLink = styled.a`
@@ -14,9 +15,12 @@ const StyledImage = styled(Image)`
 `;
 
 const Recommendations = () => {
+  const { t } = useTranslation();
   return (
     <div className="bg-light mx-1 my-2 rounded-3">
-      <div className="py-3 px-3 fs-5 fw-bold">Рекомендовані</div>
+      <div className="py-3 px-3 fs-5 fw-bold">
+        {t("recommendations.windowTitle")}
+      </div>
       <StyledLink
         href="#"
         className="text-decoration-none text-reset d-flex py-2 px-3 align-items-center justify-content-between"
@@ -40,7 +44,7 @@ const Recommendations = () => {
             variant="dark"
             size="sm"
           >
-            Читати
+            {t("common.follow")}
           </Button>
         </div>
       </StyledLink>
@@ -67,7 +71,7 @@ const Recommendations = () => {
             variant="outline-secondary"
             size="sm"
           >
-            Читає(те)
+            {t("common.following")}
           </Button>
         </div>
       </StyledLink>
@@ -76,7 +80,7 @@ const Recommendations = () => {
         className="text-decoration-none text-reset d-flex flex-row py-2"
       >
         <Container className="py-2 px-4">
-          <p className="py-1 text-info">Показати більше</p>
+          <p className="py-1 text-info">{t("common.showMore")}</p>
         </Container>
       </StyledLink>
     </div>

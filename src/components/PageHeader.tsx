@@ -7,6 +7,7 @@ import {
   ListGroupItem,
 } from "react-bootstrap";
 import { ArrowLeft, Gear, ChevronRight } from "react-bootstrap-icons";
+import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
@@ -47,6 +48,7 @@ const VerticallyCenteredModal = (props: {
   const [locationSettingsSelected, setLocationSettingsSelected] =
     useState<boolean>(false);
 
+  const { t } = useTranslation();
   // const [searchKeyword, setSearchKeyword] = useState<string>("");
   return (
     <Modal size="lg" centered show={props.show} onHide={props.onHide}>
@@ -65,7 +67,7 @@ const VerticallyCenteredModal = (props: {
                 className="m-0 p-0 align-items-center justify-content-center"
               />
             </StyledButton>
-            <h1 className="fw-bold fs-4 me-auto">Locations</h1>
+            <h1 className="fw-bold fs-4 me-auto">{t("trends.locations")}</h1>
           </>
         )}
       </Modal.Header>
@@ -73,22 +75,19 @@ const VerticallyCenteredModal = (props: {
         <>
           {!locationSettingsSelected ? (
             <div>
-              <h2 className="fw-bold fs-4 mb-5">Location</h2>
+              <h2 className="fw-bold fs-4 mb-5">{t("trends.location")}</h2>
               <Div
                 className="d-flex"
                 onClick={() => {
                   setIsNavLinkVisible(!isNavDivVisible);
                 }}
               >
-                <p>Show content in this location</p>
+                <p>{t("trends.locationTitle")}</p>
                 <div className="ms-auto">
                   <FormCheck checked={isNavDivVisible} />
                 </div>
               </Div>
-              <p>
-                When this is on, you’ll see what’s happening around you right
-                now.
-              </p>
+              <p>{t("trends.locationText")}</p>
               {isNavDivVisible && (
                 <Div
                   className="d-flex mt-5"
@@ -96,7 +95,7 @@ const VerticallyCenteredModal = (props: {
                     setLocationSettingsSelected(true);
                   }}
                 >
-                  <div>Explore locations</div>
+                  <div>{t("trends.locationsExplore")}</div>
                   <div className="ms-auto">
                     <ChevronRight
                       size="13"
@@ -106,7 +105,9 @@ const VerticallyCenteredModal = (props: {
                 </Div>
               )}
               <hr />
-              <h2 className="fw-bold fs-4 mb-5">Personalization</h2>
+              <h2 className="fw-bold fs-4 mb-5">
+                {t("trends.personalization")}
+              </h2>
 
               <Div
                 className="d-flex"
@@ -114,19 +115,16 @@ const VerticallyCenteredModal = (props: {
                   setIspersonalizationCheckked(!personalizationChecked);
                 }}
               >
-                <p>Show content in this location</p>
+                <p>{t("trends.personalizationTitle")}</p>
                 <div className="ms-auto">
                   <FormCheck checked={personalizationChecked} />
                 </div>
               </Div>
-              <p>
-                You can personalize trends based on your location and who you
-                follow.
-              </p>
+              <p>{t("trends.personalizationText")}</p>
             </div>
           ) : (
             <>
-              <Search placeholder="Search locations" />
+              <Search placeholder={t("trends.locationsSearch")} />
               <ScrollableList>
                 {countries.map((country) => {
                   return (
