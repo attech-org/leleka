@@ -1,0 +1,37 @@
+[id="toggle-tweet"] {
+  position: absolute;
+  left: -100vw;
+}
+
+[for="toggle-tweet"] {
+  cursor: pointer;
+}
+
+/* //////// Counter Animation / */
+
+.move {
+  transition: 0.1s ease-in-out;
+}
+
+.up {
+  display: inline-flex;
+  opacity: 0;
+  transform: translate3d(0, -20px, 0);
+}
+
+.down {
+  display: inline-flex;
+  opacity: 0;
+  transform: translate3d(0, 20px, 0);
+}
+
+.static {
+  display: inline-flex;
+  opacity: 1;
+  transform: translate3d(0, 0px, 0);
+  transition: 0.1s ease-in-out;
+}
+
+.retweeted {
+  color: rgb(0, 186, 124);
+}

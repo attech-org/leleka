@@ -116,5 +116,18 @@
     "menuRemove": "Додати/Видалити",
     "menuMute": "Ігнорувати",
     "replyingTo": "У відповідь"
+  },
+  "retweetButton": {
+    "retweet": "Ретвітнути",
+    "undoRetweet": "Скасувати ретвіт",
+    "popover": {
+      "retweet": "Ретвітнути",
+      "undoRetweet": "Скасувати ретвіт",
+      "quote": "Цитувати Твіт"
+    }
+  },
+  "likeButton": {
+    "like": "Вподобати",
+    "unlike": "Видалити вподобання"
   }
 }
