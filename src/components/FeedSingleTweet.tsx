@@ -14,6 +14,7 @@ import styled from "styled-components";
 
 import { Tweet } from "../types";
 import LikeButton from "./LikeButton/index";
+import ReplyTweet from "./ReplyTweet";
 
 const PostWrapper = styled.section`
   transition-duration: 0.2s;
@@ -105,6 +106,10 @@ const FeedSingleTweet = ({
   likeCount,
 }: Tweet) => {
   const { t } = useTranslation();
+
+  const handleReplyClick = () => {
+    return <ReplyTweet />;
+  };
   return (
     <>
       <PostWrapper
@@ -199,7 +204,7 @@ const FeedSingleTweet = ({
           <div className="px-3 d-flex justify-content-between align-items-center">
             <StatisticOfTweet className="d-flex align-items-center justify-content-center">
               <HoverBackgroundBlue className="p-2 rounded-circle d-flex justify-content-center align-items-center">
-                <Chat size="16" />
+                <Chat size="16" onClick={handleReplyClick} />
               </HoverBackgroundBlue>
               <div className="px-1">{commentCount}</div>
             </StatisticOfTweet>
