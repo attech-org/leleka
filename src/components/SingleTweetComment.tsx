@@ -1,6 +1,7 @@
 import React from "react";
 import { Dropdown } from "react-bootstrap";
 import { ThreeDots, Chat, Upload } from "react-bootstrap-icons";
+import { useTranslation } from "react-i18next";
 import styled from "styled-components";
 
 import AttachedContent from "./AttachedContent";
@@ -152,6 +153,8 @@ const SingleTweetComment: React.FC<SingleTweetCommentInterface> = ({
   const bgBlue = "rgb(29, 155, 240, 0.1)";
   const Blue = "rgb(29, 155, 240)";
 
+  const { t } = useTranslation();
+
   return (
     <div>
       <Wrapper>
@@ -173,17 +176,21 @@ const SingleTweetComment: React.FC<SingleTweetCommentInterface> = ({
                   <ThreeDots color="black" />
                 </SDropdownToggle>
                 <Dropdown.Menu>
-                  <Dropdown.Item href="#/action-1">Почати читати</Dropdown.Item>
-                  <Dropdown.Item href="#/action-2">
-                    Додати/Видалити
+                  <Dropdown.Item href="#/action-1">
+                    {t("bookmarks.menuAdd")}
                   </Dropdown.Item>
-                  <Dropdown.Item href="#/action-3">Ігнорувати</Dropdown.Item>
+                  <Dropdown.Item href="#/action-2">
+                    {t("bookmarks.menuRemove")}
+                  </Dropdown.Item>
+                  <Dropdown.Item href="#/action-3">
+                    {t("bookmarks.menuMute")}
+                  </Dropdown.Item>
                 </Dropdown.Menu>
               </Dropdown>
             </NameSection>
             <Answer>
-              <Answertext>В ответ</Answertext>
-              <NickName>{responserUserNickname}</NickName>
+              <Answertext>{t("bookmarks.replyingTo")}</Answertext>
+              <NickName className="ms-1">{responserUserNickname}</NickName>
             </Answer>
           </Author>
           <Text>{messageText}</Text>
