@@ -31,6 +31,7 @@ const ProfilePage = ({ tabKey }: TabKeyProps) => {
 
     :hover {
       text-decoration: underline;
+      cursor: pointer;
     }
   `;
 
