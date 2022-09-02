@@ -60,18 +60,11 @@ const LikeButton: React.FC<ILikeButton> = (
     <Like>
       <IconBg
         className="m-0 p-0 rounded-circle align-items-center justify-content-center)"
-        data-bs-toggle="tooltip-primary"
-        data-bs-placement="bottom"
-        data-bs-custom-class="red-tooltip"
         title={isLiked ? t("likeButton.unlike") : t("likeButton.like")}
       >
-        <input
-          id="toggle-heart"
-          type="checkbox"
-          checked={isLiked ? true : false}
-          onClick={() => clickLike()}
-        />
-        <label htmlFor="toggle-heart">
+        <input id="toggle-heart" type="checkbox" checked={isLiked} />
+
+        <label htmlFor="toggle-heart" onClick={() => clickLike()}>
           {isLiked ? (
             <HeartFill className="p-0 m-0" />
           ) : (

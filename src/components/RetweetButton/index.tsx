@@ -129,22 +129,17 @@ const RetweetButton: React.FC<RetweetButtonInterface> = ({
         >
           <IconBg
             className="m-0 p-0 rounded-circle align-items-center justify-content-center)"
-            data-bs-toggle="tooltip-primary"
-            data-bs-placement="bottom"
-            data-bs-custom-class="red-tooltip"
             title={
               isRetweeted
                 ? t("retweetButton.undoRetweet")
                 : t("retweetButton.retweet")
             }
           >
-            <label htmlFor="toggle-tweet">
-              {isRetweeted ? (
-                <Retweeted className="p-0 m-0" />
-              ) : (
-                <NonRetweeted className="p-0 m-0" />
-              )}
-            </label>
+            {isRetweeted ? (
+              <Retweeted className="p-0 m-0" />
+            ) : (
+              <NonRetweeted className="p-0 m-0" />
+            )}
           </IconBg>
         </OverlayTrigger>
       </div>
