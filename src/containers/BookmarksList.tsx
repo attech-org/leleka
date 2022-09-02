@@ -1,6 +1,7 @@
 import React from "react";
 import { Button, Navbar, OverlayTrigger, Popover } from "react-bootstrap";
 import { ThreeDots } from "react-bootstrap-icons";
+import { useTranslation } from "react-i18next";
 import styled from "styled-components";
 
 import Bookmark from "../components/SingleTweetComment";
@@ -32,13 +33,14 @@ const StyledThreeDots = styled(ThreeDots)`
 `;
 
 const BookmarksList: React.FC = () => {
+  const { t } = useTranslation();
   return (
     <div>
       <StyledNavbar sticky="top" expand="false" variant="light" bg="white">
         <StyledDiv>
           <div>
             <Navbar.Brand className="fw-bold px-3 py-1 m-0 row justify-comtent-start">
-              Bookmarks
+              {t("bookmarks.windowTitle")}
             </Navbar.Brand>
             <div className="px-3 py-0 m-0 row justify-comtent-start">
               @artlee4
@@ -52,7 +54,7 @@ const BookmarksList: React.FC = () => {
               placement="left"
               overlay={
                 <StyledPopover>
-                  <Button variant="light"> Видалити всі закладки</Button>
+                  <Button variant="light">{t("bookmarks.clearAll")}</Button>
                 </StyledPopover>
               }
             >

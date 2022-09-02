@@ -9,6 +9,7 @@ import {
   Hash,
   Envelope,
 } from "react-bootstrap-icons";
+import { useTranslation } from "react-i18next";
 import styled from "styled-components";
 
 import { LinkWithLanguageQueryParam } from "../containers/LinkWithLanguageQueryParam";
@@ -20,59 +21,71 @@ const StyledNav = styled(Nav)`
   a {
     color: black;
     text-decoration: none;
-    padding-left: 15px;
+  }
+`;
+
+const StyledSpan = styled.span`
+  @media (max-width: 992px) {
+    display: none;
   }
 `;
 
 const NavigationBar = () => {
+  const { t } = useTranslation();
   return (
-    <StyledNav className="flex-column" defaultActiveKey="/">
-      <Nav.Item>
+    <StyledNav className="" defaultActiveKey="/">
+      <Nav.Item className="d-flex align-items-center ps-2 pb-2 pt-3">
+        <House size={20} className="my-2" />
         <Nav.Link as={LinkWithLanguageQueryParam} to="/">
-          <House />
-          Home
+          <StyledSpan className="fs-5">{t("navigationBar.home")}</StyledSpan>
         </Nav.Link>
       </Nav.Item>
-      <Nav.Item>
+      <Nav.Item className="d-flex align-items-center ps-2 py-2">
+        <Hash size={20} className="my-2" />
         <Nav.Link as={LinkWithLanguageQueryParam} to="/explore">
-          <Hash />
-          Explore
+          <StyledSpan className="fs-5">{t("navigationBar.explore")}</StyledSpan>
         </Nav.Link>
       </Nav.Item>
-      <Nav.Item>
+      <Nav.Item className="d-flex align-items-center ps-2 py-2">
+        <Bell size={20} className="my-2" />
         <Nav.Link as={LinkWithLanguageQueryParam} to="/notifications">
-          <Bell />
-          Notifications
+          <StyledSpan className="fs-5">
+            {t("navigationBar.notifications")}
+          </StyledSpan>
         </Nav.Link>
       </Nav.Item>
-      <Nav.Item>
+      <Nav.Item className="d-flex align-items-center ps-2 py-2">
+        <Envelope size={20} className="my-2" />
         <Nav.Link as={LinkWithLanguageQueryParam} to="/messages">
-          <Envelope />
-          Messages
+          <StyledSpan className="fs-5">
+            {t("navigationBar.messages")}
+          </StyledSpan>
         </Nav.Link>
       </Nav.Item>
-      <Nav.Item>
+      <Nav.Item className="d-flex align-items-center ps-2 py-2">
+        <Bookmark size={20} className="my-2" />
         <Nav.Link as={LinkWithLanguageQueryParam} to="/bookmarks">
-          <Bookmark />
-          Bookmarks
+          <StyledSpan className="fs-5">
+            {t("navigationBar.bookmarks")}
+          </StyledSpan>
         </Nav.Link>
       </Nav.Item>
-      <Nav.Item>
+      <Nav.Item className="d-flex align-items-center ps-2 py-2">
+        <CardText size={20} className="my-2" />
         <Nav.Link as={LinkWithLanguageQueryParam} to="/lists">
-          <CardText />
-          Lists
+          <StyledSpan className="fs-5">{t("navigationBar.lists")}</StyledSpan>
         </Nav.Link>
       </Nav.Item>
-      <Nav.Item>
+      <Nav.Item className="d-flex align-items-center ps-2 py-2">
+        <Person size={20} className="my-2" />
         <Nav.Link as={LinkWithLanguageQueryParam} to="/profile">
-          <Person />
-          Profile
+          <StyledSpan className="fs-5">{t("navigationBar.profile")}</StyledSpan>
         </Nav.Link>
       </Nav.Item>
-      <Nav.Item>
+      <Nav.Item className="d-flex align-items-center ps-2 pt-2 pb-3">
+        <ChatDots size={20} className="my-2" />
         <Nav.Link as={LinkWithLanguageQueryParam} to="/more">
-          <ChatDots />
-          More
+          <StyledSpan className="fs-5">{t("navigationBar.more")}</StyledSpan>
         </Nav.Link>
       </Nav.Item>
     </StyledNav>

@@ -1,4 +1,5 @@
 import { Container } from "react-bootstrap";
+import { useTranslation } from "react-i18next";
 import styled from "styled-components";
 
 import { MockTrend } from "../types/mock-api-types";
@@ -11,6 +12,8 @@ const StyledLink = styled.a`
   }
 `;
 export const TrendItem = ({ trend }: { trend: MockTrend }) => {
+  const { t } = useTranslation();
+
   return (
     <StyledLink
       id="trendLink"
@@ -22,21 +25,21 @@ export const TrendItem = ({ trend }: { trend: MockTrend }) => {
           {trend.categoryName} · {trend.categoryValue}
         </p>
         <p className="pb-1 fw-bold">{trend.contentRefName}</p>
-        <span className="pb-1 text-secondary">Твітів: </span>
-        <span className="pb-1 text-secondary">{trend.tweetsCount}</span>
+        <span className="pb-1 text-secondary">{t("trends.tweets")}</span>
+        <span className="pb-1 text-secondary">{` ${trend.tweetsCount}`}</span>
       </Container>
       <ContextMenu
         contextItems={[
           {
             itemId: `context_menu_trend_${trend.id}__interested`,
-            contextItemText: "Цей твіт мене не цікавить",
+            contextItemText: t("trends.trendInterest"),
             onClick: async () => {
               return;
             },
           },
           {
             itemId: `context_menu_trend_${trend.id}__spam_report`,
-            contextItemText: "Цей тренд шкідливий або містить багато спаму",
+            contextItemText: t("trends.trendSpam"),
             onClick: async () => {
               return;
             },
