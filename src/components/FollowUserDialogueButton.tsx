@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Button, Modal } from "react-bootstrap";
+import { useTranslation } from "react-i18next";
 
 import { FollowStatus } from "../types/constants";
 
@@ -9,6 +10,7 @@ const VerticallyCenteredModal = (props: {
   onHide: () => void;
   onSubmit: () => void;
 }) => {
+  const { t } = useTranslation();
   return (
     <Modal
       {...props}
@@ -17,30 +19,27 @@ const VerticallyCenteredModal = (props: {
       centered
     >
       <Modal.Body>
-        <h2>Unfollow @{props.followerName}?</h2>
-        <p>
-          Their Tweets will no longer show up in your home timeline. You can
-          still view their profile, unless their Tweets are protected.
-        </p>
+        <h2>{`${t("common.unfollow")} @${props.followerName}?`}</h2>
+        <p>{t("followUser.description")}</p>
 
         <div>
           <Button
-            className="rounded-pill"
+            className="rounded-pill text-nowrap"
             variant="dark"
             style={{ width: "100%", marginTop: "20px" }}
             onClick={props.onSubmit}
           >
-            Unfollow
+            {t("common.unfollow")}
           </Button>
         </div>
         <div>
           <Button
-            className="rounded-pill"
+            className="rounded-pill text-nowrap"
             variant="outline-dark"
             style={{ width: "100%", marginTop: "20px" }}
             onClick={props.onHide}
           >
-            Close
+            {t("common.close")}
           </Button>
         </div>
       </Modal.Body>
@@ -65,24 +64,27 @@ const FollowButton = (props: {
       }
     }
   };
+
+  const { t } = useTranslation();
+
   return status === FollowStatus.UNFOLLOWED ? (
     <Button
-      className="rounded-pill"
+      className="rounded-pill text-nowrap"
       variant="dark"
       onClick={() => {
         setFollowStatus(FollowStatus.UNFOLLOWED);
       }}
     >
-      Follow
+      {t("common.follow")}
     </Button>
   ) : status === FollowStatus.FOLLOWED ? (
     <>
       <Button
-        className="rounded-pill"
+        className="rounded-pill text-nowrap"
         variant="outline-danger"
         onClick={() => setFollowStatus(FollowStatus.FOLLOWED)}
       >
-        Unfollow
+        {t("common.unfollow")}
       </Button>
       <VerticallyCenteredModal
         followerName={props.followerName}

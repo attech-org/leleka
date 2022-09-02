@@ -26,12 +26,12 @@
     "@types/node": "^16.11.47",
     "@types/react": "^18.0.17",
     "@types/react-dom": "^18.0.6",
-    "axios": "^0.27.2",
-    "jwt-decode": "^3.1.2",
     "@types/react-infinite-scroller": "^1.2.3",
+    "axios": "^0.27.2",
     "bootstrap": "^5.2.0",
     "i18next": "^21.9.0",
     "i18next-browser-languagedetector": "^6.1.5",
+    "jwt-decode": "^3.1.2",
     "query-string": "^7.1.1",
     "react": "^18.2.0",
     "react-bootstrap": "^2.5.0",
@@ -89,6 +89,7 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "husky": "^8.0.1",
     "lint-staged": "^13.0.3",
+    "mongoose": "^6.5.4",
     "prettier": "^2.7.1"
   },
   "lint-staged": {
