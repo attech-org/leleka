@@ -151,7 +151,7 @@ const FeedSingleTweet = ({
                           <span className="px-2">
                             <PersonX />
                           </span>
-                          {`${t("SingleTweetMenu.stopFollow")} ${userNickname}`}
+                          {`${t("singleTweetMenu.stopFollow")} ${userNickname}`}
                         </StyledLink>
                       </p>
                       <p>
@@ -162,8 +162,8 @@ const FeedSingleTweet = ({
                           <span className="px-2">
                             <ClipboardPlus />
                           </span>
-                          {`${t("SingleTweetMenu.add")} ${userNickname} ${t(
-                            "SingleTweetMenu.toList"
+                          {`${t("singleTweetMenu.add")} ${userNickname} ${t(
+                            "singleTweetMenu.toList"
                           )}`}
                         </StyledLink>
                       </p>
@@ -175,7 +175,7 @@ const FeedSingleTweet = ({
                           <span className="px-2">
                             <Flag />
                           </span>
-                          {t("SingleTweetMenu.report")}
+                          {t("singleTweetMenu.report")}
                         </StyledLink>
                       </p>
                     </Popover.Body>

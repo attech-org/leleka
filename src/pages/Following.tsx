@@ -36,20 +36,20 @@ function sleep(ms: number) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
 const RecomendedFollowsPage: React.FunctionComponent = () => {
+  const { t, i18n } = useTranslation();
   const tabsData = [
     {
-      label: "Followers",
+      label: t("common.followers"),
       key: "/followers",
     },
 
     {
-      label: "Following",
+      label: t("common.following"),
       key: "/following",
     },
   ];
 
   const navigate = useNavigate();
-  const { i18n } = useTranslation();
 
   const [mockUsers, setMockUsers] =
     useState<PaginationParamsResult<MockUser>>();

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { ListGroup, ListGroupItem, TabContainer } from "react-bootstrap";
+import { useTranslation } from "react-i18next";
 import styled from "styled-components";
 
 import { SinglePageHeader } from "../components/PageHeader";
@@ -52,9 +53,11 @@ const RecomendedFollowsPage: React.FunctionComponent = () => {
   useEffect(() => {
     fetchAndProcessData();
   }, []);
+
+  const { t } = useTranslation();
   return (
     <Layout>
-      <SinglePageHeader pageName="Trends" />
+      <SinglePageHeader pageName={t("trends.pageTitle")} />
       <TabContainer />
       {mockTrends && (
         <ListGroup>
