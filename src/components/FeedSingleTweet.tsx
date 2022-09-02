@@ -42,25 +42,12 @@ const StatisticOfTweet = styled.div`
   }
 `;
 
-// const StatisticOfRetweets = styled.div`
-//   :hover {
-//     color: rgb(41, 228, 166);
-//   }
-// `;
-
 const HoverBackgroundBlue = styled.div`
   :hover {
     background: rgb(230, 241, 248);
     transition-duration: 0.2s;
   }
 `;
-
-// const HoverBackgroundGreen = styled.div`
-//   :hover {
-//     background: rgb(222, 241, 235);
-//     transition-duration: 0.2s;
-//   }
-// `;
 
 const StyledLink = styled.a`
   transition: 0.3s;
