@@ -90,6 +90,7 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "husky": "^8.0.1",
     "lint-staged": "^13.0.3",
+    "mongoose": "^6.5.4",
     "prettier": "^2.7.1"
   },
   "lint-staged": {

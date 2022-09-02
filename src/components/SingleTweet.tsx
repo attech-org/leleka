@@ -8,6 +8,7 @@ import {
   ClipboardPlus,
   Flag,
 } from "react-bootstrap-icons";
+import { useTranslation } from "react-i18next";
 import styled from "styled-components";
 
 import { Tweet } from "../types";
@@ -115,7 +116,7 @@ const SingleTweet: React.FC<Tweet> = ({
   const Blue = "rgb(29, 155, 240)";
   // const Green = "rgb(0, 186, 124)";
   // const Red = "rgb(249, 24, 128)";
-
+  const { t } = useTranslation();
   return (
     <div>
       <Wrapper className="px-3">
@@ -144,7 +145,7 @@ const SingleTweet: React.FC<Tweet> = ({
                           <span className="px-2">
                             <PersonX />
                           </span>
-                          Не читати {userNickname}
+                          {`${t("singleTweetMenu.stopFollow")} ${userNickname}`}
                         </StyledLink>
                       </p>
                       <p>
@@ -155,7 +156,9 @@ const SingleTweet: React.FC<Tweet> = ({
                           <span className="px-2">
                             <ClipboardPlus />
                           </span>
-                          Додати {userNickname} до списку
+                          {`${t("singleTweetMenu.add")} ${userNickname} ${t(
+                            "singleTweetMenu.toList"
+                          )}`}
                         </StyledLink>
                       </p>
                       <p>
@@ -166,7 +169,7 @@ const SingleTweet: React.FC<Tweet> = ({
                           <span className="px-2">
                             <Flag />
                           </span>
-                          Поскаржитись на твіт
+                          {t("singleTweetMenu.report")}
                         </StyledLink>
                       </p>
                     </Popover.Body>
@@ -177,7 +180,7 @@ const SingleTweet: React.FC<Tweet> = ({
                   className="text-secondary me-3 p-0 rounded-circle"
                   variant="link"
                 >
-                  <ThreeDots size={20} />
+                  <ThreeDots size={16} />
                 </StyledButton>
               </OverlayTrigger>
             </div>
@@ -190,11 +193,11 @@ const SingleTweet: React.FC<Tweet> = ({
         </Date>
         <Statistic className="border-bottom py-3">
           <span className="fw-bold text-dark pe-1">{retweetCount}</span>
-          <span className="text-dark pe-3">ретвітів</span>
+          <span className="text-dark pe-3">{t("common.retweets")}</span>
           <span className="fw-bold text-dark pe-1">{tweetQuoteCount}</span>
-          <span className="text-dark pe-3">твітів с цитатами</span>
+          <span className="text-dark pe-3">{t("common.quoteTweets")}</span>
           <span className="fw-bold text-dark pe-1">{likeCount}</span>
-          <span className="text-dark pe-1">відміток «Подобається»</span>
+          <span className="text-dark pe-1">{t("common.likes")}</span>
         </Statistic>
         <IconsBar className="border-bottom py-1 mx-0 row justify-content-around">
           <IconBg
