@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 interface LinkWithQueryProps {
   children: React.ReactNode;
   to: string;
+  className?: string;
   props?: unknown;
 }
 
