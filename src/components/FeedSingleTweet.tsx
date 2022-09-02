@@ -1,6 +1,5 @@
 import { Popover, OverlayTrigger, Button } from "react-bootstrap";
 import {
-  // ArrowRepeat,
   Chat,
   PatchCheckFill,
   Upload,
@@ -13,7 +12,8 @@ import { useTranslation } from "react-i18next";
 import styled from "styled-components";
 
 import { Tweet } from "../types";
-import LikeButton from "./LikeButton/index";
+import LikeButton from "./LikeButton";
+import RetweetButton from "./RetweetButton";
 
 const PostWrapper = styled.section`
   transition-duration: 0.2s;
@@ -42,11 +42,11 @@ const StatisticOfTweet = styled.div`
   }
 `;
 
-const StatisticOfRetweets = styled.div`
-  :hover {
-    color: rgb(41, 228, 166);
-  }
-`;
+// const StatisticOfRetweets = styled.div`
+//   :hover {
+//     color: rgb(41, 228, 166);
+//   }
+// `;
 
 const HoverBackgroundBlue = styled.div`
   :hover {
@@ -55,12 +55,12 @@ const HoverBackgroundBlue = styled.div`
   }
 `;
 
-const HoverBackgroundGreen = styled.div`
-  :hover {
-    background: rgb(222, 241, 235);
-    transition-duration: 0.2s;
-  }
-`;
+// const HoverBackgroundGreen = styled.div`
+//   :hover {
+//     background: rgb(222, 241, 235);
+//     transition-duration: 0.2s;
+//   }
+// `;
 
 const StyledLink = styled.a`
   transition: 0.3s;
@@ -203,13 +203,7 @@ const FeedSingleTweet = ({
               </HoverBackgroundBlue>
               <div className="px-1">{commentCount}</div>
             </StatisticOfTweet>
-
-            <StatisticOfRetweets className="d-flex align-items-center">
-              <HoverBackgroundGreen className="p-2 rounded-circle d-flex justify-content-center align-items-center">
-                <ArrowRepeat size="16" />
-              </HoverBackgroundGreen>
-              <div className="px-1">{retweetCount}</div>
-            </StatisticOfRetweets>
+            <RetweetButton retweetCount={retweetCount} />
             <LikeButton likesCount={likeCount} />
             <StatisticOfTweet className="d-flex align-items-center">
               <HoverBackgroundBlue className="p-2 rounded-circle d-flex justify-content-center align-items-center">

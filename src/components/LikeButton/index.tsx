@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Heart, HeartFill } from "react-bootstrap-icons";
+import { useTranslation } from "react-i18next";
 import styled from "styled-components";
 import "./animationLike.css";
 
@@ -50,9 +51,11 @@ const LikeButton: React.FC<ILikeButton> = (
       setcountAnimation("move down");
       setTimeout(() => setlikesCount(temporaryСounter + 1), 100);
       setTimeout(() => setcountAnimation("up"), 100);
-      setTimeout(() => setcountAnimation("static"), 150);
+      setTimeout(() => setcountAnimation("static liked"), 150);
     }
   };
+  const { t } = useTranslation();
+
   return (
     <Like>
       <IconBg
@@ -60,7 +63,7 @@ const LikeButton: React.FC<ILikeButton> = (
         data-bs-toggle="tooltip-primary"
         data-bs-placement="bottom"
         data-bs-custom-class="red-tooltip"
-        title={isLiked ? "Unlike" : "Like"}
+        title={isLiked ? t("likeButton.unlike") : t("likeButton.like")}
       >
         <input
           id="toggle-heart"

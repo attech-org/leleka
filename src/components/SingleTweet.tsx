@@ -3,7 +3,6 @@ import { Popover, OverlayTrigger, Button } from "react-bootstrap";
 import {
   ThreeDots,
   Chat,
-  // RetweetButton,
   Upload,
   PersonX,
   ClipboardPlus,
@@ -111,10 +110,10 @@ const SingleTweet: React.FC<Tweet> = ({
   likeCount,
 }) => {
   const bgBlue = "rgb(29, 155, 240, 0.1)";
-  const bgGreen = "rgb(0, 186, 124, 0.1)";
+  // const bgGreen = "rgb(0, 186, 124, 0.1)";
   // const bgRed = "rgb(249, 24, 128, 0.1)";
   const Blue = "rgb(29, 155, 240)";
-  const Green = "rgb(0, 186, 124)";
+  // const Green = "rgb(0, 186, 124)";
   // const Red = "rgb(249, 24, 128)";
 
   return (
@@ -206,8 +205,8 @@ const SingleTweet: React.FC<Tweet> = ({
             <Chat className="p-0 m-0" />
           </IconBg>
           <IconBg
-            iconBgColor={bgGreen}
-            iconColor={Green}
+            iconBgColor={""}
+            iconColor={""}
             className="m-0 p-0 rounded-circle row align-items-center justify-content-center"
           >
             <RetweetButton retweetCount={retweetCount} />
