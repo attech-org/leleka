@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import FeedSingleTweet from "../components/FeedSingleTweet";
@@ -10,29 +9,23 @@ import InfiniteList from "./InfiniteList";
 
 const FeedPostsContainer = () => {
   const dispatch = useDispatch<AppDispatch>();
-  const posts = useSelector<RootState, Tweet2[]>(
+  const posts = useSelector<RootState, RootState["tweets"]["feedTweets"]>(
     (store) => store.tweets.feedTweets
   );
 
-  useEffect(() => {
-    dispatch(tweetsActions.fetchFeedTweets());
-  }, []);
+  console.log(posts);
 
-  const mockPagination = {
-    docs: posts,
-    page: 1,
-    limit: 10,
-    hasNextPage: false,
+  const handleShowMore = () => {
+    console.log("handleShowMore");
+    return !posts.isLoading && dispatch(tweetsActions.fetchFeedTweets(posts));
   };
 
   return (
-    <>
-      <InfiniteList<Tweet2>
-        showMore={() => {}}
-        data={mockPagination}
-        itemComponent={(itemData) => <FeedSingleTweet {...itemData} />}
-      />
-    </>
+    <InfiniteList<Tweet2>
+      showMore={handleShowMore}
+      data={posts}
+      itemComponent={(itemData) => <FeedSingleTweet {...itemData} />}
+    />
   );
 };
 

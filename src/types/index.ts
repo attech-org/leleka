@@ -2,6 +2,11 @@ export interface MongoArtifacts {
   _id: string;
 }
 
+export type LE<T> = T & {
+  isLoading?: boolean;
+  error?: string | Error;
+};
+
 export interface Tweet {
   id: string;
   userlogo: string;
