@@ -1,22 +1,16 @@
-import { useEffect, useState } from "react";
 import { Button, Navbar, OverlayTrigger, Popover } from "react-bootstrap";
 import { Stars } from "react-bootstrap-icons";
 import { useTranslation } from "react-i18next";
+import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 
 import FeedSingleTweet from "../components/FeedSingleTweet";
 import TweetCreationForm from "../components/TweetCreationForm";
-import instance from "../services/api";
+import { RootState } from "../redux/reducers";
+import { tweetsActions } from "../redux/reducers/tweets";
+import { AppDispatch } from "../redux/store";
 import { Tweet2 } from "../types";
 import InfiniteList from "./InfiniteList";
-
-// create reducer for tweet instance
-
-// define action getFeedTweets, that will fetch all tweets from "GET:/api/tweets" and save it to redux store
-// in useEffect call dispatch(getFeedTweets());
-
-// in FeedPosts replace all logic with redux store manipultaions, like:
-// const posts = useSelector((store) => store.tweets.feedPosts);
 
 const StyledNavbar = styled(Navbar)`
   background-color: rgba(255, 255, 255, 0.97) !important;
@@ -44,24 +38,18 @@ const StyledStars = styled(Stars)`
 `;
 
 const FeedPostsContainer = () => {
-  const [posts, setPosts] = useState<Tweet2[]>([]);
+  const dispatch = useDispatch<AppDispatch>();
+  const posts = useSelector<RootState, RootState["tweets"]["feedTweets"]>(
+    (store) => store.tweets.feedTweets
+  );
 
   const { t } = useTranslation();
 
-  useEffect(() => {
-    const getData = async () => {
-      const response = await instance.get("api/tweets");
-      setPosts(response.data);
-    };
+  console.log(posts);
 
-    getData();
-  }, []);
-
-  const mockPagination = {
-    docs: posts,
-    page: 1,
-    limit: 10,
-    hasNextPage: false,
+  const handleShowMore = () => {
+    console.log("handleShowMore");
+    return !posts.isLoading && dispatch(tweetsActions.fetchFeedTweets(posts));
   };
 
   return (
@@ -92,10 +80,8 @@ const FeedPostsContainer = () => {
       <TweetCreationForm />
 
       <InfiniteList<Tweet2>
-        showMore={() => {}}
-        data={mockPagination}
-        // eslint-disable-next-line
-        // @ts-ignore
+        showMore={handleShowMore}
+        data={posts}
         itemComponent={(itemData) => <FeedSingleTweet {...itemData} />}
       />
     </div>
