@@ -5,9 +5,7 @@ import { useTranslation } from "react-i18next";
 import styled from "styled-components";
 
 import FeedSingleTweet from "../components/FeedSingleTweet";
-import Bookmark from "../components/SingleTweetComment";
 import TweetCreationForm from "../components/TweetCreationForm";
-import { bookmarksData } from "../MOCKS/bookmarks";
 import instance from "../services/api";
 import { Tweet2 } from "../types";
 import InfiniteList from "./InfiniteList";
@@ -92,21 +90,6 @@ const FeedPostsContainer = () => {
       </StyledNavbar>
 
       <TweetCreationForm />
-
-      {bookmarksData.slice(0, 5).map((item) => (
-        <Bookmark
-          key={item.id}
-          userlogo={item.userlogo}
-          username={item.username}
-          userNickname={item.userNickname}
-          responserUserNickname={item.responserUserNickname}
-          messageText={item.messageText}
-          messageDate={item.messageDate}
-          answerCount={item.answerCount}
-          retweetCount={item.retweetCount}
-          likeCount={item.likeCount}
-        />
-      ))}
 
       <InfiniteList<Tweet2>
         showMore={() => {}}
