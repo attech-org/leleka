@@ -1,28 +1,21 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 import FeedSingleTweet from "../components/FeedSingleTweet";
-import instance from "../services/api";
+import { RootState } from "../redux/reducers";
+import { tweetsActions } from "../redux/reducers/tweets";
+import { AppDispatch } from "../redux/store";
 import { Tweet2 } from "../types";
 import InfiniteList from "./InfiniteList";
 
-// create reducer for tweet instance
-
-// define action getFeedTweets, that will fetch all tweets from "GET:/api/tweets" and save it to redux store
-// in useEffect call dispatch(getFeedTweets());
-
-// in FeedPosts replace all logic with redux store manipultaions, like:
-// const posts = useSelector((store) => store.tweets.feedPosts);
-
 const FeedPostsContainer = () => {
-  const [posts, setPosts] = useState<Tweet2[]>([]);
+  const dispatch = useDispatch<AppDispatch>();
+  const posts = useSelector<RootState, Tweet2[]>(
+    (store) => store.tweets.feedTweets
+  );
 
   useEffect(() => {
-    const getData = async () => {
-      const response = await instance.get("api/tweets");
-      setPosts(response.data);
-    };
-
-    getData();
+    dispatch(tweetsActions.fetchFeedTweets());
   }, []);
 
   const mockPagination = {
@@ -37,8 +30,6 @@ const FeedPostsContainer = () => {
       <InfiniteList<Tweet2>
         showMore={() => {}}
         data={mockPagination}
-        // eslint-disable-next-line
-        // @ts-ignore
         itemComponent={(itemData) => <FeedSingleTweet {...itemData} />}
       />
     </>
