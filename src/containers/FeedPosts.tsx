@@ -79,7 +79,7 @@ const FeedPostsContainer = () => {
               placement="left"
               overlay={
                 <StyledPopover>
-                  <Button variant="light">{t("bookmarks.clearAll")}</Button>
+                  <Button variant="light">{t("homepage.button.title")}</Button>
                 </StyledPopover>
               }
             >

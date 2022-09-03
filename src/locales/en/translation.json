@@ -14,7 +14,10 @@
   },
 
   "homepage": {
-    "title": "Home"
+    "title": "Home",
+    "button": {
+      "title": "Home shows you top Tweets first"
+    }
   },
 
   "tweetCreationForm": {
