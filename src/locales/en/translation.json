@@ -13,6 +13,10 @@
     "likes": "Likes"
   },
 
+  "homepage": {
+    "title": "Home"
+  },
+
   "tweetCreationForm": {
     "inputField": "What`s happening?",
     "tweetButton": "Tweet",

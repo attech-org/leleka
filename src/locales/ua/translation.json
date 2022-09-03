@@ -13,6 +13,10 @@
     "likes": "видміток 'Подобається'"
   },
 
+  "homepage": {
+    "title": "Головна"
+  },
+
   "tweetCreationForm": {
     "inputField": "Що відбувається",
     "tweetButton": "Твітнути",
