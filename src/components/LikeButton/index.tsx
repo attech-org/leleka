@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Heart, HeartFill } from "react-bootstrap-icons";
+import { useTranslation } from "react-i18next";
 import styled from "styled-components";
 import "./animationLike.css";
 
@@ -12,8 +13,8 @@ interface ILikeButton {
 const bgRed = "rgb(249, 24, 128, 0.1)";
 const Red = "rgb(249, 24, 128)";
 const IconBg = styled.button`
-  height: 38.5px;
-  width: 38.5px;
+  height: 32px;
+  width: 32px;
   border: none;
   background-color: transparent;
   &:hover {
@@ -50,25 +51,20 @@ const LikeButton: React.FC<ILikeButton> = (
       setcountAnimation("move down");
       setTimeout(() => setlikesCount(temporaryСounter + 1), 100);
       setTimeout(() => setcountAnimation("up"), 100);
-      setTimeout(() => setcountAnimation("static"), 150);
+      setTimeout(() => setcountAnimation("static liked"), 150);
     }
   };
+  const { t } = useTranslation();
+
   return (
     <Like>
       <IconBg
-        className="m-0 p-0 rounded-circle row align-items-center justify-content-center)"
-        data-bs-toggle="tooltip-primary"
-        data-bs-placement="bottom"
-        data-bs-custom-class="red-tooltip"
-        title={isLiked ? "Unlike" : "Like"}
+        className="m-0 p-0 rounded-circle align-items-center justify-content-center)"
+        title={isLiked ? t("likeButton.unlike") : t("likeButton.like")}
       >
-        <input
-          id="toggle-heart"
-          type="checkbox"
-          checked={isLiked ? true : false}
-          onClick={() => clickLike()}
-        />
-        <label htmlFor="toggle-heart">
+        <input id="toggle-heart" type="checkbox" checked={isLiked} />
+
+        <label htmlFor="toggle-heart" onClick={() => clickLike()}>
           {isLiked ? (
             <HeartFill className="p-0 m-0" />
           ) : (

@@ -1,3 +1,12 @@
+export interface MongoArtifacts {
+  _id: string;
+}
+
+export type LE<T> = T & {
+  isLoading?: boolean;
+  error?: string | Error;
+};
+
 export interface Tweet {
   id: string;
   userlogo: string;
@@ -9,4 +18,19 @@ export interface Tweet {
   retweetCount: number;
   tweetQuoteCount: number;
   likeCount: number;
+  commentCount?: number;
+  isVerified?: boolean;
+}
+
+export interface Tweet2 extends MongoArtifacts {
+  authorId: string;
+  content: string;
+  createdAt: string;
+  repliedTo?: string;
+  updatedAt: string;
+  stats: {
+    likes: number;
+    retweets: number;
+    comments: number;
+  };
 }

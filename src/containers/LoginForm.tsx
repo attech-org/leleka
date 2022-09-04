@@ -8,6 +8,7 @@ import {
 } from "react-bootstrap";
 import { Apple, Google, Twitter, XLg } from "react-bootstrap-icons";
 import { useForm } from "react-hook-form";
+import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import * as yup from "yup";
@@ -18,16 +19,16 @@ interface MyForm {
   username: string;
 }
 
-const sampleSchema = yup.object().shape({
-  username: yup.string().required("Name is required!"),
-});
-
 const StyledContainer = styled(Container)`
   height: 650px;
-  width: auto;
+  width: 600px;
 `;
 
 const LoginForm = () => {
+  const { t } = useTranslation();
+  const sampleSchema = yup.object().shape({
+    username: yup.string().required(t("login.requiredName")),
+  });
   const {
     register,
     handleSubmit,
@@ -44,12 +45,14 @@ const LoginForm = () => {
   };
 
   const LoginFormContainer = (
-    <StyledContainer className=" rounded-4 p-2">
+    <StyledContainer className="rounded-4 p-2">
       <header className="d-flex justify-content-between align-items-center">
         <OverlayTrigger
           key={"bottom"}
           placement={"bottom"}
-          overlay={<Tooltip id={`tooltip-bottom}`}>Close</Tooltip>}
+          overlay={
+            <Tooltip id={`tooltip-bottom}`}>{t("common.close")}</Tooltip>
+          }
         >
           <Button
             variant="light"
@@ -64,7 +67,7 @@ const LoginForm = () => {
       </header>
 
       <section className="w-50 mt-4 m-auto d-grid gap-4">
-        <h1 className="fs-1 fw-700 ">Sign in to Twitter</h1>
+        <h1 className="text-nowrap fs-1 fw-700 ">{t("login.loginTitle")}</h1>
 
         <Form onSubmit={handleSubmit(submitForm)} className="d-grid gap-2 ">
           <Button
@@ -73,7 +76,7 @@ const LoginForm = () => {
           >
             <Google className="me-2" />
             <a className="text-decoration-none text-black" href="#">
-              Continue with Google
+              {t("login.signGoogle")}
             </a>
           </Button>
 
@@ -83,13 +86,13 @@ const LoginForm = () => {
           >
             <Apple className="me-2" />
             <a className="text-decoration-none text-black" href="#">
-              Continue with Apple
+              {t("login.signApple")}
             </a>
           </Button>
 
           <div className="d-flex justify-content-between align-items-center">
             <div className="bg-secondary border-bottom border-secondary w-50" />
-            <div className="fs-5 text-secondary mx-2">or</div>
+            <div className="fs-5 text-secondary mx-2">{t("login.or")}</div>
             <div className="bg-secondary border-bottom border-secondary w-50" />
           </div>
 
@@ -102,7 +105,7 @@ const LoginForm = () => {
               id="floatingInput"
               placeholder="Name"
             />
-            <label>Phone, email, or username</label>
+            <label>{t("login.usernameTitle")}</label>
           </div>
           {errors.username && (
             <div className="position-absolute start-0 end-0 bottom-0 text-center mb-5 text-white">
@@ -116,19 +119,19 @@ const LoginForm = () => {
             className="btn btn-dark fw-700 w-100 d-block mb-3 rounded-5 py-2 border border-0"
             type="submit"
           >
-            Next
+            {t("login.nextButton")}
           </Button>
 
           <Button
             variant="light"
             className="fw-700 w-100 d-block mb-4 rounded-5 py-2 border border-gray-400"
           >
-            Forgot password?
+            {t("login.forgotPassword")}
           </Button>
           <div>
-            <span className="text-secondary">Don't have an account?</span>
+            <span className="text-secondary">{t("login.noAccount")}</span>
             <Link className="ms-1 text-decoration-none" to="/SignUpModal">
-              Sign up
+              {t("login.signUp")}
             </Link>
           </div>
         </Form>
@@ -139,8 +142,8 @@ const LoginForm = () => {
   return (
     <>
       <ModalUniversal
-        button={"Login"}
-        title={"Login"}
+        button={t("login.loginButton")}
+        title=""
         content={LoginFormContainer}
       />
     </>

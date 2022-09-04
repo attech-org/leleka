@@ -1,6 +1,18 @@
 {
   "test": "Українська",
 
+  "common": {
+    "showMore": "Показати більше",
+    "follow": "Читати",
+    "unfollow": "Не читати",
+    "following": "Читає(те)",
+    "followers": "Читачі",
+    "close": "Закрити",
+    "retweets": "Ретвітів",
+    "quoteTweets": "Твітів з цитатами",
+    "likes": "видміток 'Подобається'"
+  },
+
   "tweetCreationForm": {
     "inputField": "Що відбувається",
     "tweetButton": "Твітнути",
@@ -42,5 +54,80 @@
       "likes": "Вподобання"
     },
     "title": "Профіль"
+  },
+  "singleTweetMenu": {
+    "stopFollow": "Не читати",
+    "add": "Додати",
+    "toList": "до списку",
+    "report": "Поскаржитись на твіт"
+  },
+  "followUser": {
+    "description": "Твіти цього користувача більше не з’являтимуться у вашій головній стрічці. Ви все ще зможете переглянути профіль цього користувача, якщо його(її) твіти не захищено."
+  },
+  "navigationBar": {
+    "home": "Головна",
+    "explore": "Ознайомлення",
+    "notifications": "Сповіщення",
+    "messages": "Повідомлення",
+    "bookmarks": "Закладки",
+    "lists": "Списки",
+    "profile": "Профіль",
+    "more": "Інші дії"
+  },
+  "trends": {
+    "locations": "Місця",
+    "location": "Місцезнаходження",
+    "locationTitle": "Показувати вміст із цього місця",
+    "locationText": "Коли цю функцію активовано, ви бачитимете, що відбувається навколо вас просто зараз.",
+    "locationsExplore": "Ознайомлення з місцями",
+    "personalization": "Персоналізація",
+    "personalizationTitle": "Актуальне для вас",
+    "personalizationText": "Ви можете персоналізувати тренди на основі свого місцезнаходження та осіб, яких ви читаєте.",
+    "locationsSearch": "Пошук місць",
+    "pageTitle": "Тренди",
+    "tweets": "твітів:",
+    "trendInterest": "Мене це не цікавить",
+    "trendSpam": "Цей тренд шкідливий або містить багато спаму",
+    "windowTitle": "Тренди для вас"
+  },
+  "login": {
+    "loginButton": "Вхід",
+    "loginTitle": "Увійдіть у Твіттер",
+    "signGoogle": "Вхід через Google",
+    "signApple": "Вхід через Apple",
+    "or": "або",
+    "usernameTitle": "Телефон, елкктронна пошта або ім'я користувача",
+    "nextButton": "Далі",
+    "forgotPassword": "Забули пароль?",
+    "requiredName": "Заповніть ім'я!",
+    "noAccount": "Не маєте профілю?",
+    "signUp": "Зареєструйтеся"
+  },
+  "search": {
+    "placeholder": "Пошук у Твіттері"
+  },
+  "recommendations": {
+    "windowTitle": "Рекомендовані"
+  },
+  "bookmarks": {
+    "windowTitle": "Закладки",
+    "clearAll": "Видалити всі Закладки",
+    "menuAdd": "Читати",
+    "menuRemove": "Додати/Видалити",
+    "menuMute": "Ігнорувати",
+    "replyingTo": "У відповідь"
+  },
+  "retweetButton": {
+    "retweet": "Ретвітнути",
+    "undoRetweet": "Скасувати ретвіт",
+    "popover": {
+      "retweet": "Ретвітнути",
+      "undoRetweet": "Скасувати ретвіт",
+      "quote": "Цитувати Твіт"
+    }
+  },
+  "likeButton": {
+    "like": "Вподобати",
+    "unlike": "Видалити вподобання"
   }
 }

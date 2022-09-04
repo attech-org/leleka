@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { ListGroup, ListGroupItem, TabContainer } from "react-bootstrap";
+import { useTranslation } from "react-i18next";
 import styled from "styled-components";
 
 import { SinglePageHeader } from "../components/PageHeader";
 import { TrendItem } from "../components/TrendItem";
 import InfiniteList from "../containers/InfiniteList";
 import Layout from "../containers/Layout";
-import { MockTrend, PaginationParamsResult } from "../types/mock-api-types";
+import { MockTrend, Pagination } from "../types/mock-api-types";
 
 const LiWrapper = styled(ListGroupItem)`
   width: 100%;
@@ -21,8 +22,7 @@ function sleep(ms: number) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
 const RecomendedFollowsPage: React.FunctionComponent = () => {
-  const [mockTrends, setMockTrends] =
-    useState<PaginationParamsResult<MockTrend>>();
+  const [mockTrends, setMockTrends] = useState<Pagination<MockTrend>>();
 
   const fetchAndProcessData = async (page = 1) => {
     const mockData: Array<MockTrend> = [];
@@ -52,9 +52,11 @@ const RecomendedFollowsPage: React.FunctionComponent = () => {
   useEffect(() => {
     fetchAndProcessData();
   }, []);
+
+  const { t } = useTranslation();
   return (
     <Layout>
-      <SinglePageHeader pageName="Trends" />
+      <SinglePageHeader pageName={t("trends.pageTitle")} />
       <TabContainer />
       {mockTrends && (
         <ListGroup>
