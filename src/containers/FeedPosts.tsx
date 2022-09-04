@@ -12,11 +12,7 @@ const FeedPostsContainer = () => {
   const posts = useSelector<RootState, RootState["tweets"]["feedTweets"]>(
     (store) => store.tweets.feedTweets
   );
-
-  console.log(posts);
-
   const handleShowMore = () => {
-    console.log("handleShowMore");
     return !posts.isLoading && dispatch(tweetsActions.fetchFeedTweets(posts));
   };
 
