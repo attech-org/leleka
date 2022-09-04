@@ -1,4 +1,11 @@
-import { Document } from "mongoose";
+export interface MongoArtifacts {
+  _id: string;
+}
+
+export type LE<T> = T & {
+  isLoading?: boolean;
+  error?: string | Error;
+};
 
 export interface Tweet {
   id: string;
@@ -15,7 +22,7 @@ export interface Tweet {
   isVerified?: boolean;
 }
 
-export interface Tweet2 extends Document {
+export interface Tweet2 extends MongoArtifacts {
   authorId: string;
   content: string;
   createdAt: string;
