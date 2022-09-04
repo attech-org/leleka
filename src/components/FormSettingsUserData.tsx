@@ -1,3 +1,4 @@
+import { yupResolver } from "@hookform/resolvers/yup";
 import React, { useState, useEffect, useRef } from "react";
 import {
   Form,
@@ -8,20 +9,46 @@ import {
   Figure,
   Row,
 } from "react-bootstrap";
+import { useForm } from "react-hook-form";
+import { useTranslation } from "react-i18next";
+import * as yup from "yup";
 
-// interface IFormInput {
-//   userName: string;
-//   bio: string;
-//   location: string;
-//   website: string;
-//   dateOfBirth: Date;
-// }
+interface IFormInput {
+  userName: string;
+  bio: string;
+  location: string;
+  website: string;
+  dateOfBirth: Date;
+}
 
 const FormSettingsUserData = () => {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
+  const { t } = useTranslation();
 
   //------------------------------ validation ------------------------
+
+  const schema = yup.object().shape({
+    username: yup.string().required("validation:errors.fullname.required"),
+    dateOfBirth: yup
+      .date()
+      .typeError("validation:errors.dateOfBirth.required")
+      .required("validation:errors.dateOfBirth.required"),
+  });
+
+  const {
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm<IFormInput>({
+    resolver: yupResolver(schema),
+  });
+
+  const submitForm = (data: IFormInput) => {
+    // eslint-disable-next-line no-console
+    console.log(data);
+    reset();
+  };
 
   //------------------------------ avatar image ------------------------
 
@@ -132,6 +159,11 @@ const FormSettingsUserData = () => {
             {/*----NameUser input -------*/}
             <Form.Group className="mb-3" controlId="inputNameUser">
               <Form.Control type="text" placeholder="Name" />
+              <p className="text-danger mt-1">
+                {errors.userName &&
+                  errors.userName.message &&
+                  t(`${errors.userName.message}`)}
+              </p>
             </Form.Group>
             {/*----BioUser field -------*/}
             <Form.Group className="mb-3" controlId="inputBioUser">
@@ -152,6 +184,11 @@ const FormSettingsUserData = () => {
                 placeholder="Date"
                 data-date-format="YYYY/MM/DD"
               />
+              <p className="text-danger">
+                {errors.dateOfBirth &&
+                  errors.dateOfBirth.message &&
+                  t(`${errors.dateOfBirth.message}`)}
+              </p>
             </Form.Group>
             {/*----advanced settings button -------*/}
             <div className="d-grid gap-2">
@@ -159,7 +196,9 @@ const FormSettingsUserData = () => {
             </div>
             <br />
             <div className="d-grid gap-2">
-              <Button variant="primary">Save</Button>
+              <Button variant="primary" onSubmit={handleSubmit(submitForm)}>
+                Save
+              </Button>
             </div>
           </Form>
         </ModalBody>
