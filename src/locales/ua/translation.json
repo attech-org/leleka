@@ -53,7 +53,9 @@
       "media": "Медіафайли",
       "likes": "Вподобання"
     },
-    "title": "Профіль"
+    "title": "Профіль",
+    "followers": "Читачів",
+    "following": "Читає(те)"
   },
   "singleTweetMenu": {
     "stopFollow": "Не читати",
