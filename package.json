@@ -60,7 +60,7 @@
     "lint": "tsc --noEmit && eslint src/**/*.ts{,x}",
     "lint:fix": "prettier --write src/**/*.ts{,x} && eslint --fix src/**/*.ts{,x}",
     "prepare": "husky install",
-    "predeploy": "PUBLIC_URL=https://attech-org.github.io/leleka npm run build",
+    "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
     "lint-staged": "lint-staged"
   },
