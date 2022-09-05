@@ -99,7 +99,7 @@ const FormSettingsUserData = () => {
       {/*----modal window -------*/}
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <ModalTitle>Edit profile</ModalTitle>
+          <ModalTitle>{t(`userSettings.editProfile`)}</ModalTitle>
         </Modal.Header>
         <ModalBody>
           <Form>
@@ -118,7 +118,7 @@ const FormSettingsUserData = () => {
             <Figure>
               <Form.Group as={Row} controlId="avatarFile" className="mb-3">
                 <div className="d-grid gap-2">
-                  <Form.Label>Upload user avatar</Form.Label>
+                  <Form.Label>{t(`userSettings.uploadUserAvatar`)}</Form.Label>
                   <Form.Control
                     type="file"
                     size="sm"
@@ -145,7 +145,7 @@ const FormSettingsUserData = () => {
             <Figure>
               <Form.Group controlId="bgFile" className="mb-3">
                 <div className="d-grid gap-2">
-                  <Form.Label>Upload user picture</Form.Label>
+                  <Form.Label>{t(`userSettings.uploadUserPicture`)}</Form.Label>
                   <Form.Control
                     type="file"
                     size="sm"
@@ -158,7 +158,7 @@ const FormSettingsUserData = () => {
 
             {/*----NameUser input -------*/}
             <Form.Group className="mb-3" controlId="inputNameUser">
-              <Form.Control type="text" placeholder="Name" />
+              <Form.Control type="text" placeholder={t(`userSettings.name`)} />
               <p className="text-danger mt-1">
                 {errors.userName &&
                   errors.userName.message &&
@@ -167,21 +167,31 @@ const FormSettingsUserData = () => {
             </Form.Group>
             {/*----BioUser field -------*/}
             <Form.Group className="mb-3" controlId="inputBioUser">
-              <Form.Control as="textarea" rows={2} placeholder="Bio" />
+              <Form.Control
+                as="textarea"
+                rows={2}
+                placeholder={t(`userSettings.bio`)}
+              />
             </Form.Group>
             {/*----LocationUser input -------*/}
             <Form.Group className="mb-3" controlId="inputLocationUser">
-              <Form.Control type="text" placeholder="Location" />
+              <Form.Control
+                type="text"
+                placeholder={t(`userSettings.location`)}
+              />
             </Form.Group>
             {/*----WebsiteUser input -------*/}
             <Form.Group className="mb-3" controlId="inputWebsiteUser">
-              <Form.Control type="text" placeholder="Website" />
+              <Form.Control
+                type="text"
+                placeholder={t(`userSettings.website`)}
+              />
             </Form.Group>
             {/*----BirthDateUser input -------*/}
             <Form.Group className="mb-3" controlId="inputBirthDateUser">
               <Form.Control
                 type="date"
-                placeholder="Date"
+                placeholder={t(`userSettings.dateOfBirth`)}
                 data-date-format="YYYY/MM/DD"
               />
               <p className="text-danger">
@@ -192,12 +202,14 @@ const FormSettingsUserData = () => {
             </Form.Group>
             {/*----advanced settings button -------*/}
             <div className="d-grid gap-2">
-              <Button variant="light">Switch to professional</Button>
+              <Button variant="light">
+                {t(`userSettings.professionalButton`)}
+              </Button>
             </div>
             <br />
             <div className="d-grid gap-2">
               <Button variant="primary" onSubmit={handleSubmit(submitForm)}>
-                Save
+                {t(`userSettings.saveButton`)}
               </Button>
             </div>
           </Form>
