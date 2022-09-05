@@ -1,5 +1,6 @@
-import FeedPosts from "./FeedPosts";
+import { memo } from "react";
 
+import FeedPosts from "./FeedPosts";
 const HomeContainer: React.FunctionComponent = () => {
   return (
     <>
@@ -8,4 +9,4 @@ const HomeContainer: React.FunctionComponent = () => {
   );
 };
 
-export default HomeContainer;
+export default memo(HomeContainer);
