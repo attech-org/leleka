@@ -1,33 +1,14 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-import { User } from "../../types";
+import { LE, User } from "../../types";
 
-export interface UserStore extends Partial<User> {
-  username: string;
-  name: string;
-  location?: string;
-  url?: string;
-  description?: string;
-  verified: boolean;
-  followersCount: number;
-  friendsCount: number;
-  listedCount: number;
-  favouritesCount: number;
-  statusesCount: number;
-  createdAt?: string;
-  updatedAt?: string;
-  email: string;
-  profile: {
-    firstName: string;
-    lastName: string;
-    avatar?: string;
-    bio?: string;
-    phone?: string;
-    gender?: string;
-  };
-}
+export type UserStore = User &
+  LE<{
+    // some custom typings for store
+  }>;
 
 const userInitialState: UserStore = {
+  _id: "",
   username: "",
   name: "",
   location: undefined,
