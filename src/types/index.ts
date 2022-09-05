@@ -2,6 +2,7 @@ export interface MongoArtifacts {
   _id: string;
 }
 
+// L - loading; E - error
 export type LE<T> = T & {
   isLoading?: boolean;
   error?: string | Error;
