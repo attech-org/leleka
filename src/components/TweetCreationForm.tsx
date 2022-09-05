@@ -10,16 +10,8 @@ import {
 import { useTranslation } from "react-i18next";
 import styled from "styled-components";
 
-const StyledCloseButton = styled.button`
-  &:hover {
-    background-color: rgb(128, 128, 128, 0.2);
-  }
-`;
-const StyledTextArea = styled.textarea`
-  &:focus {
-    box-shadow: none;
-  }
-`;
+import TextEditor from "./TextEditor";
+
 const StyledButton = styled.button`
   &:hover {
     background-color: rgb(0, 0, 255, 0.1);
@@ -59,11 +51,6 @@ const TweetCreationForm: React.FC = () => {
   };
   return (
     <div>
-      <div className="d-flex mx-2">
-        <StyledCloseButton className="btn p-1 rounded-circle border-0">
-          <div className="btn-close" />
-        </StyledCloseButton>
-      </div>
       <div className="border-0 p-3 d-flex text-start justify-content-start">
         <div className="">
           <img
@@ -75,10 +62,7 @@ const TweetCreationForm: React.FC = () => {
           />
         </div>
         <div className="flex-grow-1 ms-2">
-          <StyledTextArea
-            className="form-control form-control-lg border-0 fs-5"
-            placeholder={t("translation:tweetCreationForm.inputField")}
-          />
+          <TextEditor />
           <div className="border-bottom py-1">
             <div>
               <OverlayTrigger

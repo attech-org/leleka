@@ -13,6 +13,13 @@
     "likes": "Likes"
   },
 
+  "homepage": {
+    "title": "Home",
+    "button": {
+      "title": "Home shows you top Tweets first"
+    }
+  },
+
   "tweetCreationForm": {
     "inputField": "What`s happening?",
     "tweetButton": "Tweet",
@@ -53,7 +60,9 @@
       "media": "Media",
       "likes": "Likes"
     },
-    "title": "Profile"
+    "title": "Profile",
+    "followers": "Followers",
+    "following": "Following"
   },
   "singleTweetMenu": {
     "stopFollow": "Stop follow",
@@ -97,6 +106,7 @@
     "signApple": "Continue with Apple",
     "or": "or",
     "usernameTitle": "Phone, email, or username",
+    "passwordTitle": "Password",
     "nextButton": "Next",
     "forgotPassword": "Forgot password?",
     "requiredName": "Name is required!",

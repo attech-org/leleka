@@ -82,7 +82,7 @@ const StyledButton = styled(Button)`
 const FeedSingleTweet = ({
   _id,
   createdAt,
-  authorId,
+  author,
   content,
   // repliedTo,
   // updatedAt,
@@ -96,24 +96,21 @@ const FeedSingleTweet = ({
         role="button"
         key={_id}
       >
-        {/* TODO: backend should add aggregation for author */}
-        <Logo
-          className="rounded-circle"
-          src={"http://webmeup.com/upload/blog/lead-image-105.png"}
-          alt=""
-        />
+        <Logo className="rounded-circle" src={author.profile?.avatar} alt="" />
 
         <div className="w-100">
           <div className="d-flex justify-content-between">
             <div className="d-flex align-items-center px-3 flex-wrap">
               <UnderlineHover className="fw-600 pe-1 fw-bold">
-                {authorId}
+                {author.username}
               </UnderlineHover>
 
               {/* {isVerified && (
                 <PatchCheckFill size={20} className="text-info pe-1" />
               )} */}
-              <a className="text-muted text-decoration-none">@{authorId}</a>
+              <a className="text-muted text-decoration-none">
+                @{author.username}
+              </a>
               <div className="mx-1 text-secondary d-flex justify-content-center align-items-center">
                 ·
               </div>
@@ -140,7 +137,9 @@ const FeedSingleTweet = ({
                           <span className="px-2">
                             <PersonX />
                           </span>
-                          {`${t("SingleTweetMenu.stopFollow")} ${authorId}`}
+                          {`${t("SingleTweetMenu.stopFollow")} ${
+                            author.username
+                          }`}
                         </StyledLink>
                       </p>
                       <p>
@@ -151,7 +150,7 @@ const FeedSingleTweet = ({
                           <span className="px-2">
                             <ClipboardPlus />
                           </span>
-                          {`${t("SingleTweetMenu.add")} ${authorId} ${t(
+                          {`${t("SingleTweetMenu.add")} ${author.username} ${t(
                             "SingleTweetMenu.toList"
                           )}`}
                         </StyledLink>
@@ -183,13 +182,13 @@ const FeedSingleTweet = ({
           <div className="px-3 py-2">
             <div className="">{content}</div>
 
-            <img
+            {/* <img
               className="w-100 rounded-4 mt-3"
               alt=""
               src={
                 "https://burst.shopifycdn.com/photos/person-holds-a-book-over-a-stack-and-turns-the-page.jpg?width=1200&format=pjpg&exif=0&iptc=0"
               }
-            />
+            /> */}
           </div>
           <div className="px-3 d-flex justify-content-between align-items-center">
             <StatisticOfTweet className="d-flex align-items-center justify-content-center">
