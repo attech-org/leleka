@@ -13,6 +13,13 @@
     "likes": "Likes"
   },
 
+  "homepage": {
+    "title": "Home",
+    "button": {
+      "title": "Home shows you top Tweets first"
+    }
+  },
+
   "tweetCreationForm": {
     "inputField": "What`s happening?",
     "tweetButton": "Tweet",
