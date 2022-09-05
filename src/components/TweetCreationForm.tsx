@@ -10,11 +10,8 @@ import {
 import { useTranslation } from "react-i18next";
 import styled from "styled-components";
 
-const StyledTextArea = styled.textarea`
-  &:focus {
-    box-shadow: none;
-  }
-`;
+import TextEditor from "./TextEditor";
+
 const StyledButton = styled.button`
   &:hover {
     background-color: rgb(0, 0, 255, 0.1);
@@ -65,10 +62,7 @@ const TweetCreationForm: React.FC = () => {
           />
         </div>
         <div className="flex-grow-1 ms-2">
-          <StyledTextArea
-            className="form-control form-control-lg border-0 fs-5"
-            placeholder={t("translation:tweetCreationForm.inputField")}
-          />
+          <TextEditor />
           <div className="border-bottom py-1">
             <div>
               <OverlayTrigger
