@@ -10,7 +10,7 @@ import InfiniteList from "../containers/InfiniteList";
 import Layout from "../containers/Layout";
 import { LinkTabsContainer } from "../containers/Tabs";
 import { FollowStatus } from "../types/constants";
-import { MockUser, PaginationParamsResult } from "../types/mock-api-types";
+import { MockUser, Pagination } from "../types/mock-api-types";
 
 const StyledButton = styled(Button)`
   height: 2rem;
@@ -51,8 +51,7 @@ const RecomendedFollowsPage: React.FunctionComponent = () => {
 
   const navigate = useNavigate();
 
-  const [mockUsers, setMockUsers] =
-    useState<PaginationParamsResult<MockUser>>();
+  const [mockUsers, setMockUsers] = useState<Pagination<MockUser>>();
 
   const fetchAndProcessData = async (page = 1) => {
     const mockData: Array<MockUser> = [];

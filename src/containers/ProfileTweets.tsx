@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import SingleTweet from "../components/SingleTweet";
 import MOCKTweets from "../MOCKS/tweets";
 import { Tweet } from "../types";
-import { PaginationParamsResult } from "../types/mock-api-types";
+import { Pagination } from "../types/mock-api-types";
 import InfiniteList from "./InfiniteList";
 
 function sleep(ms: number) {
@@ -11,7 +11,7 @@ function sleep(ms: number) {
 }
 
 const ProfileTweets: React.FunctionComponent = () => {
-  const [mockUsers, setMockUsers] = useState<PaginationParamsResult<Tweet>>();
+  const [mockUsers, setMockUsers] = useState<Pagination<Tweet>>();
 
   const fetchData = async (page = 0) => {
     let firstArg = 0;

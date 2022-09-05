@@ -13,6 +13,7 @@ import { useTranslation } from "react-i18next";
 import styled from "styled-components";
 
 import { LinkWithLanguageQueryParam } from "../containers/LinkWithLanguageQueryParam";
+import ModalTweetCreationForm from "../containers/ModalTweetCreationForm";
 
 const StyledNav = styled(Nav)`
   background-color: white;
@@ -87,6 +88,9 @@ const NavigationBar = () => {
         <Nav.Link as={LinkWithLanguageQueryParam} to="/more">
           <StyledSpan className="fs-5">{t("navigationBar.more")}</StyledSpan>
         </Nav.Link>
+      </Nav.Item>
+      <Nav.Item className="d-flex align-items-center ps-2 pt-2 pb-3">
+        <ModalTweetCreationForm />
       </Nav.Item>
     </StyledNav>
   );

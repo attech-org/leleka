@@ -13,6 +13,13 @@
     "likes": "видміток 'Подобається'"
   },
 
+  "homepage": {
+    "title": "Головна",
+    "button": {
+      "title": "На головній спершу відображаються популярні твіти"
+    }
+  },
+
   "tweetCreationForm": {
     "inputField": "Що відбувається",
     "tweetButton": "Твітнути",
@@ -53,7 +60,9 @@
       "media": "Медіафайли",
       "likes": "Вподобання"
     },
-    "title": "Профіль"
+    "title": "Профіль",
+    "followers": "Читачів",
+    "following": "Читає(те)"
   },
   "singleTweetMenu": {
     "stopFollow": "Не читати",
@@ -96,7 +105,8 @@
     "signGoogle": "Вхід через Google",
     "signApple": "Вхід через Apple",
     "or": "або",
-    "usernameTitle": "Телефон, елкктронна пошта або ім'я користувача",
+    "usernameTitle": "Телефон, електронна пошта або ім'я користувача",
+    "passwordTitle": "Пароль",
     "nextButton": "Далі",
     "forgotPassword": "Забули пароль?",
     "requiredName": "Заповніть ім'я!",

@@ -16,11 +16,12 @@ export interface MockUser extends DbEntity {
   _id?: string; //poxyi
 }
 
-export interface PaginationParamsResult<T = object> {
+export interface Pagination<T = object> {
   docs: Array<T>;
   limit: number;
-  hasNextPage: boolean;
+  hasNextPage?: boolean;
   page: number;
+  nextPage?: number;
 }
 
 export interface MockTrend extends DbEntity {
