@@ -2,6 +2,7 @@ export interface MongoArtifacts {
   _id: string;
 }
 
+// L - loading; E - error
 export type LE<T> = T & {
   isLoading?: boolean;
   error?: string | Error;
@@ -32,5 +33,30 @@ export interface Tweet2 extends MongoArtifacts {
     likes: number;
     retweets: number;
     comments: number;
+  };
+}
+
+export interface User extends MongoArtifacts {
+  username: string;
+  name: string;
+  location?: string;
+  url?: string;
+  description?: string;
+  verified: boolean;
+  followersCount: number;
+  friendsCount: number;
+  listedCount: number;
+  favouritesCount: number;
+  statusesCount: number;
+  createdAt?: string;
+  updatedAt?: string;
+  email: string;
+  profile: {
+    firstName: string;
+    lastName: string;
+    avatar?: string;
+    bio?: string;
+    phone?: string;
+    gender?: string;
   };
 }

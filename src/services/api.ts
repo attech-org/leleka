@@ -104,16 +104,50 @@ export const testAuthorized = async () => {
   }
 };
 
-export const loginUser = async () => {
+export const loginUser = async (
+  username: string,
+  password: string,
+  email: string
+) => {
   try {
     const res = await instance.post("/api/auth/login", {
-      username: "koder",
-      password: "12345678",
-      email: "qwert@gmail.com",
+      username: username,
+      password: password,
+      email: email,
     });
     const { accessToken, refreshToken } = res.data;
     localStorage.setItem("accessToken", accessToken);
     localStorage.setItem("refreshToken", refreshToken);
+    return res.data.user;
+  } catch (err) {
+    console.warn(err);
+  }
+};
+
+export const loginUserAsLeleka1 = async () => {
+  try {
+    const res = await instance.post("/api/auth/login", {
+      username: "leleka1",
+      password: "@Leleka1",
+      // email: "qwert@gmail.com",
+    });
+    const { accessToken, refreshToken } = res.data;
+    localStorage.setItem("accessToken", accessToken);
+    localStorage.setItem("refreshToken", refreshToken);
+    return res.data.user;
+  } catch (err) {
+    console.warn(err);
+  }
+};
+
+export const getUser = async (id: string) => {
+  try {
+    const res = await instance.get(`/api/users/${id}`, {
+      headers: {
+        Authorization: localStorage.getItem("accessToken") as string,
+      },
+    });
+    return res.data;
   } catch (err) {
     console.warn(err);
   }
