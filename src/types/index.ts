@@ -37,7 +37,6 @@ export interface Tweet2 extends MongoArtifacts {
 
 export interface User extends MongoArtifacts {
   username: string;
-  password: string;
   name: string;
   location?: string;
   url?: string;
@@ -58,15 +57,5 @@ export interface User extends MongoArtifacts {
     bio?: string;
     phone?: string;
     gender?: string;
-  };
-  auth?: {
-    local?: {
-      accessToken?: string;
-      refreshToken?: string;
-    };
-    twitter?: {
-      accessToken?: string;
-      refreshToken?: string;
-    };
   };
 }

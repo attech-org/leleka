@@ -4,7 +4,6 @@ import { User } from "../../types";
 
 export interface UserStore extends Partial<User> {
   username: string;
-  password: string; // Is it needed?
   name: string;
   location?: string;
   url?: string;
@@ -26,21 +25,10 @@ export interface UserStore extends Partial<User> {
     phone?: string;
     gender?: string;
   };
-  auth?: {
-    local?: {
-      accessToken?: string;
-      refreshToken?: string;
-    };
-    twitter?: {
-      accessToken?: string;
-      refreshToken?: string;
-    };
-  };
 }
 
 const userInitialState: UserStore = {
   username: "",
-  password: "",
   name: "",
   location: undefined,
   url: undefined,
@@ -61,16 +49,6 @@ const userInitialState: UserStore = {
     bio: undefined,
     phone: undefined,
     gender: undefined,
-  },
-  auth: {
-    local: {
-      accessToken: undefined,
-      refreshToken: undefined,
-    },
-    twitter: {
-      accessToken: undefined,
-      refreshToken: undefined,
-    },
   },
 };
 
