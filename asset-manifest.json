@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "https://attech-org.github.io/leleka/static/css/main.0c5213a7.css",
-    "main.js": "https://attech-org.github.io/leleka/static/js/main.05e1686f.js",
-    "index.html": "https://attech-org.github.io/leleka/index.html",
-    "main.0c5213a7.css.map": "https://attech-org.github.io/leleka/static/css/main.0c5213a7.css.map",
-    "main.05e1686f.js.map": "https://attech-org.github.io/leleka/static/js/main.05e1686f.js.map"
+    "main.css": "/leleka/static/css/main.0c5213a7.css",
+    "main.js": "/leleka/static/js/main.32751de3.js",
+    "index.html": "/leleka/index.html",
+    "main.0c5213a7.css.map": "/leleka/static/css/main.0c5213a7.css.map",
+    "main.32751de3.js.map": "/leleka/static/js/main.32751de3.js.map"
   },
   "entrypoints": [
     "static/css/main.0c5213a7.css",
-    "static/js/main.05e1686f.js"
+    "static/js/main.32751de3.js"
   ]
 }
