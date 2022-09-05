@@ -23,6 +23,6 @@ jobs:
         env:
           user_name: 'github-actions[bot]'
           user_email: 'github-actions[bot]@users.noreply.github.com'
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          github_token: ${{ secrets.DEPLOY_TOKEN }}
           repository: ${{ github.repository }}
           REACT_APP_SERVER_URL: ${{ secrets.REACT_APP_SERVER_URL }}
