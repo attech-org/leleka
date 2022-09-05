@@ -2,11 +2,11 @@
 import { combineReducers } from "redux";
 
 import tweetsSlice from "./tweets";
-import { userSlice } from "./user";
+import userSlice from "./user";
 
 export const rootReducer = combineReducers({
-  tweets: tweetsSlice.reducer,
-  user: userSlice.reducer,
+  tweets: tweetsSlice,
+  user: userSlice,
 });
 
 export type RootState = ReturnType<typeof rootReducer>;

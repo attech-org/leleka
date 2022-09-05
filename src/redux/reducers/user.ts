@@ -1,7 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 import { User } from "../../types";
-
 export interface UserStore extends Partial<User> {
   username: string;
   password: string; // Is it needed?
@@ -74,7 +73,7 @@ const userInitialState: UserStore = {
   },
 };
 
-export const userSlice = createSlice({
+const userSlice = createSlice({
   name: "user",
   initialState: userInitialState,
   reducers: {

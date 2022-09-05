@@ -80,16 +80,22 @@ instance.interceptors.response.use(
   }
 );
 
-export const registerUser = async () => {
+export const registerUser = async (
+  username: string,
+  password: string,
+  email: string
+) => {
   try {
     const res = await instance.post("/api/auth/register", {
-      username: "koder",
-      password: "12345678",
-      email: "qwert@gmail.com",
+      username,
+      password,
+      email,
+      name: username, // temporal field
     });
     const { accessToken, refreshToken } = res.data;
     localStorage.setItem("accessToken", accessToken);
     localStorage.setItem("refreshToken", refreshToken);
+    return res.data.user;
   } catch (err) {
     console.warn(err);
   }

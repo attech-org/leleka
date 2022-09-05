@@ -3,9 +3,12 @@ import { useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
+import { useDispatch } from "react-redux";
 import styled, { css } from "styled-components";
 import * as yup from "yup";
 
+import { userActions } from "../redux/reducers/user";
+import { registerUser } from "../services/api";
 import ModalUniversal from "./ModalUniversal";
 
 // export const windowTitle = "Створіть свій профіль";
@@ -66,6 +69,7 @@ const schema = yup.object().shape({
 });
 
 const Registration = () => {
+  const dispatch = useDispatch();
   const { t } = useTranslation();
   const [show, setShow] = useState(false);
 
@@ -84,9 +88,16 @@ const Registration = () => {
     resolver: yupResolver(schema),
   });
 
-  const submitForm = (data: RegistrationForm) => {
+  const submitForm = async (data: RegistrationForm) => {
     // eslint-disable-next-line no-console
     console.log(data);
+
+    dispatch(
+      userActions.setUserData(
+        await registerUser(data.username, data.password, data.email)
+      )
+    );
+
     toggleShowState();
     reset();
   };

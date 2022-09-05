@@ -57,4 +57,4 @@ const tweetsSlice = createSlice<TweetsStore, SliceCaseReducers<TweetsStore>>({
 
 export const tweetsActions = { ...tweetsSlice.actions, fetchFeedTweets };
 
-export default tweetsSlice;
+export default tweetsSlice.reducer;
