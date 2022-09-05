@@ -16,16 +16,6 @@ const ErrorsToaster = () => {
             <Toast.Body>{`${tweetsFetch.error}`}</Toast.Body>
           </Toast>
         ) : null}
-        {tweetsFetch.isLoading && tweetsFetch.error ? (
-          <Toast bg="danger">
-            <Toast.Body>{`Another ERROR`}</Toast.Body>
-          </Toast>
-        ) : null}
-        {tweetsFetch.isLoading && tweetsFetch.error ? (
-          <Toast bg="danger">
-            <Toast.Body>{`And another ERROR`}</Toast.Body>
-          </Toast>
-        ) : null}
       </ToastContainer>
     </>
   );
