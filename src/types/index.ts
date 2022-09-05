@@ -24,7 +24,7 @@ export interface Tweet {
 }
 
 export interface Tweet2 extends MongoArtifacts {
-  authorId: string;
+  author: Partial<User>;
   content: string;
   createdAt: string;
   repliedTo?: string;
