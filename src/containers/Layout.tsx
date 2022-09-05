@@ -1,47 +1,31 @@
-import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-const GeneralContainer = styled.main`
-  display: flex;
-  justify-content: space-between;
-  width: 100vw;
-  height: 100vh;
-`;
+import { LeftPanel } from "../components/LeftPanel";
+import { RightPanel } from "../components/RightPanel";
+import ErrorsToaster from "./ErrorsToaster";
 
-const LeftPanel = styled.section`
-  flex: 0 1 30%;
-  background-color: yellowgreen;
-`;
+const GeneralContainer = styled.main``;
 
-const RightPanel = styled.section`
-  flex: 0 1 30%;
-  background-color: lightgreen;
+const Main = styled.main`
+  text-align: center;
 `;
 
 interface LayoutProps {
-  withoutNavigation?: boolean;
   children?: React.ReactNode;
 }
 
-const Layout = ({ children, withoutNavigation }: LayoutProps) => {
+const Layout = ({ children }: LayoutProps) => {
   return (
-    <>
-      {!withoutNavigation && (
-        <header>
-          <ul>
-            <li>
-              <Link to="/">Home</Link>
-              <Link to="/about">About</Link>
-            </li>
-          </ul>
-        </header>
-      )}
-      <GeneralContainer>
-        <LeftPanel>left side</LeftPanel>
-        <div>{children}</div>
-        <RightPanel>right side</RightPanel>
-      </GeneralContainer>
-    </>
+    <GeneralContainer className="container-xxl">
+      <ErrorsToaster />
+      <div className="row">
+        <LeftPanel />
+        <Main className="col-xl-6 col-lg-6 col-md-11 col-sm-11 col-12">
+          {children}
+        </Main>
+        <RightPanel />
+      </div>
+    </GeneralContainer>
   );
 };
 

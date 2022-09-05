@@ -1,0 +1,143 @@
+{
+  "test": "English",
+
+  "common": {
+    "showMore": "Show more",
+    "follow": "Follow",
+    "unfollow": "Unfollow",
+    "following": "Following",
+    "followers": "Followers",
+    "close": "Close",
+    "retweets": "Retweets",
+    "quoteTweets": "Quote Tweets",
+    "likes": "Likes"
+  },
+
+  "homepage": {
+    "title": "Home",
+    "button": {
+      "title": "Home shows you top Tweets first"
+    }
+  },
+
+  "tweetCreationForm": {
+    "inputField": "What`s happening?",
+    "tweetButton": "Tweet",
+    "whoCanAnswer": {
+      "button": {
+        "all": "Everyone can reply",
+        "followers": "People you follow can reply",
+        "following": "Only people you mention can reply"
+      },
+      "popover": {
+        "header": "Who can reply?",
+        "text": "Choose who can reply to this Tweet. Anyone mentioned can always reply.",
+        "all": "Everyone",
+        "follow": "People you follow",
+        "mention": "Only people you mention"
+      }
+    }
+  },
+  "notifications": {
+    "fields": {
+      "liked": "liked",
+      "retweeted": "retweeted",
+      "yourTweets": "of your tweets:"
+    },
+    "links": {
+      "showAll": "Show all"
+    },
+    "tabsLabel": {
+      "all": "All",
+      "mentions": "Mentions"
+    },
+    "title": "Notifications"
+  },
+  "profile": {
+    "tabsLabel": {
+      "tweets": "Tweets",
+      "tweetsWithReplies": "Tweets & replies",
+      "media": "Media",
+      "likes": "Likes"
+    },
+    "title": "Profile",
+    "followers": "Followers",
+    "following": "Following"
+  },
+  "singleTweetMenu": {
+    "stopFollow": "Stop follow",
+    "add": "Add",
+    "toList": "to list",
+    "report": "Report the tweet"
+  },
+  "followUser": {
+    "description": "Their Tweets will no longer show up in your home timeline. You can still view their profile, unless their Tweets are protected."
+  },
+  "navigationBar": {
+    "home": "Home",
+    "explore": "Explore",
+    "notifications": "Notifications",
+    "messages": "Messages",
+    "bookmarks": "Bookmarks",
+    "lists": "Lists",
+    "profile": "Profile",
+    "more": "More"
+  },
+  "trends": {
+    "locations": "Locations",
+    "location": "Location",
+    "locationTitle": "Show content in this location",
+    "locationText": "When this is on, you`ll see what`s happening around you right now.",
+    "locationsExplore": "Explore locations",
+    "personalization": "Personalization",
+    "personalizationTitle": "Trends for you",
+    "personalizationText": "You can personalize trends based on your location and who you follow.",
+    "locationsSearch": "Search locations",
+    "pageTitle": "Trends",
+    "tweets": "tweets:",
+    "trendInterest": "I'm not interested",
+    "trendSpam": "This trend is harmful or spammy",
+    "windowTitle": "Trends for you"
+  },
+  "login": {
+    "loginButton": "Login",
+    "loginTitle": "Sign in to Twitter",
+    "signGoogle": "Continue with Google",
+    "signApple": "Continue with Apple",
+    "or": "or",
+    "usernameTitle": "Phone, email, or username",
+    "passwordTitle": "Password",
+    "nextButton": "Next",
+    "forgotPassword": "Forgot password?",
+    "requiredName": "Name is required!",
+    "noAccount": "Don't have an account?",
+    "signUp": "Sign up"
+  },
+  "search": {
+    "placeholder": "Search Twitter"
+  },
+  "recommendations": {
+    "windowTitle": "Who to follow"
+  },
+  "bookmarks": {
+    "windowTitle": "Bookmarks",
+    "clearAll": "Clear all Bookmarks",
+    "menuAdd": "Follow",
+    "menuRemove": "Add/Remove",
+    "menuMute": "Mute",
+    "replyingTo": "Replying to"
+  },
+  "retweetButton": {
+    "retweet": "Retweet",
+    "undoRetweet": "Undo Retweet",
+    "popover": {
+      "retweet": "Retweet",
+      "undoRetweet": "Undo Retweet",
+      "quote": "Quote Tweet"
+    }
+  },
+  "likeButton": {
+    "like": "Like",
+    "unlike": "Unlike"
+  }
+}
