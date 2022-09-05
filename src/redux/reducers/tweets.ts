@@ -54,7 +54,6 @@ const tweetsSlice = createSlice<TweetsStore, SliceCaseReducers<TweetsStore>>({
       store.feedTweets.isLoading = false;
     });
     builder.addCase(fetchFeedTweets.rejected, (store) => {
-      console.log("error");
       store.feedTweets.isLoading = false;
       store.feedTweets.error = "Failed to fetch tweets for feed";
     });

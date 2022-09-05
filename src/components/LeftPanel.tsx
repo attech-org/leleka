@@ -43,7 +43,7 @@ export const LeftPanel = () => {
         <button
           aria-label="leleka1 login"
           onClick={async () => {
-            console.log("User: ", user);
+            console.warn("User: ", user);
           }}
         >
           Console Log User Info

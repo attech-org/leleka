@@ -45,8 +45,6 @@ const FeedPostsContainer = () => {
 
   const { t } = useTranslation();
 
-  console.log(posts);
-
   const handleShowMore = () => {
     return !posts.isLoading && dispatch(tweetsActions.fetchFeedTweets(posts));
   };
