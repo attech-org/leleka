@@ -1,15 +1,14 @@
-/* eslint-disable */
+import { useState } from "react";
 import { Form, InputGroup, Image } from "react-bootstrap";
 import { Search as SearchIcon } from "react-bootstrap-icons";
-import styled from "styled-components";
-
-import { useState } from "react";
 import AsyncTypeahead from "react-bootstrap-typeahead/types/components/AsyncTypeahead";
 import { Option } from "react-bootstrap-typeahead/types/types";
-import { MockUser } from "../types/mock-api-types";
 import { useTranslation } from "react-i18next";
+import styled from "styled-components";
 
 import users from "../MOCKS/users";
+import { MockUser } from "../types/mock-api-types";
+
 const StyledForm = styled(Form)`
   border: 2px solid transparent;
   :focus-within {
@@ -23,6 +22,7 @@ const StyledInputGroup = styled(InputGroup)`
     box-shadow: none;
   }
 `;
+
 const UserItem = ({ user }: { user: MockUser }) => {
   return (
     //TODO: add router push to user details page when created
@@ -47,7 +47,9 @@ export const AsyncSearch = () => {
     const arr = users;
     const searchResult: Array<MockUser> = [];
     arr.map((user: MockUser) => {
-      if (user.userName.includes(query)) searchResult.push(user);
+      if (user.userName.includes(query)) {
+        searchResult.push(user);
+      }
     });
     const res = searchResult || [];
     setOptions(res);
@@ -79,7 +81,7 @@ export const AsyncSearch = () => {
               placeholder: t("search.placeholder"),
             }}
             size="sm"
-            renderMenuItemChildren={(option: Option, props) => (
+            renderMenuItemChildren={(option: Option) => (
               <UserItem user={{ ...(option as MockUser) }} />
             )}
           />
