@@ -48,6 +48,7 @@ const UserInfo: React.FC<UserInfoInterface> = ({
           src={userLogo}
           height="134"
           width="134"
+          alt="avatar"
         />
       </StyledCardBody>
 
@@ -66,7 +67,13 @@ const UserInfo: React.FC<UserInfoInterface> = ({
       <Card.Body className="py-2">
         <Row xs="auto" className="align-items-center">
           <Card.Text className="fw-bold text-dark pe-1">{username}</Card.Text>
-          <img className="p-0 m-0" height="24" width="24" src={flagLogo} />
+          <img
+            className="p-0 m-0"
+            height="24"
+            width="24"
+            alt="avatar"
+            src={flagLogo}
+          />
         </Row>
         <Row xs="auto">
           <Card.Text>{userNickname}</Card.Text>

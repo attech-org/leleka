@@ -9,14 +9,18 @@ import {
 import { Apple, Google, Twitter, XLg } from "react-bootstrap-icons";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import * as yup from "yup";
 
+import { userActions } from "../redux/reducers/user";
+import { loginUser } from "../services/api";
 import ModalUniversal from "./ModalUniversal";
 
 interface MyForm {
   username: string;
+  password: string;
 }
 
 const StyledContainer = styled(Container)`
@@ -25,6 +29,7 @@ const StyledContainer = styled(Container)`
 `;
 
 const LoginForm = () => {
+  const dispatch = useDispatch();
   const { t } = useTranslation();
   const sampleSchema = yup.object().shape({
     username: yup.string().required(t("login.requiredName")),
@@ -38,9 +43,11 @@ const LoginForm = () => {
     resolver: yupResolver(sampleSchema),
   });
 
-  const submitForm = (data: MyForm) => {
+  const submitForm = async (data: MyForm) => {
     // eslint-disable-next-line no-console
-    console.log(data);
+    dispatch(
+      userActions.setUserData(await loginUser(data.username, data.password, ""))
+    );
     reset();
   };
 
@@ -111,6 +118,25 @@ const LoginForm = () => {
             <div className="position-absolute start-0 end-0 bottom-0 text-center mb-5 text-white">
               <span className="bg-primary rounded-1 px-4 p-3">
                 {errors?.username?.message}
+              </span>
+            </div>
+          )}
+
+          <div className="form-floating mb-3">
+            <input
+              {...register("password")}
+              type="password"
+              name="password"
+              className="form-control"
+              id="floatingInput"
+              placeholder="Name"
+            />
+            <label>{t("login.passwordTitle")}</label>
+          </div>
+          {errors.password && (
+            <div className="position-absolute start-0 end-0 bottom-0 text-center mb-5 text-white">
+              <span className="bg-primary rounded-1 px-4 p-3">
+                {errors?.password?.message}
               </span>
             </div>
           )}

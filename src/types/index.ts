@@ -2,6 +2,7 @@ export interface MongoArtifacts {
   _id: string;
 }
 
+// L - loading; E - error
 export type LE<T> = T & {
   isLoading?: boolean;
   error?: string | Error;
@@ -23,7 +24,7 @@ export interface Tweet {
 }
 
 export interface Tweet2 extends MongoArtifacts {
-  authorId: string;
+  author: Partial<User>;
   content: string;
   createdAt: string;
   repliedTo?: string;
@@ -37,7 +38,6 @@ export interface Tweet2 extends MongoArtifacts {
 
 export interface User extends MongoArtifacts {
   username: string;
-  password: string;
   name: string;
   location?: string;
   url?: string;
