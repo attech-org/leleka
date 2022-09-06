@@ -80,27 +80,6 @@ instance.interceptors.response.use(
   }
 );
 
-export const registerUser = async (
-  username: string,
-  password: string,
-  email: string
-) => {
-  try {
-    const res = await instance.post("/api/auth/register", {
-      username,
-      password,
-      email,
-      name: username, // temporal field
-    });
-    const { accessToken, refreshToken } = res.data;
-    localStorage.setItem("accessToken", accessToken);
-    localStorage.setItem("refreshToken", refreshToken);
-    return res.data.user;
-  } catch (err) {
-    console.warn(err);
-  }
-};
-
 export const testAuthorized = async () => {
   try {
     const res = await instance.get("/api/testAuthorized");
@@ -117,9 +96,9 @@ export const loginUser = async (
 ) => {
   try {
     const res = await instance.post("/api/auth/login", {
-      username: username,
-      password: password,
-      email: email,
+      username,
+      password,
+      email,
     });
     const { accessToken, refreshToken } = res.data;
     localStorage.setItem("accessToken", accessToken);

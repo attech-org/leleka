@@ -9,7 +9,6 @@ import * as yup from "yup";
 import { userActions } from "../redux/reducers/user";
 import { AppDispatch, RootState } from "../redux/store";
 import { User } from "../types";
-// import { registerUser } from "../services/api";
 import ModalUniversal from "./ModalUniversal";
 
 // export const windowTitle = "Створіть свій профіль";
@@ -88,15 +87,6 @@ const Registration = () => {
   });
 
   const submitForm = (data: RegistrationForm) => {
-    // eslint-disable-next-line no-console
-    console.log(data);
-
-    // dispatch(
-    //   userActions.setUserData(
-    //     await registerUser(data.username, data.password, data.email)
-    //   )
-    // );
-
     dispatch(userActions.registerUser({ ...data } as User));
     reset();
   };
