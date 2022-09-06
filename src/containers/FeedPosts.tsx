@@ -6,9 +6,8 @@ import styled from "styled-components";
 
 import FeedSingleTweet from "../components/FeedSingleTweet";
 import TweetCreationForm from "../components/TweetCreationForm";
-import { RootState } from "../redux/reducers";
 import { tweetsActions } from "../redux/reducers/tweets";
-import { AppDispatch } from "../redux/store";
+import { AppDispatch, RootState } from "../redux/store";
 import { Tweet2 } from "../types";
 import InfiniteList from "./InfiniteList";
 

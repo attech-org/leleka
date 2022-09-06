@@ -8,5 +8,3 @@ export const rootReducer = combineReducers({
   tweets: tweetsSlice,
   user: userSlice,
 });
-
-export type RootState = ReturnType<typeof rootReducer>;

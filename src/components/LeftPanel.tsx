@@ -4,8 +4,8 @@ import styled from "styled-components";
 import LanguageSwitcher from "../containers/LanguageSwitcher";
 import LoginForm from "../containers/LoginForm";
 import Registration from "../containers/Registration";
-import { RootState } from "../redux/reducers";
 import { userActions } from "../redux/reducers/user";
+import { RootState } from "../redux/store";
 import { loginUserAsLeleka1 } from "../services/api";
 import NavigationBar from "./NavigationBar";
 

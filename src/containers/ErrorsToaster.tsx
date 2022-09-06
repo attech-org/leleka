@@ -2,7 +2,7 @@
 import { Toast, ToastContainer } from "react-bootstrap";
 import { useSelector } from "react-redux";
 
-import { RootState } from "../redux/reducers";
+import { RootState } from "../redux/store";
 
 const ErrorsToaster = () => {
   const tweetsFetch = useSelector<RootState, RootState["tweets"]["feedTweets"]>(
