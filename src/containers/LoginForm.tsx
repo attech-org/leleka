@@ -45,6 +45,8 @@ const LoginForm = () => {
 
   const submitForm = async (data: MyForm) => {
     // eslint-disable-next-line no-console
+    console.log(data);
+
     dispatch(
       userActions.setUserData(await loginUser(data.username, data.password, ""))
     );
