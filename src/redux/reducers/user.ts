@@ -57,18 +57,8 @@ const registerUser = createAsyncThunk<RegisterResponse, User>(
       username,
       password,
       email,
-      name: username, // temporal field
+      name: username,
     });
-
-    // return {
-    //   ...response.data,
-    //   auth: {
-    //     local: {
-    //       accessToken: response.data.accessToken,
-    //       refreshToken: response.data.refreshToken,
-    //     },
-    //   },
-    // };
     return response.data;
   }
 );
@@ -93,8 +83,7 @@ const userSlice = createSlice({
       store.isLoading = true;
     });
     builder.addCase(registerUser.fulfilled, (store, { payload }) => {
-      store.isLoading = false;
-      store = {
+      return {
         ...store,
         ...payload.user,
         auth: {
