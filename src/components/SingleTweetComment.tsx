@@ -137,7 +137,7 @@ interface SingleTweetCommentInterface {
 }
 
 const SingleTweetComment: React.FC<SingleTweetCommentInterface> = ({
-  userlogo,
+  // userlogo,
   username,
   userNickname,
   responserUserNickname,
@@ -160,7 +160,8 @@ const SingleTweetComment: React.FC<SingleTweetCommentInterface> = ({
           round="50%"
           twitterHandle="sitebase"
           name={username}
-          src={userlogo}
+          // src={userlogo}
+          src=""
         />
         <CommentWrapper>
           <Author>

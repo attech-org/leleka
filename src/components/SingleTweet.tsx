@@ -97,7 +97,7 @@ const IconBg = styled.div<IIconBg>`
 `;
 
 const SingleTweet: React.FC<Tweet> = ({
-  userlogo,
+  // userlogo,
   username,
   userNickname,
   tweetText,
@@ -123,7 +123,8 @@ const SingleTweet: React.FC<Tweet> = ({
             round="50%"
             twitterHandle="sitebase"
             name={username}
-            src={userlogo}
+            src=""
+            // src={userlogo}
           />
           <NameSection>
             <NameWrapper className="ps-2">

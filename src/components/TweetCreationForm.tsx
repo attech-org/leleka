@@ -11,7 +11,6 @@ import {
 import { useTranslation } from "react-i18next";
 import styled from "styled-components";
 
-// import Avatar from "./Avatar";
 import TextEditor from "./TextEditor";
 
 const StyledButton = styled.button`
