@@ -65,4 +65,4 @@ export const tweetsActions = {
   fetchFeedTweets,
 };
 
-export default tweetsSlice;
+export default tweetsSlice.reducer;

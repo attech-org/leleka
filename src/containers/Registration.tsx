@@ -1,11 +1,13 @@
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
+import { useDispatch, useSelector } from "react-redux";
 import styled, { css } from "styled-components";
 import * as yup from "yup";
 
+import { userActions } from "../redux/reducers/user";
+import { AppDispatch, RootState } from "../redux/store";
 import ModalUniversal from "./ModalUniversal";
 
 // export const windowTitle = "Створіть свій профіль";
@@ -66,13 +68,12 @@ const schema = yup.object().shape({
 });
 
 const Registration = () => {
+  const dispatch = useDispatch<AppDispatch>();
   const { t } = useTranslation();
-  const [show, setShow] = useState(false);
+  const currentUserId = useSelector<RootState>((store) => store.user._id);
 
   const registrationButtonName = t("validation:fields.buttonName");
   const registrationTitle = t("validation:fields.createProfile");
-
-  const toggleShowState = () => setShow(!show);
 
   const {
     register,
@@ -85,9 +86,7 @@ const Registration = () => {
   });
 
   const submitForm = (data: RegistrationForm) => {
-    // eslint-disable-next-line no-console
-    console.log(data);
-    toggleShowState();
+    dispatch(userActions.registerUser(data));
     reset();
   };
 
@@ -204,8 +203,8 @@ const Registration = () => {
     <>
       <ModalUniversal
         button={registrationButtonName}
-        title={registrationTitle}
-        content={registerForm}
+        title={currentUserId ? "close me" : registrationTitle}
+        content={currentUserId ? null : registerForm}
       />
     </>
   );

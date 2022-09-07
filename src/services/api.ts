@@ -80,21 +80,6 @@ instance.interceptors.response.use(
   }
 );
 
-export const registerUser = async () => {
-  try {
-    const res = await instance.post("/api/auth/register", {
-      username: "koder",
-      password: "12345678",
-      email: "qwert@gmail.com",
-    });
-    const { accessToken, refreshToken } = res.data;
-    localStorage.setItem("accessToken", accessToken);
-    localStorage.setItem("refreshToken", refreshToken);
-  } catch (err) {
-    console.warn(err);
-  }
-};
-
 export const testAuthorized = async () => {
   try {
     const res = await instance.get("/api/testAuthorized");
@@ -111,43 +96,14 @@ export const loginUser = async (
 ) => {
   try {
     const res = await instance.post("/api/auth/login", {
-      username: username,
-      password: password,
-      email: email,
+      username,
+      password,
+      email,
     });
     const { accessToken, refreshToken } = res.data;
     localStorage.setItem("accessToken", accessToken);
     localStorage.setItem("refreshToken", refreshToken);
     return res.data.user;
-  } catch (err) {
-    console.warn(err);
-  }
-};
-
-export const loginUserAsLeleka1 = async () => {
-  try {
-    const res = await instance.post("/api/auth/login", {
-      username: "leleka1",
-      password: "@Leleka1",
-      // email: "qwert@gmail.com",
-    });
-    const { accessToken, refreshToken } = res.data;
-    localStorage.setItem("accessToken", accessToken);
-    localStorage.setItem("refreshToken", refreshToken);
-    return res.data.user;
-  } catch (err) {
-    console.warn(err);
-  }
-};
-
-export const getUser = async (id: string) => {
-  try {
-    const res = await instance.get(`/api/users/${id}`, {
-      headers: {
-        Authorization: localStorage.getItem("accessToken") as string,
-      },
-    });
-    return res.data;
   } catch (err) {
     console.warn(err);
   }
