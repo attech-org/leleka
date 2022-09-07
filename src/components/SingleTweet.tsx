@@ -2,7 +2,7 @@ import React from "react";
 import { Popover, OverlayTrigger, Button } from "react-bootstrap";
 import {
   ThreeDots,
-  Chat,
+  // Chat,
   Upload,
   PersonX,
   ClipboardPlus,
@@ -14,6 +14,7 @@ import styled from "styled-components";
 import { Tweet } from "../types";
 import AttachedContent from "./AttachedContent";
 import LikeButton from "./LikeButton";
+import ReplyTweet from "./ReplyTweetButton";
 import RetweetButton from "./RetweetButton";
 
 const StyledLink = styled.a`
@@ -117,6 +118,11 @@ const SingleTweet: React.FC<Tweet> = ({
   // const Green = "rgb(0, 186, 124)";
   // const Red = "rgb(249, 24, 128)";
   const { t } = useTranslation();
+
+  // const handleReplyClick = () => {
+  //   return <ReplyTweet />;
+  // };
+
   return (
     <div>
       <Wrapper className="px-3">
@@ -205,7 +211,7 @@ const SingleTweet: React.FC<Tweet> = ({
             iconColor={Blue}
             className="m-0 p-0 rounded-circle row align-items-center justify-content-center"
           >
-            <Chat className="p-0 m-0" />
+            <ReplyTweet />
           </IconBg>
           <IconBg
             iconBgColor={""}
