@@ -10,6 +10,7 @@ import { Pagination } from "../../types/mock-api-types";
 
 interface TweetsStore {
   feedTweets: LE<Pagination<Tweet2>>;
+  newTweet?: LE<Tweet2>;
 }
 
 const tweetsInitialStore: TweetsStore = {
@@ -21,6 +22,19 @@ const tweetsInitialStore: TweetsStore = {
     isLoading: false,
   },
 };
+
+interface NewTweetBody {
+  repliedTo?: string;
+  content: string;
+}
+
+export const createTweet = createAsyncThunk<Tweet2, NewTweetBody>(
+  "tweets/create",
+  async (body) => {
+    const response = await instance.post("api/tweets", body);
+    return response.data;
+  }
+);
 
 const fetchFeedTweets = createAsyncThunk<
   Pagination<Tweet2>,
@@ -41,6 +55,9 @@ const tweetsSlice = createSlice<TweetsStore, SliceCaseReducers<TweetsStore>>({
     builder.addCase(fetchFeedTweets.pending, (store) => {
       store.feedTweets.isLoading = true;
     });
+    builder.addCase(createTweet.pending, (store) => {
+      store.feedTweets.isLoading = true;
+    });
     builder.addCase(fetchFeedTweets.fulfilled, (store, { payload }) => {
       if (store.feedTweets.docs.length === 0 || payload.page !== 1) {
         // I don't know why, but first page we have twice
@@ -53,6 +70,9 @@ const tweetsSlice = createSlice<TweetsStore, SliceCaseReducers<TweetsStore>>({
       }
       store.feedTweets.isLoading = false;
     });
+    builder.addCase(createTweet.fulfilled, (store) => {
+      store.feedTweets.isLoading = false;
+    });
     builder.addCase(fetchFeedTweets.rejected, (store) => {
       store.feedTweets.isLoading = false;
       store.feedTweets.error = "Failed to fetch tweets for feed";
@@ -63,6 +83,7 @@ const tweetsSlice = createSlice<TweetsStore, SliceCaseReducers<TweetsStore>>({
 export const tweetsActions = {
   ...tweetsSlice.actions,
   fetchFeedTweets,
+  createTweet,
 };
 
 export default tweetsSlice;

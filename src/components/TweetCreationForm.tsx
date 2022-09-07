@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { OverlayTrigger, Popover } from "react-bootstrap";
 import {
   EmojiSmile,
@@ -8,9 +9,15 @@ import {
   At,
 } from "react-bootstrap-icons";
 import { useTranslation } from "react-i18next";
+import ReactQuill from "react-quill";
+import { useDispatch } from "react-redux";
 import styled from "styled-components";
 
-import TextEditor from "./TextEditor";
+// import { RootState } from "../redux/reducers";
+import { createTweet } from "../redux/reducers/tweets";
+import { AppDispatch } from "../redux/store";
+
+import "react-quill/dist/quill.snow.css";
 
 const StyledButton = styled.button`
   &:hover {
@@ -36,12 +43,20 @@ const StyledPopover = styled(Popover)`
 `;
 
 const TweetCreationForm: React.FC = () => {
+  const [content, setContent] = useState("");
+
+  const dispatch = useDispatch<AppDispatch>();
+  // const {isLoading} = useSelector<RootState, RootState["tweets"]["newTweet"]>(
+  //   (store) => store.tweets.feedTweets
+  // );
+
   const { t } = useTranslation();
   const whoCanAnswer = t(
     "translation:tweetCreationForm.whoCanAnswer.button.all"
   );
+
   const handleTweetButton = (): void => {
-    console.warn("Tweeted");
+    dispatch(createTweet({ content: content }));
   };
   const handleImgUpload = (): void => {
     console.warn("Img Upload");
@@ -62,7 +77,57 @@ const TweetCreationForm: React.FC = () => {
           />
         </div>
         <div className="flex-grow-1 ms-2">
-          <TextEditor />
+          <ReactQuill
+            className="shadow-sm"
+            theme="snow"
+            style={{
+              height: 350,
+              marginTop: "1rem",
+              display: "flex",
+              flexDirection: "column",
+            }}
+            value={content}
+            modules={{
+              toolbar: [
+                [{ header: "1" }, { header: "2" }, { font: [] }],
+                [{ size: [] }],
+                ["bold", "italic", "underline", "strike", "blockquote"],
+                [{ align: [] }],
+                [{ color: [] }, { background: [] }],
+                [
+                  { list: "ordered" },
+                  { list: "bullet" },
+                  { indent: "-1" },
+                  { indent: "+1" },
+                ],
+                ["link", "video", "image", "code-block"],
+                ["clean"],
+              ],
+            }}
+            formats={[
+              "header",
+              "font",
+              "size",
+              "bold",
+              "italic",
+              "underline",
+              "strike",
+              "blockquote",
+              "color",
+              "background",
+              "list",
+              "bullet",
+              "indent",
+              "link",
+              "video",
+              "image",
+              "code-block",
+              "align",
+            ]}
+            onChange={(val) => {
+              setContent(val);
+            }}
+          />
           <div className="border-bottom py-1">
             <div>
               <OverlayTrigger
