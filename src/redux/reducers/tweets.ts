@@ -86,4 +86,4 @@ export const tweetsActions = {
   createTweet,
 };
 
-export default tweetsSlice;
+export default tweetsSlice.reducer;
