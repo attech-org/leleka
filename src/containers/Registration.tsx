@@ -8,7 +8,6 @@ import * as yup from "yup";
 
 import { userActions } from "../redux/reducers/user";
 import { AppDispatch, RootState } from "../redux/store";
-import { User } from "../types";
 import ModalUniversal from "./ModalUniversal";
 
 // export const windowTitle = "Створіть свій профіль";
@@ -87,7 +86,7 @@ const Registration = () => {
   });
 
   const submitForm = (data: RegistrationForm) => {
-    dispatch(userActions.registerUser({ ...data } as User));
+    dispatch(userActions.registerUser(data));
     reset();
   };
 

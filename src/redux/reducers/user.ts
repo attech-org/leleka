@@ -50,7 +50,12 @@ interface RegisterResponse {
   accessToken: string;
   refreshToken: string;
 }
-const registerUser = createAsyncThunk<RegisterResponse, User>(
+interface RegisterRequest {
+  username: string;
+  password: string;
+  email: string;
+}
+const registerUser = createAsyncThunk<RegisterResponse, RegisterRequest>(
   "auth/register",
   async ({ username, password, email }) => {
     const response = await instance.post("api/auth/register", {
@@ -83,6 +88,7 @@ const userSlice = createSlice({
       store.isLoading = true;
     });
     builder.addCase(registerUser.fulfilled, (store, { payload }) => {
+      store.error = undefined;
       return {
         ...store,
         ...payload.user,
@@ -96,7 +102,7 @@ const userSlice = createSlice({
     });
     builder.addCase(registerUser.rejected, (store) => {
       store.isLoading = false;
-      store.error = "Failed to fetch";
+      store.error = "Failed to register user";
     });
   },
 });

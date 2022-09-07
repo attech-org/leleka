@@ -1,5 +1,5 @@
 export interface MongoArtifacts {
-  _id?: string;
+  _id: string;
 }
 
 // L - loading; E - error
