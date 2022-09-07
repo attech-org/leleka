@@ -1,8 +1,7 @@
 import { Popover, OverlayTrigger, Button } from "react-bootstrap";
 import {
-  ArrowRepeat,
   Chat,
-  PatchCheckFill,
+  // PatchCheckFill,
   Upload,
   PersonX,
   ClipboardPlus,
@@ -12,9 +11,9 @@ import {
 import { useTranslation } from "react-i18next";
 import styled from "styled-components";
 
-import { Tweet } from "../types";
-import LikeButton from "./LikeButton/index";
-import ReplyTweet from "./ReplyTweet";
+import { Tweet2 } from "../types";
+import LikeButton from "./LikeButton";
+import RetweetButton from "./RetweetButton";
 
 const PostWrapper = styled.section`
   transition-duration: 0.2s;
@@ -43,22 +42,9 @@ const StatisticOfTweet = styled.div`
   }
 `;
 
-const StatisticOfRetweets = styled.div`
-  :hover {
-    color: rgb(41, 228, 166);
-  }
-`;
-
 const HoverBackgroundBlue = styled.div`
   :hover {
     background: rgb(230, 241, 248);
-    transition-duration: 0.2s;
-  }
-`;
-
-const HoverBackgroundGreen = styled.div`
-  :hover {
-    background: rgb(222, 241, 235);
     transition-duration: 0.2s;
   }
 `;
@@ -94,17 +80,14 @@ const StyledButton = styled(Button)`
 `;
 
 const FeedSingleTweet = ({
-  id,
-  username,
-  userNickname,
-  tweetText,
-  tweetDate,
-  isVerified,
-  userlogo,
-  commentCount,
-  retweetCount,
-  likeCount,
-}: Tweet) => {
+  _id,
+  createdAt,
+  author,
+  content,
+  // repliedTo,
+  // updatedAt,
+  stats: { likes, retweets, comments },
+}: Tweet2) => {
   const { t } = useTranslation();
 
   const handleReplyClick = () => {
@@ -115,26 +98,28 @@ const FeedSingleTweet = ({
       <PostWrapper
         className="border border-bottom-0 border-grey px-3 py-3 text-start d-flex fs-6"
         role="button"
-        key={id}
+        key={_id}
       >
-        <Logo className="rounded-circle" src={userlogo} alt="" />
+        <Logo className="rounded-circle" src={author.profile?.avatar} alt="" />
 
         <div className="w-100">
           <div className="d-flex justify-content-between">
             <div className="d-flex align-items-center px-3 flex-wrap">
               <UnderlineHover className="fw-600 pe-1 fw-bold">
-                {username}
+                {author.username}
               </UnderlineHover>
 
-              {isVerified && (
+              {/* {isVerified && (
                 <PatchCheckFill size={20} className="text-info pe-1" />
-              )}
-              <a className="text-muted text-decoration-none">@{userNickname}</a>
+              )} */}
+              <a className="text-muted text-decoration-none">
+                @{author.username}
+              </a>
               <div className="mx-1 text-secondary d-flex justify-content-center align-items-center">
                 ·
               </div>
               <UnderlineHover className="text-secondary">
-                {tweetDate}
+                {createdAt}
               </UnderlineHover>
             </div>
 
@@ -156,7 +141,9 @@ const FeedSingleTweet = ({
                           <span className="px-2">
                             <PersonX />
                           </span>
-                          {`${t("SingleTweetMenu.stopFollow")} ${userNickname}`}
+                          {`${t("SingleTweetMenu.stopFollow")} ${
+                            author.username
+                          }`}
                         </StyledLink>
                       </p>
                       <p>
@@ -167,7 +154,7 @@ const FeedSingleTweet = ({
                           <span className="px-2">
                             <ClipboardPlus />
                           </span>
-                          {`${t("SingleTweetMenu.add")} ${userNickname} ${t(
+                          {`${t("SingleTweetMenu.add")} ${author.username} ${t(
                             "SingleTweetMenu.toList"
                           )}`}
                         </StyledLink>
@@ -197,25 +184,25 @@ const FeedSingleTweet = ({
             </div>
           </div>
           <div className="px-3 py-2">
-            <div className="">{tweetText}</div>
+            <div className="">{content}</div>
 
-            <img className="w-100 rounded-4 mt-3" alt="" src={userlogo} />
+            {/* <img
+              className="w-100 rounded-4 mt-3"
+              alt=""
+              src={
+                "https://burst.shopifycdn.com/photos/person-holds-a-book-over-a-stack-and-turns-the-page.jpg?width=1200&format=pjpg&exif=0&iptc=0"
+              }
+            /> */}
           </div>
           <div className="px-3 d-flex justify-content-between align-items-center">
             <StatisticOfTweet className="d-flex align-items-center justify-content-center">
               <HoverBackgroundBlue className="p-2 rounded-circle d-flex justify-content-center align-items-center">
                 <Chat size="16" onClick={handleReplyClick} />
               </HoverBackgroundBlue>
-              <div className="px-1">{commentCount}</div>
+              <div className="px-1">{comments}</div>
             </StatisticOfTweet>
-
-            <StatisticOfRetweets className="d-flex align-items-center">
-              <HoverBackgroundGreen className="p-2 rounded-circle d-flex justify-content-center align-items-center">
-                <ArrowRepeat size="16" />
-              </HoverBackgroundGreen>
-              <div className="px-1">{retweetCount}</div>
-            </StatisticOfRetweets>
-            <LikeButton likesCount={likeCount} />
+            <RetweetButton retweetCount={retweets} />
+            <LikeButton likesCount={likes} />
             <StatisticOfTweet className="d-flex align-items-center">
               <HoverBackgroundBlue className="p-2 rounded-circle d-flex justify-content-center align-items-center">
                 <Upload size="16" />

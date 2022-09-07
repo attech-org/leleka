@@ -1,9 +1,9 @@
 import InfiniteScroll from "react-infinite-scroller";
 
-import { PaginationParamsResult } from "../types/mock-api-types";
+import { Pagination } from "../types/mock-api-types";
 export interface InfiniteScrollerListProps<T> {
-  showMore(page: number): void;
-  data: PaginationParamsResult<T>;
+  showMore: (page: number) => void;
+  data: Pagination<T>;
   itemComponent: (item: T) => JSX.Element;
 }
 const InfiniteList = <T extends object>({

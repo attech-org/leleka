@@ -10,7 +10,7 @@ import InfiniteList from "../containers/InfiniteList";
 import Layout from "../containers/Layout";
 import { LinkTabsContainer } from "../containers/Tabs";
 import { FollowStatus } from "../types/constants";
-import { MockUser, PaginationParamsResult } from "../types/mock-api-types";
+import { MockUser, Pagination } from "../types/mock-api-types";
 
 const StyledButton = styled(Button)`
   height: 2rem;
@@ -36,23 +36,22 @@ function sleep(ms: number) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
 const RecomendedFollowsPage: React.FunctionComponent = () => {
+  const { t, i18n } = useTranslation();
   const tabsData = [
     {
-      label: "Followers",
+      label: t("common.followers"),
       key: "/followers",
     },
 
     {
-      label: "Following",
+      label: t("common.following"),
       key: "/following",
     },
   ];
 
   const navigate = useNavigate();
-  const { i18n } = useTranslation();
 
-  const [mockUsers, setMockUsers] =
-    useState<PaginationParamsResult<MockUser>>();
+  const [mockUsers, setMockUsers] = useState<Pagination<MockUser>>();
 
   const fetchAndProcessData = async (page = 1) => {
     const mockData: Array<MockUser> = [];

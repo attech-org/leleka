@@ -18,14 +18,14 @@ interface IpersistConfig {
   key: string;
   storage: WebStorage;
   //whitelist: any,
-  //blacklist: any,
+  blacklist: string[];
 }
 
 const persistConfig: IpersistConfig = {
   key: "root",
   storage,
   //whitelist: ['state'],    // only state will be persisted
-  //blacklist: ['state'],    // state will not be persisted
+  blacklist: ["tweets"], // state will not be persisted
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

@@ -1,7 +1,7 @@
 import { FollowStatus } from "./constants";
 
 export interface DbEntity {
-  id: string;
+  id?: string;
 }
 export interface MockUser extends DbEntity {
   userName: string;
@@ -13,13 +13,15 @@ export interface MockUser extends DbEntity {
   followStatus: FollowStatus; //future users
   following?: number;
   followers?: number;
+  _id?: string; //poxyi
 }
 
-export interface PaginationParamsResult<T = object> {
+export interface Pagination<T = object> {
   docs: Array<T>;
   limit: number;
-  hasNextPage: boolean;
+  hasNextPage?: boolean;
   page: number;
+  nextPage?: number;
 }
 
 export interface MockTrend extends DbEntity {

@@ -4,6 +4,8 @@ import { useTranslation } from "react-i18next";
 import styled from "styled-components";
 
 import Layout from "../containers/Layout";
+import { LinkWithLanguageQueryParam } from "../containers/LinkWithLanguageQueryParam";
+import Media from "../containers/ProfileMedia";
 import ProfileTweets from "../containers/ProfileTweets";
 import TabsContainer from "../containers/Tabs";
 import { TabKeyProps } from "../types/tabs-types";
@@ -39,7 +41,7 @@ const ProfilePage = ({ tabKey }: TabKeyProps) => {
 
     {
       label: t("profile.tabsLabel.media"),
-      content: "Media",
+      content: <Media />,
       key: "media",
       route: "/profile/media",
     },
@@ -67,6 +69,23 @@ const ProfilePage = ({ tabKey }: TabKeyProps) => {
               />
             </StyledButton>
           </div>
+        </div>
+        <div className="d-flex pb-4">
+          <LinkWithLanguageQueryParam
+            to="/following"
+            className="d-flex ps-4 text-reset"
+          >
+            <p className="fw-bold">546</p>
+            <p className="ps-2">{t("profile.following")}</p>
+          </LinkWithLanguageQueryParam>
+
+          <LinkWithLanguageQueryParam
+            to="/followers"
+            className="d-flex ps-4 text-reset"
+          >
+            <p className="fw-bold">122</p>
+            <p className="ps-2">{t("profile.followers")}</p>
+          </LinkWithLanguageQueryParam>
         </div>
         <TabsContainer tabsData={tabsData} defaultActiveKey={tabKey} />
       </div>
