@@ -10,12 +10,11 @@ import {
 } from "react-bootstrap-icons";
 import { useTranslation } from "react-i18next";
 import ReactQuill from "react-quill";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 
-// import { RootState } from "../redux/reducers";
-import { createTweet } from "../redux/reducers/tweets";
-import { AppDispatch } from "../redux/store";
+import { tweetsActions } from "../redux/reducers/tweets";
+import { RootState, AppDispatch } from "../redux/store";
 
 import "react-quill/dist/quill.snow.css";
 
@@ -46,9 +45,10 @@ const TweetCreationForm: React.FC = () => {
   const [content, setContent] = useState("");
 
   const dispatch = useDispatch<AppDispatch>();
-  // const {isLoading} = useSelector<RootState, RootState["tweets"]["newTweet"]>(
-  //   (store) => store.tweets.feedTweets
-  // );
+  const { isLoading } = useSelector<
+    RootState,
+    RootState["tweets"]["feedTweets"]
+  >((store) => store.tweets.feedTweets);
 
   const { t } = useTranslation();
   const whoCanAnswer = t(
@@ -56,7 +56,8 @@ const TweetCreationForm: React.FC = () => {
   );
 
   const handleTweetButton = (): void => {
-    dispatch(createTweet({ content: content }));
+    dispatch(tweetsActions.createTweet({ content: content }));
+    setContent("");
   };
   const handleImgUpload = (): void => {
     console.warn("Img Upload");
@@ -81,7 +82,7 @@ const TweetCreationForm: React.FC = () => {
             className="shadow-sm"
             theme="snow"
             style={{
-              height: 350,
+              height: "10rem",
               marginTop: "1rem",
               display: "flex",
               flexDirection: "column",
@@ -210,6 +211,7 @@ const TweetCreationForm: React.FC = () => {
             <button
               className="btn btn-primary rounded-5 d-flex align-items-center m-2"
               onClick={handleTweetButton}
+              disabled={isLoading ? true : false}
             >
               {t("translation:tweetCreationForm.tweetButton")}
             </button>
