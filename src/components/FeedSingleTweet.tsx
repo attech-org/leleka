@@ -13,6 +13,7 @@ import styled from "styled-components";
 
 import { Tweet2 } from "../types";
 import LikeButton from "./LikeButton";
+import ReplyTweet from "./ReplyTweet";
 import RetweetButton from "./RetweetButton";
 
 const PostWrapper = styled.section`
