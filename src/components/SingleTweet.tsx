@@ -1,4 +1,5 @@
 import React from "react";
+import Avatar from "react-avatar";
 import { Popover, OverlayTrigger, Button } from "react-bootstrap";
 import {
   ThreeDots,
@@ -54,10 +55,6 @@ const Author = styled.div`
   display: flex;
   align-items: center;
   letter-spacing: -0.02em;
-`;
-const Logo = styled.img`
-  height: 3rem;
-  width: 3rem;
 `;
 const NameSection = styled.div`
   width: 100%;
@@ -121,7 +118,13 @@ const SingleTweet: React.FC<Tweet> = ({
     <div>
       <Wrapper className="px-3">
         <Author className="my-2">
-          <Logo className="rounded-circle flex-shrink-0" src={userlogo} />
+          <Avatar
+            size="48"
+            round="50%"
+            twitterHandle="sitebase"
+            name={username}
+            src={userlogo}
+          />
           <NameSection>
             <NameWrapper className="ps-2">
               <StyledUsername className="fw-bold">{username}</StyledUsername>
