@@ -1,3 +1,4 @@
+import Avatar from "react-avatar";
 import { OverlayTrigger, Popover } from "react-bootstrap";
 import {
   EmojiSmile,
@@ -10,6 +11,7 @@ import {
 import { useTranslation } from "react-i18next";
 import styled from "styled-components";
 
+// import Avatar from "./Avatar";
 import TextEditor from "./TextEditor";
 
 const StyledButton = styled.button`
@@ -52,15 +54,13 @@ const TweetCreationForm: React.FC = () => {
   return (
     <div>
       <div className="border-0 p-3 d-flex text-start justify-content-start">
-        <div className="">
-          <img
-            className="rounded-circle"
-            src="http://dummyimage.com/105x100.png/5fa2dd/ffffff"
-            width="48px"
-            height="48px"
-            alt="avatar"
-          />
-        </div>
+        <Avatar
+          size="48"
+          round="50%"
+          twitterHandle="sitebase"
+          name="Artem Ligerko"
+          src=""
+        />
         <div className="flex-grow-1 ms-2">
           <TextEditor />
           <div className="border-bottom py-1">
