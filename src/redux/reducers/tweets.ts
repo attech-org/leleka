@@ -10,6 +10,7 @@ import { Pagination } from "../../types/mock-api-types";
 
 interface TweetsStore {
   feedTweets: LE<Pagination<Tweet2>>;
+  singleTweet: LE<object>;
 }
 
 const tweetsInitialStore: TweetsStore = {
@@ -18,9 +19,22 @@ const tweetsInitialStore: TweetsStore = {
     limit: 10,
     docs: [],
     hasNextPage: true,
-    isLoading: false,
   },
+  singleTweet: {},
 };
+
+interface NewTweetBody {
+  repliedTo?: string;
+  content: string;
+}
+
+export const createTweet = createAsyncThunk<Tweet2, NewTweetBody>(
+  "tweets/create",
+  async (body) => {
+    const response = await instance.post("api/tweets", body);
+    return response.data;
+  }
+);
 
 const fetchFeedTweets = createAsyncThunk<
   Pagination<Tweet2>,
@@ -57,12 +71,23 @@ const tweetsSlice = createSlice<TweetsStore, SliceCaseReducers<TweetsStore>>({
       store.feedTweets.isLoading = false;
       store.feedTweets.error = "Failed to fetch tweets for feed";
     });
+    builder.addCase(createTweet.pending, (store) => {
+      store.singleTweet.isLoading = true;
+    });
+    builder.addCase(createTweet.fulfilled, (store) => {
+      store.singleTweet.isLoading = false;
+    });
+    builder.addCase(createTweet.rejected, (store) => {
+      store.singleTweet.isLoading = false;
+      store.singleTweet.error = "Failed to post tweet on server";
+    });
   },
 });
 
 export const tweetsActions = {
   ...tweetsSlice.actions,
   fetchFeedTweets,
+  createTweet,
 };
 
 export default tweetsSlice.reducer;
