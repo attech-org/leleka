@@ -47,7 +47,7 @@ const TweetCreationForm: React.FC = () => {
 
   const dispatch = useDispatch<AppDispatch>();
   const isLoading = useSelector<RootState, boolean | undefined>(
-    (store) => store.tweets.feedTweets.isLoading
+    (store) => store.tweets.singleTweet.isLoading
   );
 
   const { t } = useTranslation();

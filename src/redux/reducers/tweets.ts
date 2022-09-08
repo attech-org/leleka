@@ -10,7 +10,7 @@ import { Pagination } from "../../types/mock-api-types";
 
 interface TweetsStore {
   feedTweets: LE<Pagination<Tweet2>>;
-  newTweet?: LE<Tweet2>;
+  singleTweet: LE<object>;
 }
 
 const tweetsInitialStore: TweetsStore = {
@@ -19,8 +19,8 @@ const tweetsInitialStore: TweetsStore = {
     limit: 10,
     docs: [],
     hasNextPage: true,
-    isLoading: false,
   },
+  singleTweet: {},
 };
 
 interface NewTweetBody {
@@ -72,14 +72,14 @@ const tweetsSlice = createSlice<TweetsStore, SliceCaseReducers<TweetsStore>>({
       store.feedTweets.error = "Failed to fetch tweets for feed";
     });
     builder.addCase(createTweet.pending, (store) => {
-      store.feedTweets.isLoading = true;
+      store.singleTweet.isLoading = true;
     });
     builder.addCase(createTweet.fulfilled, (store) => {
-      store.feedTweets.isLoading = false;
+      store.singleTweet.isLoading = false;
     });
     builder.addCase(createTweet.rejected, (store) => {
-      store.feedTweets.isLoading = false;
-      store.feedTweets.error = "Failed to post tweet on server";
+      store.singleTweet.isLoading = false;
+      store.singleTweet.error = "Failed to post tweet on server";
     });
   },
 });
