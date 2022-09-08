@@ -9,7 +9,7 @@ const ModalTweetCreationForm: React.FC = () => {
   const TweetCreatinForm = <TweetCreationForm />;
 
   const tweetButton = (
-    <div>
+    <div className="d-grid gap-2">
       <Button variant="primary" className="rounded-5 my-2 py-2 fw-semibold">
         {t("tweetCreationForm.tweetButton")}
       </Button>

@@ -83,8 +83,12 @@ const userSlice = createSlice({
       return { ...state, ...action.payload };
     },
 
+    //  temporary reducers
     addBanner: (state, action: PayloadAction<string>) => {
       state.profile.banner = action.payload;
+    },
+    removeBanner: (state) => {
+      state.profile.banner = undefined;
     },
     addAvatar: (state, action: PayloadAction<string>) => {
       state.profile.avatar = action.payload;

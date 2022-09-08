@@ -67,22 +67,24 @@ const AddLogoDiv = styled(AddPhotoDiv)`
   left: calc(50% - 21px);
 `;
 
+const StyledInput = styled.input`
+  width: 42px;
+  height: 42px;
+`;
+
 interface BannerProps {
   isEditBanner: boolean;
 }
 
 export const Banner = ({ isEditBanner }: BannerProps) => {
   const { t } = useTranslation();
+
+  const dispatch = useDispatch<AppDispatch>();
+  // TODO: Add AsyncThunk action, after adding support for backend PUT and DELETE requests ↓
+  //------------------------------ avatar image ------------------------
   const avatar = useSelector<RootState, RootState["user"]["profile"]["avatar"]>(
     (store) => store.user.profile.avatar
   );
-  const banner = useSelector<RootState, RootState["user"]["profile"]["banner"]>(
-    (store) => store.user.profile.banner
-  );
-
-  const dispatch = useDispatch<AppDispatch>();
-
-  //------------------------------ avatar image ------------------------
 
   const [fileAvatar, setFileAvatar] = useState<File>();
   const fileRefAvatar = useRef(null);
@@ -97,7 +99,11 @@ export const Banner = ({ isEditBanner }: BannerProps) => {
     return () => URL.revokeObjectURL(objectUrlAvatar);
   }, [fileAvatar]);
 
-  // ------------------------------ userImage ------------------------
+  // ------------------------------ banner image ------------------------
+  const banner = useSelector<RootState, RootState["user"]["profile"]["banner"]>(
+    (store) => store.user.profile.banner
+  );
+
   const [fileImage, setFileImage] = useState<File>();
   const fileRefImage = useRef(null);
 
@@ -111,6 +117,9 @@ export const Banner = ({ isEditBanner }: BannerProps) => {
     return () => URL.revokeObjectURL(objectUrlImage);
   }, [fileImage]);
 
+  const removeBanner = () => {
+    dispatch(userActions.removeBanner()); //
+  };
   //-----------------------------handleUpload-----------------------------
   const handleAvatarUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.currentTarget && e.currentTarget.files) {
@@ -161,6 +170,12 @@ export const Banner = ({ isEditBanner }: BannerProps) => {
                 >
                   <AddPhotoDiv className="rounded-circle d-flex justify-content-center align-items-center">
                     <Camera size={22} color="white" />
+                    <StyledInput
+                      className="opacity-0 position-absolute rounded-circle"
+                      type="file"
+                      ref={fileRefImage}
+                      onChange={handleImageUpload}
+                    />
                   </AddPhotoDiv>
                 </OverlayTrigger>
               )}
@@ -175,7 +190,10 @@ export const Banner = ({ isEditBanner }: BannerProps) => {
                     </Tooltip>
                   }
                 >
-                  <RemovePhotoDiv className="ms-3 rounded-circle d-flex justify-content-center align-items-center">
+                  <RemovePhotoDiv
+                    onClick={removeBanner}
+                    className="ms-3 rounded-circle d-flex justify-content-center align-items-center"
+                  >
                     <XLg size={17} color="white" />
                   </RemovePhotoDiv>
                 </OverlayTrigger>
@@ -208,6 +226,13 @@ export const Banner = ({ isEditBanner }: BannerProps) => {
             >
               <AddLogoDiv className="position-absolute rounded-circle d-flex justify-content-center align-items-center">
                 <Camera size={22} color="white" />
+
+                <StyledInput
+                  className="opacity-0 position-absolute rounded-circle"
+                  type="file"
+                  ref={fileRefAvatar}
+                  onChange={handleAvatarUpload}
+                />
               </AddLogoDiv>
             </OverlayTrigger>
           )}
@@ -228,12 +253,6 @@ export const Banner = ({ isEditBanner }: BannerProps) => {
           )}
         </LogoDiv>
       </Layout>
-
-      {/*----avatar -------*/}
-      <input type="file" ref={fileRefAvatar} onChange={handleAvatarUpload} />
-
-      {/*----user image -------*/}
-      <input type="file" ref={fileRefImage} onChange={handleImageUpload} />
     </>
   );
 };

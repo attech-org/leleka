@@ -25,7 +25,7 @@ export const LeftPanel = () => {
 
         <EditProfileForm />
 
-        <Button
+        <Button // temporary button
           variant="danger"
           onClick={() => dispatch(userActions.resetUserData())}
         >

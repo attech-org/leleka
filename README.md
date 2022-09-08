@@ -11,17 +11,19 @@ Students demo project for training purposes.
 - react-hook-forms
 - react-router-dom
 
-## Usage example FastAverageColor
+## Examples of using technology
 
-### Grab the color palette from an image
+### 1. Usage example FastAverageColor:
 
-### This library will be useful for creating the background of a modal window
+#### Grab the color palette from an image
+
+#### This library will be useful for creating the background of a modal window
 
 ```
 import { FastAverageColor } from "fast-average-color";
 
 
-const [backgroundColor, setBackgroundColor] = useState("rgba(181,192,200,1)"); // default color
+const [backgroundColor, setBackgroundColor] = useState("default-rgba-color");
 
 const fac = new FastAverageColor();
     fac
@@ -32,4 +34,14 @@ const fac = new FastAverageColor();
     .catch((e) => {
       console.warn(e);
     });
+```
+
+#### You can research other fields of the object color
+
+### 2. Usage example LinkPreview:
+
+```
+  import LinkPreview from "src/components/LinkPreview";
+
+  <LinkPreview url="your-link" />
 ```
