@@ -33,5 +33,19 @@
     "dateOfBirth": "Дата народження",
     "password": "Пароль",
     "confirmPassword": "Підтвердіть пароль"
+  },
+  "userSettings": {
+    "addPhoto": "Додати фото",
+    "removePhoto": "Видалити фото",
+    "editProfile": "Редагувати профіль",
+    "uploadUserAvatar": "Завантажити аватарку",
+    "uploadUserPicture": "Завантажити зображення профілю",
+    "name": "Ваше ім'я",
+    "bio": "Трохи про себе",
+    "location": "Звідки ви?",
+    "website": "Ваш вебсайт",
+    "dateOfBirth": "Дата народження",
+    "professionalButton": "Розширені налаштування",
+    "saveButton": "Зберегти"
   }
 }
