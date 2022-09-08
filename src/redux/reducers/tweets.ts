@@ -55,9 +55,6 @@ const tweetsSlice = createSlice<TweetsStore, SliceCaseReducers<TweetsStore>>({
     builder.addCase(fetchFeedTweets.pending, (store) => {
       store.feedTweets.isLoading = true;
     });
-    builder.addCase(createTweet.pending, (store) => {
-      store.feedTweets.isLoading = true;
-    });
     builder.addCase(fetchFeedTweets.fulfilled, (store, { payload }) => {
       if (store.feedTweets.docs.length === 0 || payload.page !== 1) {
         // I don't know why, but first page we have twice
@@ -70,12 +67,19 @@ const tweetsSlice = createSlice<TweetsStore, SliceCaseReducers<TweetsStore>>({
       }
       store.feedTweets.isLoading = false;
     });
-    builder.addCase(createTweet.fulfilled, (store) => {
-      store.feedTweets.isLoading = false;
-    });
     builder.addCase(fetchFeedTweets.rejected, (store) => {
       store.feedTweets.isLoading = false;
       store.feedTweets.error = "Failed to fetch tweets for feed";
+    });
+    builder.addCase(createTweet.pending, (store) => {
+      store.feedTweets.isLoading = true;
+    });
+    builder.addCase(createTweet.fulfilled, (store) => {
+      store.feedTweets.isLoading = false;
+    });
+    builder.addCase(createTweet.rejected, (store) => {
+      store.feedTweets.isLoading = false;
+      store.feedTweets.error = "Failed to post tweet on server";
     });
   },
 });

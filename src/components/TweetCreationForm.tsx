@@ -46,10 +46,9 @@ const TweetCreationForm: React.FC = () => {
   const [content, setContent] = useState("");
 
   const dispatch = useDispatch<AppDispatch>();
-  const { isLoading } = useSelector<
-    RootState,
-    RootState["tweets"]["feedTweets"]
-  >((store) => store.tweets.feedTweets);
+  const isLoading = useSelector<RootState, boolean | undefined>(
+    (store) => store.tweets.feedTweets.isLoading
+  );
 
   const { t } = useTranslation();
   const whoCanAnswer = t(
