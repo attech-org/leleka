@@ -1,6 +1,8 @@
-import { EmojiSmile, Image as ImageIcon } from "react-bootstrap-icons";
+import { EmojiSmile, Chat, Image as ImageIcon } from "react-bootstrap-icons";
 import { useTranslation } from "react-i18next";
 import styled from "styled-components";
+
+import ModalUniversal from "../containers/ModalUniversal";
 
 const StyledIcon = styled.div`
   color: rgb(0, 0, 255, 0.6);
@@ -31,7 +33,8 @@ const TweetReplyForm: React.FC = () => {
   const handleEmojiPaste = (): void => {
     console.warn("Emoji paste");
   };
-  return (
+
+  const ReplyFormContainer = (
     <div>
       <div className="border-0 p-3 d-flex text-start justify-content-start">
         <div className="">
@@ -75,6 +78,10 @@ const TweetReplyForm: React.FC = () => {
         </div>
       </div>
     </div>
+  );
+
+  return (
+    <ModalUniversal button={<Chat />} title="" content={ReplyFormContainer} />
   );
 };
 

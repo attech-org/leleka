@@ -16,6 +16,7 @@ const ModalUniversal = ({ button, content, title }: ModalProps) => {
   const [show, setShow] = useState(false);
 
   const toggleShowState = () => setShow(!show);
+
   return (
     <>
       {typeof button === "string" ? (
