@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { memo, useState } from "react";
 import Avatar from "react-avatar";
 import { OverlayTrigger, Popover } from "react-bootstrap";
 import {
@@ -220,4 +220,4 @@ const TweetCreationForm: React.FC = () => {
   );
 };
 
-export default TweetCreationForm;
+export default memo(TweetCreationForm);
