@@ -1,3 +1,4 @@
+import { useState } from "react";
 import Avatar from "react-avatar";
 import { OverlayTrigger, Popover } from "react-bootstrap";
 import {
@@ -9,9 +10,14 @@ import {
   At,
 } from "react-bootstrap-icons";
 import { useTranslation } from "react-i18next";
+import ReactQuill from "react-quill";
+import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 
-import TextEditor from "./TextEditor";
+import { tweetsActions } from "../redux/reducers/tweets";
+import { RootState, AppDispatch } from "../redux/store";
+
+import "react-quill/dist/quill.snow.css";
 
 const StyledButton = styled.button`
   &:hover {
@@ -37,12 +43,21 @@ const StyledPopover = styled(Popover)`
 `;
 
 const TweetCreationForm: React.FC = () => {
+  const [content, setContent] = useState("");
+
+  const dispatch = useDispatch<AppDispatch>();
+  const isLoading = useSelector<RootState, boolean | undefined>(
+    (store) => store.tweets.feedTweets.isLoading
+  );
+
   const { t } = useTranslation();
   const whoCanAnswer = t(
     "translation:tweetCreationForm.whoCanAnswer.button.all"
   );
+
   const handleTweetButton = (): void => {
-    console.warn("Tweeted");
+    dispatch(tweetsActions.createTweet({ content: content }));
+    setContent("");
   };
   const handleImgUpload = (): void => {
     console.warn("Img Upload");
@@ -61,7 +76,57 @@ const TweetCreationForm: React.FC = () => {
           src=""
         />
         <div className="flex-grow-1 ms-2">
-          <TextEditor />
+          <ReactQuill
+            className="shadow-sm"
+            theme="snow"
+            style={{
+              height: "10rem",
+              marginTop: "1rem",
+              display: "flex",
+              flexDirection: "column",
+            }}
+            value={content}
+            modules={{
+              toolbar: [
+                [{ header: "1" }, { header: "2" }, { font: [] }],
+                [{ size: [] }],
+                ["bold", "italic", "underline", "strike", "blockquote"],
+                [{ align: [] }],
+                [{ color: [] }, { background: [] }],
+                [
+                  { list: "ordered" },
+                  { list: "bullet" },
+                  { indent: "-1" },
+                  { indent: "+1" },
+                ],
+                ["link", "video", "image", "code-block"],
+                ["clean"],
+              ],
+            }}
+            formats={[
+              "header",
+              "font",
+              "size",
+              "bold",
+              "italic",
+              "underline",
+              "strike",
+              "blockquote",
+              "color",
+              "background",
+              "list",
+              "bullet",
+              "indent",
+              "link",
+              "video",
+              "image",
+              "code-block",
+              "align",
+            ]}
+            onChange={(val) => {
+              setContent(val);
+            }}
+          />
           <div className="border-bottom py-1">
             <div>
               <OverlayTrigger
@@ -144,6 +209,7 @@ const TweetCreationForm: React.FC = () => {
             <button
               className="btn btn-primary rounded-5 d-flex align-items-center m-2"
               onClick={handleTweetButton}
+              disabled={isLoading ? true : false}
             >
               {t("translation:tweetCreationForm.tweetButton")}
             </button>
