@@ -44,7 +44,8 @@
     "bio": "Трохи про себе",
     "location": "Звідки ви?",
     "website": "Ваш вебсайт",
-    "dateOfBirth": "Дата народження",
+    "birthDate": "Дата народження",
+    "editBirthDate": "Змінити",
     "professionalButton": "Розширені налаштування",
     "saveButton": "Зберегти"
   }

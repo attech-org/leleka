@@ -1,5 +1,4 @@
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useState } from "react";
 import { Form, Button, FloatingLabel, Container } from "react-bootstrap";
 import { ChevronRight } from "react-bootstrap-icons";
 import { useForm } from "react-hook-form";
@@ -68,18 +67,14 @@ const EditProfileForm = () => {
 
   const schema = yup.object().shape({
     username: yup.string().required("validation:errors.fullname.required"),
-    dateOfBirth: yup
-      .date()
-      .typeError("validation:errors.dateOfBirth.required")
-      .required("validation:errors.dateOfBirth.required"),
   });
 
   const preloadedValues = {
-    username: username,
-    bio: bio,
-    location: location,
-    website: website,
-    birthDate: birthDate,
+    username,
+    bio,
+    location,
+    website,
+    birthDate,
   };
 
   const {
@@ -100,21 +95,12 @@ const EditProfileForm = () => {
   const submitForm = (data: IFormInput) => {
     // eslint-disable-next-line no-console
     console.log(data);
+
     dispatch(userActions.setUserData(data));
   };
-  const [show, setShow] = useState(false);
-
-  const toggleShowState = () => setShow(!show);
 
   const ProfileForm = (
-    <Container
-      // style={{
-      //   width: "600px",
-      //   height: "650px",
-      //   overflow: "auto",
-      // }}
-      className="p-0"
-    >
+    <Container className="p-0">
       <Banner isEditBanner />
 
       <Form>
@@ -125,11 +111,14 @@ const EditProfileForm = () => {
           controlId="inputNameUser"
         >
           <Form.Control
-            {...register("username", { required: true, maxLength: 30 })}
+            {...register("username")}
             type="text"
             placeholder={t(`validation:userSettings.name`)}
             maxLength={50}
           />
+          <Form.Control.Feedback type="invalid">
+            Please choose a username.
+          </Form.Control.Feedback>
           <StyledLabel
             counter
             className="pt-4 text-end"
@@ -137,12 +126,12 @@ const EditProfileForm = () => {
           >
             {watchUsername ? watchUsername.length : 0} / 50
           </StyledLabel>
-          <p className="text-danger mt-1">
-            {errors.username &&
-              errors.username.message &&
-              t(`${errors.username.message}`)}
-          </p>
         </FloatingLabel>
+        <p className="text-danger mt-1">
+          {errors.username &&
+            errors.username.message &&
+            t(`${errors.username.message}`)}
+        </p>
         {/*----BioUser field -------*/}
         <FloatingLabel
           label={t(`validation:userSettings.bio`)}
@@ -204,18 +193,23 @@ const EditProfileForm = () => {
           </StyledLabel>
         </FloatingLabel>
         {/*----birthDate input -------*/}
-        <Form.Group className="mb-3" controlId="inputBirthDateUser">
+        <div className="mb-3">
+          <div className="text-secondary mt-3 d-flex align-items-center">
+            <p>{t(`validation:userSettings.birthDate`)}</p>{" "}
+            <span className="mb-1 mx-1">.</span>
+            <Button variant="link" className="p-0 text-decoration-none">
+              {t(`validation:userSettings.editBirthDate`)}
+            </Button>
+          </div>
+
+          <div>{birthDate}</div>
+
           <Form.Control
             type="date"
-            placeholder={t(`validation:userSettings.dateOfBirth`)}
+            placeholder={t(`validation:userSettings.birthDate`)}
             data-date-format="YYYY/MM/DD"
           />
-          <p className="text-danger">
-            {errors.birthDate &&
-              errors.birthDate.message &&
-              t(`${errors.birthDate.message}`)}
-          </p>
-        </Form.Group>
+        </div>
 
         <div className="d-grid gap-2">
           <Button
@@ -229,21 +223,22 @@ const EditProfileForm = () => {
           </Button>
         </div>
 
-        <Button
-          type="submit"
-          variant="dark"
-          className="rounded-5 py-1 px-3"
-          onSubmit={handleSubmit(submitForm)}
-        >
-          {t(`validation:userSettings.saveButton`)}
-        </Button>
+        <div className="d-grid gap-2">
+          <Button
+            type="submit"
+            variant="dark"
+            className="rounded-5 py-1 px-3"
+            onSubmit={handleSubmit(submitForm)}
+          >
+            {t(`validation:userSettings.saveButton`)}
+          </Button>
+        </div>
       </Form>
     </Container>
   );
 
   const EditProfileButton = (
     <Button
-      onClick={toggleShowState}
       variant="light"
       className="rounded-5 fw-semibold border-secondary border-opacity-25"
     >

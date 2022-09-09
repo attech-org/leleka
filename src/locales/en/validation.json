@@ -45,7 +45,8 @@
     "bio": "Bio",
     "location": "Location",
     "website": "Website",
-    "dateOfBirth": "Date of birth",
+    "birthDate": "Birth date",
+    "editBirthDate": "Edit",
     "professionalButton": "Switch to professional",
     "saveButton": "Save"
   }
