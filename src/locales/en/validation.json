@@ -33,5 +33,22 @@
     "dateOfBirth": "Date of Birth",
     "password": "Password",
     "confirmPassword": "Confirm Password"
+  },
+
+  "userSettings": {
+    "addPhoto": "Add photo",
+    "removePhoto": "Remove photo",
+    "editProfile": "Edit profile",
+    "uploadUserAvatar": "Upload user avatar",
+    "uploadUserPicture": "Upload user picture",
+    "name": "Name",
+    "bio": "Bio",
+    "location": "Location",
+    "website": "Website",
+    "birthDate": "Birth date",
+    "editBirthDate": "Edit",
+    "professionalButton": "Switch to professional",
+    "saveButton": "Save",
+    "addBirthDate": "Add your date of birth"
   }
 }

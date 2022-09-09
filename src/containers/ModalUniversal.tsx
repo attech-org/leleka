@@ -8,7 +8,7 @@ const TransparentButton = styled.button`
 
 interface ModalProps {
   button: string | JSX.Element;
-  title: string;
+  title?: string;
   content?: JSX.Element | null;
 }
 

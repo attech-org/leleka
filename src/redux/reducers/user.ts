@@ -27,8 +27,11 @@ const userInitialState: UserStore = {
   profile: {
     firstName: "",
     lastName: "",
-    avatar: undefined,
+    banner: undefined,
+    avatar:
+      "https://abs.twimg.com/sticky/default_profile_images/default_profile_400x400.png",
     bio: undefined,
+    birthDate: undefined,
     phone: undefined,
     gender: undefined,
   },
@@ -79,6 +82,18 @@ const userSlice = createSlice({
       // immutable state based on those changes
       return { ...state, ...action.payload };
     },
+
+    //  temporary reducers
+    addBanner: (state, action: PayloadAction<string>) => {
+      state.profile.banner = action.payload;
+    },
+    removeBanner: (state) => {
+      state.profile.banner = undefined;
+    },
+    addAvatar: (state, action: PayloadAction<string>) => {
+      state.profile.avatar = action.payload;
+    },
+
     resetUserData: () => {
       return userInitialState;
     },

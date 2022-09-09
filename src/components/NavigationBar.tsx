@@ -16,8 +16,6 @@ import { LinkWithLanguageQueryParam } from "../containers/LinkWithLanguageQueryP
 import ModalTweetCreationForm from "../containers/ModalTweetCreationForm";
 
 const StyledNav = styled(Nav)`
-  background-color: white;
-  color: black;
   .nav-link,
   a {
     color: black;
@@ -34,7 +32,7 @@ const StyledSpan = styled.span`
 const NavigationBar = () => {
   const { t } = useTranslation();
   return (
-    <StyledNav className="" defaultActiveKey="/">
+    <StyledNav className="d-flex flex-column " defaultActiveKey="/">
       <Nav.Item className="d-flex align-items-center ps-2 pb-2 pt-3">
         <House size={20} className="my-2" />
         <Nav.Link as={LinkWithLanguageQueryParam} to="/">
@@ -89,7 +87,7 @@ const NavigationBar = () => {
           <StyledSpan className="fs-5">{t("navigationBar.more")}</StyledSpan>
         </Nav.Link>
       </Nav.Item>
-      <Nav.Item className="d-flex align-items-center ps-2 pt-2 pb-3">
+      <Nav.Item>
         <ModalTweetCreationForm />
       </Nav.Item>
     </StyledNav>
