@@ -90,7 +90,7 @@ const RecomendedFollowsPage: React.FunctionComponent = () => {
     fetchAndProcessData();
   }, []);
   return (
-    <Layout>
+    <Layout title={t("pageTitles:followersPage")}>
       <div className="border-start border-end">
         <div className="d-flex  p-2 align-items-center ">
           <div className="p-2">
