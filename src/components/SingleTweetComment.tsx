@@ -1,4 +1,5 @@
 import React from "react";
+import Avatar from "react-avatar";
 import { Dropdown } from "react-bootstrap";
 import { ThreeDots, Chat, Upload } from "react-bootstrap-icons";
 import { useTranslation } from "react-i18next";
@@ -21,10 +22,6 @@ const Wrapper = styled.div`
 `;
 const CommentWrapper = styled.div`
   width: 100%;
-`;
-const Logo = styled.img`
-  width: 48px;
-  height: 48px;
 `;
 const Author = styled.div`
   margin-top: 12px;
@@ -158,7 +155,13 @@ const SingleTweetComment: React.FC<SingleTweetCommentInterface> = ({
   return (
     <div>
       <Wrapper>
-        <Logo className="rounded-circle mr-2 mt-2" src={userlogo} />
+        <Avatar
+          size="48"
+          round="50%"
+          twitterHandle="sitebase"
+          name={username}
+          src={userlogo}
+        />
         <CommentWrapper>
           <Author>
             <NameSection>

@@ -6,10 +6,6 @@ import ErrorsToaster from "./ErrorsToaster";
 
 const GeneralContainer = styled.main``;
 
-const Main = styled.main`
-  text-align: center;
-`;
-
 interface LayoutProps {
   children?: React.ReactNode;
 }
@@ -20,9 +16,9 @@ const Layout = ({ children }: LayoutProps) => {
       <ErrorsToaster />
       <div className="row">
         <LeftPanel />
-        <Main className="col-xl-6 col-lg-6 col-md-11 col-sm-11 col-12">
+        <main className="col-xl-6 col-lg-6 col-md-11 col-sm-11 col-12">
           {children}
-        </Main>
+        </main>
         <RightPanel />
       </div>
     </GeneralContainer>

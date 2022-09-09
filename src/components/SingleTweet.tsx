@@ -1,8 +1,8 @@
 import React from "react";
+import Avatar from "react-avatar";
 import { Popover, OverlayTrigger, Button } from "react-bootstrap";
 import {
   ThreeDots,
-  Chat,
   Upload,
   PersonX,
   ClipboardPlus,
@@ -15,6 +15,7 @@ import { Tweet } from "../types";
 import AttachedContent from "./AttachedContent";
 import LikeButton from "./LikeButton";
 import RetweetButton from "./RetweetButton";
+import TweetReplyForm from "./TweetReplyForm";
 
 const StyledLink = styled.a`
   transition: 0.3s;
@@ -54,10 +55,6 @@ const Author = styled.div`
   display: flex;
   align-items: center;
   letter-spacing: -0.02em;
-`;
-const Logo = styled.img`
-  height: 3rem;
-  width: 3rem;
 `;
 const NameSection = styled.div`
   width: 100%;
@@ -117,11 +114,22 @@ const SingleTweet: React.FC<Tweet> = ({
   // const Green = "rgb(0, 186, 124)";
   // const Red = "rgb(249, 24, 128)";
   const { t } = useTranslation();
+
+  // const handleReplyClick = () => {
+  //   return <ReplyTweet />;
+  // };
+
   return (
     <div>
       <Wrapper className="px-3">
         <Author className="my-2">
-          <Logo className="rounded-circle flex-shrink-0" src={userlogo} />
+          <Avatar
+            size="48"
+            round="50%"
+            twitterHandle="sitebase"
+            name={username}
+            src={userlogo}
+          />
           <NameSection>
             <NameWrapper className="ps-2">
               <StyledUsername className="fw-bold">{username}</StyledUsername>
@@ -205,7 +213,7 @@ const SingleTweet: React.FC<Tweet> = ({
             iconColor={Blue}
             className="m-0 p-0 rounded-circle row align-items-center justify-content-center"
           >
-            <Chat className="p-0 m-0" />
+            <TweetReplyForm />
           </IconBg>
           <IconBg
             iconBgColor={""}

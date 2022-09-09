@@ -1,5 +1,6 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 
+import instance from "../../services/api";
 import { LE, User } from "../../types";
 
 export type UserStore = User &
@@ -26,31 +27,101 @@ const userInitialState: UserStore = {
   profile: {
     firstName: "",
     lastName: "",
-    avatar: undefined,
+    banner: undefined,
+    avatar:
+      "https://abs.twimg.com/sticky/default_profile_images/default_profile_400x400.png",
     bio: undefined,
+    birthDate: undefined,
     phone: undefined,
     gender: undefined,
   },
+  auth: {
+    local: {
+      accessToken: undefined,
+      refreshToken: undefined,
+    },
+    twitter: {
+      accessToken: undefined,
+      refreshToken: undefined,
+    },
+  },
+  isLoading: false,
+  error: undefined,
 };
+interface RegisterResponse {
+  user: Partial<User>;
+  accessToken: string;
+  refreshToken: string;
+}
+interface RegisterRequest {
+  username: string;
+  password: string;
+  email: string;
+}
+const registerUser = createAsyncThunk<RegisterResponse, RegisterRequest>(
+  "auth/register",
+  async ({ username, password, email }) => {
+    const response = await instance.post("api/auth/register", {
+      username,
+      password,
+      email,
+      name: username,
+    });
+    return response.data;
+  }
+);
 
-export const userSlice = createSlice({
+const userSlice = createSlice({
   name: "user",
   initialState: userInitialState,
   reducers: {
-    setUserData: (state, data: PayloadAction<Partial<UserStore>>) => {
+    setUserData: (state, action: PayloadAction<Partial<UserStore>>) => {
       // Redux Toolkit allows us to write "mutating" logic in reducers. It
       // doesn't actually mutate the state because it uses the Immer library,
       // which detects changes to a "draft state" and produces a brand new
       // immutable state based on those changes
-      return { ...state, ...data.payload };
+      return { ...state, ...action.payload };
+    },
+
+    //  temporary reducers
+    addBanner: (state, action: PayloadAction<string>) => {
+      state.profile.banner = action.payload;
+    },
+    removeBanner: (state) => {
+      state.profile.banner = undefined;
+    },
+    addAvatar: (state, action: PayloadAction<string>) => {
+      state.profile.avatar = action.payload;
     },
 
     resetUserData: () => {
       return userInitialState;
     },
   },
+  extraReducers: (builder) => {
+    builder.addCase(registerUser.pending, (store) => {
+      store.isLoading = true;
+    });
+    builder.addCase(registerUser.fulfilled, (store, { payload }) => {
+      store.error = undefined;
+      return {
+        ...store,
+        ...payload.user,
+        auth: {
+          local: {
+            accessToken: payload.accessToken,
+            refreshToken: payload.refreshToken,
+          },
+        },
+      };
+    });
+    builder.addCase(registerUser.rejected, (store) => {
+      store.isLoading = false;
+      store.error = "Failed to register user";
+    });
+  },
 });
 
-export const userActions = { ...userSlice.actions };
+export const userActions = { ...userSlice.actions, registerUser };
 
 export default userSlice.reducer;

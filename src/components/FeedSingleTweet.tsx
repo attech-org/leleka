@@ -1,6 +1,5 @@
 import { Popover, OverlayTrigger, Button } from "react-bootstrap";
 import {
-  Chat,
   // PatchCheckFill,
   Upload,
   PersonX,
@@ -14,6 +13,7 @@ import styled from "styled-components";
 import { Tweet2 } from "../types";
 import LikeButton from "./LikeButton";
 import RetweetButton from "./RetweetButton";
+import TweetReplyForm from "./TweetReplyForm";
 
 const PostWrapper = styled.section`
   transition-duration: 0.2s;
@@ -89,6 +89,10 @@ const FeedSingleTweet = ({
   stats: { likes, retweets, comments },
 }: Tweet2) => {
   const { t } = useTranslation();
+
+  // const handleReplyClick = () => {
+  //   return <ReplyTweet />;
+  // };
   return (
     <>
       <PostWrapper
@@ -193,7 +197,7 @@ const FeedSingleTweet = ({
           <div className="px-3 d-flex justify-content-between align-items-center">
             <StatisticOfTweet className="d-flex align-items-center justify-content-center">
               <HoverBackgroundBlue className="p-2 rounded-circle d-flex justify-content-center align-items-center">
-                <Chat size="16" />
+                <TweetReplyForm />
               </HoverBackgroundBlue>
               <div className="px-1">{comments}</div>
             </StatisticOfTweet>

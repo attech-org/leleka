@@ -1,54 +1,37 @@
-import { useDispatch, useSelector } from "react-redux";
+import { Button } from "react-bootstrap";
+import { useDispatch } from "react-redux";
 import styled from "styled-components";
 
 import LanguageSwitcher from "../containers/LanguageSwitcher";
 import LoginForm from "../containers/LoginForm";
 import Registration from "../containers/Registration";
-import { RootState } from "../redux/reducers";
 import { userActions } from "../redux/reducers/user";
-import { loginUserAsLeleka1 } from "../services/api";
+import { AppDispatch } from "../redux/store";
+import EditProfileForm from "./EditProfileForm";
 import NavigationBar from "./NavigationBar";
-
-const Div = styled.div`
-  background-color: yellowgreen;
-`;
 
 const Wrapper = styled.div``;
 export const LeftPanel = () => {
-  const dispatch = useDispatch();
-  const user = useSelector((state: RootState) => state.user);
+  const dispatch = useDispatch<AppDispatch>();
+
   return (
     <Wrapper className="col-xl-2 col-lg-2 col-md-1 col-sm-1 col-12">
-      <Div>
+      <div>
         <LanguageSwitcher />
         <NavigationBar />
+
         <LoginForm />
         <Registration />
-        <button
-          aria-label="leleka1 login"
-          onClick={async () => {
-            dispatch(userActions.setUserData(await loginUserAsLeleka1()));
-          }}
+
+        <EditProfileForm />
+
+        <Button // temporary button
+          variant="danger"
+          onClick={() => dispatch(userActions.resetUserData())}
         >
-          Logis as leleka1
-        </button>
-        <button
-          aria-label="leleka1 login"
-          onClick={async () => {
-            dispatch(userActions.resetUserData());
-          }}
-        >
-          Logout
-        </button>
-        <button
-          aria-label="leleka1 login"
-          onClick={async () => {
-            console.warn("User: ", user);
-          }}
-        >
-          Console Log User Info
-        </button>
-      </Div>
+          logout
+        </Button>
+      </div>
     </Wrapper>
   );
 };

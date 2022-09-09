@@ -37,26 +37,39 @@ export interface Tweet2 extends MongoArtifacts {
 }
 
 export interface User extends MongoArtifacts {
+  password?: string;
   username: string;
-  name: string;
+  name?: string;
   location?: string;
   url?: string;
   description?: string;
-  verified: boolean;
-  followersCount: number;
-  friendsCount: number;
-  listedCount: number;
-  favouritesCount: number;
-  statusesCount: number;
+  verified?: boolean;
+  followersCount?: number;
+  friendsCount?: number;
+  listedCount?: number;
+  favouritesCount?: number;
+  statusesCount?: number;
   createdAt?: string;
   updatedAt?: string;
   email: string;
   profile: {
-    firstName: string;
-    lastName: string;
-    avatar?: string;
+    firstName?: string;
+    lastName?: string;
+    avatar: string;
+    banner?: string;
     bio?: string;
+    birthDate?: string;
     phone?: string;
     gender?: string;
+  };
+  auth?: {
+    local?: {
+      accessToken?: string;
+      refreshToken?: string;
+    };
+    twitter?: {
+      accessToken?: string;
+      refreshToken?: string;
+    };
   };
 }
