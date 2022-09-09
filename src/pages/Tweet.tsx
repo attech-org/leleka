@@ -2,12 +2,13 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 
+import FeedSingleTweet from "../components/FeedSingleTweet";
 import SingleTweet from "../components/SingleTweet";
-// import InfiniteList from "../containers/InfiniteList";
+import InfiniteList from "../containers/InfiniteList";
 import Layout from "../containers/Layout";
 import { tweetsActions } from "../redux/reducers/tweets";
 import { AppDispatch, RootState } from "../redux/store";
-// import { Tweet2 } from "../types";
+import { Tweet2 } from "../types";
 
 const Tweet = () => {
   const match = useParams();
@@ -28,24 +29,24 @@ const Tweet = () => {
   console.log(tweetId);
   console.log(data);
 
-  // const posts = useSelector<RootState, RootState["tweets"]["feedReplies"]>(
-  //   (store) => store.tweets.feedReplies
-  // );
+  const posts = useSelector<RootState, RootState["tweets"]["feedReplies"]>(
+    (store) => store.tweets.feedReplies
+  );
 
-  // const handleShowMore = () => {
-  //   return !posts.isLoading && dispatch(tweetsActions.fetchTweetReplies(posts));
-  // };
+  const handleShowMore = () => {
+    return !posts.isLoading && dispatch(tweetsActions.fetchTweetReplies(posts));
+  };
 
   return (
     <Layout>
-      <div>{tweetId}</div>
-      <div>{JSON.stringify(data)}</div>
+      {/* <div>{tweetId}</div>
+      <div>{JSON.stringify(data)}</div> */}
       {data && <SingleTweet {...data} />}
-      {/* <InfiniteList<Tweet2>
+      <InfiniteList<Tweet2>
         showMore={handleShowMore}
         data={posts}
-        itemComponent={(itemData) => <SingleTweet {...itemData} />}
-      /> */}
+        itemComponent={(itemData) => <FeedSingleTweet {...itemData} />}
+      />
       <div>Comments</div>
     </Layout>
   );

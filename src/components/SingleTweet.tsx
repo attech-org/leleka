@@ -117,7 +117,7 @@ const SingleTweet = ({
   const { t } = useTranslation();
   return (
     <div>
-      <Wrapper className="px-3">
+      <Wrapper className="px-3 border border-bottom-0 border-grey">
         <Author className="my-2">
           <Logo
             className="rounded-circle flex-shrink-0"
