@@ -21,9 +21,18 @@ const App: React.FunctionComponent = () => {
   const [searchParams, setSearchParams] = useSearchParams();
 
   useEffect(() => {
-    searchParams.set("lang", i18n.resolvedLanguage);
-    setSearchParams(searchParams);
+    if (searchParams.get("lang") !== i18n.resolvedLanguage) {
+      searchParams.set("lang", i18n.resolvedLanguage);
+      setSearchParams(searchParams);
+    }
   }, [i18n.resolvedLanguage]);
+
+  useEffect(() => {
+    const lang = searchParams.get("lang") || "";
+    if (lang && lang !== i18n.resolvedLanguage) {
+      i18n.changeLanguage(lang);
+    }
+  }, [searchParams]);
 
   return (
     <div>
