@@ -64,6 +64,7 @@ const tweetsSlice = createSlice<TweetsStore, SliceCaseReducers<TweetsStore>>({
           ...payload,
           docs: [...store.feedTweets.docs, ...payload.docs],
         };
+        console.log(payload);
       }
       store.feedTweets.isLoading = false;
     });
