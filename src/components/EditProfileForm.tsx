@@ -27,6 +27,11 @@ const StyledLabel = styled.label<Label>`
     `}
 `;
 
+const StyledInput = styled.input`
+  width: 28px;
+  height: 28px;
+`;
+
 interface IFormInput {
   username: string;
   bio: string;
@@ -61,6 +66,7 @@ const EditProfileForm = () => {
     RootState,
     RootState["user"]["profile"]["birthDate"]
   >((store) => store.user.profile.birthDate);
+
   //-----------------------------------------------------------------------
 
   //------------------------------ validation ------------------------
@@ -193,28 +199,34 @@ const EditProfileForm = () => {
           </StyledLabel>
         </FloatingLabel>
         {/*----birthDate input -------*/}
-        <div className="mb-3">
-          <div className="text-secondary mt-3 d-flex align-items-center">
+        <div className="mb-4">
+          <div className="text-secondary mb-1 mt-3 d-flex align-items-center">
             <p>{t(`validation:userSettings.birthDate`)}</p>{" "}
             <span className="mb-1 mx-1">.</span>
-            <Button variant="link" className="p-0 text-decoration-none">
+            <div className="text-primary p-0 text-decoration-none">
+              <StyledInput
+                className="position-absolute opacity-0"
+                type="date"
+                placeholder={t(`validation:userSettings.birthDate`)}
+                data-date-format="YYYY/MM/DD"
+              />
               {t(`validation:userSettings.editBirthDate`)}
-            </Button>
+            </div>
           </div>
 
-          <div>{birthDate}</div>
-
-          <Form.Control
-            type="date"
-            placeholder={t(`validation:userSettings.birthDate`)}
-            data-date-format="YYYY/MM/DD"
-          />
+          {birthDate ? (
+            <div className="fs-5">{birthDate}</div>
+          ) : (
+            <div className="fs-5">
+              {t(`validation:userSettings.addBirthDate`)}
+            </div>
+          )}
         </div>
 
         <div className="d-grid gap-2">
           <Button
             variant="light"
-            className="rounded-1 px-3 mb-5 d-flex justify-content-between align-items-center"
+            className="rounded-1 px-3 mb-4 d-flex justify-content-between align-items-center"
           >
             <span className="fs-5">
               {t(`validation:userSettings.professionalButton`)}

@@ -47,6 +47,7 @@
     "birthDate": "Дата народження",
     "editBirthDate": "Змінити",
     "professionalButton": "Розширені налаштування",
-    "saveButton": "Зберегти"
+    "saveButton": "Зберегти",
+    "addBirthDate": "Додати дату народження"
   }
 }

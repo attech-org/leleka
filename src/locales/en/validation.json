@@ -48,6 +48,7 @@
     "birthDate": "Birth date",
     "editBirthDate": "Edit",
     "professionalButton": "Switch to professional",
-    "saveButton": "Save"
+    "saveButton": "Save",
+    "addBirthDate": "Add your date of birth"
   }
 }
