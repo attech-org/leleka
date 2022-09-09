@@ -15,6 +15,7 @@ import MorePage from "./pages/More";
 import NotificationsPage from "./pages/Notifications";
 import ProfilePage from "./pages/Profile";
 import Trends from "./pages/Trends";
+import Tweet from "./pages/Tweet";
 
 const App: React.FunctionComponent = () => {
   const { i18n } = useTranslation();
@@ -54,6 +55,7 @@ const App: React.FunctionComponent = () => {
         <Route path="/followers" element={<Followers />} />
         <Route path="/following" element={<Following />} />
         <Route path="/trends" element={<Trends />} />
+        <Route path="/tweet/:id" element={<Tweet />} />
       </Routes>
     </div>
   );

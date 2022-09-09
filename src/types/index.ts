@@ -32,7 +32,7 @@ export interface Tweet2 extends MongoArtifacts {
   stats: {
     likes: number;
     retweets: number;
-    comments: number;
+    comments?: number;
   };
 }
 

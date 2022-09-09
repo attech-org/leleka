@@ -8,8 +8,10 @@ import instance from "../../services/api";
 import { LE, Tweet2 } from "../../types";
 import { Pagination } from "../../types/mock-api-types";
 
-interface TweetsStore {
+export interface TweetsStore {
+  currentTweet: LE<{ data?: Tweet2 }>;
   feedTweets: LE<Pagination<Tweet2>>;
+  // feedReplies: LE<Pagination<Tweet2>>;
 }
 
 const tweetsInitialStore: TweetsStore = {
@@ -20,6 +22,14 @@ const tweetsInitialStore: TweetsStore = {
     hasNextPage: true,
     isLoading: false,
   },
+  currentTweet: {},
+  // feedReplies: {
+  //   page: 1,
+  //   limit: 10,
+  //   docs: [],
+  //   hasNextPage: true,
+  //   isLoading: false,
+  // },
 };
 
 const fetchFeedTweets = createAsyncThunk<
@@ -32,6 +42,27 @@ const fetchFeedTweets = createAsyncThunk<
   });
   return response.data;
 });
+
+const fetchTweetById = createAsyncThunk<Pagination<Tweet2>, string>(
+  "tweet/id",
+  async (_id) => {
+    const response = await instance.get("api/tweets/", {
+      params: { query: { _id } },
+    });
+    return response.data;
+  }
+);
+
+// const fetchTweetReplies = createAsyncThunk<
+//   Pagination<Tweet2>,
+//   Pagination<Tweet2> | undefined
+// >("replies/feed", async (filters, repliedTo) => {
+//   const { limit = 10, nextPage = 1 } = filters || {};
+//   const response = await instance.get("api/tweets", {
+//     params: { limit, page: nextPage, query: { repliedTo } },
+//   });
+//   return response.data;
+// });
 
 const tweetsSlice = createSlice<TweetsStore, SliceCaseReducers<TweetsStore>>({
   name: "tweets",
@@ -57,12 +88,40 @@ const tweetsSlice = createSlice<TweetsStore, SliceCaseReducers<TweetsStore>>({
       store.feedTweets.isLoading = false;
       store.feedTweets.error = "Failed to fetch tweets for feed";
     });
+    builder.addCase(fetchTweetById.pending, (store) => {
+      store.currentTweet.isLoading = true;
+    });
+    builder.addCase(fetchTweetById.fulfilled, (store, { payload }) => {
+      store.currentTweet.data = payload.docs[0];
+      store.currentTweet.isLoading = false;
+    });
+    builder.addCase(fetchTweetById.rejected, (store) => {
+      store.currentTweet.isLoading = false;
+      store.currentTweet.error = "Failed to fetch tweets for feed";
+    });
+    // builder.addCase(fetchTweetReplies.pending, (store) => {
+    //   store.feedReplies.isLoading = true;
+    // });
+    // builder.addCase(fetchTweetReplies.fulfilled, (store, { payload }) => {
+    //   store.feedReplies = {
+    //     ...store.feedReplies,
+    //     ...payload,
+    //     docs: [...store.feedReplies.docs, ...payload.docs],
+    //   };
+    //   store.feedReplies.isLoading = false;
+    // });
+    // builder.addCase(fetchTweetReplies.rejected, (store) => {
+    //   store.feedReplies.isLoading = false;
+    //   store.feedReplies.error = "Failed to fetch tweets for feed";
+    // });
   },
 });
 
 export const tweetsActions = {
   ...tweetsSlice.actions,
   fetchFeedTweets,
+  fetchTweetById,
+  // fetchTweetReplies,
 };
 
 export default tweetsSlice.reducer;

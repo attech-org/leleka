@@ -11,7 +11,7 @@ import {
 import { useTranslation } from "react-i18next";
 import styled from "styled-components";
 
-import { Tweet } from "../types";
+import { Tweet2 } from "../types";
 import AttachedContent from "./AttachedContent";
 import LikeButton from "./LikeButton";
 import RetweetButton from "./RetweetButton";
@@ -99,17 +99,15 @@ const IconBg = styled.div<IIconBg>`
   }
 `;
 
-const SingleTweet: React.FC<Tweet> = ({
-  userlogo,
-  username,
-  userNickname,
-  tweetText,
-  tweetDate,
-  lelekaLink,
-  retweetCount,
-  tweetQuoteCount,
-  likeCount,
-}) => {
+const SingleTweet = ({
+  // _id,
+  author,
+  content,
+  createdAt,
+  // repliedTo,
+  // updatedAt,
+  stats: { likes, retweets, comments },
+}: Tweet2) => {
   const bgBlue = "rgb(29, 155, 240, 0.1)";
   // const bgGreen = "rgb(0, 186, 124, 0.1)";
   // const bgRed = "rgb(249, 24, 128, 0.1)";
@@ -121,11 +119,14 @@ const SingleTweet: React.FC<Tweet> = ({
     <div>
       <Wrapper className="px-3">
         <Author className="my-2">
-          <Logo className="rounded-circle flex-shrink-0" src={userlogo} />
+          <Logo
+            className="rounded-circle flex-shrink-0"
+            src={author.profile?.avatar}
+          />
           <NameSection>
             <NameWrapper className="ps-2">
-              <StyledUsername className="fw-bold">{username}</StyledUsername>
-              <StyledNickname>{userNickname}</StyledNickname>
+              <StyledUsername className="fw-bold">{author.name}</StyledUsername>
+              <StyledNickname>@{author.username}</StyledNickname>
             </NameWrapper>
             <div className="align-items-start align-top">
               <OverlayTrigger
@@ -145,7 +146,9 @@ const SingleTweet: React.FC<Tweet> = ({
                           <span className="px-2">
                             <PersonX />
                           </span>
-                          {`${t("singleTweetMenu.stopFollow")} ${userNickname}`}
+                          {`${t("singleTweetMenu.stopFollow")} ${
+                            author.username
+                          }`}
                         </StyledLink>
                       </p>
                       <p>
@@ -156,7 +159,7 @@ const SingleTweet: React.FC<Tweet> = ({
                           <span className="px-2">
                             <ClipboardPlus />
                           </span>
-                          {`${t("singleTweetMenu.add")} ${userNickname} ${t(
+                          {`${t("singleTweetMenu.add")} ${author.username} ${t(
                             "singleTweetMenu.toList"
                           )}`}
                         </StyledLink>
@@ -186,17 +189,17 @@ const SingleTweet: React.FC<Tweet> = ({
             </div>
           </NameSection>
         </Author>
-        <Text className="py-2">{tweetText}</Text>
+        <Text className="py-2">{content}</Text>
         <AttachedContent />
         <Date className="border-bottom py-3 fw-bold">
-          {tweetDate} - {lelekaLink}
+          {createdAt} - "lelekaLink"
         </Date>
         <Statistic className="border-bottom py-3">
-          <span className="fw-bold text-dark pe-1">{retweetCount}</span>
+          <span className="fw-bold text-dark pe-1">{retweets}</span>
           <span className="text-dark pe-3">{t("common.retweets")}</span>
-          <span className="fw-bold text-dark pe-1">{tweetQuoteCount}</span>
+          <span className="fw-bold text-dark pe-1">{comments}</span>
           <span className="text-dark pe-3">{t("common.quoteTweets")}</span>
-          <span className="fw-bold text-dark pe-1">{likeCount}</span>
+          <span className="fw-bold text-dark pe-1">{likes}</span>
           <span className="text-dark pe-1">{t("common.likes")}</span>
         </Statistic>
         <IconsBar className="border-bottom py-1 mx-0 row justify-content-around">
@@ -212,14 +215,14 @@ const SingleTweet: React.FC<Tweet> = ({
             iconColor={""}
             className="m-0 p-0 rounded-circle row align-items-center justify-content-center"
           >
-            <RetweetButton retweetCount={retweetCount} />
+            <RetweetButton retweetCount={retweets} />
           </IconBg>
           <IconBg
             iconBgColor={""}
             iconColor={""}
             className="m-0 p-0 rounded-circle row align-items-center justify-content-center"
           >
-            <LikeButton likesCount={likeCount} />
+            <LikeButton likesCount={likes} />
           </IconBg>
           <IconBg
             iconBgColor={bgBlue}
