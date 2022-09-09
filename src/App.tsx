@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { Helmet } from "react-helmet";
 import { useTranslation } from "react-i18next";
 import { Routes, Route, useSearchParams } from "react-router-dom";
 
@@ -21,12 +22,28 @@ const App: React.FunctionComponent = () => {
   const [searchParams, setSearchParams] = useSearchParams();
 
   useEffect(() => {
-    searchParams.set("lang", i18n.resolvedLanguage);
-    setSearchParams(searchParams);
+    if (searchParams.get("lang") !== i18n.resolvedLanguage) {
+      searchParams.set("lang", i18n.resolvedLanguage);
+      setSearchParams(searchParams);
+    }
   }, [i18n.resolvedLanguage]);
+
+  useEffect(() => {
+    const lang = searchParams.get("lang") as string;
+    if (lang && lang !== i18n.resolvedLanguage) {
+      i18n.changeLanguage(lang);
+    }
+  }, [searchParams]);
 
   return (
     <div>
+      <Helmet>
+        <title>Leleka</title>
+        <meta
+          name="Leleka"
+          content="Students demo project for training purposes that mimics Twitter functionality"
+        />
+      </Helmet>
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/about" element={<AboutPage />} />
