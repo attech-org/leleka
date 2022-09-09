@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import { Helmet } from "react-helmet";
 import { useTranslation } from "react-i18next";
 import { Routes, Route, useSearchParams } from "react-router-dom";
 
@@ -29,7 +28,7 @@ const App: React.FunctionComponent = () => {
   }, [i18n.resolvedLanguage]);
 
   useEffect(() => {
-    const lang = searchParams.get("lang") as string;
+    const lang = searchParams.get("lang") || "";
     if (lang && lang !== i18n.resolvedLanguage) {
       i18n.changeLanguage(lang);
     }
@@ -37,13 +36,6 @@ const App: React.FunctionComponent = () => {
 
   return (
     <div>
-      <Helmet>
-        <title>Leleka</title>
-        <meta
-          name="Leleka"
-          content="Students demo project for training purposes that mimics Twitter functionality"
-        />
-      </Helmet>
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/about" element={<AboutPage />} />

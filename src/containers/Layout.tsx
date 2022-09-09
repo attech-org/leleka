@@ -15,11 +15,13 @@ interface LayoutProps {
 const Layout = ({ children, title }: LayoutProps) => {
   return (
     <>
-      {title && (
-        <Helmet>
-          <title>{title} | Leleka</title>
-        </Helmet>
-      )}
+      <Helmet>
+        <title>{title ? `${title} | Leleka` : "Leleka"}</title>
+        <meta
+          name="Leleka"
+          content="Students demo project for training purposes that mimics Twitter functionality"
+        />
+      </Helmet>
       <GeneralContainer className="container-xxl">
         <ErrorsToaster />
         <div className="row">
