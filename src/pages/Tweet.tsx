@@ -34,7 +34,11 @@ const Tweet = () => {
   );
 
   const handleShowMore = () => {
-    return !posts.isLoading && dispatch(tweetsActions.fetchTweetReplies(posts));
+    return (
+      !posts.isLoading &&
+      posts.hasNextPage &&
+      dispatch(tweetsActions.fetchTweetReplies({ ...posts, tweetId }))
+    );
   };
 
   return (
@@ -47,7 +51,6 @@ const Tweet = () => {
         data={posts}
         itemComponent={(itemData) => <FeedSingleTweet {...itemData} />}
       />
-      <div>Comments</div>
     </Layout>
   );
 };

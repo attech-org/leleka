@@ -55,11 +55,11 @@ const fetchTweetById = createAsyncThunk<Pagination<Tweet2>, string>(
 
 const fetchTweetReplies = createAsyncThunk<
   Pagination<Tweet2>,
-  Pagination<Tweet2> | undefined
+  (Pagination<Tweet2> & { tweetId: string }) | undefined
 >("replies/feed", async (filters) => {
-  const { limit = 10, nextPage = 1 } = filters || {};
+  const { limit = 10, nextPage = 1, tweetId } = filters || {};
   const response = await instance.get("api/tweets", {
-    params: { limit, page: nextPage },
+    params: { limit, page: nextPage, query: { repliedTo: tweetId } },
   });
   return response.data;
 });

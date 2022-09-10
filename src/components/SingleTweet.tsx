@@ -12,7 +12,7 @@ import { useTranslation } from "react-i18next";
 import styled from "styled-components";
 
 import { Tweet2 } from "../types";
-import AttachedContent from "./AttachedContent";
+// import AttachedContent from "./AttachedContent";
 import LikeButton from "./LikeButton";
 import RetweetButton from "./RetweetButton";
 
@@ -190,7 +190,7 @@ const SingleTweet = ({
           </NameSection>
         </Author>
         <Text className="py-2">{content}</Text>
-        <AttachedContent />
+        {/* <AttachedContent /> */}
         <Date className="border-bottom py-3 fw-bold">
           {createdAt} - "lelekaLink"
         </Date>
