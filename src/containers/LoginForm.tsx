@@ -15,7 +15,7 @@ import styled from "styled-components";
 import * as yup from "yup";
 
 import { userActions } from "../redux/reducers/user";
-import { loginUser } from "../services/api";
+import { AppDispatch } from "../redux/store";
 import ModalUniversal from "./ModalUniversal";
 
 interface MyForm {
@@ -29,7 +29,7 @@ const StyledContainer = styled(Container)`
 `;
 
 const LoginForm = () => {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
   const { t } = useTranslation();
   const sampleSchema = yup.object().shape({
     username: yup.string().required(t("login.requiredName")),
@@ -43,10 +43,8 @@ const LoginForm = () => {
     resolver: yupResolver(sampleSchema),
   });
 
-  const submitForm = async (data: MyForm) => {
-    dispatch(
-      userActions.setUserData(await loginUser(data.username, data.password, ""))
-    );
+  const submitForm = (data: MyForm) => {
+    dispatch(userActions.loginUser(data));
     reset();
   };
 
