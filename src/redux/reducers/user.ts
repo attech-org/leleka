@@ -58,6 +58,18 @@ interface RegisterRequest {
   password: string;
   email: string;
 }
+
+interface LoginResponse {
+  user: Partial<User>;
+  accessToken: string;
+  refreshToken: string;
+}
+
+interface LoginRequest {
+  username: string;
+  password: string;
+}
+
 const registerUser = createAsyncThunk<RegisterResponse, RegisterRequest>(
   "auth/register",
   async ({ username, password, email }) => {
@@ -66,6 +78,17 @@ const registerUser = createAsyncThunk<RegisterResponse, RegisterRequest>(
       password,
       email,
       name: username,
+    });
+    return response.data;
+  }
+);
+const loginUser = createAsyncThunk<LoginResponse, LoginRequest>(
+  "auth/login",
+  async ({ username, password }) => {
+    const response = await instance.post("api/auth/login", {
+      username,
+      password,
+      email: "",
     });
     return response.data;
   }
@@ -119,9 +142,30 @@ const userSlice = createSlice({
       store.isLoading = false;
       store.error = "Failed to register user";
     });
+
+    builder.addCase(loginUser.pending, (store) => {
+      store.isLoading = true;
+    });
+    builder.addCase(loginUser.fulfilled, (store, { payload }) => {
+      store.error = undefined;
+      return {
+        ...store,
+        ...payload.user,
+        auth: {
+          local: {
+            accessToken: payload.accessToken,
+            refreshToken: payload.refreshToken,
+          },
+        },
+      };
+    });
+    builder.addCase(loginUser.rejected, (store) => {
+      store.isLoading = false;
+      store.error = "Failed to login user";
+    });
   },
 });
 
-export const userActions = { ...userSlice.actions, registerUser };
+export const userActions = { ...userSlice.actions, registerUser, loginUser };
 
 export default userSlice.reducer;
