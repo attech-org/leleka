@@ -31,7 +31,6 @@ const tweetsInitialStore: TweetsStore = {
 };
 
 // -------------------- create Tweet -------------------- //
-
 interface NewTweetBody {
   repliedTo?: string;
   content: string;
@@ -46,7 +45,6 @@ export const createTweet = createAsyncThunk<Tweet2, NewTweetBody>(
 );
 
 // -------------------- fetch Feed Tweets -------------------- //
-
 const fetchFeedTweets = createAsyncThunk<
   Pagination<Tweet2>,
   Pagination<Tweet2> | undefined
@@ -59,15 +57,16 @@ const fetchFeedTweets = createAsyncThunk<
 });
 
 // -------------------- fetch Feed Liked Tweets -------------------- //
-
 const fetchFeedLikedTweets = createAsyncThunk<
   Pagination<Tweet2>,
   Pagination<Tweet2> | undefined
 >("profile/likes", async (filters) => {
   const { limit = 10, nextPage = 1 } = filters || {};
+
   const response = await instance.get("api/tweets", {
     params: { limit, page: nextPage },
   });
+
   return response.data;
 });
 

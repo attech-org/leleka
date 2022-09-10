@@ -10,10 +10,12 @@ import InfiniteList from "./InfiniteList";
 
 const Likes = () => {
   const dispatch = useDispatch<AppDispatch>();
+
   const likedTweets = useSelector<
     RootState,
     RootState["tweets"]["feedLikedTweets"]
   >((store) => store.tweets.feedLikedTweets);
+
   const handleShowMore = () => {
     return (
       !likedTweets.isLoading &&
