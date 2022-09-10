@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import { Card, Button } from "react-bootstrap";
+import { Card } from "react-bootstrap";
+import { CardImage } from "react-bootstrap-icons";
 
 import { customFetcher } from "../services/customFetcher";
 
@@ -37,25 +38,45 @@ const LinkPreview = ({ url }: PropsUrl) => {
   }, []);
 
   return (
-    <Card className="text-start">
-      <Card.Img src={response.image} />
-      <Card.Body>
-        <Card.Title>{response.title}</Card.Title>
-        <Card.Text>{response.description}</Card.Text>
-        <Button
-          className="mt-3 d-flex align-items-center"
-          href={response.url}
-          target="blank"
-          variant="light"
-        >
-          {response.siteName}
-          {response.siteName && response.hostname && (
-            <span className="mb-1 mx-1">.</span>
-          )}
-          {response.hostname}
-        </Button>
-      </Card.Body>
-    </Card>
+    <>
+      {response.image ? (
+        <a target="blank" className="text-decoration-none" href={response.url}>
+          <Card className="rounded-4 text-secondary">
+            <Card.Img className="rounded-4" src={response.image} />
+            <Card.Body className="border-top">
+              <Card.Text className="mb-2 d-flex align-items-center">
+                {response.siteName}
+                {response.siteName && response.hostname && (
+                  <span className="mb-1 mx-1">.</span>
+                )}
+                {response.hostname}
+              </Card.Text>
+              <Card.Subtitle className="mb-2">{response.title}</Card.Subtitle>
+              <Card.Text>{response.description}</Card.Text>
+            </Card.Body>
+          </Card>
+        </a>
+      ) : (
+        <a target="blank" className=" text-decoration-none" href={response.url}>
+          <div className="text-black border rounded-4 d-flex justify-content-start ">
+            <div className="border-end px-2">
+              <CardImage size={100} />
+            </div>
+            <Card.Body className="text-secondary ms-2 ">
+              <Card.Text className="mt-3 d-flex align-items-center">
+                {response.siteName}
+                {response.siteName && response.hostname && (
+                  <span className="mb-1 mx-1">.</span>
+                )}
+                {response.hostname}
+              </Card.Text>
+              <Card.Title>{response.title}</Card.Title>
+              <Card.Text>{response.description}</Card.Text>
+            </Card.Body>
+          </div>
+        </a>
+      )}
+    </>
   );
 };
 
