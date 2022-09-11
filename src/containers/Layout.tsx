@@ -5,7 +5,9 @@ import { LeftPanel } from "../components/LeftPanel";
 import { RightPanel } from "../components/RightPanel";
 import ErrorsToaster from "./ErrorsToaster";
 
-const GeneralContainer = styled.main``;
+const GeneralContainer = styled.main`
+  word-break: break-all;
+`;
 
 interface LayoutProps {
   children?: React.ReactNode;
