@@ -12,7 +12,7 @@ import { Tweet2 } from "../types";
 
 const Tweet = () => {
   const match = useParams();
-  const tweetId = match.id!;
+  const tweetId = match.id || "";
 
   const dispatch = useDispatch<AppDispatch>();
 
