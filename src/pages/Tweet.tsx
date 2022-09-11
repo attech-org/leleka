@@ -20,14 +20,9 @@ const Tweet = () => {
     dispatch(tweetsActions.fetchTweetById(tweetId));
   }, []);
 
-  // dispatch(tweetsActions.fetchTweetById(tweetId));
-
   const { data } = useSelector<RootState, RootState["tweets"]["currentTweet"]>(
     (store) => store.tweets.currentTweet
   );
-
-  console.log(tweetId);
-  console.log(data);
 
   const posts = useSelector<RootState, RootState["tweets"]["feedReplies"]>(
     (store) => store.tweets.feedReplies
@@ -43,8 +38,6 @@ const Tweet = () => {
 
   return (
     <Layout>
-      {/* <div>{tweetId}</div>
-      <div>{JSON.stringify(data)}</div> */}
       {data && <SingleTweet {...data} />}
       <InfiniteList<Tweet2>
         showMore={handleShowMore}

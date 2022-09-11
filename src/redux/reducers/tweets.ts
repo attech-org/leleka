@@ -43,12 +43,10 @@ const fetchFeedTweets = createAsyncThunk<
   return response.data;
 });
 
-const fetchTweetById = createAsyncThunk<Pagination<Tweet2>, string>(
+const fetchTweetById = createAsyncThunk<Tweet2, string>(
   "tweet/id",
-  async (_id) => {
-    const response = await instance.get("api/tweets/", {
-      params: { query: { _id } },
-    });
+  async (id) => {
+    const response = await instance.get(`api/tweets/${id}`);
     return response.data;
   }
 );
@@ -92,7 +90,7 @@ const tweetsSlice = createSlice<TweetsStore, SliceCaseReducers<TweetsStore>>({
       store.currentTweet.isLoading = true;
     });
     builder.addCase(fetchTweetById.fulfilled, (store, { payload }) => {
-      store.currentTweet.data = payload.docs[0];
+      store.currentTweet.data = payload;
       store.currentTweet.isLoading = false;
     });
     builder.addCase(fetchTweetById.rejected, (store) => {
@@ -103,11 +101,13 @@ const tweetsSlice = createSlice<TweetsStore, SliceCaseReducers<TweetsStore>>({
       store.feedReplies.isLoading = true;
     });
     builder.addCase(fetchTweetReplies.fulfilled, (store, { payload }) => {
-      store.feedReplies = {
-        ...store.feedReplies,
-        ...payload,
-        docs: [...store.feedReplies.docs, ...payload.docs],
-      };
+      if (store.feedReplies.docs.length === 0 || payload.page !== 1) {
+        store.feedReplies = {
+          ...store.feedReplies,
+          ...payload,
+          docs: [...store.feedReplies.docs, ...payload.docs],
+        };
+      }
       store.feedReplies.isLoading = false;
     });
     builder.addCase(fetchTweetReplies.rejected, (store) => {
