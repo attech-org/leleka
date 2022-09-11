@@ -74,8 +74,9 @@ const tweetsSlice = createSlice<TweetsStore, SliceCaseReducers<TweetsStore>>({
     builder.addCase(createTweet.pending, (store) => {
       store.singleTweet.isLoading = true;
     });
-    builder.addCase(createTweet.fulfilled, (store) => {
+    builder.addCase(createTweet.fulfilled, (store, { payload }) => {
       store.singleTweet.isLoading = false;
+      store.feedTweets.docs = [payload, ...store.feedTweets.docs];
     });
     builder.addCase(createTweet.rejected, (store) => {
       store.singleTweet.isLoading = false;
