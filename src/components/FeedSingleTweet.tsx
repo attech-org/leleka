@@ -1,3 +1,4 @@
+import DOMPurify from "dompurify";
 import { Popover, OverlayTrigger, Button } from "react-bootstrap";
 import {
   // PatchCheckFill,
@@ -184,7 +185,10 @@ const FeedSingleTweet = ({
             </div>
           </div>
           <div className="px-3 py-2">
-            <div className="">{content}</div>
+            <div
+              className=""
+              dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(content) }}
+            />
 
             {/* <img
               className="w-100 rounded-4 mt-3"
