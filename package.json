@@ -31,7 +31,6 @@
     "@types/react-infinite-scroller": "^1.2.3",
     "axios": "^0.27.2",
     "bootstrap": "^5.2.0",
-    "dompurify": "^2.4.0",
     "fast-average-color": "^9.1.1",
     "gh-pages": "^4.0.0",
     "i18next": "^21.9.0",
@@ -84,7 +83,6 @@
     ]
   },
   "devDependencies": {
-    "@types/dompurify": "^2.3.4",
     "@types/lodash": "^4.14.184",
     "@types/node": "^18.7.11",
     "@types/react-helmet": "^6.1.5",
