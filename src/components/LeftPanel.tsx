@@ -11,12 +11,19 @@ import EditProfileForm from "./EditProfileForm";
 import NavigationBar from "./NavigationBar";
 
 const Wrapper = styled.div``;
+
+const FixMenu = styled.div`
+  position: fixed;
+  width: 13%;
+  padding-top: 0.5%;
+`;
+
 export const LeftPanel = () => {
   const dispatch = useDispatch<AppDispatch>();
 
   return (
     <Wrapper className="col-xl-2 col-lg-2 col-md-1 col-sm-1 col-12">
-      <div>
+      <FixMenu>
         <LanguageSwitcher />
         <NavigationBar />
 
@@ -31,7 +38,7 @@ export const LeftPanel = () => {
         >
           logout
         </Button>
-      </div>
+      </FixMenu>
     </Wrapper>
   );
 };
