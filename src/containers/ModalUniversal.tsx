@@ -8,7 +8,7 @@ const TransparentButton = styled.button`
 
 interface ModalProps {
   button: string | JSX.Element;
-  title: string;
+  title?: string;
   content?: JSX.Element | null;
 }
 
@@ -16,6 +16,7 @@ const ModalUniversal = ({ button, content, title }: ModalProps) => {
   const [show, setShow] = useState(false);
 
   const toggleShowState = () => setShow(!show);
+
   return (
     <>
       {typeof button === "string" ? (

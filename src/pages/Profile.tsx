@@ -8,6 +8,7 @@ import { LinkWithLanguageQueryParam } from "../containers/LinkWithLanguageQueryP
 import Media from "../containers/ProfileMedia";
 import ProfileTweets from "../containers/ProfileTweets";
 import TabsContainer from "../containers/Tabs";
+import { TweetsWithReplies } from "../containers/TweetsWithReplies";
 import { TabKeyProps } from "../types/tabs-types";
 
 const ProfilePage = ({ tabKey }: TabKeyProps) => {
@@ -34,7 +35,7 @@ const ProfilePage = ({ tabKey }: TabKeyProps) => {
 
     {
       label: t("profile.tabsLabel.tweetsWithReplies"),
-      content: "Tweets & replies",
+      content: <TweetsWithReplies />,
       key: "tweets-with-replies",
       route: "/profile/with_replies",
     },
@@ -54,7 +55,7 @@ const ProfilePage = ({ tabKey }: TabKeyProps) => {
   ];
 
   return (
-    <Layout>
+    <Layout title={t("pageTitles:profilePage")}>
       <div className="border-start border-end">
         <div className="d-flex justify-content-between p-2 align-items-center justify-content-center">
           <h1 className="fs-5 fw-bold ps-3">{t("profile.title")}</h1>
