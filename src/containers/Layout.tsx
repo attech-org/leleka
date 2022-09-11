@@ -17,10 +17,6 @@ const Layout = ({ children, title }: LayoutProps) => {
     <>
       <Helmet>
         <title>{title ? `${title} | Leleka` : "Leleka"}</title>
-        <meta
-          name="Leleka"
-          content="Students demo project for training purposes that mimics Twitter functionality"
-        />
       </Helmet>
       <GeneralContainer className="container-xxl">
         <ErrorsToaster />
