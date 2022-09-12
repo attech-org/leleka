@@ -5,13 +5,13 @@ import {
 } from "@reduxjs/toolkit";
 
 import instance from "../../services/api";
-import { LE, Tweet2 } from "../../types";
+import { LE, Tweet2, Tweet3 } from "../../types";
 import { Pagination } from "../../types/mock-api-types";
 
 interface TweetsStore {
   feedTweets: LE<Pagination<Tweet2>>;
   singleTweet: LE<object>;
-  feedLikedTweets: LE<Pagination<Tweet2>>;
+  feedLikedTweets: LE<Pagination<Tweet3>>;
 }
 
 const tweetsInitialStore: TweetsStore = {
@@ -59,24 +59,18 @@ const fetchFeedTweets = createAsyncThunk<
 // -------------------- fetch Feed Liked Tweets -------------------- //
 
 const fetchFeedLikedTweets = createAsyncThunk<
-  Pagination<Tweet2>,
-  Pagination<Tweet2> | undefined
+  Pagination<Tweet3>,
+  Pagination<Tweet3> | undefined
 >("profile/likes", async (filters) => {
-  const {
-    limit = 10,
-    nextPage = 1,
-    // userId = "631a675288c536c9ff56c2ee",
-  } = filters || {};
+  const { limit = 10, nextPage = 1 } = filters || {};
 
   const response = await instance.get("api/likes", {
     params: {
       limit,
       page: nextPage,
-      // query: { user: userId },
     },
   });
 
-  // console.log(response.data);
   return response.data;
 });
 
@@ -125,12 +119,7 @@ const tweetsSlice = createSlice<TweetsStore, SliceCaseReducers<TweetsStore>>({
         store.feedLikedTweets = {
           ...store.feedLikedTweets,
           ...payload,
-          docs: [
-            ...store.feedLikedTweets.docs,
-            ...payload.docs,
-            // ...store.feedLikedTweets.docs.map((el) => el.tweet),
-            // ...payload.docs.map((el) => el.tweet),
-          ],
+          docs: [...store.feedLikedTweets.docs, ...payload.docs],
         };
       }
       store.feedLikedTweets.isLoading = false;

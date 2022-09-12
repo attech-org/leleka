@@ -75,22 +75,9 @@ const StyledButton = styled(Button)`
   }
 `;
 
-const FeedLikesTweet = ({
-  // _id,
-  // createdAt,
-  // author,
-  // content,
-  // repliedTo,
-  // updatedAt,
-  // tweet.stats: { likes, retweets, comments },
-  tweet,
-  user,
-}: Tweet3) => {
+const FeedLikesTweet = ({ tweet, user }: Tweet3) => {
   const { t } = useTranslation();
 
-  // const handleReplyClick = () => {
-  //   return <ReplyTweet />;
-  // };
   return (
     <>
       <PostWrapper
