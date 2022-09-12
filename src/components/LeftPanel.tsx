@@ -7,7 +7,6 @@ import LoginForm from "../containers/LoginForm";
 import Registration from "../containers/Registration";
 import { userActions } from "../redux/reducers/user";
 import { AppDispatch } from "../redux/store";
-import EditProfileForm from "./EditProfileForm";
 import NavigationBar from "./NavigationBar";
 
 const Wrapper = styled.div``;
@@ -29,8 +28,6 @@ export const LeftPanel = () => {
 
         <LoginForm />
         <Registration />
-
-        <EditProfileForm />
 
         <Button // temporary button
           variant="danger"

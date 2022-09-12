@@ -6,6 +6,7 @@ import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 
+import EditProfileForm from "../components/EditProfileForm";
 import { userActions } from "../redux/reducers/user";
 import { AppDispatch, RootState } from "../redux/store";
 
@@ -13,6 +14,7 @@ const Layout = styled.div`
   position: relative;
   max-height: 200px;
   margin-bottom: 80px;
+  text-align: end;
 `;
 const BannerPictureDiv = styled.div`
   height: 200px;
@@ -76,7 +78,7 @@ interface BannerProps {
   isEditBanner: boolean;
 }
 
-export const Banner = ({ isEditBanner }: BannerProps) => {
+const Banner = ({ isEditBanner }: BannerProps) => {
   const { t } = useTranslation();
 
   const dispatch = useDispatch<AppDispatch>();
@@ -179,6 +181,7 @@ export const Banner = ({ isEditBanner }: BannerProps) => {
                   </AddPhotoDiv>
                 </OverlayTrigger>
               )}
+
               {isEditBanner && (
                 <OverlayTrigger
                   key={"bottom"}
@@ -205,6 +208,7 @@ export const Banner = ({ isEditBanner }: BannerProps) => {
             )}
           </div>
         </BannerPictureDiv>
+
         <LogoDiv
           style={
             isEditBanner
@@ -252,7 +256,11 @@ export const Banner = ({ isEditBanner }: BannerProps) => {
             />
           )}
         </LogoDiv>
+
+        {!isEditBanner && <EditProfileForm />}
       </Layout>
     </>
   );
 };
+
+export default Banner;

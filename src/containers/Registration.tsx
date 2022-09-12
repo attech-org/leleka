@@ -202,7 +202,7 @@ const Registration = () => {
   return (
     <>
       <ModalUniversal
-        button={registrationButtonName}
+        button={currentUserId ? <span /> : registrationButtonName}
         title={currentUserId ? "close me" : registrationTitle}
         content={currentUserId ? null : registerForm}
       />

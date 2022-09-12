@@ -145,7 +145,7 @@ const LoginForm = () => {
   return (
     <>
       <ModalUniversal
-        button={t("login.loginButton")}
+        button={currentUserId ? <span /> : t("login.loginButton")}
         title={currentUserId ? "close me" : ""}
         content={currentUserId ? null : LoginFormContainer}
       />
