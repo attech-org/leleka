@@ -1,5 +1,11 @@
 import { yupResolver } from "@hookform/resolvers/yup";
-import { Container, Form, Button } from "react-bootstrap";
+import {
+  Container,
+  Form,
+  Button,
+  ToastContainer,
+  Toast,
+} from "react-bootstrap";
 import { Apple, Google, Twitter } from "react-bootstrap-icons";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
@@ -24,6 +30,13 @@ const StyledContainer = styled(Container)`
 
 const LoginForm = () => {
   const dispatch = useDispatch<AppDispatch>();
+  const loginError = useSelector<RootState, RootState["user"]["error"]>(
+    (store) => store.user.error
+  );
+
+  const toggleShowMessage = () => {
+    dispatch(userActions.cleanError());
+  };
   const { t } = useTranslation();
   const sampleSchema = yup.object().shape({
     username: yup.string().required(t("login.requiredName")),
@@ -40,12 +53,23 @@ const LoginForm = () => {
   const currentUserId = useSelector<RootState>((store) => store.user._id);
 
   const submitForm = (data: MyForm) => {
+    dispatch(userActions.cleanError());
     dispatch(userActions.loginUser(data));
     reset();
   };
 
   const LoginFormContainer = (
     <StyledContainer className="rounded-4 p-2">
+      <ToastContainer position="top-center">
+        {loginError ? (
+          <Toast bg="danger" onClose={toggleShowMessage}>
+            <Toast.Header>
+              <strong className="me-auto" />
+            </Toast.Header>
+            <Toast.Body>{`${loginError}`}</Toast.Body>
+          </Toast>
+        ) : null}
+      </ToastContainer>
       <header className="d-flex justify-content-center align-items-center">
         <Twitter color="blue" size={25} />
       </header>
