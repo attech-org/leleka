@@ -12,7 +12,7 @@ export interface TweetsStore {
   currentTweet: LE<{ data?: Tweet2 }>;
   feedTweets: LE<Pagination<Tweet2>>;
   singleTweet: LE<object>;
-  feedReplies: LE<Pagination<Tweet2>>;
+  currentTweetRelies: LE<Pagination<Tweet2>>;
 }
 
 const tweetsInitialStore: TweetsStore = {
@@ -24,7 +24,7 @@ const tweetsInitialStore: TweetsStore = {
   },
   singleTweet: {},
   currentTweet: {},
-  feedReplies: {
+  currentTweetRelies: {
     page: 1,
     limit: 10,
     docs: [],
@@ -122,21 +122,21 @@ const tweetsSlice = createSlice<TweetsStore, SliceCaseReducers<TweetsStore>>({
       store.currentTweet.error = "Failed to fetch tweets for feed";
     });
     builder.addCase(fetchTweetReplies.pending, (store) => {
-      store.feedReplies.isLoading = true;
+      store.currentTweetRelies.isLoading = true;
     });
     builder.addCase(fetchTweetReplies.fulfilled, (store, { payload }) => {
-      if (store.feedReplies.docs.length === 0 || payload.page !== 1) {
-        store.feedReplies = {
-          ...store.feedReplies,
+      if (store.currentTweetRelies.docs.length === 0 || payload.page !== 1) {
+        store.currentTweetRelies = {
+          ...store.currentTweetRelies,
           ...payload,
-          docs: [...store.feedReplies.docs, ...payload.docs],
+          docs: [...store.currentTweetRelies.docs, ...payload.docs],
         };
       }
-      store.feedReplies.isLoading = false;
+      store.currentTweetRelies.isLoading = false;
     });
     builder.addCase(fetchTweetReplies.rejected, (store) => {
-      store.feedReplies.isLoading = false;
-      store.feedReplies.error = "Failed to fetch tweets for feed";
+      store.currentTweetRelies.isLoading = false;
+      store.currentTweetRelies.error = "Failed to fetch tweets for feed";
     });
   },
 });
