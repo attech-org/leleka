@@ -5,7 +5,9 @@ import { LeftPanel } from "../components/LeftPanel";
 import { RightPanel } from "../components/RightPanel";
 import ErrorsToaster from "./ErrorsToaster";
 
-const GeneralContainer = styled.main``;
+const GeneralContainer = styled.main`
+  word-break: break-all;
+`;
 
 interface LayoutProps {
   children?: React.ReactNode;
@@ -17,10 +19,6 @@ const Layout = ({ children, title }: LayoutProps) => {
     <>
       <Helmet>
         <title>{title ? `${title} | Leleka` : "Leleka"}</title>
-        <meta
-          name="Leleka"
-          content="Students demo project for training purposes that mimics Twitter functionality"
-        />
       </Helmet>
       <GeneralContainer className="container-xxl">
         <ErrorsToaster />
