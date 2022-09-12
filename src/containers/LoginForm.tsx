@@ -1,21 +1,15 @@
 import { yupResolver } from "@hookform/resolvers/yup";
-import {
-  Container,
-  Form,
-  OverlayTrigger,
-  Tooltip,
-  Button,
-} from "react-bootstrap";
-import { Apple, Google, Twitter, XLg } from "react-bootstrap-icons";
+import { Container, Form, Button } from "react-bootstrap";
+import { Apple, Google, Twitter } from "react-bootstrap-icons";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import * as yup from "yup";
 
 import { userActions } from "../redux/reducers/user";
-import { AppDispatch } from "../redux/store";
+import { AppDispatch, RootState } from "../redux/store";
 import ModalUniversal from "./ModalUniversal";
 
 interface MyForm {
@@ -43,6 +37,8 @@ const LoginForm = () => {
     resolver: yupResolver(sampleSchema),
   });
 
+  const currentUserId = useSelector<RootState>((store) => store.user._id);
+
   const submitForm = (data: MyForm) => {
     dispatch(userActions.loginUser(data));
     reset();
@@ -50,24 +46,8 @@ const LoginForm = () => {
 
   const LoginFormContainer = (
     <StyledContainer className="rounded-4 p-2">
-      <header className="d-flex justify-content-between align-items-center">
-        <OverlayTrigger
-          key={"bottom"}
-          placement={"bottom"}
-          overlay={
-            <Tooltip id={`tooltip-bottom}`}>{t("common.close")}</Tooltip>
-          }
-        >
-          <Button
-            variant="light"
-            className="d-block p-2 d-flex justify-content-center align-items-center rounded-5"
-          >
-            <XLg />
-          </Button>
-        </OverlayTrigger>
-
+      <header className="d-flex justify-content-center align-items-center">
         <Twitter color="blue" size={25} />
-        <div className="p-3" />
       </header>
 
       <section className="w-50 mt-4 m-auto d-grid gap-4">
@@ -166,8 +146,8 @@ const LoginForm = () => {
     <>
       <ModalUniversal
         button={t("login.loginButton")}
-        title=""
-        content={LoginFormContainer}
+        title={currentUserId ? "close me" : ""}
+        content={currentUserId ? null : LoginFormContainer}
       />
     </>
   );
