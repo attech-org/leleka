@@ -1,16 +1,16 @@
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useState } from "react";
-import { Container, Form, Button, Modal } from "react-bootstrap";
+import { Container, Form, Button } from "react-bootstrap";
 import { Apple, Google, Twitter } from "react-bootstrap-icons";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import * as yup from "yup";
 
 import { userActions } from "../redux/reducers/user";
-import { AppDispatch } from "../redux/store";
+import { AppDispatch, RootState } from "../redux/store";
+import ModalUniversal from "./ModalUniversal";
 
 interface MyForm {
   username: string;
@@ -37,20 +37,17 @@ const LoginForm = () => {
     resolver: yupResolver(sampleSchema),
   });
 
-  const [show, setShow] = useState(false);
-  const toggleShowState = () => setShow(!show);
+  const currentUserId = useSelector<RootState>((store) => store.user._id);
 
   const submitForm = (data: MyForm) => {
     dispatch(userActions.loginUser(data));
     reset();
-    toggleShowState();
   };
 
   const LoginFormContainer = (
     <StyledContainer className="rounded-4 p-2">
       <header className="d-flex justify-content-center align-items-center">
         <Twitter color="blue" size={25} />
-        <div className="p-3" />
       </header>
 
       <section className="w-50 mt-4 m-auto d-grid gap-4">
@@ -147,13 +144,11 @@ const LoginForm = () => {
 
   return (
     <>
-      <Button variant="primary" onClick={toggleShowState}>
-        {t("login.loginButton")}
-      </Button>
-      <Modal size="lg" centered show={show} onHide={toggleShowState}>
-        <Modal.Header closeButton> </Modal.Header>
-        <Modal.Body>{LoginFormContainer}</Modal.Body>
-      </Modal>
+      <ModalUniversal
+        button={t("login.loginButton")}
+        title={currentUserId ? "close me" : ""}
+        content={currentUserId ? null : LoginFormContainer}
+      />
     </>
   );
 };
