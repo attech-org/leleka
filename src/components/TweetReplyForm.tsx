@@ -24,8 +24,8 @@ const StyledDiv = styled.div`
 const TweetReplyForm: React.FC = () => {
   const { t } = useTranslation();
 
-  const handleTweetButton = (): void => {
-    console.warn("Tweeted");
+  const handleReplyButton = (): void => {
+    console.warn("Replied");
   };
   const handleImgUpload = (): void => {
     console.warn("Img Upload");
@@ -70,7 +70,7 @@ const TweetReplyForm: React.FC = () => {
             </div>
             <button
               className="btn btn-primary rounded-5 d-flex align-items-center m-2"
-              onClick={handleTweetButton}
+              onClick={handleReplyButton}
             >
               {t("translation:Reply")}
             </button>
