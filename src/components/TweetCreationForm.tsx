@@ -1,6 +1,6 @@
 import { memo, useState } from "react";
 import Avatar from "react-avatar";
-import { OverlayTrigger, Popover, Form } from "react-bootstrap";
+import { OverlayTrigger, Popover } from "react-bootstrap";
 import {
   EmojiSmile,
   Image as ImageIcon,
@@ -44,7 +44,6 @@ const StyledPopover = styled(Popover)`
 
 const TweetCreationForm: React.FC = () => {
   const [content, setContent] = useState("");
-  const [show, setShow] = useState(true);
 
   const dispatch = useDispatch<AppDispatch>();
   const isLoading = useSelector<RootState, boolean | undefined>(
@@ -67,12 +66,8 @@ const TweetCreationForm: React.FC = () => {
     console.warn("Emoji paste");
   };
 
-  const handleSubmit = (): void => {
-    setShow(!show);
-  };
-
   return (
-    <Form onSubmit={handleSubmit}>
+    <div>
       <div className="border-0 p-3 d-flex text-start justify-content-start">
         <Avatar
           size="48"
@@ -223,7 +218,7 @@ const TweetCreationForm: React.FC = () => {
           </div>
         </div>
       </div>
-    </Form>
+    </div>
   );
 };
 
