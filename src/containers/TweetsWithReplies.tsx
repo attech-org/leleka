@@ -12,7 +12,11 @@ export const TweetsWithReplies: React.FunctionComponent = () => {
     (store) => store.tweets.feedTweets
   );
   const handleShowMore = () => {
-    return !posts.isLoading && posts.hasNextPage && dispatch(tweetsActions.fetchFeedTweets(posts));
+    return (
+      !posts.isLoading &&
+      posts.hasNextPage &&
+      dispatch(tweetsActions.fetchFeedTweets(posts))
+    );
   };
   return (
     <InfiniteList<Tweet2>
