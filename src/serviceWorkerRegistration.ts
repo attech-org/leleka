@@ -25,6 +25,8 @@ type Config = {
   onUpdate?: (registration: ServiceWorkerRegistration) => void;
 };
 
+const broadcastChannel = new BroadcastChannel("serviceWorker-messages");
+
 const registerValidSW = async (swUrl: string, config?: Config) => {
   try {
     const registration = await navigator.serviceWorker.register(swUrl);
@@ -44,7 +46,11 @@ const registerValidSW = async (swUrl: string, config?: Config) => {
               "New content is available and will be used when all " +
                 "tabs for this page are closed. See https://cra.link/PWA."
             );
-
+            broadcastChannel.postMessage({
+              msg:
+                "New content is available and will be used when all " +
+                "tabs for this page are closed.",
+            });
             // Execute callback
             if (config && config.onUpdate) {
               config.onUpdate(registration);
@@ -69,6 +75,9 @@ const registerValidSW = async (swUrl: string, config?: Config) => {
 };
 
 const checkValidServiceWorker = async (swUrl: string, config?: Config) => {
+  broadcastChannel.postMessage({
+    msg: "",
+  });
   try {
     // Check if the service worker can be found. If it can't reload the page.
     const response = await fetch(swUrl, {
@@ -92,6 +101,9 @@ const checkValidServiceWorker = async (swUrl: string, config?: Config) => {
       registerValidSW(swUrl, config);
     }
   } catch (error) {
+    broadcastChannel.postMessage({
+      msg: "No internet connection found. App is running in offline mode.",
+    });
     console.warn(
       "No internet connection found. App is running in offline mode."
     );
