@@ -127,6 +127,8 @@ const userSlice = createSlice({
     });
     builder.addCase(registerUser.fulfilled, (store, { payload }) => {
       store.error = undefined;
+      localStorage.setItem("accessToken", payload.accessToken);
+      localStorage.setItem("refreshToken", payload.refreshToken);
       return {
         ...store,
         ...payload.user,
@@ -148,6 +150,8 @@ const userSlice = createSlice({
     });
     builder.addCase(loginUser.fulfilled, (store, { payload }) => {
       store.error = undefined;
+      localStorage.setItem("accessToken", payload.accessToken);
+      localStorage.setItem("refreshToken", payload.refreshToken);
       return {
         ...store,
         ...payload.user,
