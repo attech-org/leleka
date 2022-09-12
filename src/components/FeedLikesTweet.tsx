@@ -11,7 +11,7 @@ import {
 import { useTranslation } from "react-i18next";
 import styled from "styled-components";
 
-import { Tweet2 } from "../types";
+import { Tweet3 } from "../types";
 import LikeButton from "./LikeButton";
 import RetweetButton from "./RetweetButton";
 import TweetReplyForm from "./TweetReplyForm";
@@ -75,15 +75,17 @@ const StyledButton = styled(Button)`
   }
 `;
 
-const FeedSingleTweet = ({
-  _id,
-  createdAt,
-  author,
-  content,
+const FeedLikesTweet = ({
+  // _id,
+  // createdAt,
+  // author,
+  // content,
   // repliedTo,
   // updatedAt,
-  stats: { likes, retweets, comments },
-}: Tweet2) => {
+  // tweet.stats: { likes, retweets, comments },
+  tweet,
+  user,
+}: Tweet3) => {
   const { t } = useTranslation();
 
   // const handleReplyClick = () => {
@@ -94,34 +96,31 @@ const FeedSingleTweet = ({
       <PostWrapper
         className="border border-bottom-0 border-grey px-3 py-3 text-start d-flex fs-6"
         role="button"
-        key={_id}
+        key={tweet._id}
       >
         <Avatar
           size="48"
           round="50%"
           twitterHandle="sitebase"
-          name={author.username}
-          src={author.profile?.avatar}
+          name={user.username}
+          src={user.profile.avatar}
         />
 
         <div className="w-100">
           <div className="d-flex justify-content-between">
             <div className="d-flex align-items-center px-3 flex-wrap">
               <UnderlineHover className="fw-600 pe-1 fw-bold">
-                {author.username}
+                {user.username}
               </UnderlineHover>
 
-              {/* {isVerified && (
-                <PatchCheckFill size={20} className="text-info pe-1" />
-              )} */}
               <a className="text-muted text-decoration-none">
-                @{author.username}
+                @{user.username}
               </a>
               <div className="mx-1 text-secondary d-flex justify-content-center align-items-center">
                 ·
               </div>
               <UnderlineHover className="text-secondary">
-                {createdAt}
+                {tweet.createdAt}
               </UnderlineHover>
             </div>
 
@@ -144,7 +143,7 @@ const FeedSingleTweet = ({
                             <PersonX />
                           </span>
                           {`${t("SingleTweetMenu.stopFollow")} ${
-                            author.username
+                            user.username
                           }`}
                         </StyledLink>
                       </p>
@@ -156,7 +155,7 @@ const FeedSingleTweet = ({
                           <span className="px-2">
                             <ClipboardPlus />
                           </span>
-                          {`${t("SingleTweetMenu.add")} ${author.username} ${t(
+                          {`${t("SingleTweetMenu.add")} ${user.username} ${t(
                             "SingleTweetMenu.toList"
                           )}`}
                         </StyledLink>
@@ -186,25 +185,17 @@ const FeedSingleTweet = ({
             </div>
           </div>
           <div className="px-3 py-2">
-            <div className="">{content}</div>
-
-            {/* <img
-              className="w-100 rounded-4 mt-3"
-              alt=""
-              src={
-                "https://burst.shopifycdn.com/photos/person-holds-a-book-over-a-stack-and-turns-the-page.jpg?width=1200&format=pjpg&exif=0&iptc=0"
-              }
-            /> */}
+            <div className="">{tweet.content}</div>
           </div>
           <div className="px-3 d-flex justify-content-between align-items-center">
             <StatisticOfTweet className="d-flex align-items-center justify-content-center">
               <HoverBackgroundBlue className="p-2 rounded-circle d-flex justify-content-center align-items-center">
                 <TweetReplyForm />
               </HoverBackgroundBlue>
-              <div className="px-1">{comments}</div>
+              <div className="px-1">{tweet.stats.comments}</div>
             </StatisticOfTweet>
-            <RetweetButton retweetCount={retweets} />
-            <LikeButton likesCount={likes} />
+            <RetweetButton retweetCount={tweet.stats.retweets} />
+            <LikeButton likesCount={tweet.stats.likes} />
             <StatisticOfTweet className="d-flex align-items-center">
               <HoverBackgroundBlue className="p-2 rounded-circle d-flex justify-content-center align-items-center">
                 <Upload size="16" />
@@ -217,4 +208,4 @@ const FeedSingleTweet = ({
   );
 };
 
-export default FeedSingleTweet;
+export default FeedLikesTweet;

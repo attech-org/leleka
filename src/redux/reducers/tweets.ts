@@ -57,16 +57,26 @@ const fetchFeedTweets = createAsyncThunk<
 });
 
 // -------------------- fetch Feed Liked Tweets -------------------- //
+
 const fetchFeedLikedTweets = createAsyncThunk<
   Pagination<Tweet2>,
   Pagination<Tweet2> | undefined
 >("profile/likes", async (filters) => {
-  const { limit = 10, nextPage = 1 } = filters || {};
+  const {
+    limit = 10,
+    nextPage = 1,
+    // userId = "631a675288c536c9ff56c2ee",
+  } = filters || {};
 
-  const response = await instance.get("api/tweets", {
-    params: { limit, page: nextPage },
+  const response = await instance.get("api/likes", {
+    params: {
+      limit,
+      page: nextPage,
+      // query: { user: userId },
+    },
   });
 
+  // console.log(response.data);
   return response.data;
 });
 
@@ -115,7 +125,12 @@ const tweetsSlice = createSlice<TweetsStore, SliceCaseReducers<TweetsStore>>({
         store.feedLikedTweets = {
           ...store.feedLikedTweets,
           ...payload,
-          docs: [...store.feedLikedTweets.docs, ...payload.docs],
+          docs: [
+            ...store.feedLikedTweets.docs,
+            ...payload.docs,
+            // ...store.feedLikedTweets.docs.map((el) => el.tweet),
+            // ...payload.docs.map((el) => el.tweet),
+          ],
         };
       }
       store.feedLikedTweets.isLoading = false;

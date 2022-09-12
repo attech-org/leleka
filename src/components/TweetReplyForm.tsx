@@ -1,3 +1,4 @@
+import Avatar from "react-avatar";
 import { EmojiSmile, Chat, Image as ImageIcon } from "react-bootstrap-icons";
 import { useTranslation } from "react-i18next";
 import styled from "styled-components";
@@ -38,12 +39,12 @@ const TweetReplyForm: React.FC = () => {
     <div>
       <div className="border-0 p-3 d-flex text-start justify-content-start">
         <div className="">
-          <img
-            className="rounded-circle"
-            src="http://dummyimage.com/105x100.png/5fa2dd/ffffff"
-            width="48px"
-            height="48px"
-            alt="avatar"
+          <Avatar
+            size="48"
+            round="50%"
+            twitterHandle="sitebase"
+            name="username"
+            src=""
           />
         </div>
         <div className="flex-grow-1 ms-2">

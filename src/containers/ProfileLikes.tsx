@@ -1,11 +1,11 @@
 import { useDispatch, useSelector } from "react-redux";
 
-import FeedSingleTweet from "../components/FeedSingleTweet";
+import FeedLikesTweet from "../components/FeedLikesTweet";
 // import SingleTweet from "../components/SingleTweet";
 // import dataProfileLikes from "../MOCKS/dataProfileLikes.json";
 import { tweetsActions } from "../redux/reducers/tweets";
 import { AppDispatch, RootState } from "../redux/store";
-import { Tweet2 } from "../types";
+import { Tweet3 } from "../types";
 import InfiniteList from "./InfiniteList";
 
 const Likes = () => {
@@ -24,10 +24,10 @@ const Likes = () => {
   };
 
   return (
-    <InfiniteList<Tweet2>
+    <InfiniteList<Tweet3>
       showMore={handleShowMore}
       data={likedTweets}
-      itemComponent={(itemData) => <FeedSingleTweet {...itemData} />}
+      itemComponent={(itemData) => <FeedLikesTweet {...itemData} />}
     />
   );
 };

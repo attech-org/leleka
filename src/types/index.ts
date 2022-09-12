@@ -36,6 +36,14 @@ export interface Tweet2 extends MongoArtifacts {
   };
 }
 
+export interface Tweet3 extends MongoArtifacts {
+  tweet: Tweet2;
+  user: {
+    profile: Partial<User>;
+    username: string;
+  };
+}
+
 export interface User extends MongoArtifacts {
   password?: string;
   username: string;
