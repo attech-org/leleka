@@ -56,8 +56,7 @@ instance.interceptors.response.use(
         originalConfig._retry = true;
         try {
           const rs = await getRefreshToken();
-          const { accessToken } = rs.data;
-          localStorage.setItem("accessToken", accessToken);
+          localStorage.setItem("accessToken", rs.data.accessToken);
           return await instance(originalConfig);
         } catch (_error) {
           return Promise.reject(_error);
