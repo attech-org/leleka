@@ -1,8 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 
 import FeedLikesTweet from "../components/FeedLikesTweet";
-// import SingleTweet from "../components/SingleTweet";
-// import dataProfileLikes from "../MOCKS/dataProfileLikes.json";
 import { tweetsActions } from "../redux/reducers/tweets";
 import { AppDispatch, RootState } from "../redux/store";
 import { Tweet3 } from "../types";
