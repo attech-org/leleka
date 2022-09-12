@@ -23,7 +23,7 @@ const instance = axios.create({
 });
 
 function getRefreshToken() {
-  return instance.post("/api/auth/refreshtoken", {
+  return instance.post("/api/auth/refresh", {
     refreshToken: getLocalRefreshToken(),
   });
 }
