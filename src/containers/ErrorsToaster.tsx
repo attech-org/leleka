@@ -25,13 +25,16 @@ const ErrorsToaster = () => {
   const [showPwaMessage, setShowPwaMessage] = useState(true);
   const [showTweetsMessage, setShowTweetsMessage] = useState(true);
 
-  const toggleShowPwaMessage = () => setShowPwaMessage(!showPwaMessage);
+  const toggleShowPwaMessage = () => {
+    setShowPwaMessage(!showPwaMessage);
+    dispatch(pwaActions.cleanPWAMessage());
+  };
   const toggleShowTweetsMessage = () =>
     setShowTweetsMessage(!showTweetsMessage);
   return (
     <ToastContainer position="top-center">
       {pwaMessage.message ? (
-        <Toast bg="danger" onClose={toggleShowPwaMessage}>
+        <Toast bg="danger" onClose={toggleShowPwaMessage} show={showPwaMessage}>
           <Toast.Header>
             <strong className="me-auto" />
           </Toast.Header>
