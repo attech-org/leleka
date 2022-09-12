@@ -186,7 +186,7 @@ const FeedSingleTweet = ({
             </div>
           </div>
           <div className="px-3 py-2">
-            <div className="">{content}</div>
+            <div className="" dangerouslySetInnerHTML={{ __html: content }} />
 
             {/* <img
               className="w-100 rounded-4 mt-3"

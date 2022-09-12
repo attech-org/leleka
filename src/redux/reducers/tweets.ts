@@ -51,7 +51,7 @@ const fetchFeedTweets = createAsyncThunk<
 >("tweets/feed", async (filters) => {
   const { limit = 10, nextPage = 1 } = filters || {};
   const response = await instance.get("api/tweets", {
-    params: { limit, page: nextPage },
+    params: { limit, page: nextPage, sort: "-createdAt" },
   });
   return response.data;
 });

@@ -1,7 +1,10 @@
+import { useTranslation } from "react-i18next";
+
 import Layout from "../containers/Layout";
 
 const ExplorePage: React.FunctionComponent = () => {
-  return <Layout>Explore</Layout>;
+  const { t } = useTranslation();
+  return <Layout title={t("pageTitles:explorePage")}>Explore</Layout>;
 };
 
 export default ExplorePage;

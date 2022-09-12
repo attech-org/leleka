@@ -55,7 +55,7 @@ const RecomendedFollowsPage: React.FunctionComponent = () => {
 
   const { t } = useTranslation();
   return (
-    <Layout>
+    <Layout title={t("pageTitles:trendsPage")}>
       <SinglePageHeader pageName={t("trends.pageTitle")} />
       <TabContainer />
       {mockTrends && (
