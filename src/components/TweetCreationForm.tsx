@@ -1,3 +1,4 @@
+import Picker from "emoji-picker-react";
 import { memo, useState } from "react";
 import Avatar from "react-avatar";
 import { OverlayTrigger, Popover } from "react-bootstrap";
@@ -44,6 +45,7 @@ const StyledPopover = styled(Popover)`
 
 const TweetCreationForm: React.FC = () => {
   const [content, setContent] = useState("");
+  const [chosenEmoji, setChosenEmoji] = useState(null);
 
   const dispatch = useDispatch<AppDispatch>();
   const isLoading = useSelector<RootState, boolean | undefined>(
@@ -62,9 +64,15 @@ const TweetCreationForm: React.FC = () => {
   const handleImgUpload = (): void => {
     console.warn("Img Upload");
   };
-  const handleEmojiPaste = (): void => {
-    console.warn("Emoji paste");
+
+  const onEmojiClick = (event, emojiObject: object): void => {
+    setChosenEmoji(emojiObject);
   };
+
+  const handleEmojiPaste = (): void => {
+    onEmojiClick();
+  };
+
   return (
     <div>
       <div className="border-0 p-3 d-flex text-start justify-content-start">
@@ -205,6 +213,14 @@ const TweetCreationForm: React.FC = () => {
               <StyledIcon className="rounded-circle" onClick={handleEmojiPaste}>
                 <EmojiSmile className="m-2 fs-5" />
               </StyledIcon>
+              <div>
+                {chosenEmoji ? (
+                  <span>You chose: {chosenEmoji.emoji}</span>
+                ) : (
+                  <span>No emoji Chosen</span>
+                )}
+                <Picker onEmojiClick={onEmojiClick} />
+              </div>
             </div>
             <button
               className="btn btn-primary rounded-5 d-flex align-items-center m-2"

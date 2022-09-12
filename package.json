@@ -31,6 +31,7 @@
     "@types/react-infinite-scroller": "^1.2.3",
     "axios": "^0.27.2",
     "bootstrap": "^5.2.0",
+    "emoji-picker-react": "^3.6.2",
     "fast-average-color": "^9.1.1",
     "gh-pages": "^4.0.0",
     "i18next": "^21.9.0",
