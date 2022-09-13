@@ -51,6 +51,9 @@ const LoginForm = () => {
   });
 
   const currentUserId = useSelector<RootState>((store) => store.user._id);
+  const currentUserName = useSelector<RootState>(
+    (store) => store.user.username
+  );
 
   const submitForm = (data: MyForm) => {
     dispatch(userActions.cleanError());
@@ -110,7 +113,7 @@ const LoginForm = () => {
               type="text"
               name="username"
               className="form-control"
-              id="floatingInput"
+              id="floatingInputLoginUsername"
               placeholder="Name"
             />
             <label>{t("login.usernameTitle")}</label>
@@ -129,7 +132,7 @@ const LoginForm = () => {
               type="password"
               name="password"
               className="form-control"
-              id="floatingInput"
+              id="floatingInputLoginPassword"
               placeholder="Name"
             />
             <label>{t("login.passwordTitle")}</label>
@@ -168,9 +171,14 @@ const LoginForm = () => {
 
   return (
     <>
-      <ModalUniversal
+      {/* <ModalUniversal
         button={t("login.loginButton")}
         title={currentUserId ? "close me" : ""}
+        content={currentUserId ? null : LoginFormContainer}
+      /> */}
+      <ModalUniversal
+        button={t("login.loginButton")}
+        title={currentUserId ? `Welcome ${currentUserName}` : ""}
         content={currentUserId ? null : LoginFormContainer}
       />
     </>

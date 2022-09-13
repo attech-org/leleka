@@ -132,8 +132,8 @@ const userSlice = createSlice({
       store.error = undefined;
       localStorage.setItem("accessToken", payload.accessToken);
       localStorage.setItem("refreshToken", payload.refreshToken);
-      return {
-        ...store,
+      Object.assign(store, {
+        ...userInitialState,
         ...payload.user,
         auth: {
           local: {
@@ -141,7 +141,7 @@ const userSlice = createSlice({
             refreshToken: payload.refreshToken,
           },
         },
-      };
+      });
     });
     builder.addCase(registerUser.rejected, (store) => {
       store.isLoading = false;
@@ -155,8 +155,8 @@ const userSlice = createSlice({
       store.error = undefined;
       localStorage.setItem("accessToken", payload.accessToken);
       localStorage.setItem("refreshToken", payload.refreshToken);
-      return {
-        ...store,
+      Object.assign(store, {
+        ...userInitialState,
         ...payload.user,
         auth: {
           local: {
@@ -164,7 +164,7 @@ const userSlice = createSlice({
             refreshToken: payload.refreshToken,
           },
         },
-      };
+      });
     });
     builder.addCase(loginUser.rejected, (store) => {
       store.isLoading = false;
