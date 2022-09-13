@@ -98,14 +98,6 @@ const userSlice = createSlice({
   name: "user",
   initialState: userInitialState,
   reducers: {
-    setUserData: (state, action: PayloadAction<Partial<UserStore>>) => {
-      // Redux Toolkit allows us to write "mutating" logic in reducers. It
-      // doesn't actually mutate the state because it uses the Immer library,
-      // which detects changes to a "draft state" and produces a brand new
-      // immutable state based on those changes
-      return { ...state, ...action.payload };
-    },
-
     //  temporary reducers
     addBanner: (state, action: PayloadAction<string>) => {
       state.profile.banner = action.payload;
@@ -115,6 +107,9 @@ const userSlice = createSlice({
     },
     addAvatar: (state, action: PayloadAction<string>) => {
       state.profile.avatar = action.payload;
+    },
+    clearError: (state) => {
+      state.error = "";
     },
 
     resetUserData: () => {
@@ -127,8 +122,10 @@ const userSlice = createSlice({
     });
     builder.addCase(registerUser.fulfilled, (store, { payload }) => {
       store.error = undefined;
-      return {
-        ...store,
+      localStorage.setItem("accessToken", payload.accessToken);
+      localStorage.setItem("refreshToken", payload.refreshToken);
+      Object.assign(store, {
+        ...userInitialState,
         ...payload.user,
         auth: {
           local: {
@@ -136,7 +133,7 @@ const userSlice = createSlice({
             refreshToken: payload.refreshToken,
           },
         },
-      };
+      });
     });
     builder.addCase(registerUser.rejected, (store) => {
       store.isLoading = false;
@@ -148,8 +145,10 @@ const userSlice = createSlice({
     });
     builder.addCase(loginUser.fulfilled, (store, { payload }) => {
       store.error = undefined;
-      return {
-        ...store,
+      localStorage.setItem("accessToken", payload.accessToken);
+      localStorage.setItem("refreshToken", payload.refreshToken);
+      Object.assign(store, {
+        ...userInitialState,
         ...payload.user,
         auth: {
           local: {
@@ -157,7 +156,7 @@ const userSlice = createSlice({
             refreshToken: payload.refreshToken,
           },
         },
-      };
+      });
     });
     builder.addCase(loginUser.rejected, (store) => {
       store.isLoading = false;

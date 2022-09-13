@@ -3,14 +3,13 @@ import { Form, Button, FloatingLabel, Container } from "react-bootstrap";
 import { ChevronRight } from "react-bootstrap-icons";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import styled, { css } from "styled-components";
 import * as yup from "yup";
 
-import { Banner } from "../containers/Banner";
+import Banner from "../containers/Banner";
 import ModalUniversal from "../containers/ModalUniversal";
-import { userActions } from "../redux/reducers/user";
-import { AppDispatch, RootState } from "../redux/store";
+import { RootState } from "../redux/store";
 
 interface Label {
   counter?: boolean;
@@ -42,7 +41,6 @@ interface IFormInput {
 
 const EditProfileForm = () => {
   const { t } = useTranslation();
-  const dispatch = useDispatch<AppDispatch>();
 
   //-----------------------------------------------------------------------
   const username = useSelector<RootState, RootState["user"]["name"]>(
@@ -102,7 +100,7 @@ const EditProfileForm = () => {
     // eslint-disable-next-line no-console
     console.log(data);
 
-    dispatch(userActions.setUserData(data));
+    // dispatch(userActions.setUserData(data));
   };
 
   const ProfileForm = (
@@ -252,7 +250,7 @@ const EditProfileForm = () => {
   const EditProfileButton = (
     <Button
       variant="light"
-      className="rounded-5 fw-semibold border-secondary border-opacity-25"
+      className="me-3 mt-2 rounded-5 fw-semibold border-secondary border-opacity-25"
     >
       {t(`validation:userSettings.editProfile`)}
     </Button>
