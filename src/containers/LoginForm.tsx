@@ -172,7 +172,7 @@ const LoginForm = () => {
   return (
     <ModalUniversal
       button={t("login.loginButton")}
-      title={currentUserId ? `Welcome ${currentUserName}` : ""}
+      title={currentUserId ? `Welcome, ${currentUserName}` : ""}
       content={currentUserId ? null : LoginFormContainer}
     />
   );
