@@ -78,31 +78,10 @@ const TweetCreationForm: React.FC = () => {
         />
         <div className="flex-grow-1 ms-2">
           <ReactQuill
-            className="shadow-sm"
-            theme="snow"
-            style={{
-              height: "10rem",
-              marginTop: "1rem",
-              display: "flex",
-              flexDirection: "column",
-            }}
             value={content}
+            placeholder="What's happaning?"
             modules={{
-              toolbar: [
-                [{ header: "1" }, { header: "2" }, { font: [] }],
-                [{ size: [] }],
-                ["bold", "italic", "underline", "strike", "blockquote"],
-                [{ align: [] }],
-                [{ color: [] }, { background: [] }],
-                [
-                  { list: "ordered" },
-                  { list: "bullet" },
-                  { indent: "-1" },
-                  { indent: "+1" },
-                ],
-                ["link", "video", "image", "code-block"],
-                ["clean"],
-              ],
+              toolbar: false,
             }}
             formats={[
               "header",
