@@ -45,7 +45,7 @@ const StyledPopover = styled(Popover)`
 
 const TweetCreationForm: React.FC = () => {
   const [content, setContent] = useState("");
-  const [chosenEmoji, setChosenEmoji] = useState(null);
+  const [showPicker, setShowPicker] = useState(false);
 
   const dispatch = useDispatch<AppDispatch>();
   const isLoading = useSelector<RootState, boolean | undefined>(
@@ -65,12 +65,9 @@ const TweetCreationForm: React.FC = () => {
     console.warn("Img Upload");
   };
 
-  const onEmojiClick = (event, emojiObject: object): void => {
-    setChosenEmoji(emojiObject);
-  };
-
-  const handleEmojiPaste = (): void => {
-    onEmojiClick();
+  const onEmojiClick = (event: MouseEvent, emojiObject: symbol): void => {
+    setContent((prevContent) => prevContent + emojiObject.emoji);
+    setShowPicker(false);
   };
 
   return (
@@ -131,8 +128,8 @@ const TweetCreationForm: React.FC = () => {
               "code-block",
               "align",
             ]}
-            onChange={(val) => {
-              setContent(val);
+            onChange={(e) => {
+              setContent(e);
             }}
           />
           <div className="border-bottom py-1">
@@ -210,25 +207,40 @@ const TweetCreationForm: React.FC = () => {
               <StyledIcon className="rounded-circle" onClick={handleImgUpload}>
                 <ImageIcon className="m-2 fs-5" />
               </StyledIcon>
-              <StyledIcon className="rounded-circle" onClick={handleEmojiPaste}>
-                <EmojiSmile className="m-2 fs-5" />
-              </StyledIcon>
-              <div>
-                {chosenEmoji ? (
-                  <span>You chose: {chosenEmoji.emoji}</span>
-                ) : (
-                  <span>No emoji Chosen</span>
-                )}
-                <Picker onEmojiClick={onEmojiClick} />
-              </div>
+
+              <OverlayTrigger
+                rootClose
+                trigger="click"
+                key="bottom"
+                placement="bottom"
+                overlay={
+                  <StyledPopover>
+                    {showPicker && (
+                      <Picker
+                        pickerStyle={{ width: "100%" }}
+                        onEmojiClick={onEmojiClick}
+                      />
+                    )}
+                  </StyledPopover>
+                }
+              >
+                <StyledIcon
+                  className="rounded-circle"
+                  onClick={() => setShowPicker((val) => !val)}
+                >
+                  <EmojiSmile className="m-2 fs-5" />
+                </StyledIcon>
+              </OverlayTrigger>
             </div>
-            <button
-              className="btn btn-primary rounded-5 d-flex align-items-center m-2"
-              onClick={handleTweetButton}
-              disabled={isLoading ? true : false}
-            >
-              {t("translation:tweetCreationForm.tweetButton")}
-            </button>
+            <div>
+              <button
+                className="btn btn-primary rounded-5 d-flex align-items-center m-2"
+                onClick={handleTweetButton}
+                disabled={isLoading ? true : false}
+              >
+                {t("translation:tweetCreationForm.tweetButton")}
+              </button>
+            </div>
           </div>
         </div>
       </div>
