@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import styled, { css } from "styled-components";
 import * as yup from "yup";
 
-import { Banner } from "../containers/Banner";
+import Banner from "../containers/Banner";
 import ModalUniversal from "../containers/ModalUniversal";
 import { userActions } from "../redux/reducers/user";
 import { AppDispatch, RootState } from "../redux/store";
@@ -252,7 +252,7 @@ const EditProfileForm = () => {
   const EditProfileButton = (
     <Button
       variant="light"
-      className="rounded-5 fw-semibold border-secondary border-opacity-25"
+      className="me-3 mt-2 rounded-5 fw-semibold border-secondary border-opacity-25"
     >
       {t(`validation:userSettings.editProfile`)}
     </Button>
