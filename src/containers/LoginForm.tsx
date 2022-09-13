@@ -170,18 +170,11 @@ const LoginForm = () => {
   );
 
   return (
-    <>
-      {/* <ModalUniversal
-        button={t("login.loginButton")}
-        title={currentUserId ? "close me" : ""}
-        content={currentUserId ? null : LoginFormContainer}
-      /> */}
-      <ModalUniversal
-        button={t("login.loginButton")}
-        title={currentUserId ? `Welcome ${currentUserName}` : ""}
-        content={currentUserId ? null : LoginFormContainer}
-      />
-    </>
+    <ModalUniversal
+      button={t("login.loginButton")}
+      title={currentUserId ? `Welcome ${currentUserName}` : ""}
+      content={currentUserId ? null : LoginFormContainer}
+    />
   );
 };
 

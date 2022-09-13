@@ -203,13 +203,11 @@ const Registration = () => {
   );
 
   return (
-    <>
-      <ModalUniversal
-        button={registrationButtonName}
-        title={currentUserId ? `Welcome ${currentUserName}` : registrationTitle}
-        content={currentUserId ? null : registerForm}
-      />
-    </>
+    <ModalUniversal
+      button={registrationButtonName}
+      title={currentUserId ? `Welcome ${currentUserName}` : registrationTitle}
+      content={currentUserId ? null : registerForm}
+    />
   );
 };
 
