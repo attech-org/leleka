@@ -26,8 +26,8 @@ const Tweet = () => {
 
   const posts = useSelector<
     RootState,
-    RootState["tweets"]["currentTweetRelies"]
-  >((store) => store.tweets.currentTweetRelies);
+    RootState["tweets"]["currentTweetReplies"]
+  >((store) => store.tweets.currentTweetReplies);
 
   const handleShowMore = () => {
     return (
