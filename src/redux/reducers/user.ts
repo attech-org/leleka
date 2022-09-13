@@ -116,6 +116,9 @@ const userSlice = createSlice({
     addAvatar: (state, action: PayloadAction<string>) => {
       state.profile.avatar = action.payload;
     },
+    clearError: (state) => {
+      state.error = "";
+    },
 
     resetUserData: () => {
       return userInitialState;
@@ -127,8 +130,10 @@ const userSlice = createSlice({
     });
     builder.addCase(registerUser.fulfilled, (store, { payload }) => {
       store.error = undefined;
-      return {
-        ...store,
+      localStorage.setItem("accessToken", payload.accessToken);
+      localStorage.setItem("refreshToken", payload.refreshToken);
+      Object.assign(store, {
+        ...userInitialState,
         ...payload.user,
         auth: {
           local: {
@@ -136,7 +141,7 @@ const userSlice = createSlice({
             refreshToken: payload.refreshToken,
           },
         },
-      };
+      });
     });
     builder.addCase(registerUser.rejected, (store) => {
       store.isLoading = false;
@@ -148,8 +153,10 @@ const userSlice = createSlice({
     });
     builder.addCase(loginUser.fulfilled, (store, { payload }) => {
       store.error = undefined;
-      return {
-        ...store,
+      localStorage.setItem("accessToken", payload.accessToken);
+      localStorage.setItem("refreshToken", payload.refreshToken);
+      Object.assign(store, {
+        ...userInitialState,
         ...payload.user,
         auth: {
           local: {
@@ -157,7 +164,7 @@ const userSlice = createSlice({
             refreshToken: payload.refreshToken,
           },
         },
-      };
+      });
     });
     builder.addCase(loginUser.rejected, (store) => {
       store.isLoading = false;

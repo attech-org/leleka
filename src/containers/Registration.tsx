@@ -71,6 +71,9 @@ const Registration = () => {
   const dispatch = useDispatch<AppDispatch>();
   const { t } = useTranslation();
   const currentUserId = useSelector<RootState>((store) => store.user._id);
+  const currentUserName = useSelector<RootState>(
+    (store) => store.user.username
+  );
 
   const registrationButtonName = t("validation:fields.buttonName");
   const registrationTitle = t("validation:fields.createProfile");
@@ -200,13 +203,11 @@ const Registration = () => {
   );
 
   return (
-    <>
-      <ModalUniversal
-        button={registrationButtonName}
-        title={currentUserId ? "close me" : registrationTitle}
-        content={currentUserId ? null : registerForm}
-      />
-    </>
+    <ModalUniversal
+      button={registrationButtonName}
+      title={currentUserId ? `Welcome, ${currentUserName}` : registrationTitle}
+      content={currentUserId ? null : registerForm}
+    />
   );
 };
 
