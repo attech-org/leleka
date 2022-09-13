@@ -116,7 +116,7 @@ const userSlice = createSlice({
     addAvatar: (state, action: PayloadAction<string>) => {
       state.profile.avatar = action.payload;
     },
-    cleanError: (state) => {
+    clearError: (state) => {
       state.error = "";
     },
 

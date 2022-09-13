@@ -35,7 +35,7 @@ const LoginForm = () => {
   );
 
   const toggleShowMessage = () => {
-    dispatch(userActions.cleanError());
+    dispatch(userActions.clearError());
   };
   const { t } = useTranslation();
   const sampleSchema = yup.object().shape({
@@ -56,7 +56,7 @@ const LoginForm = () => {
   );
 
   const submitForm = (data: MyForm) => {
-    dispatch(userActions.cleanError());
+    dispatch(userActions.clearError());
     dispatch(userActions.loginUser(data));
     reset();
   };
