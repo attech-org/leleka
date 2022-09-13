@@ -1,20 +1,27 @@
+import { useDispatch, useSelector } from "react-redux";
+
 import SingleTweet from "../components/SingleTweet";
-import dataProfileLikes from "../MOCKS/dataProfileLikes.json";
-import { Tweet } from "../types";
+import { tweetsActions } from "../redux/reducers/tweets";
+import { AppDispatch, RootState } from "../redux/store";
+import { Tweet2 } from "../types";
 import InfiniteList from "./InfiniteList";
 
-const mockPagination = {
-  docs: dataProfileLikes,
-  page: 1,
-  limit: 10,
-  hasNextPage: false,
-};
-
 const Likes = () => {
+  const dispatch = useDispatch<AppDispatch>();
+  const posts = useSelector<RootState, RootState["tweets"]["feedTweets"]>(
+    (store) => store.tweets.feedTweets
+  );
+  const handleShowMore = () => {
+    return (
+      !posts.isLoading &&
+      posts.hasNextPage &&
+      dispatch(tweetsActions.fetchFeedTweets(posts))
+    );
+  };
   return (
-    <InfiniteList<Tweet>
-      showMore={() => {}}
-      data={mockPagination}
+    <InfiniteList<Tweet2>
+      showMore={handleShowMore}
+      data={posts}
       itemComponent={(itemData) => <SingleTweet {...itemData} />}
     />
   );

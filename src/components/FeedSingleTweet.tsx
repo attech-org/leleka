@@ -1,4 +1,4 @@
-import { Popover, OverlayTrigger, Button } from "react-bootstrap";
+import { Popover, OverlayTrigger, Button, Nav } from "react-bootstrap";
 import {
   // PatchCheckFill,
   Upload,
@@ -10,6 +10,7 @@ import {
 import { useTranslation } from "react-i18next";
 import styled from "styled-components";
 
+import { LinkWithLanguageQueryParam } from "../containers/LinkWithLanguageQueryParam";
 import { Tweet2 } from "../types";
 import LikeButton from "./LikeButton";
 import RetweetButton from "./RetweetButton";
@@ -27,11 +28,11 @@ const Logo = styled.img`
   width: 3rem;
 `;
 
-const UnderlineHover = styled.span`
+const UnderlineHover = styled(Nav.Link)<{ eventKey: string }>`
   transition-duration: 0.2s;
-
+  text-decoration: none;
   :hover {
-    text-decoration: underline;
+    text-decoration: underline !important;
   }
 `;
 
@@ -105,8 +106,8 @@ const FeedSingleTweet = ({
         <div className="w-100">
           <div className="d-flex justify-content-between">
             <div className="d-flex align-items-center px-3 flex-wrap">
-              <UnderlineHover className="fw-600 pe-1 fw-bold">
-                {author.username}
+              <UnderlineHover className="fw-600 pe-1 fw-bold text-dark">
+                {author.name}
               </UnderlineHover>
 
               {/* {isVerified && (
@@ -118,7 +119,12 @@ const FeedSingleTweet = ({
               <div className="mx-1 text-secondary d-flex justify-content-center align-items-center">
                 ·
               </div>
-              <UnderlineHover className="text-secondary">
+              <UnderlineHover
+                as={LinkWithLanguageQueryParam}
+                to={`/tweet/${_id}`}
+                eventKey={_id}
+                className="text-secondary"
+              >
                 {createdAt}
               </UnderlineHover>
             </div>
