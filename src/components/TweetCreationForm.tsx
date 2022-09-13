@@ -50,6 +50,10 @@ const TweetCreationForm: React.FC = () => {
     (store) => store.tweets.singleTweet.isLoading
   );
 
+  const avatar = useSelector<RootState, RootState["user"]["profile"]["avatar"]>(
+    (store) => store.user.profile.avatar
+  );
+
   const { t } = useTranslation();
   const whoCanAnswer = t(
     "translation:tweetCreationForm.whoCanAnswer.button.all"
@@ -74,7 +78,7 @@ const TweetCreationForm: React.FC = () => {
           round="50%"
           twitterHandle="sitebase"
           name="Artem Ligerko"
-          src=""
+          src={avatar}
         />
         <div className="flex-grow-1 ms-2">
           <ReactQuill
