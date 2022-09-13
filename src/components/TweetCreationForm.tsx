@@ -52,6 +52,10 @@ const TweetCreationForm: React.FC = () => {
     (store) => store.tweets.singleTweet.isLoading
   );
 
+  const avatar = useSelector<RootState, RootState["user"]["profile"]["avatar"]>(
+    (store) => store.user.profile.avatar
+  );
+
   const { t } = useTranslation();
   const whoCanAnswer = t(
     "translation:tweetCreationForm.whoCanAnswer.button.all"
@@ -78,35 +82,14 @@ const TweetCreationForm: React.FC = () => {
           round="50%"
           twitterHandle="sitebase"
           name="Artem Ligerko"
-          src=""
+          src={avatar}
         />
         <div className="flex-grow-1 ms-2">
           <ReactQuill
-            className="shadow-sm"
-            theme="snow"
-            style={{
-              height: "10rem",
-              marginTop: "1rem",
-              display: "flex",
-              flexDirection: "column",
-            }}
             value={content}
+            placeholder="What's happaning?"
             modules={{
-              toolbar: [
-                [{ header: "1" }, { header: "2" }, { font: [] }],
-                [{ size: [] }],
-                ["bold", "italic", "underline", "strike", "blockquote"],
-                [{ align: [] }],
-                [{ color: [] }, { background: [] }],
-                [
-                  { list: "ordered" },
-                  { list: "bullet" },
-                  { indent: "-1" },
-                  { indent: "+1" },
-                ],
-                ["link", "video", "image", "code-block"],
-                ["clean"],
-              ],
+              toolbar: false,
             }}
             formats={[
               "header",
@@ -128,8 +111,8 @@ const TweetCreationForm: React.FC = () => {
               "code-block",
               "align",
             ]}
-            onChange={(e) => {
-              setContent(e);
+            onChange={(val) => {
+              setContent(val);
             }}
           />
           <div className="border-bottom py-1">
@@ -232,15 +215,13 @@ const TweetCreationForm: React.FC = () => {
                 </StyledIcon>
               </OverlayTrigger>
             </div>
-            <div>
-              <button
-                className="btn btn-primary rounded-5 d-flex align-items-center m-2"
-                onClick={handleTweetButton}
-                disabled={isLoading ? true : false}
-              >
-                {t("translation:tweetCreationForm.tweetButton")}
-              </button>
-            </div>
+            <button
+              className="btn btn-primary rounded-5 d-flex align-items-center m-2"
+              onClick={handleTweetButton}
+              disabled={isLoading ? true : false}
+            >
+              {t("translation:tweetCreationForm.tweetButton")}
+            </button>
           </div>
         </div>
       </div>

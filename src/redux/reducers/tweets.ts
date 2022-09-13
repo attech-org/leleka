@@ -5,12 +5,15 @@ import {
 } from "@reduxjs/toolkit";
 
 import instance from "../../services/api";
-import { LE, Tweet2 } from "../../types";
+import { LE, Tweet2, Like } from "../../types";
 import { Pagination } from "../../types/mock-api-types";
 
-interface TweetsStore {
+export interface TweetsStore {
+  currentTweet: LE<{ data?: Tweet2 }>;
   feedTweets: LE<Pagination<Tweet2>>;
   singleTweet: LE<object>;
+  currentTweetReplies: LE<Pagination<Tweet2>>;
+  likes: LE<Pagination<Like>>;
 }
 
 const tweetsInitialStore: TweetsStore = {
@@ -21,6 +24,20 @@ const tweetsInitialStore: TweetsStore = {
     hasNextPage: true,
   },
   singleTweet: {},
+  currentTweet: {},
+  currentTweetReplies: {
+    page: 1,
+    limit: 10,
+    docs: [],
+    hasNextPage: true,
+    isLoading: false,
+  },
+  likes: {
+    page: 1,
+    limit: 10,
+    docs: [],
+    hasNextPage: true,
+  },
 };
 
 interface NewTweetBody {
@@ -44,6 +61,41 @@ const fetchFeedTweets = createAsyncThunk<
   const response = await instance.get("api/tweets", {
     params: { limit, page: nextPage, sort: "-createdAt" },
   });
+  return response.data;
+});
+
+const fetchTweetById = createAsyncThunk<Tweet2, string>(
+  "tweet/id",
+  async (id) => {
+    const response = await instance.get(`api/tweets/${id}`);
+    return response.data;
+  }
+);
+
+const fetchTweetReplies = createAsyncThunk<
+  Pagination<Tweet2>,
+  (Pagination<Tweet2> & { tweetId: string }) | undefined
+>("replies/feed", async (filters) => {
+  const { limit = 10, nextPage = 1, tweetId } = filters || {};
+  const response = await instance.get("api/tweets", {
+    params: { limit, page: nextPage, query: { repliedTo: tweetId } },
+  });
+  return response.data;
+});
+
+const fetchLikes = createAsyncThunk<
+  Pagination<Like>,
+  Pagination<Like> | undefined
+>("profile/likes", async (filters) => {
+  const { limit = 10, nextPage = 1 } = filters || {};
+
+  const response = await instance.get("api/likes", {
+    params: {
+      limit,
+      page: nextPage,
+    },
+  });
+
   return response.data;
 });
 
@@ -74,12 +126,58 @@ const tweetsSlice = createSlice<TweetsStore, SliceCaseReducers<TweetsStore>>({
     builder.addCase(createTweet.pending, (store) => {
       store.singleTweet.isLoading = true;
     });
-    builder.addCase(createTweet.fulfilled, (store) => {
+    builder.addCase(createTweet.fulfilled, (store, { payload }) => {
       store.singleTweet.isLoading = false;
+      store.feedTweets.docs = [payload, ...store.feedTweets.docs];
     });
     builder.addCase(createTweet.rejected, (store) => {
       store.singleTweet.isLoading = false;
       store.singleTweet.error = "Failed to post tweet on server";
+    });
+    builder.addCase(fetchTweetById.pending, (store) => {
+      store.currentTweet.isLoading = true;
+    });
+    builder.addCase(fetchTweetById.fulfilled, (store, { payload }) => {
+      store.currentTweet.data = payload;
+      store.currentTweet.isLoading = false;
+    });
+    builder.addCase(fetchTweetById.rejected, (store) => {
+      store.currentTweet.isLoading = false;
+      store.currentTweet.error = "Failed to fetch tweets for feed";
+    });
+    builder.addCase(fetchTweetReplies.pending, (store) => {
+      store.currentTweetReplies.isLoading = true;
+    });
+    builder.addCase(fetchTweetReplies.fulfilled, (store, { payload }) => {
+      if (store.currentTweetReplies.docs.length === 0 || payload.page !== 1) {
+        store.currentTweetReplies = {
+          ...store.currentTweetReplies,
+          ...payload,
+          docs: [...store.currentTweetReplies.docs, ...payload.docs],
+        };
+      }
+      store.currentTweetReplies.isLoading = false;
+    });
+    builder.addCase(fetchTweetReplies.rejected, (store) => {
+      store.currentTweetReplies.isLoading = false;
+      store.currentTweetReplies.error = "Failed to fetch tweets for feed";
+    });
+    builder.addCase(fetchLikes.pending, (store) => {
+      store.likes.isLoading = true;
+    });
+    builder.addCase(fetchLikes.fulfilled, (store, { payload }) => {
+      if (store.likes.docs.length === 0 || payload.page !== 1) {
+        store.likes = {
+          ...store.likes,
+          ...payload,
+          docs: [...store.likes.docs, ...payload.docs],
+        };
+      }
+      store.likes.isLoading = false;
+    });
+    builder.addCase(fetchLikes.rejected, (store) => {
+      store.likes.isLoading = false;
+      store.likes.error = "Failed to fetch tweets for feed";
     });
   },
 });
@@ -88,6 +186,9 @@ export const tweetsActions = {
   ...tweetsSlice.actions,
   fetchFeedTweets,
   createTweet,
+  fetchTweetById,
+  fetchTweetReplies,
+  fetchLikes,
 };
 
 export default tweetsSlice.reducer;

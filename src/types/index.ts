@@ -32,7 +32,15 @@ export interface Tweet2 extends MongoArtifacts {
   stats: {
     likes: number;
     retweets: number;
-    comments: number;
+    comments?: number;
+  };
+}
+
+export interface Like extends MongoArtifacts {
+  tweet: Tweet2;
+  user: {
+    profile: { avatar: string };
+    username: string;
   };
 }
 
