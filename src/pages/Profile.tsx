@@ -6,25 +6,26 @@ import styled from "styled-components";
 import Banner from "../containers/Banner";
 import Layout from "../containers/Layout";
 import { LinkWithLanguageQueryParam } from "../containers/LinkWithLanguageQueryParam";
+import Likes from "../containers/ProfileLikes";
 import Media from "../containers/ProfileMedia";
 import ProfileTweets from "../containers/ProfileTweets";
 import TabsContainer from "../containers/Tabs";
 import { TweetsWithReplies } from "../containers/TweetsWithReplies";
 import { TabKeyProps } from "../types/tabs-types";
 
+const StyledButton = styled(Button)`
+  height: 2.5rem;
+  width: 2.5rem;
+  :focus:not(:focus-visible) {
+    box-shadow: none;
+  }
+  :hover {
+    background-color: rgba(15, 20, 25, 0.1) !important;
+  }
+`;
+
 const ProfilePage = ({ tabKey }: TabKeyProps) => {
   const { t } = useTranslation();
-
-  const StyledButton = styled(Button)`
-    height: 2.5rem;
-    width: 2.5rem;
-    :focus:not(:focus-visible) {
-      box-shadow: none;
-    }
-    :hover {
-      background-color: rgba(15, 20, 25, 0.1) !important;
-    }
-  `;
 
   const tabsData = [
     {
@@ -49,7 +50,7 @@ const ProfilePage = ({ tabKey }: TabKeyProps) => {
     },
     {
       label: t("profile.tabsLabel.likes"),
-      content: "Likes",
+      content: <Likes />,
       key: "likes",
       route: "/profile/likes",
     },
