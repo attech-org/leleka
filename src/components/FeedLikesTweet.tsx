@@ -11,7 +11,7 @@ import {
 import { useTranslation } from "react-i18next";
 import styled from "styled-components";
 
-import { Tweet3 } from "../types";
+import { Like } from "../types";
 import LikeButton from "./LikeButton";
 import RetweetButton from "./RetweetButton";
 import TweetReplyForm from "./TweetReplyForm";
@@ -75,7 +75,7 @@ const StyledButton = styled(Button)`
   }
 `;
 
-const FeedLikesTweet = ({ tweet, user }: Tweet3) => {
+const FeedLikesTweet = ({ tweet, user }: Like) => {
   const { t } = useTranslation();
 
   return (
