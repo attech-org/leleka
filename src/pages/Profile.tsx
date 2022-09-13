@@ -1,6 +1,7 @@
 import { Button } from "react-bootstrap";
 import { Gear } from "react-bootstrap-icons";
 import { useTranslation } from "react-i18next";
+import { useSelector } from "react-redux";
 import styled from "styled-components";
 
 import Layout from "../containers/Layout";
@@ -9,9 +10,13 @@ import Media from "../containers/ProfileMedia";
 import ProfileTweets from "../containers/ProfileTweets";
 import TabsContainer from "../containers/Tabs";
 import { TweetsWithReplies } from "../containers/TweetsWithReplies";
+import { UserStore } from "../redux/reducers/user";
+import { RootState } from "../redux/store";
 import { TabKeyProps } from "../types/tabs-types";
 
 const ProfilePage = ({ tabKey }: TabKeyProps) => {
+  const user = useSelector<RootState>((store) => store.user) as UserStore;
+
   const { t } = useTranslation();
 
   const StyledButton = styled(Button)`
@@ -76,7 +81,7 @@ const ProfilePage = ({ tabKey }: TabKeyProps) => {
             to="/following"
             className="d-flex ps-4 text-reset"
           >
-            <p className="fw-bold">546</p>
+            <p className="fw-bold">{user.friendsCount || 0}</p>
             <p className="ps-2">{t("profile.following")}</p>
           </LinkWithLanguageQueryParam>
 
@@ -84,7 +89,7 @@ const ProfilePage = ({ tabKey }: TabKeyProps) => {
             to="/followers"
             className="d-flex ps-4 text-reset"
           >
-            <p className="fw-bold">122</p>
+            <p className="fw-bold">{user.followersCount || 0}</p>
             <p className="ps-2">{t("profile.followers")}</p>
           </LinkWithLanguageQueryParam>
         </div>
