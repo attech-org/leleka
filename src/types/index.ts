@@ -36,7 +36,7 @@ export interface Tweet2 extends MongoArtifacts {
   };
 }
 
-export interface Tweet3 extends MongoArtifacts {
+export interface Like extends MongoArtifacts {
   tweet: Tweet2;
   user: {
     profile: { avatar: string };
