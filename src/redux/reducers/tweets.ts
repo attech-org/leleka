@@ -22,7 +22,7 @@ const tweetsInitialStore: TweetsStore = {
     hasNextPage: true,
   },
   singleTweet: {},
-  feedLikedTweets: {
+  likes: {
     page: 1,
     limit: 10,
     docs: [],
