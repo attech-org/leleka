@@ -216,6 +216,7 @@ const TweetCreationForm: React.FC = () => {
               </OverlayTrigger>
             </div>
             <button
+              type="submit"
               className="btn btn-primary rounded-5 d-flex align-items-center m-2"
               onClick={handleTweetButton}
               disabled={isLoading ? true : false}
