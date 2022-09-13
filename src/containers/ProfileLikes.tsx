@@ -1,28 +1,29 @@
 import { useDispatch, useSelector } from "react-redux";
 
-import SingleTweet from "../components/SingleTweet";
+import FeedLikesTweet from "../components/FeedLikesTweet";
 import { tweetsActions } from "../redux/reducers/tweets";
 import { AppDispatch, RootState } from "../redux/store";
-import { Tweet2 } from "../types";
+import { Like } from "../types";
 import InfiniteList from "./InfiniteList";
 
 const Likes = () => {
   const dispatch = useDispatch<AppDispatch>();
-  const posts = useSelector<RootState, RootState["tweets"]["feedTweets"]>(
-    (store) => store.tweets.feedTweets
+
+  const likedTweets = useSelector<RootState, RootState["tweets"]["likes"]>(
+    (store) => store.tweets.likes
   );
+
   const handleShowMore = () => {
     return (
-      !posts.isLoading &&
-      posts.hasNextPage &&
-      dispatch(tweetsActions.fetchFeedTweets(posts))
+      !likedTweets.isLoading && dispatch(tweetsActions.fetchLikes(likedTweets))
     );
   };
+
   return (
-    <InfiniteList<Tweet2>
+    <InfiniteList<Like>
       showMore={handleShowMore}
-      data={posts}
-      itemComponent={(itemData) => <SingleTweet {...itemData} />}
+      data={likedTweets}
+      itemComponent={(itemData) => <FeedLikesTweet {...itemData} />}
     />
   );
 };

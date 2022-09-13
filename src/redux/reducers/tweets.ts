@@ -5,7 +5,7 @@ import {
 } from "@reduxjs/toolkit";
 
 import instance from "../../services/api";
-import { LE, Tweet2 } from "../../types";
+import { LE, Tweet2, Like } from "../../types";
 import { Pagination } from "../../types/mock-api-types";
 
 export interface TweetsStore {
@@ -13,6 +13,7 @@ export interface TweetsStore {
   feedTweets: LE<Pagination<Tweet2>>;
   singleTweet: LE<object>;
   currentTweetReplies: LE<Pagination<Tweet2>>;
+  likes: LE<Pagination<Like>>;
 }
 
 const tweetsInitialStore: TweetsStore = {
@@ -30,6 +31,12 @@ const tweetsInitialStore: TweetsStore = {
     docs: [],
     hasNextPage: true,
     isLoading: false,
+  },
+  likes: {
+    page: 1,
+    limit: 10,
+    docs: [],
+    hasNextPage: true,
   },
 };
 
@@ -73,6 +80,22 @@ const fetchTweetReplies = createAsyncThunk<
   const response = await instance.get("api/tweets", {
     params: { limit, page: nextPage, query: { repliedTo: tweetId } },
   });
+  return response.data;
+});
+
+const fetchLikes = createAsyncThunk<
+  Pagination<Like>,
+  Pagination<Like> | undefined
+>("profile/likes", async (filters) => {
+  const { limit = 10, nextPage = 1 } = filters || {};
+
+  const response = await instance.get("api/likes", {
+    params: {
+      limit,
+      page: nextPage,
+    },
+  });
+
   return response.data;
 });
 
@@ -139,6 +162,23 @@ const tweetsSlice = createSlice<TweetsStore, SliceCaseReducers<TweetsStore>>({
       store.currentTweetReplies.isLoading = false;
       store.currentTweetReplies.error = "Failed to fetch tweets for feed";
     });
+    builder.addCase(fetchLikes.pending, (store) => {
+      store.likes.isLoading = true;
+    });
+    builder.addCase(fetchLikes.fulfilled, (store, { payload }) => {
+      if (store.likes.docs.length === 0 || payload.page !== 1) {
+        store.likes = {
+          ...store.likes,
+          ...payload,
+          docs: [...store.likes.docs, ...payload.docs],
+        };
+      }
+      store.likes.isLoading = false;
+    });
+    builder.addCase(fetchLikes.rejected, (store) => {
+      store.likes.isLoading = false;
+      store.likes.error = "Failed to fetch tweets for feed";
+    });
   },
 });
 
@@ -148,6 +188,7 @@ export const tweetsActions = {
   createTweet,
   fetchTweetById,
   fetchTweetReplies,
+  fetchLikes,
 };
 
 export default tweetsSlice.reducer;
