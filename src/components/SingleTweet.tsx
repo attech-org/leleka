@@ -15,7 +15,7 @@ import { Tweet } from "../types";
 import AttachedContent from "./AttachedContent";
 import LikeButton from "./LikeButton";
 import RetweetButton from "./RetweetButton";
-import TweetReplyForm from "./TweetReplyForm";
+// import TweetReplyForm from "./TweetReplyForm";
 
 const StyledLink = styled.a`
   transition: 0.3s;
@@ -213,7 +213,7 @@ const SingleTweet: React.FC<Tweet> = ({
             iconColor={Blue}
             className="m-0 p-0 rounded-circle row align-items-center justify-content-center"
           >
-            <TweetReplyForm />
+            {/* <TweetReplyForm author={author} content={content}/> */}
           </IconBg>
           <IconBg
             iconBgColor={""}

@@ -3,6 +3,8 @@ import { useTranslation } from "react-i18next";
 import styled from "styled-components";
 
 import ModalUniversal from "../containers/ModalUniversal";
+import { User } from "../types";
+import UniversalInput from "./UniversalInput";
 
 const StyledIcon = styled.div`
   color: rgb(0, 0, 255, 0.6);
@@ -11,17 +13,25 @@ const StyledIcon = styled.div`
     cursor: pointer;
   }
 `;
-const StyledInput = styled.input`
-  width: 100%;
-  margin-top: 10px;
-  border: none;
-`;
+// const StyledInput = styled.input`
+//   width: 100%;
+//   margin-top: 10px;
+//   border: none;
+// `;
 
 const StyledDiv = styled.div`
   width: 100%;
 `;
 
-const TweetReplyForm: React.FC = () => {
+const Logo = styled.img`
+  height: 3rem;
+  width: 3rem;
+`;
+
+const TweetReplyForm: React.FC<{ author: Partial<User>; content: string }> = ({
+  author,
+  content,
+}) => {
   const { t } = useTranslation();
 
   const handleReplyButton = (): void => {
@@ -38,27 +48,26 @@ const TweetReplyForm: React.FC = () => {
     <div>
       <div className="border-0 p-3 d-flex text-start justify-content-start">
         <div className="">
-          <img
+          <Logo
             className="rounded-circle"
-            src="http://dummyimage.com/105x100.png/5fa2dd/ffffff"
-            width="48px"
-            height="48px"
-            alt="avatar"
+            src={author.profile?.avatar}
+            alt=""
           />
         </div>
         <div className="flex-grow-1 ms-2">
-          <StyledDiv>Xiaomi</StyledDiv>
-          <StyledDiv>@Xiaomi</StyledDiv>
+          <StyledDiv>{author.username}</StyledDiv>
+          <StyledDiv>@{author.username}</StyledDiv>
           <br />
-          <StyledDiv>
-            "Phasellus sit amet erat. undefineda tempus. Vivamus in felis eu
-            sapien cursus vestibulum.\n\nProin eu mi. undefineda ac enim. In
-            tempor, turpis nec euismod scelerisque, quam turpis adipiscing
-            lorem, vitae mattis nibh ligula nec sem.\n\nDuis aliquam convallis
-            nunc. Proin at turpis a pede posuere nonummy. Integer non velit."
-          </StyledDiv>
+          <div className="" dangerouslySetInnerHTML={{ __html: content }} />
           <br />
-          <StyledInput placeholder={t("tweet your reply")} />
+          <div className="border-0 p-3 d-flex text-start justify-content-start">
+            <Logo
+              className="rounded-circle"
+              src={author.profile?.avatar}
+              alt=""
+            />
+            <UniversalInput />
+          </div>
           <div className="d-flex justify-content-between">
             <div className="d-flex p-2">
               <StyledIcon className="rounded-circle" onClick={handleImgUpload}>

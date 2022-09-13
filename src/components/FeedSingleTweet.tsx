@@ -197,7 +197,7 @@ const FeedSingleTweet = ({
           <div className="px-3 d-flex justify-content-between align-items-center">
             <StatisticOfTweet className="d-flex align-items-center justify-content-center">
               <HoverBackgroundBlue className="p-2 rounded-circle d-flex justify-content-center align-items-center">
-                <TweetReplyForm />
+                <TweetReplyForm author={author} content={content} />
               </HoverBackgroundBlue>
               <div className="px-1">{comments}</div>
             </StatisticOfTweet>
