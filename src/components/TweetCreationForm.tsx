@@ -1,5 +1,5 @@
-import Picker from "emoji-picker-react";
-import { memo, useState } from "react";
+import Picker, { IEmojiData } from "emoji-picker-react";
+import { memo, MouseEvent, useState } from "react";
 import Avatar from "react-avatar";
 import { OverlayTrigger, Popover } from "react-bootstrap";
 import {
@@ -69,9 +69,8 @@ const TweetCreationForm: React.FC = () => {
     console.warn("Img Upload");
   };
 
-  const onEmojiClick = (event: MouseEvent, emojiObject: symbol): void => {
+  const onEmojiClick = (event: MouseEvent, emojiObject: IEmojiData): void => {
     setContent((prevContent) => prevContent + emojiObject.emoji);
-    setShowPicker(false);
   };
 
   return (
@@ -192,7 +191,6 @@ const TweetCreationForm: React.FC = () => {
               </StyledIcon>
 
               <OverlayTrigger
-                rootClose
                 trigger="click"
                 key="bottom"
                 placement="bottom"
