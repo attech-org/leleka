@@ -10,6 +10,8 @@ Students demo project for training purposes.
 - styled-components
 - react-hook-forms
 - react-router-dom
+- react-bootstrap
+- PWA
 
 ## Examples of using technology
 

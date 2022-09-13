@@ -65,6 +65,7 @@ const TweetCreationForm: React.FC = () => {
   const handleEmojiPaste = (): void => {
     console.warn("Emoji paste");
   };
+
   return (
     <div>
       <div className="border-0 p-3 d-flex text-start justify-content-start">
@@ -207,6 +208,7 @@ const TweetCreationForm: React.FC = () => {
               </StyledIcon>
             </div>
             <button
+              type="submit"
               className="btn btn-primary rounded-5 d-flex align-items-center m-2"
               onClick={handleTweetButton}
               disabled={isLoading ? true : false}
