@@ -3,27 +3,29 @@ import { Gear } from "react-bootstrap-icons";
 import { useTranslation } from "react-i18next";
 import styled from "styled-components";
 
+import Banner from "../containers/Banner";
 import Layout from "../containers/Layout";
 import { LinkWithLanguageQueryParam } from "../containers/LinkWithLanguageQueryParam";
+import Likes from "../containers/ProfileLikes";
 import Media from "../containers/ProfileMedia";
 import ProfileTweets from "../containers/ProfileTweets";
 import TabsContainer from "../containers/Tabs";
 import { TweetsWithReplies } from "../containers/TweetsWithReplies";
 import { TabKeyProps } from "../types/tabs-types";
 
+const StyledButton = styled(Button)`
+  height: 2.5rem;
+  width: 2.5rem;
+  :focus:not(:focus-visible) {
+    box-shadow: none;
+  }
+  :hover {
+    background-color: rgba(15, 20, 25, 0.1) !important;
+  }
+`;
+
 const ProfilePage = ({ tabKey }: TabKeyProps) => {
   const { t } = useTranslation();
-
-  const StyledButton = styled(Button)`
-    height: 2.5rem;
-    width: 2.5rem;
-    :focus:not(:focus-visible) {
-      box-shadow: none;
-    }
-    :hover {
-      background-color: rgba(15, 20, 25, 0.1) !important;
-    }
-  `;
 
   const tabsData = [
     {
@@ -48,7 +50,7 @@ const ProfilePage = ({ tabKey }: TabKeyProps) => {
     },
     {
       label: t("profile.tabsLabel.likes"),
-      content: "Likes",
+      content: <Likes />,
       key: "likes",
       route: "/profile/likes",
     },
@@ -71,6 +73,7 @@ const ProfilePage = ({ tabKey }: TabKeyProps) => {
             </StyledButton>
           </div>
         </div>
+        <Banner isEditBanner={false} />
         <div className="d-flex pb-4">
           <LinkWithLanguageQueryParam
             to="/following"
@@ -88,6 +91,7 @@ const ProfilePage = ({ tabKey }: TabKeyProps) => {
             <p className="ps-2">{t("profile.followers")}</p>
           </LinkWithLanguageQueryParam>
         </div>
+
         <TabsContainer tabsData={tabsData} defaultActiveKey={tabKey} />
       </div>
     </Layout>

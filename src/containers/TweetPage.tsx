@@ -2,8 +2,8 @@ import React from "react";
 import { ArrowLeft } from "react-bootstrap-icons";
 import styled from "styled-components";
 
-import SingleTweet from "../components/SingleTweet";
-import { singleTweetData } from "../MOCKS/singleTweetPage";
+// import SingleTweet from "../components/SingleTweet";
+// import { singleTweetData } from "../MOCKS/singleTweetPage";
 
 const Wrap = styled.div`
   display: flex;
@@ -23,7 +23,7 @@ export const TweetPage: React.FC = (): React.ReactElement => {
       </Wrap>
       <div>
         Тут буде твіт (компонент)
-        <SingleTweet {...singleTweetData} />
+        {/* <SingleTweet {...singleTweetData} /> */}
       </div>
     </div>
   );

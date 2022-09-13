@@ -58,6 +58,18 @@ interface RegisterRequest {
   password: string;
   email: string;
 }
+
+interface LoginResponse {
+  user: Partial<User>;
+  accessToken: string;
+  refreshToken: string;
+}
+
+interface LoginRequest {
+  username: string;
+  password: string;
+}
+
 const registerUser = createAsyncThunk<RegisterResponse, RegisterRequest>(
   "auth/register",
   async ({ username, password, email }) => {
@@ -70,19 +82,22 @@ const registerUser = createAsyncThunk<RegisterResponse, RegisterRequest>(
     return response.data;
   }
 );
+const loginUser = createAsyncThunk<LoginResponse, LoginRequest>(
+  "auth/login",
+  async ({ username, password }) => {
+    const response = await instance.post("api/auth/login", {
+      username,
+      password,
+      email: "",
+    });
+    return response.data;
+  }
+);
 
 const userSlice = createSlice({
   name: "user",
   initialState: userInitialState,
   reducers: {
-    setUserData: (state, action: PayloadAction<Partial<UserStore>>) => {
-      // Redux Toolkit allows us to write "mutating" logic in reducers. It
-      // doesn't actually mutate the state because it uses the Immer library,
-      // which detects changes to a "draft state" and produces a brand new
-      // immutable state based on those changes
-      return { ...state, ...action.payload };
-    },
-
     //  temporary reducers
     addBanner: (state, action: PayloadAction<string>) => {
       state.profile.banner = action.payload;
@@ -92,6 +107,9 @@ const userSlice = createSlice({
     },
     addAvatar: (state, action: PayloadAction<string>) => {
       state.profile.avatar = action.payload;
+    },
+    clearError: (state) => {
+      state.error = "";
     },
 
     resetUserData: () => {
@@ -104,8 +122,10 @@ const userSlice = createSlice({
     });
     builder.addCase(registerUser.fulfilled, (store, { payload }) => {
       store.error = undefined;
-      return {
-        ...store,
+      localStorage.setItem("accessToken", payload.accessToken);
+      localStorage.setItem("refreshToken", payload.refreshToken);
+      Object.assign(store, {
+        ...userInitialState,
         ...payload.user,
         auth: {
           local: {
@@ -113,15 +133,38 @@ const userSlice = createSlice({
             refreshToken: payload.refreshToken,
           },
         },
-      };
+      });
     });
     builder.addCase(registerUser.rejected, (store) => {
       store.isLoading = false;
       store.error = "Failed to register user";
     });
+
+    builder.addCase(loginUser.pending, (store) => {
+      store.isLoading = true;
+    });
+    builder.addCase(loginUser.fulfilled, (store, { payload }) => {
+      store.error = undefined;
+      localStorage.setItem("accessToken", payload.accessToken);
+      localStorage.setItem("refreshToken", payload.refreshToken);
+      Object.assign(store, {
+        ...userInitialState,
+        ...payload.user,
+        auth: {
+          local: {
+            accessToken: payload.accessToken,
+            refreshToken: payload.refreshToken,
+          },
+        },
+      });
+    });
+    builder.addCase(loginUser.rejected, (store) => {
+      store.isLoading = false;
+      store.error = "Failed to login user";
+    });
   },
 });
 
-export const userActions = { ...userSlice.actions, registerUser };
+export const userActions = { ...userSlice.actions, registerUser, loginUser };
 
 export default userSlice.reducer;

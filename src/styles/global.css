@@ -2,3 +2,15 @@ body {
   font-family: TwitterChirp, -apple-system, BlinkMacSystemFont, "Segoe UI",
     Roboto, Helvetica, Arial, sans-serif;
 }
+
+.ql-container.ql-snow {
+  border: 0px;
+}
+
+.ql-editor p strong {
+  font-weight: bold;
+}
+
+.ql-editor p em {
+  font-style: italic;
+}

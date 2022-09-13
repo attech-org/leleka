@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 
-import SingleTweet from "../components/SingleTweet";
+// import SingleTweet from "../components/SingleTweet";
 import MOCKTweets from "../MOCKS/tweets";
 import { Tweet } from "../types";
 import { Pagination } from "../types/mock-api-types";
-import InfiniteList from "./InfiniteList";
+// import InfiniteList from "./InfiniteList";
 
 function sleep(ms: number) {
   return new Promise((resolve) => setTimeout(resolve, ms));
@@ -35,7 +35,7 @@ const ProfileTweets: React.FunctionComponent = () => {
 
   return (
     <>
-      {mockUsers && (
+      {/* {mockUsers && (
         <InfiniteList<Tweet>
           showMore={fetchData}
           data={mockUsers}
@@ -43,7 +43,7 @@ const ProfileTweets: React.FunctionComponent = () => {
             <SingleTweet key={itemData.id} {...itemData} />
           )}
         />
-      )}
+      )} */}
     </>
   );
 };
