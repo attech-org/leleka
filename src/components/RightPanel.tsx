@@ -17,7 +17,7 @@ export const RightPanel = () => {
       <StickySearch>
         <AsyncSearch />
       </StickySearch>
-      {!window.location.pathname.includes("/trends") && <Trends />}
+      {!window.location.hash.includes("/trends") && <Trends />}
       <Recommendations />
     </Wrapper>
   );

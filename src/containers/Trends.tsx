@@ -1,16 +1,9 @@
 import { Container } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
-import styled from "styled-components";
 
 import { TrendItem } from "../components/TrendItem";
 import { MockTrend } from "../types/mock-api-types";
-
-const StyledLink = styled.a`
-  transition: 0.3s;
-  :hover {
-    background-color: rgba(0, 0, 0, 0.03);
-  }
-`;
+import { LinkWithLanguageQueryParam } from "./LinkWithLanguageQueryParam";
 
 const Trends = () => {
   const trends: Array<MockTrend> = [
@@ -43,14 +36,14 @@ const Trends = () => {
       {trends.map((tr) => (
         <TrendItem key={tr.id} trend={tr} />
       ))}
-      <StyledLink
-        href="/trends"
+      <LinkWithLanguageQueryParam
+        to="/trends"
         className="text-decoration-none text-reset d-flex flex-row py-2"
       >
         <Container className="py-2 px-3">
           <p className="py-1 text-info">{t("common.showMore")}</p>
         </Container>
-      </StyledLink>
+      </LinkWithLanguageQueryParam>
     </div>
   );
 };
