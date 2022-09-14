@@ -83,7 +83,7 @@ const TweetCreationForm: React.FC = () => {
         <div className="flex-grow-1 ms-2">
           <ReactQuill
             value={content}
-            placeholder="What's happaning?"
+            placeholder="What's happening?"
             modules={{
               toolbar: false,
             }}
@@ -194,7 +194,7 @@ const TweetCreationForm: React.FC = () => {
               type="submit"
               className="btn btn-primary rounded-5 d-flex align-items-center m-2"
               onClick={handleTweetButton}
-              disabled={isLoading ? true : false}
+              disabled={isLoading}
             >
               {t("translation:tweetCreationForm.tweetButton")}
             </button>
