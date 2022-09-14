@@ -3,18 +3,6 @@ import jwt_decode, { JwtPayload } from "jwt-decode";
 
 const URI = process.env.REACT_APP_SERVER_URL;
 
-const getLocalAccessToken = () => {
-  return localStorage.getItem("accessToken");
-};
-
-const getLocalRefreshToken = () => {
-  return localStorage.getItem("refreshToken");
-};
-
-const updateLocalAccessToken = (accessToken: string): void => {
-  localStorage.setItem("accessToken", accessToken);
-};
-
 const instance = axios.create({
   baseURL: URI,
   headers: {
@@ -23,14 +11,14 @@ const instance = axios.create({
 });
 
 function getRefreshToken() {
-  return instance.post("/api/auth/refreshtoken", {
-    refreshToken: getLocalRefreshToken(),
+  return instance.post("/api/auth/refresh", {
+    refreshToken: localStorage.getItem("refreshToken"),
   });
 }
 
 instance.interceptors.request.use(
   async (config) => {
-    const token = getLocalAccessToken();
+    const token = localStorage.getItem("accessToken");
     if (token) {
       // Access Token was expired
       const decoder = jwt_decode<JwtPayload>(token);
@@ -39,7 +27,7 @@ instance.interceptors.request.use(
           localStorage.setItem("accessToken", "");
           const rs = await getRefreshToken();
           const { accessToken } = rs.data;
-          updateLocalAccessToken(accessToken);
+          localStorage.setItem("accessToken", accessToken);
           if (config.headers) {
             config.headers.Authorization = "Bearer " + accessToken;
           }
@@ -68,8 +56,7 @@ instance.interceptors.response.use(
         originalConfig._retry = true;
         try {
           const rs = await getRefreshToken();
-          const { accessToken } = rs.data;
-          updateLocalAccessToken(accessToken);
+          localStorage.setItem("accessToken", rs.data.accessToken);
           return await instance(originalConfig);
         } catch (_error) {
           return Promise.reject(_error);

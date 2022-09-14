@@ -50,6 +50,10 @@ const TweetCreationForm: React.FC = () => {
     (store) => store.tweets.singleTweet.isLoading
   );
 
+  const avatar = useSelector<RootState, RootState["user"]["profile"]["avatar"]>(
+    (store) => store.user.profile.avatar
+  );
+
   const { t } = useTranslation();
   const whoCanAnswer = t(
     "translation:tweetCreationForm.whoCanAnswer.button.all"
@@ -65,6 +69,7 @@ const TweetCreationForm: React.FC = () => {
   const handleEmojiPaste = (): void => {
     console.warn("Emoji paste");
   };
+
   return (
     <div>
       <div className="border-0 p-3 d-flex text-start justify-content-start">
@@ -73,35 +78,14 @@ const TweetCreationForm: React.FC = () => {
           round="50%"
           twitterHandle="sitebase"
           name="Artem Ligerko"
-          src=""
+          src={avatar}
         />
         <div className="flex-grow-1 ms-2">
           <ReactQuill
-            className="shadow-sm"
-            theme="snow"
-            style={{
-              height: "10rem",
-              marginTop: "1rem",
-              display: "flex",
-              flexDirection: "column",
-            }}
             value={content}
+            placeholder="What's happaning?"
             modules={{
-              toolbar: [
-                [{ header: "1" }, { header: "2" }, { font: [] }],
-                [{ size: [] }],
-                ["bold", "italic", "underline", "strike", "blockquote"],
-                [{ align: [] }],
-                [{ color: [] }, { background: [] }],
-                [
-                  { list: "ordered" },
-                  { list: "bullet" },
-                  { indent: "-1" },
-                  { indent: "+1" },
-                ],
-                ["link", "video", "image", "code-block"],
-                ["clean"],
-              ],
+              toolbar: false,
             }}
             formats={[
               "header",
@@ -207,6 +191,7 @@ const TweetCreationForm: React.FC = () => {
               </StyledIcon>
             </div>
             <button
+              type="submit"
               className="btn btn-primary rounded-5 d-flex align-items-center m-2"
               onClick={handleTweetButton}
               disabled={isLoading ? true : false}
