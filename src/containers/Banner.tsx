@@ -161,11 +161,11 @@ const Banner = ({ isEditBanner }: BannerProps) => {
             <ChangePhotoDiv className="d-flex position-absolute">
               {isEditBanner && (
                 <OverlayTrigger
-                  key={"bottom"}
+                  key={"bottomEditBanner"}
                   placement={"bottom"}
                   delay={{ show: 500, hide: 250 }}
                   overlay={
-                    <Tooltip id={`tooltip-bottom}`}>
+                    <Tooltip id={`tooltip-bottomEditBanner}`}>
                       {t(`validation:userSettings.addPhoto`)}
                     </Tooltip>
                   }
@@ -184,11 +184,11 @@ const Banner = ({ isEditBanner }: BannerProps) => {
 
               {isEditBanner && (
                 <OverlayTrigger
-                  key={"bottom"}
+                  key={"bottomRemoveBanner"}
                   placement={"bottom"}
                   delay={{ show: 500, hide: 250 }}
                   overlay={
-                    <Tooltip id={`tooltip-bottom}`}>
+                    <Tooltip id={`tooltip-bottomRemoveBanner}`}>
                       {t(`validation:userSettings.removePhoto`)}
                     </Tooltip>
                   }
@@ -219,11 +219,11 @@ const Banner = ({ isEditBanner }: BannerProps) => {
         >
           {isEditBanner && (
             <OverlayTrigger
-              key={"bottom"}
+              key={"bottomAddPhoto"}
               placement={"bottom"}
               delay={{ show: 500, hide: 250 }}
               overlay={
-                <Tooltip id={`tooltip-bottom}`}>
+                <Tooltip id={`tooltip-bottomAddPhoto}`}>
                   {t(`validation:userSettings.addPhoto`)}
                 </Tooltip>
               }
