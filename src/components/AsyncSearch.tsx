@@ -60,7 +60,7 @@ export const AsyncSearch = () => {
     (store) => store.tags.tags
   );
 
-  console.log(tags.docs);
+  console.log(tags);
 
   // const handleShowMore = () => {
   //   return !tags.isLoading && dispatch(tagsActions.fetchTags(tags));
