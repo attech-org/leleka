@@ -1,6 +1,16 @@
 {
   "test": "Українська",
 
+  "notAuthorized": "Ви не авторизовані",
+
+  "followersList": {
+    "noFollowers": "У вас немає читачів"
+  },
+
+  "followingList": {
+    "noFollowing": "Ви нікого не читаєте"
+  },
+
   "common": {
     "showMore": "Показати більше",
     "follow": "Читати",
