@@ -1,7 +1,8 @@
 import { Image, Anchor, Popover, OverlayTrigger } from "react-bootstrap";
 import styled from "styled-components";
 
-import { MockUser } from "../types/mock-api-types";
+import { User } from "../types";
+import { FollowStatus } from "../types/constants";
 import FollowButton from "./FollowUserDialogueButton";
 import FollowCard from "./UserCard";
 
@@ -26,7 +27,7 @@ const RightSectionWrapper = styled.div`
   order: 3;
 `;
 
-const FollowerUserItem = ({ user }: { user: MockUser }) => {
+const FollowerUserItem = ({ user }: { user: User }) => {
   const popover = (
     <Popover>
       <FollowCard user={user} />
@@ -46,29 +47,29 @@ const FollowerUserItem = ({ user }: { user: MockUser }) => {
               width={50}
               height={50}
               roundedCircle
-              src={user.userPhotoUrl}
+              src={user.profile.avatar}
             />
           </OverlayTrigger>
         </LeftSectionWrapper>
         <MiddleSectionWrapper>
-          <Anchor className="link-dark" href={user.userUrl}>
-            {user.userFirstName + " " + user.userLastName}
+          <Anchor className="link-dark" href={user.url}>
+            {user.name}
           </Anchor>
           <p style={{ color: "#A6AEB5", textDecoration: "none" }}>
-            @{user.userName}
+            @{user.username}
           </p>
         </MiddleSectionWrapper>
         <RightSectionWrapper>
           <FollowButton
-            followStatus={user.followStatus}
-            followerName={user.userName}
+            followStatus={FollowStatus.FOLLOWED}
+            followerName={user.username}
           />
         </RightSectionWrapper>
       </UserItemHeader>
 
       <UserFollowerItemContent>
         <LeftSectionWrapper />
-        <MiddleSectionWrapper>{user.userCaption}</MiddleSectionWrapper>
+        <MiddleSectionWrapper>{user.description}</MiddleSectionWrapper>
         <RightSectionWrapper />
       </UserFollowerItemContent>
     </>
