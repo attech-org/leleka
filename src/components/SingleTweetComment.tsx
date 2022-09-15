@@ -1,3 +1,5 @@
+//COMPONENT CAN BE USED IN FUTURE
+
 // import React from "react";
 // import Avatar from "react-avatar";
 // import { Dropdown } from "react-bootstrap";
