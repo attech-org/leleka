@@ -32,15 +32,16 @@ const Logo = styled.img`
   width: 3rem;
 `;
 
-const TweetReplyForm: React.FC<{ author: Partial<User>; content: string }> = ({
-  author,
-  content,
-}) => {
+const TweetReplyForm: React.FC<{
+  author: Partial<User>;
+  content: string;
+  id: string;
+}> = ({ author, content, id }) => {
   const dispatch = useDispatch<AppDispatch>();
   const [comment, setComment] = useState("");
 
   const handleCommentButton = (): void => {
-    dispatch(tweetsActions.createComment({ content: comment }));
+    dispatch(tweetsActions.createReply({ content: comment, repliedTo: id }));
   };
   const { t } = useTranslation();
 
@@ -78,36 +79,38 @@ const TweetReplyForm: React.FC<{ author: Partial<User>; content: string }> = ({
               name="username"
               src={avatar}
             />
-            <ReactQuill
-              value={comment}
-              placeholder={t("translation:reply.placeholder")}
-              modules={{
-                toolbar: false,
-              }}
-              formats={[
-                "header",
-                "font",
-                "size",
-                "bold",
-                "italic",
-                "underline",
-                "strike",
-                "blockquote",
-                "color",
-                "background",
-                "list",
-                "bullet",
-                "indent",
-                "link",
-                "video",
-                "image",
-                "code-block",
-                "align",
-              ]}
-              onChange={(val) => {
-                setComment(val);
-              }}
-            />
+            <StyledDiv>
+              <ReactQuill
+                value={comment}
+                placeholder={t("translation:reply.placeholder")}
+                modules={{
+                  toolbar: false,
+                }}
+                formats={[
+                  "header",
+                  "font",
+                  "size",
+                  "bold",
+                  "italic",
+                  "underline",
+                  "strike",
+                  "blockquote",
+                  "color",
+                  "background",
+                  "list",
+                  "bullet",
+                  "indent",
+                  "link",
+                  "video",
+                  "image",
+                  "code-block",
+                  "align",
+                ]}
+                onChange={(val) => {
+                  setComment(val);
+                }}
+              />
+            </StyledDiv>
           </div>
           <div className="d-flex justify-content-between">
             <div className="d-flex p-2">

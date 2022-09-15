@@ -53,8 +53,8 @@ export const createTweet = createAsyncThunk<Tweet2, NewTweetBody>(
   }
 );
 
-const createComment = createAsyncThunk<Tweet2, NewTweetBody>(
-  "tweets/repliedTo",
+const createReply = createAsyncThunk<Tweet2, NewTweetBody>(
+  "tweets/reply",
   async (body) => {
     const response = await instance.post("api/tweets", body);
     return response.data;
@@ -142,17 +142,17 @@ const tweetsSlice = createSlice<TweetsStore, SliceCaseReducers<TweetsStore>>({
       store.singleTweet.isLoading = false;
       store.singleTweet.error = "Failed to post tweet on server";
     });
-    builder.addCase(createComment.pending, (store) => {
+    builder.addCase(createReply.pending, (store) => {
       store.currentTweetReplies.isLoading = true;
     });
-    builder.addCase(createComment.fulfilled, (store, { payload }) => {
+    builder.addCase(createReply.fulfilled, (store, { payload }) => {
       store.currentTweetReplies.isLoading = false;
       store.currentTweetReplies.docs = [
         payload,
         ...store.currentTweetReplies.docs,
       ];
     });
-    builder.addCase(createComment.rejected, (store) => {
+    builder.addCase(createReply.rejected, (store) => {
       store.currentTweetReplies.isLoading = false;
       store.currentTweetReplies.error = "Failed to post tweet on server";
     });
@@ -211,7 +211,7 @@ export const tweetsActions = {
   fetchTweetById,
   fetchTweetReplies,
   fetchLikes,
-  createComment,
+  createReply,
 };
 
 export default tweetsSlice.reducer;
