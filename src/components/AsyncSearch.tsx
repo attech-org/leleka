@@ -1,13 +1,25 @@
 import { useState } from "react";
-import { Form, InputGroup, Image } from "react-bootstrap";
+import {
+  Form,
+  InputGroup,
+  // Image
+} from "react-bootstrap";
 import { Search as SearchIcon } from "react-bootstrap-icons";
 import AsyncTypeahead from "react-bootstrap-typeahead/types/components/AsyncTypeahead";
 import { Option } from "react-bootstrap-typeahead/types/types";
 import { useTranslation } from "react-i18next";
+import {
+  // useDispatch,
+  useSelector,
+} from "react-redux";
 import styled from "styled-components";
 
-import users from "../MOCKS/users";
-import { MockUser } from "../types/mock-api-types";
+// import { tagsActions } from "../redux/reducers/tags";
+import {
+  // AppDispatch,
+  RootState,
+} from "../redux/store";
+import { Tag } from "../types";
 
 const StyledForm = styled(Form)`
   border: 2px solid transparent;
@@ -23,35 +35,47 @@ const StyledInputGroup = styled(InputGroup)`
   }
 `;
 
-const UserItem = ({ user }: { user: MockUser }) => {
+const UserItem = ({ tag }: { tag: Tag }) => {
   return (
-    //TODO: add router push to user details page when created
     <div className="d-flex align-items-center">
-      <div className="p-1">
+      {/* <div className="p-1">
         <Image width={50} height={50} roundedCircle src={user.userPhotoUrl} />
-      </div>
+      </div> */}
       <div className="p-1">
-        <p className="fw-bold">{user.userFirstName + user.userLastName}</p>
-        <p>@{user.userName}</p>
-        <p>{user.userCaption}</p>
+        {/* <p className="fw-bold">{user.userFirstName + user.userLastName}</p>
+        <p>@{user.userName}</p> */}
+        <p>{tag.name}</p>
       </div>
     </div>
   );
 };
+
 export const AsyncSearch = () => {
   const [isLoading, setIsLoading] = useState(false);
-  const [options, setOptions] = useState<Array<MockUser>>([]);
+  const [options, setOptions] = useState<Tag[]>([]);
+
+  // const dispatch = useDispatch<AppDispatch>();
+
+  const tags = useSelector<RootState, RootState["tags"]["tags"]>(
+    (store) => store.tags.tags
+  );
+  console.log(tags.docs);
+
+  // const handleShowMore = () => {
+  //   return !tags.isLoading && dispatch(tagsActions.fetchTags(tags));
+  // };
 
   const handleSearch = (query: string) => {
     setIsLoading(true);
-    const arr = users;
-    const searchResult: Array<MockUser> = [];
-    arr.map((user: MockUser) => {
-      if (user.userName.includes(query)) {
-        searchResult.push(user);
+    const arr = tags.docs;
+    const searchResult: Tag[] = [];
+    arr.map((item: Tag) => {
+      if (item.name.includes(query)) {
+        searchResult.push(item);
       }
     });
     const res = searchResult || [];
+    console.log(res);
     setOptions(res);
     setIsLoading(false);
   };
@@ -67,14 +91,16 @@ export const AsyncSearch = () => {
         </div>
         <div style={{ width: "90%" }}>
           <AsyncTypeahead
-            filterBy={["userName", "userFirstName", "userLastName"]}
+            // filterBy={["name"]}
+            filterBy={() => true}
             id="async-example"
             isLoading={isLoading}
-            labelKey="userName"
+            labelKey="name"
             minLength={3}
             onSearch={handleSearch}
             options={options}
-            delay={300}
+            delay={500}
+            caseSensitive={false}
             inputProps={{
               className: "form-control border-0 bg-light px-3 fs-6  ",
               type: "text",
@@ -82,7 +108,12 @@ export const AsyncSearch = () => {
             }}
             size="sm"
             renderMenuItemChildren={(option: Option) => (
-              <UserItem user={{ ...(option as MockUser) }} />
+              //   <InfiniteList<Like>
+              //   showMore={handleShowMore}
+              //   data={likedTweets}
+              //   itemComponent={(itemData) => <FeedLikesTweet {...itemData} />}
+              // />
+              <UserItem tag={{ ...(option as Tag) }} />
             )}
           />
         </div>
