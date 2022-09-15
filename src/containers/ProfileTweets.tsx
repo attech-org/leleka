@@ -1,49 +1,30 @@
-import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
-// import SingleTweet from "../components/SingleTweet";
-import MOCKTweets from "../MOCKS/tweets";
-import { Tweet } from "../types";
-import { Pagination } from "../types/mock-api-types";
-// import InfiniteList from "./InfiniteList";
+import SingleTweet from "../components/SingleTweet";
+import { tweetsActions } from "../redux/reducers/tweets";
+import { AppDispatch, RootState } from "../redux/store";
+import { Tweet2 } from "../types";
+import InfiniteList from "./InfiniteList";
 
-function sleep(ms: number) {
-  return new Promise((resolve) => setTimeout(resolve, ms));
-}
+const ProfileTweets = () => {
+  const dispatch = useDispatch<AppDispatch>();
+  const posts = useSelector<RootState, RootState["tweets"]["feedTweets"]>(
+    (store) => store.tweets.feedTweets
+  );
 
-const ProfileTweets: React.FunctionComponent = () => {
-  const [mockUsers, setMockUsers] = useState<Pagination<Tweet>>();
-
-  const fetchData = async (page = 0) => {
-    let firstArg = 0;
-    if (mockUsers?.docs.length) {
-      firstArg = mockUsers?.docs.length + 1;
-    }
-    const mockData: Array<Tweet> = MOCKTweets.slice(firstArg, firstArg + 10);
-
-    await sleep(2000);
-    setMockUsers({
-      docs: [...(mockUsers?.docs || []), ...mockData],
-      hasNextPage: true,
-      limit: 10,
-      page: page + 1,
-    });
+  const handleShowMore = () => {
+    return !posts.isLoading && dispatch(tweetsActions.fetchFeedTweets(posts));
   };
-
-  useEffect(() => {
-    fetchData();
-  }, []);
 
   return (
     <>
-      {/* {mockUsers && (
-        <InfiniteList<Tweet>
-          showMore={fetchData}
-          data={mockUsers}
-          itemComponent={(itemData) => (
-            <SingleTweet key={itemData.id} {...itemData} />
-          )}
-        />
-      )} */}
+      <InfiniteList<Tweet2>
+        showMore={handleShowMore}
+        data={posts}
+        itemComponent={(itemData) => (
+          <SingleTweet key={itemData._id} {...itemData} />
+        )}
+      />
     </>
   );
 };
