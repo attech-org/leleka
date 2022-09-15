@@ -1,5 +1,6 @@
 import React from "react";
 import { ListGroup, ListGroupItem } from "react-bootstrap";
+import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 
@@ -22,6 +23,8 @@ const LiWrapper = styled(ListGroupItem)`
 `;
 
 const FollowersList: React.FunctionComponent = () => {
+  const { t } = useTranslation();
+
   const dispatch = useDispatch<AppDispatch>();
   const user = useSelector<RootState>((store) => store.user) as UserStore;
   const followers = useSelector<RootState>(
@@ -58,10 +61,10 @@ const FollowersList: React.FunctionComponent = () => {
             />
           </ListGroup>
         ) : (
-          "You have no followers"
+          t("followersList.noFollowers")
         )
       ) : (
-        "You are not authorized"
+        t("notAuthorized")
       )}
     </>
   );
