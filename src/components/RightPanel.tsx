@@ -1,3 +1,4 @@
+import { useParams } from "react-router-dom";
 import styled from "styled-components";
 
 import { AsyncSearch } from "../components/AsyncSearch";
@@ -12,12 +13,15 @@ const StickySearch = styled.div`
 `;
 
 export const RightPanel = () => {
+  const match = useParams();
+  const trends = match.trends || "";
+
   return (
     <Wrapper className="col-xl-4 col-lg-4">
       <StickySearch>
         <AsyncSearch />
       </StickySearch>
-      {!window.location.hash.includes("/trends") && <Trends />}
+      {!trends.includes("trends") && <Trends />}
       <Recommendations />
     </Wrapper>
   );
