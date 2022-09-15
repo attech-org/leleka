@@ -35,7 +35,7 @@ const StyledInputGroup = styled(InputGroup)`
   }
 `;
 
-const UserItem = ({ tag }: { tag: Tag }) => {
+const TagItem = ({ tag }: { tag: Tag }) => {
   return (
     <div className="d-flex align-items-center">
       {/* <div className="p-1">
@@ -59,6 +59,7 @@ export const AsyncSearch = () => {
   const tags = useSelector<RootState, RootState["tags"]["tags"]>(
     (store) => store.tags.tags
   );
+
   console.log(tags.docs);
 
   // const handleShowMore = () => {
@@ -75,11 +76,13 @@ export const AsyncSearch = () => {
       }
     });
     const res = searchResult || [];
-    console.log(res);
     setOptions(res);
     setIsLoading(false);
+    console.log(options);
   };
+
   const { t } = useTranslation();
+
   return (
     <StyledForm className="justify-content-center align-items-center mx-1 my-2 rounded-pill bg-light px-3 py-1">
       <StyledInputGroup
@@ -113,7 +116,7 @@ export const AsyncSearch = () => {
               //   data={likedTweets}
               //   itemComponent={(itemData) => <FeedLikesTweet {...itemData} />}
               // />
-              <UserItem tag={{ ...(option as Tag) }} />
+              <TagItem tag={{ ...(option as Tag) }} />
             )}
           />
         </div>
