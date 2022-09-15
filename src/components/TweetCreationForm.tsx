@@ -1,4 +1,5 @@
-import { memo, useState } from "react";
+import Picker, { IEmojiData } from "emoji-picker-react";
+import { memo, MouseEvent, useRef, useState } from "react";
 import Avatar from "react-avatar";
 import { OverlayTrigger, Popover } from "react-bootstrap";
 import {
@@ -43,7 +44,9 @@ const StyledPopover = styled(Popover)`
 `;
 
 const TweetCreationForm: React.FC = () => {
+  const editor = useRef<ReactQuill>(null);
   const [content, setContent] = useState("");
+  const [showPicker, setShowPicker] = useState(false);
 
   const dispatch = useDispatch<AppDispatch>();
   const isLoading = useSelector<RootState, boolean | undefined>(
@@ -66,8 +69,14 @@ const TweetCreationForm: React.FC = () => {
   const handleImgUpload = (): void => {
     console.warn("Img Upload");
   };
-  const handleEmojiPaste = (): void => {
-    console.warn("Emoji paste");
+
+  const onEmojiClick = (_event: MouseEvent, emojiObject: IEmojiData): void => {
+    const editorInstance = editor.current?.getEditor();
+    const position =
+      editor.current?.selection?.index ||
+      (editorInstance?.getLength() || 0) - 1 ||
+      0;
+    editorInstance?.insertText(position, emojiObject.emoji);
   };
 
   return (
@@ -82,7 +91,7 @@ const TweetCreationForm: React.FC = () => {
         />
         <div className="flex-grow-1 ms-2">
           <ReactQuill
-            value={content}
+            ref={editor}
             placeholder="What's happening?"
             modules={{
               toolbar: false,
@@ -186,9 +195,29 @@ const TweetCreationForm: React.FC = () => {
               <StyledIcon className="rounded-circle" onClick={handleImgUpload}>
                 <ImageIcon className="m-2 fs-5" />
               </StyledIcon>
-              <StyledIcon className="rounded-circle" onClick={handleEmojiPaste}>
-                <EmojiSmile className="m-2 fs-5" />
-              </StyledIcon>
+
+              <OverlayTrigger
+                trigger="click"
+                key="bottom"
+                placement="bottom"
+                overlay={
+                  <StyledPopover>
+                    {showPicker && (
+                      <Picker
+                        pickerStyle={{ width: "100%" }}
+                        onEmojiClick={onEmojiClick}
+                      />
+                    )}
+                  </StyledPopover>
+                }
+              >
+                <StyledIcon
+                  className="rounded-circle"
+                  onClick={() => setShowPicker((val) => !val)}
+                >
+                  <EmojiSmile className="m-2 fs-5" />
+                </StyledIcon>
+              </OverlayTrigger>
             </div>
             <button
               type="submit"
