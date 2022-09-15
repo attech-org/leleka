@@ -1,11 +1,16 @@
+import "react-quill/dist/quill.snow.css";
+import { useState } from "react";
 import Avatar from "react-avatar";
 import { EmojiSmile, Chat, Image as ImageIcon } from "react-bootstrap-icons";
 import { useTranslation } from "react-i18next";
+import ReactQuill from "react-quill";
+import { useSelector, useDispatch } from "react-redux";
 import styled from "styled-components";
 
 import ModalUniversal from "../containers/ModalUniversal";
+import { tweetsActions } from "../redux/reducers/tweets";
+import { RootState, AppDispatch } from "../redux/store";
 import { User } from "../types";
-import UniversalInput from "./UniversalInput";
 
 const StyledIcon = styled.div`
   color: rgb(0, 0, 255, 0.6);
@@ -14,14 +19,12 @@ const StyledIcon = styled.div`
     cursor: pointer;
   }
 `;
-// const StyledInput = styled.input`
-//   width: 100%;
-//   margin-top: 10px;
-//   border: none;
-// `;
 
 const StyledDiv = styled.div`
   width: 100%;
+`;
+const StyledName = styled.div`
+  font-weight: bold;
 `;
 
 const Logo = styled.img`
@@ -33,43 +36,78 @@ const TweetReplyForm: React.FC<{ author: Partial<User>; content: string }> = ({
   author,
   content,
 }) => {
+  const dispatch = useDispatch<AppDispatch>();
+  const [comment, setComment] = useState("");
+
+  const handleCommentButton = (): void => {
+    dispatch(tweetsActions.createComment({ content: comment }));
+  };
   const { t } = useTranslation();
 
-  const handleReplyButton = (): void => {
-    console.warn("Replied");
-  };
   const handleImgUpload = (): void => {
     console.warn("Img Upload");
   };
   const handleEmojiPaste = (): void => {
     console.warn("Emoji paste");
   };
+  const avatar = useSelector<RootState, RootState["user"]["profile"]["avatar"]>(
+    (store) => store.user.profile.avatar
+  );
 
   const ReplyFormContainer = (
     <div>
       <div className="border-0 p-3 d-flex text-start justify-content-start">
         <div className="">
-          <Avatar
-            size="48"
-            round="50%"
-            twitterHandle="sitebase"
-            name="username"
-            src=""
+          <Logo
+            className="rounded-circle"
+            src={author.profile?.avatar}
+            alt=""
           />
         </div>
         <div className="flex-grow-1 ms-2">
-          <StyledDiv>{author.username}</StyledDiv>
+          <StyledName>{author.name}</StyledName>
           <StyledDiv>@{author.username}</StyledDiv>
           <br />
           <div className="" dangerouslySetInnerHTML={{ __html: content }} />
           <br />
           <div className="border-0 p-3 d-flex text-start justify-content-start">
-            <Logo
-              className="rounded-circle"
-              src={author.profile?.avatar}
-              alt=""
+            <Avatar
+              size="48"
+              round="50%"
+              twitterHandle="sitebase"
+              name="username"
+              src={avatar}
             />
-            <UniversalInput />
+            <ReactQuill
+              value={comment}
+              placeholder={t("translation:reply.placeholder")}
+              modules={{
+                toolbar: false,
+              }}
+              formats={[
+                "header",
+                "font",
+                "size",
+                "bold",
+                "italic",
+                "underline",
+                "strike",
+                "blockquote",
+                "color",
+                "background",
+                "list",
+                "bullet",
+                "indent",
+                "link",
+                "video",
+                "image",
+                "code-block",
+                "align",
+              ]}
+              onChange={(val) => {
+                setComment(val);
+              }}
+            />
           </div>
           <div className="d-flex justify-content-between">
             <div className="d-flex p-2">
@@ -82,7 +120,7 @@ const TweetReplyForm: React.FC<{ author: Partial<User>; content: string }> = ({
             </div>
             <button
               className="btn btn-primary rounded-5 d-flex align-items-center m-2"
-              onClick={handleReplyButton}
+              onClick={handleCommentButton}
             >
               {t("translation:Reply")}
             </button>

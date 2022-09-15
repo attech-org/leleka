@@ -14,7 +14,7 @@ import styled from "styled-components";
 import { Like } from "../types";
 import LikeButton from "./LikeButton";
 import RetweetButton from "./RetweetButton";
-import TweetReplyForm from "./TweetReplyForm";
+// import TweetReplyForm from "./TweetReplyForm";
 
 const PostWrapper = styled.section`
   transition-duration: 0.2s;
@@ -177,7 +177,7 @@ const FeedLikesTweet = ({ tweet, user }: Like) => {
           <div className="px-3 d-flex justify-content-between align-items-center">
             <StatisticOfTweet className="d-flex align-items-center justify-content-center">
               <HoverBackgroundBlue className="p-2 rounded-circle d-flex justify-content-center align-items-center">
-                <TweetReplyForm />
+                {/* <TweetReplyForm /> */}
               </HoverBackgroundBlue>
               <div className="px-1">{tweet.stats.comments}</div>
             </StatisticOfTweet>

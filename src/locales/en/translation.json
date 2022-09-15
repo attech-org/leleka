@@ -139,5 +139,8 @@
   "likeButton": {
     "like": "Like",
     "unlike": "Unlike"
+  },
+  "reply": {
+    "placeholder": "Tweet your reply"
   }
 }
