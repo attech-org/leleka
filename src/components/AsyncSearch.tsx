@@ -1,24 +1,14 @@
 import { useState } from "react";
-import {
-  Form,
-  InputGroup,
-  // Image
-} from "react-bootstrap";
+import { Form, InputGroup } from "react-bootstrap";
 import { Search as SearchIcon } from "react-bootstrap-icons";
 import AsyncTypeahead from "react-bootstrap-typeahead/types/components/AsyncTypeahead";
 import { Option } from "react-bootstrap-typeahead/types/types";
 import { useTranslation } from "react-i18next";
-import {
-  // useDispatch,
-  useSelector,
-} from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 
-// import { tagsActions } from "../redux/reducers/tags";
-import {
-  // AppDispatch,
-  RootState,
-} from "../redux/store";
+import { tagsActions } from "../redux/reducers/tags";
+import { AppDispatch, RootState } from "../redux/store";
 import { Tag } from "../types";
 
 const StyledForm = styled(Form)`
@@ -38,13 +28,10 @@ const StyledInputGroup = styled(InputGroup)`
 const TagItem = ({ tag }: { tag: Tag }) => {
   return (
     <div className="d-flex align-items-center">
-      {/* <div className="p-1">
-        <Image width={50} height={50} roundedCircle src={user.userPhotoUrl} />
-      </div> */}
-      <div className="p-1">
-        {/* <p className="fw-bold">{user.userFirstName + user.userLastName}</p>
-        <p>@{user.userName}</p> */}
-        <p>{tag.name}</p>
+      <div className="fs-5 my-2 p-1">
+        <p>
+          <SearchIcon size={24} className="me-3" />#{tag.name}
+        </p>
       </div>
     </div>
   );
@@ -54,38 +41,29 @@ export const AsyncSearch = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [options, setOptions] = useState<Tag[]>([]);
 
-  // const dispatch = useDispatch<AppDispatch>();
+  const dispatch = useDispatch<AppDispatch>();
 
   const tags = useSelector<RootState, RootState["tags"]["tags"]>(
     (store) => store.tags.tags
   );
 
-  console.log("tags store", tags.docs);
-
-  // const likedTweets = useSelector<RootState, RootState["tweets"]["likes"]>(
-  //   (store) => store.tweets.likes
-  // );
-
-  // console.log("likes store", likedTweets.docs);
-
-  // const handleShowMore = () => {
-  //   return !tags.isLoading && dispatch(tagsActions.fetchTags(tags));
-  // };
+  // console.log("tags store", tags.docs);
 
   const handleSearch = (query: string) => {
+    dispatch(tagsActions.fetchTags());
     setIsLoading(true);
-    console.log("search");
+    // console.log("search");
     const arr = tags.docs;
     const searchResult: Tag[] = [];
     arr.map((item: Tag) => {
-      if (item.name.includes(query)) {
+      if (item.name.toLowerCase().includes(query.toLowerCase())) {
         searchResult.push(item);
       }
     });
     const res = searchResult || [];
     setOptions(res);
     setIsLoading(false);
-    console.log("search res", res);
+    // console.log("search res", res);
   };
 
   const { t } = useTranslation();
@@ -101,7 +79,6 @@ export const AsyncSearch = () => {
         </div>
         <div style={{ width: "90%" }}>
           <AsyncTypeahead
-            // filterBy={["name"]}
             filterBy={() => true}
             id="async-example"
             isLoading={isLoading}
@@ -118,11 +95,6 @@ export const AsyncSearch = () => {
             }}
             size="sm"
             renderMenuItemChildren={(option: Option) => (
-              //   <InfiniteList<Like>
-              //   showMore={handleShowMore}
-              //   data={likedTweets}
-              //   itemComponent={(itemData) => <FeedLikesTweet {...itemData} />}
-              // />
               <TagItem tag={{ ...(option as Tag) }} />
             )}
           />

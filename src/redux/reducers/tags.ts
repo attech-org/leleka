@@ -21,6 +21,12 @@ const tagsInitialStore: TagsStore = {
   },
 };
 
+// const tagsLength = async () => {
+//   const response = await instance.get("api/tags", {});
+//   console.log(tagsLength);
+//   return response.data.totalDocs;
+// };
+
 const fetchTags = createAsyncThunk<
   Pagination<Tag>,
   Pagination<Tag> | undefined
