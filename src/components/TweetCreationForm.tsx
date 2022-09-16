@@ -226,7 +226,7 @@ const TweetCreationForm: React.FC = () => {
               type="submit"
               className="btn btn-primary rounded-5 d-flex align-items-center m-2"
               onClick={handleTweetButton}
-              disabled={isLoading ? true : false}
+              disabled={isLoading}
             >
               {t("translation:tweetCreationForm.tweetButton")}
             </button>
