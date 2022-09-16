@@ -60,7 +60,13 @@ export const AsyncSearch = () => {
     (store) => store.tags.tags
   );
 
-  console.log(tags);
+  console.log("tags store", tags.docs);
+
+  const likedTweets = useSelector<RootState, RootState["tweets"]["likes"]>(
+    (store) => store.tweets.likes
+  );
+
+  console.log("likes store", likedTweets.docs);
 
   // const handleShowMore = () => {
   //   return !tags.isLoading && dispatch(tagsActions.fetchTags(tags));
@@ -69,6 +75,7 @@ export const AsyncSearch = () => {
   const handleSearch = (query: string) => {
     setIsLoading(true);
     const arr = tags.docs;
+    console.log("search");
     const searchResult: Tag[] = [];
     arr.map((item: Tag) => {
       if (item.name.includes(query)) {
@@ -78,7 +85,7 @@ export const AsyncSearch = () => {
     const res = searchResult || [];
     setOptions(res);
     setIsLoading(false);
-    console.log(options);
+    console.log("search res", res);
   };
 
   const { t } = useTranslation();

@@ -24,7 +24,7 @@ const tagsInitialStore: TagsStore = {
 const fetchTags = createAsyncThunk<
   Pagination<Tag>,
   Pagination<Tag> | undefined
->("", async (filters) => {
+>("profile/likes", async (filters) => {
   const { limit = 10, nextPage = 1 } = filters || {};
 
   const response = await instance.get("api/tags", {
@@ -33,7 +33,7 @@ const fetchTags = createAsyncThunk<
       page: nextPage,
     },
   });
-
+  console.log("response - tags");
   return response.data;
 });
 
