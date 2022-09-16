@@ -141,6 +141,8 @@
     "unlike": "Unlike"
   },
   "reply": {
-    "placeholder": "Tweet your reply"
+    "placeholder": "Tweet your reply",
+    "tooltip": "Reply",
+    "replyContent": "Replying to "
   }
 }

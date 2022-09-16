@@ -1,7 +1,7 @@
 import "react-quill/dist/quill.snow.css";
 import { useState } from "react";
 import Avatar from "react-avatar";
-import { EmojiSmile, Chat, Image as ImageIcon } from "react-bootstrap-icons";
+import { EmojiSmile, Image as ImageIcon } from "react-bootstrap-icons";
 import { useTranslation } from "react-i18next";
 import ReactQuill from "react-quill";
 import { useSelector, useDispatch } from "react-redux";
@@ -11,6 +11,7 @@ import ModalUniversal from "../containers/ModalUniversal";
 import { tweetsActions } from "../redux/reducers/tweets";
 import { RootState, AppDispatch } from "../redux/store";
 import { User } from "../types";
+import ReplyButton from "./ReplyButton";
 
 const StyledIcon = styled.div`
   color: rgb(0, 0, 255, 0.6);
@@ -36,12 +37,14 @@ const TweetReplyForm: React.FC<{
   author: Partial<User>;
   content: string;
   id: string;
-}> = ({ author, content, id }) => {
+  commentsCount?: number;
+}> = ({ author, content, id, commentsCount }) => {
   const dispatch = useDispatch<AppDispatch>();
   const [comment, setComment] = useState("");
-
+  const [replyCount, setReplyCount] = useState(commentsCount || 0);
   const handleCommentButton = (): void => {
     dispatch(tweetsActions.createReply({ content: comment, repliedTo: id }));
+    setReplyCount(replyCount + 1);
   };
   const { t } = useTranslation();
 
@@ -134,7 +137,11 @@ const TweetReplyForm: React.FC<{
   );
 
   return (
-    <ModalUniversal button={<Chat />} title="" content={ReplyFormContainer} />
+    <ModalUniversal
+      button={<ReplyButton replyCount={replyCount} />}
+      title=""
+      content={ReplyFormContainer}
+    />
   );
 };
 

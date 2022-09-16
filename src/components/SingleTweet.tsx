@@ -15,7 +15,7 @@ import { Tweet2 } from "../types";
 // import AttachedContent from "./AttachedContent";
 import LikeButton from "./LikeButton";
 import RetweetButton from "./RetweetButton";
-// import TweetReplyForm from "./TweetReplyForm";
+import TweetReplyForm from "./TweetReplyForm";
 
 const StyledLink = styled.a`
   transition: 0.3s;
@@ -97,11 +97,11 @@ const IconBg = styled.div<IIconBg>`
 `;
 
 const SingleTweet = ({
-  // _id,
+  _id,
   author,
   content,
   createdAt,
-  // repliedTo,
+  repliedTo,
   // updatedAt,
   stats: { likes, retweets, comments },
 }: Tweet2) => {
@@ -192,6 +192,14 @@ const SingleTweet = ({
             </div>
           </NameSection>
         </Author>
+        {repliedTo ? (
+          <div className="mb-3">
+            {t("reply.replyContent")}
+            <a href="#">@topic_author</a>
+          </div>
+        ) : (
+          ""
+        )}
         <Text className="py-2">{content}</Text>
         {/* <AttachedContent /> */}
         <Date className="border-bottom py-3 fw-bold">
@@ -211,7 +219,7 @@ const SingleTweet = ({
             iconColor={Blue}
             className="m-0 p-0 rounded-circle row align-items-center justify-content-center"
           >
-            {/* <TweetReplyForm author={author} content={content}/> */}
+            <TweetReplyForm author={author} content={content} id={_id} />
           </IconBg>
           <IconBg
             iconBgColor={""}

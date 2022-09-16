@@ -189,12 +189,13 @@ const tweetsSlice = createSlice<TweetsStore, SliceCaseReducers<TweetsStore>>({
     builder.addCase(createReply.pending, (store) => {
       store.currentTweetReplies.isLoading = true;
     });
-    builder.addCase(createReply.fulfilled, (store, { payload }) => {
+    builder.addCase(createReply.fulfilled, (store) => {
       store.currentTweetReplies.isLoading = false;
-      store.currentTweetReplies.docs = [
-        payload,
-        ...store.currentTweetReplies.docs,
-      ];
+      // TODO: for real time update
+      // store.currentTweetReplies.docs = [
+      //   payload,
+      //   ...store.currentTweetReplies.docs,
+      // ];
     });
     builder.addCase(createReply.rejected, (store) => {
       store.currentTweetReplies.isLoading = false;

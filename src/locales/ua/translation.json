@@ -141,6 +141,8 @@
     "unlike": "Видалити вподобання"
   },
   "reply": {
-    "placeholder": "Твiтнiть вiдповiдь"
+    "placeholder": "Твiтнiть вiдповiдь",
+    "tooltip": "Відповісти",
+    "replyContent": "У відповідь "
   }
 }
