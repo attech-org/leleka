@@ -1,3 +1,4 @@
+import { useLocation } from "react-router-dom";
 import styled from "styled-components";
 
 import { AsyncSearch } from "../components/AsyncSearch";
@@ -12,12 +13,14 @@ const StickySearch = styled.div`
 `;
 
 export const RightPanel = () => {
+  const location = useLocation();
+
   return (
     <Wrapper className="col-xl-4 col-lg-4">
       <StickySearch>
         <AsyncSearch />
       </StickySearch>
-      {!window.location.pathname.includes("/trends") && <Trends />}
+      {!location.pathname.includes("trends") && <Trends />}
       <Recommendations />
     </Wrapper>
   );
