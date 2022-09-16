@@ -1,7 +1,7 @@
 import Picker, { IEmojiData } from "emoji-picker-react";
 import { memo, MouseEvent, useRef, useState } from "react";
 import Avatar from "react-avatar";
-import { OverlayTrigger, Popover } from "react-bootstrap";
+import { OverlayTrigger, Popover, Spinner } from "react-bootstrap";
 import {
   EmojiSmile,
   Image as ImageIcon,
@@ -219,6 +219,9 @@ const TweetCreationForm: React.FC = () => {
                 </StyledIcon>
               </OverlayTrigger>
             </div>
+            {isLoading && (
+              <Spinner animation="border" variant="primary" className="m-2" />
+            )}
             <button
               type="submit"
               className="btn btn-primary rounded-5 d-flex align-items-center m-2"
