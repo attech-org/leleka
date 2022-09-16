@@ -1,7 +1,8 @@
 import { Card, Image } from "react-bootstrap";
 import styled from "styled-components";
 
-import { MockUser } from "../types/mock-api-types";
+import { User } from "../types";
+import { FollowStatus } from "../types/constants";
 import FollowButton from "./FollowUserDialogueButton";
 
 const HeaderSection = styled.div`
@@ -9,7 +10,7 @@ const HeaderSection = styled.div`
   justify-content: space-between;
 `;
 
-const FollowerUserCard = ({ user }: { user: MockUser }) => {
+const FollowerUserCard = ({ user }: { user: User }) => {
   return (
     <Card>
       <Card.Body>
@@ -18,27 +19,27 @@ const FollowerUserCard = ({ user }: { user: MockUser }) => {
             width={50}
             height={50}
             roundedCircle
-            src={user?.userPhotoUrl || "TODO:default twitter img"}
+            src={user?.profile.avatar || "TODO:default twitter img"}
           />
           <FollowButton
-            followStatus={user.followStatus}
-            followerName={user.userName}
+            followStatus={FollowStatus.FOLLOWED} // TODO: get follow status from backend
+            followerName={user.username}
           />
         </HeaderSection>
 
-        <Card.Title>{user.userLastName + user.userFirstName}</Card.Title>
+        <Card.Title>{user.name}</Card.Title>
         <Card.Subtitle className="mb-2 text-muted">
-          @{user.userName}
+          @{user.username}
         </Card.Subtitle>
 
-        <Card.Text>{user.userCaption}</Card.Text>
+        <Card.Text>{user.description}</Card.Text>
 
         <div style={{ marginTop: "10px" }}>
           <Card.Link className="link-dark" href="#">
-            {user.following} following
+            {user.followersCount} following
           </Card.Link>
           <Card.Link className="link-dark" href="#">
-            {user.followers} followers
+            {user.friendsCount} followers
           </Card.Link>
         </div>
       </Card.Body>
