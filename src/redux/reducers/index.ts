@@ -1,6 +1,8 @@
 //Redux:
 import { combineReducers } from "redux";
 
+import followersReducer from "./followers";
+import followingReducer from "./following";
 import pwaReducer from "./pwa";
 import tagsReducer from "./tags";
 import tweetsReducer from "./tweets";
@@ -10,5 +12,7 @@ export const rootReducer = combineReducers({
   tweets: tweetsReducer,
   user: userReducer,
   pwaInfo: pwaReducer,
+  followers: followersReducer,
+  following: followingReducer,
   tags: tagsReducer,
 });

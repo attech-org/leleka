@@ -107,7 +107,7 @@ const EditProfileForm = () => {
     <Container className="p-0">
       <Banner isEditBanner />
 
-      <Form>
+      <Form onSubmit={handleSubmit(submitForm)}>
         {/*----NameUser input -------*/}
         <FloatingLabel
           label={t(`validation:userSettings.name`)}
@@ -234,12 +234,7 @@ const EditProfileForm = () => {
         </div>
 
         <div className="d-grid gap-2">
-          <Button
-            type="submit"
-            variant="dark"
-            className="rounded-5 py-1 px-3"
-            onSubmit={handleSubmit(submitForm)}
-          >
+          <Button type="submit" variant="dark" className="rounded-5 py-1 px-3">
             {t(`validation:userSettings.saveButton`)}
           </Button>
         </div>
