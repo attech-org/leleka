@@ -24,7 +24,7 @@ const tagsInitialStore: TagsStore = {
 const fetchTags = createAsyncThunk<
   Pagination<Tag>,
   Pagination<Tag> | undefined
->("profile/likes", async (filters) => {
+>("tags/fetchTags", async (filters) => {
   const { limit = 10, nextPage = 1 } = filters || {};
 
   const response = await instance.get("api/tags", {
@@ -44,6 +44,7 @@ const tagsSlice = createSlice<TagsStore, SliceCaseReducers<TagsStore>>({
   extraReducers: (builder) => {
     builder.addCase(fetchTags.pending, (store) => {
       store.tags.isLoading = true;
+      store.tags.error = "Loadin error";
     });
     builder.addCase(fetchTags.fulfilled, (store, { payload }) => {
       if (store.tags.docs.length === 0 || payload.page !== 1) {

@@ -62,11 +62,11 @@ export const AsyncSearch = () => {
 
   console.log("tags store", tags.docs);
 
-  const likedTweets = useSelector<RootState, RootState["tweets"]["likes"]>(
-    (store) => store.tweets.likes
-  );
+  // const likedTweets = useSelector<RootState, RootState["tweets"]["likes"]>(
+  //   (store) => store.tweets.likes
+  // );
 
-  console.log("likes store", likedTweets.docs);
+  // console.log("likes store", likedTweets.docs);
 
   // const handleShowMore = () => {
   //   return !tags.isLoading && dispatch(tagsActions.fetchTags(tags));
@@ -74,8 +74,8 @@ export const AsyncSearch = () => {
 
   const handleSearch = (query: string) => {
     setIsLoading(true);
-    const arr = tags.docs;
     console.log("search");
+    const arr = tags.docs;
     const searchResult: Tag[] = [];
     arr.map((item: Tag) => {
       if (item.name.includes(query)) {
