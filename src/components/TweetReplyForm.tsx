@@ -43,7 +43,7 @@ const TweetReplyForm: React.FC<{
   const [comment, setComment] = useState("");
   const [replyCount, setReplyCount] = useState(commentsCount || 0);
   const handleCommentButton = (): void => {
-    dispatch(tweetsActions.createReply({ content: comment, repliedTo: id }));
+    dispatch(tweetsActions.createTweet({ content: comment, repliedTo: id }));
     setReplyCount(replyCount + 1);
   };
   const { t } = useTranslation();

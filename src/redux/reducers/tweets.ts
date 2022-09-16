@@ -67,14 +67,6 @@ export const createTweet = createAsyncThunk<Tweet2, NewTweetBody>(
   }
 );
 
-const createReply = createAsyncThunk<Tweet2, NewTweetBody>(
-  "tweets/reply",
-  async (body) => {
-    const response = await instance.post("api/tweets", body);
-    return response.data;
-  }
-);
-
 const fetchFeedTweets = createAsyncThunk<
   Pagination<Tweet2>,
   Pagination<Tweet2> | undefined
@@ -186,21 +178,6 @@ const tweetsSlice = createSlice<TweetsStore, SliceCaseReducers<TweetsStore>>({
       store.singleTweet.isLoading = false;
       store.singleTweet.error = "Failed to post tweet on server";
     });
-    builder.addCase(createReply.pending, (store) => {
-      store.currentTweetReplies.isLoading = true;
-    });
-    builder.addCase(createReply.fulfilled, (store) => {
-      store.currentTweetReplies.isLoading = false;
-      // TODO: for real time update
-      // store.currentTweetReplies.docs = [
-      //   payload,
-      //   ...store.currentTweetReplies.docs,
-      // ];
-    });
-    builder.addCase(createReply.rejected, (store) => {
-      store.currentTweetReplies.isLoading = false;
-      store.currentTweetReplies.error = "Failed to post tweet on server";
-    });
     builder.addCase(fetchTweetById.pending, (store) => {
       store.currentTweet.isLoading = true;
     });
@@ -292,7 +269,6 @@ export const tweetsActions = {
   fetchLikes,
   fetchMyTweets,
   fetchMyTweetsAndReplies,
-  createReply,
 };
 
 export default tweetsSlice.reducer;

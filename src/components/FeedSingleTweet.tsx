@@ -195,7 +195,7 @@ const FeedSingleTweet = ({
             {repliedTo ? (
               <div className="mb-3">
                 {t("reply.replyContent")}
-                <a href="#">@topic_author</a>
+                <a href={repliedTo.author.url}>@{repliedTo.author.username}</a>
               </div>
             ) : (
               ""
