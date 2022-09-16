@@ -63,7 +63,7 @@ const App: React.FunctionComponent = () => {
         <Route path="/authorization" element={<AuthorizationPage />} />
         <Route path="/followers" element={<Followers />} />
         <Route path="/following" element={<Following />} />
-        <Route path="/:trends" element={<Trends />} />
+        <Route path="/trends" element={<Trends />} />
         <Route path="/tweet/:id" element={<Tweet />} />
       </Routes>
     </div>
