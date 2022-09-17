@@ -10,6 +10,7 @@ import { Pagination } from "../../types/mock-api-types";
 
 export interface TagsStore {
   tags: LE<Pagination<Tag>>;
+  // isLoading: boolean;
 }
 
 const tagsInitialStore: TagsStore = {
@@ -23,18 +24,18 @@ const tagsInitialStore: TagsStore = {
 
 const fetchTags = createAsyncThunk<
   Pagination<Tag>,
-  (Pagination<Tag> & { query: string }) | undefined
+  { query: string } | undefined
 >("tags/fetchTags", async (filters) => {
-  const { limit = 10, nextPage = 1, query } = filters || {};
+  const { query } = filters || {};
 
   const response = await instance.get("api/tags", {
     params: {
-      limit,
-      page: nextPage,
+      // limit,
+      // page: nextPage,
       query: { name: { $regex: query } },
     },
   });
-  console.log("2. response - tags", response.data);
+  console.log("2. response - tags", response.data.docs);
   return response.data;
 });
 
@@ -45,7 +46,6 @@ const tagsSlice = createSlice<TagsStore, SliceCaseReducers<TagsStore>>({
   extraReducers: (builder) => {
     builder.addCase(fetchTags.pending, (store) => {
       store.tags.isLoading = true;
-      store.tags.error = "Loading error";
     });
     builder.addCase(fetchTags.fulfilled, (store, { payload }) => {
       // if (store.tags.docs.length === 0 || payload.page !== 1) {

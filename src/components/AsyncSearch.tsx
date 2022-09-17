@@ -1,7 +1,4 @@
-import React, {
-  useState,
-  // useEffect
-} from "react";
+import { useState } from "react";
 import { Form, InputGroup } from "react-bootstrap";
 import { Search as SearchIcon } from "react-bootstrap-icons";
 import AsyncTypeahead from "react-bootstrap-typeahead/types/components/AsyncTypeahead";
@@ -41,39 +38,28 @@ const TagItem = ({ tag }: { tag: Tag }) => {
 };
 
 export const AsyncSearch = () => {
-  const [isLoading, setIsLoading] = useState(false);
   const [options, setOptions] = useState<Tag[]>([]);
-  // const [text, setText] = useState<string>("");
 
   const dispatch = useDispatch<AppDispatch>();
-
-  // useEffect(() => {
-  //   dispatch(tagsActions.fetchTags());
-  //   console.log("dispatch");
-  // }, []);
 
   const tags = useSelector<RootState, RootState["tags"]["tags"]>(
     (store) => store.tags.tags
   );
 
-  // const handleInputChange = (e: string) => {
-  //   setText(e);
-  //   console.log(e);
-  // };
-
-  // const request = (query: string) =>
-  //   dispatch(tagsActions.fetchTags({ ...tags, query }));
+  const isLoading = useSelector<RootState, RootState["tags"]["isLoading"]>(
+    (store) => store.tags.isLoading
+  );
 
   const handleSearch = (query: string) => {
-    // 1.
+    console.log(isLoading);
     console.log("1. search", query);
-    setIsLoading(true);
-    // 2.
-    dispatch(tagsActions.fetchTags({ ...tags, query }));
-    // 3.
-    setOptions(tags.docs);
+
+    dispatch(tagsActions.fetchTags({ query })).then(() =>
+      setOptions(tags.docs)
+    );
+
     console.log("3. search res", tags.docs);
-    setIsLoading(false);
+    console.log(isLoading);
   };
 
   const { t } = useTranslation();
@@ -91,10 +77,9 @@ export const AsyncSearch = () => {
           <AsyncTypeahead
             filterBy={() => true}
             id="async-example"
-            isLoading={isLoading}
+            isLoading={false}
             labelKey="name"
             minLength={3}
-            // onInputChange={handleInputChange}
             onSearch={handleSearch}
             options={options}
             delay={500}
