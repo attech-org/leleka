@@ -82,7 +82,7 @@ const FeedSingleTweet = ({
   createdAt,
   author,
   content,
-  // repliedTo,
+  repliedTo,
   // updatedAt,
   stats: { likes, retweets, comments },
 }: Tweet2) => {
@@ -199,6 +199,14 @@ const FeedSingleTweet = ({
             </div>
           </div>
           <div className="px-3 py-2">
+            {repliedTo ? (
+              <div className="mb-3">
+                {t("reply.replyContent")}
+                <a href={repliedTo.author.url}>@{repliedTo.author.username}</a>
+              </div>
+            ) : (
+              ""
+            )}
             {url[0] ? (
               <div>
                 <div
@@ -212,12 +220,12 @@ const FeedSingleTweet = ({
             )}
           </div>
           <div className="px-3 d-flex justify-content-between align-items-center">
-            <StatisticOfTweet className="d-flex align-items-center justify-content-center">
-              <HoverBackgroundBlue className="p-2 rounded-circle d-flex justify-content-center align-items-center">
-                <TweetReplyForm />
-              </HoverBackgroundBlue>
-              <div className="px-1">{comments}</div>
-            </StatisticOfTweet>
+            <TweetReplyForm
+              author={author}
+              content={content}
+              id={_id}
+              commentsCount={comments}
+            />
             <RetweetButton retweetCount={retweets} />
             <LikeButton likesCount={likes} />
             <StatisticOfTweet className="d-flex align-items-center">
