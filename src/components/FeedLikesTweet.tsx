@@ -177,7 +177,11 @@ const FeedLikesTweet = ({ tweet, user }: Like) => {
           <div className="px-3 d-flex justify-content-between align-items-center">
             <StatisticOfTweet className="d-flex align-items-center justify-content-center">
               <HoverBackgroundBlue className="p-2 rounded-circle d-flex justify-content-center align-items-center">
-                <TweetReplyForm />
+                <TweetReplyForm
+                  author={tweet.author}
+                  content={tweet.content}
+                  id={tweet._id}
+                />
               </HoverBackgroundBlue>
               <div className="px-1">{tweet.stats.comments}</div>
             </StatisticOfTweet>
