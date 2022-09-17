@@ -17,7 +17,7 @@ const InfiniteList = <T extends object>({
       loadMore={showMore}
       hasMore={data.hasNextPage}
       loader={
-        <div className="m-2 d-flex justify-content-center">
+        <div key={0} className="m-2 d-flex justify-content-center">
           <Spinner animation="border" variant="primary" />
         </div>
       }
