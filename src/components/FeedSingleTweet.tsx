@@ -98,8 +98,6 @@ const FeedSingleTweet = ({
 
   const url = content.match(urlSearch) || [];
 
-  console.log(url[0]);
-
   return (
     <>
       <PostWrapper
