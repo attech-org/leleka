@@ -92,10 +92,12 @@ const FeedSingleTweet = ({
   //   return <ReplyTweet />;
   // };
   const urlSearch = new RegExp(
-    "/https?://(?:www.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9].[^s]{2,}|https?://(?:www.|(?!www))[a-zA-Z0-9]+.[^s]{2,}/"
+    "/https?://(?:www.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9].[^s<]{2,}|https?://(?:www.|(?!www))[a-zA-Z0-9]+.[^s<]{2,}/"
   );
 
-  const url = content.match(urlSearch) || "";
+  const url = content.match(urlSearch) || [];
+
+  console.log(url);
 
   return (
     <>
