@@ -5,6 +5,7 @@ import {
 } from "@reduxjs/toolkit";
 
 import instance from "../../services/api";
+import localDateTime from "../../services/localDateTime";
 import { LE, Tweet2, Like } from "../../types";
 import { Pagination } from "../../types/mock-api-types";
 
@@ -151,6 +152,7 @@ const tweetsSlice = createSlice<TweetsStore, SliceCaseReducers<TweetsStore>>({
     builder.addCase(fetchFeedTweets.pending, (store) => {
       store.feedTweets.isLoading = true;
     });
+
     builder.addCase(fetchFeedTweets.fulfilled, (store, { payload }) => {
       if (store.feedTweets.docs.length === 0 || payload.page !== 1) {
         // I don't know why, but first page we have twice
@@ -158,7 +160,13 @@ const tweetsSlice = createSlice<TweetsStore, SliceCaseReducers<TweetsStore>>({
         store.feedTweets = {
           ...store.feedTweets,
           ...payload,
-          docs: [...store.feedTweets.docs, ...payload.docs],
+          docs: [
+            ...store.feedTweets.docs,
+            ...payload.docs.map((item) => ({
+              ...item,
+              createdAt: localDateTime(item.createdAt),
+            })),
+          ],
         };
       }
       store.feedTweets.isLoading = false;
@@ -182,7 +190,10 @@ const tweetsSlice = createSlice<TweetsStore, SliceCaseReducers<TweetsStore>>({
       store.currentTweet.isLoading = true;
     });
     builder.addCase(fetchTweetById.fulfilled, (store, { payload }) => {
-      store.currentTweet.data = payload;
+      store.currentTweet.data = {
+        ...payload,
+        createdAt: localDateTime(payload.createdAt),
+      };
       store.currentTweet.isLoading = false;
     });
     builder.addCase(fetchTweetById.rejected, (store) => {
@@ -197,7 +208,13 @@ const tweetsSlice = createSlice<TweetsStore, SliceCaseReducers<TweetsStore>>({
         store.currentTweetReplies = {
           ...store.currentTweetReplies,
           ...payload,
-          docs: [...store.currentTweetReplies.docs, ...payload.docs],
+          docs: [
+            ...store.currentTweetReplies.docs,
+            ...payload.docs.map((item) => ({
+              ...item,
+              createdAt: localDateTime(item.createdAt),
+            })),
+          ],
         };
       }
       store.currentTweetReplies.isLoading = false;
