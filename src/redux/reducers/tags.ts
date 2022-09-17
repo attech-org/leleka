@@ -21,25 +21,20 @@ const tagsInitialStore: TagsStore = {
   },
 };
 
-// const tagsLength = async () => {
-//   const response = await instance.get("api/tags", {});
-//   console.log(tagsLength);
-//   return response.data.totalDocs;
-// };
-
 const fetchTags = createAsyncThunk<
   Pagination<Tag>,
-  Pagination<Tag> | undefined
+  (Pagination<Tag> & { query: string }) | undefined
 >("tags/fetchTags", async (filters) => {
-  const { limit = 10, nextPage = 1 } = filters || {};
+  const { limit = 10, nextPage = 1, query } = filters || {};
 
   const response = await instance.get("api/tags", {
     params: {
       limit,
       page: nextPage,
+      query: { name: { $regex: query } },
     },
   });
-  console.log("response - tags");
+  console.log("2. response - tags");
   return response.data;
 });
 
@@ -50,16 +45,16 @@ const tagsSlice = createSlice<TagsStore, SliceCaseReducers<TagsStore>>({
   extraReducers: (builder) => {
     builder.addCase(fetchTags.pending, (store) => {
       store.tags.isLoading = true;
-      store.tags.error = "Loadin error";
+      store.tags.error = "Loading error";
     });
     builder.addCase(fetchTags.fulfilled, (store, { payload }) => {
-      if (store.tags.docs.length === 0 || payload.page !== 1) {
-        store.tags = {
-          ...store.tags,
-          ...payload,
-          docs: [...store.tags.docs, ...payload.docs],
-        };
-      }
+      // if (store.tags.docs.length === 0 || payload.page !== 1) {
+      store.tags = {
+        // ...store.tags,
+        ...payload,
+        // docs: [...store.tags.docs, ...payload.docs],
+      };
+      // }
       store.tags.isLoading = false;
     });
     builder.addCase(fetchTags.rejected, (store) => {

@@ -1,4 +1,7 @@
-import { useState } from "react";
+import React, {
+  useState,
+  // useEffect
+} from "react";
 import { Form, InputGroup } from "react-bootstrap";
 import { Search as SearchIcon } from "react-bootstrap-icons";
 import AsyncTypeahead from "react-bootstrap-typeahead/types/components/AsyncTypeahead";
@@ -40,30 +43,31 @@ const TagItem = ({ tag }: { tag: Tag }) => {
 export const AsyncSearch = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [options, setOptions] = useState<Tag[]>([]);
+  // const [text, setText] = useState<string>("");
 
   const dispatch = useDispatch<AppDispatch>();
+
+  // useEffect(() => {
+  //   dispatch(tagsActions.fetchTags());
+  //   console.log("dispatch");
+  // }, []);
 
   const tags = useSelector<RootState, RootState["tags"]["tags"]>(
     (store) => store.tags.tags
   );
 
-  // console.log("tags store", tags.docs);
+  // const handleInputChange = (e: string) => {
+  //   setText(e);
+  //   console.log(e);
+  // };
 
-  const handleSearch = (query: string) => {
-    dispatch(tagsActions.fetchTags());
+  const handleSearch = async (query: string) => {
+    console.log("1. search", query);
     setIsLoading(true);
-    // console.log("search");
-    const arr = tags.docs;
-    const searchResult: Tag[] = [];
-    arr.map((item: Tag) => {
-      if (item.name.toLowerCase().includes(query.toLowerCase())) {
-        searchResult.push(item);
-      }
-    });
-    const res = searchResult || [];
-    setOptions(res);
+    await dispatch(tagsActions.fetchTags({ ...tags, query }));
+    console.log("3. search res", tags.docs);
+    setOptions(tags.docs);
     setIsLoading(false);
-    // console.log("search res", res);
   };
 
   const { t } = useTranslation();
@@ -84,6 +88,7 @@ export const AsyncSearch = () => {
             isLoading={isLoading}
             labelKey="name"
             minLength={3}
+            // onInputChange={handleInputChange}
             onSearch={handleSearch}
             options={options}
             delay={500}
