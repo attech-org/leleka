@@ -5,7 +5,6 @@ import {
 } from "@reduxjs/toolkit";
 
 import instance from "../../services/api";
-import localDateTime from "../../services/localDateTime";
 import { LE, Tweet2, Like } from "../../types";
 import { Pagination } from "../../types/mock-api-types";
 
@@ -160,13 +159,7 @@ const tweetsSlice = createSlice<TweetsStore, SliceCaseReducers<TweetsStore>>({
         store.feedTweets = {
           ...store.feedTweets,
           ...payload,
-          docs: [
-            ...store.feedTweets.docs,
-            ...payload.docs.map((item) => ({
-              ...item,
-              createdAt: localDateTime(item.createdAt),
-            })),
-          ],
+          docs: [...store.feedTweets.docs, ...payload.docs],
         };
       }
       store.feedTweets.isLoading = false;
@@ -190,10 +183,7 @@ const tweetsSlice = createSlice<TweetsStore, SliceCaseReducers<TweetsStore>>({
       store.currentTweet.isLoading = true;
     });
     builder.addCase(fetchTweetById.fulfilled, (store, { payload }) => {
-      store.currentTweet.data = {
-        ...payload,
-        createdAt: localDateTime(payload.createdAt),
-      };
+      store.currentTweet.data = payload;
       store.currentTweet.isLoading = false;
     });
     builder.addCase(fetchTweetById.rejected, (store) => {
@@ -208,13 +198,7 @@ const tweetsSlice = createSlice<TweetsStore, SliceCaseReducers<TweetsStore>>({
         store.currentTweetReplies = {
           ...store.currentTweetReplies,
           ...payload,
-          docs: [
-            ...store.currentTweetReplies.docs,
-            ...payload.docs.map((item) => ({
-              ...item,
-              createdAt: localDateTime(item.createdAt),
-            })),
-          ],
+          docs: [...store.currentTweetReplies.docs, ...payload.docs],
         };
       }
       store.currentTweetReplies.isLoading = false;

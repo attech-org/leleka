@@ -12,6 +12,7 @@ import { useTranslation } from "react-i18next";
 import styled from "styled-components";
 
 import { LinkWithLanguageQueryParam } from "../containers/LinkWithLanguageQueryParam";
+import localDateTime from "../services/localDateTime";
 import { Tweet2 } from "../types";
 import LikeButton from "./LikeButton";
 import RetweetButton from "./RetweetButton";
@@ -127,7 +128,7 @@ const FeedSingleTweet = ({
                 eventKey={_id}
                 className="text-secondary"
               >
-                {createdAt}
+                {localDateTime(createdAt)}
               </UnderlineHover>
             </div>
 
