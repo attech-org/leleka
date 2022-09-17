@@ -34,7 +34,7 @@ const fetchTags = createAsyncThunk<
       query: { name: { $regex: query } },
     },
   });
-  console.log("2. response - tags");
+  console.log("2. response - tags", response.data);
   return response.data;
 });
 

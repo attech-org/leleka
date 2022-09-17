@@ -61,12 +61,18 @@ export const AsyncSearch = () => {
   //   console.log(e);
   // };
 
-  const handleSearch = async (query: string) => {
+  // const request = (query: string) =>
+  //   dispatch(tagsActions.fetchTags({ ...tags, query }));
+
+  const handleSearch = (query: string) => {
+    // 1.
     console.log("1. search", query);
     setIsLoading(true);
-    await dispatch(tagsActions.fetchTags({ ...tags, query }));
-    console.log("3. search res", tags.docs);
+    // 2.
+    dispatch(tagsActions.fetchTags({ ...tags, query }));
+    // 3.
     setOptions(tags.docs);
+    console.log("3. search res", tags.docs);
     setIsLoading(false);
   };
 
