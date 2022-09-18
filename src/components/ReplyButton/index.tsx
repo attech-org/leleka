@@ -9,10 +9,10 @@ interface ReplyButtonInterface {
 }
 
 const blue = "rgb(0, 0, 248)";
-const IconBg = styled.button`
-  height: 32px;
+const IconBg = styled.div`
+  display: flex;
   width: 32px;
-  border: none;
+  justify-content: center;
   background-color: transparent;
   &:hover {
     background: rgb(225, 225, 248);
@@ -47,14 +47,9 @@ const ReplyButton: React.FC<ReplyButtonInterface> = ({ replyCount }) => {
 
   return (
     <Reply>
-      <div className="align-items-start align-top">
-        <IconBg
-          className="m-0 p-0 rounded-circle align-items-center justify-content-center)"
-          title={t("reply.tooltip")}
-        >
-          <Chat />
-        </IconBg>
-      </div>
+      <IconBg title={t("reply.tooltip")}>
+        <Chat />
+      </IconBg>
       <p className={countAnimation}>{replyСounter}</p>
     </Reply>
   );
