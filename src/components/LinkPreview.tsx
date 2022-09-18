@@ -1,4 +1,4 @@
-import _ from "lodash";
+import { truncate } from "lodash";
 import { useEffect, useState } from "react";
 import { Card } from "react-bootstrap";
 import { CardImage } from "react-bootstrap-icons";
@@ -46,12 +46,12 @@ const LinkPreview = ({ url }: PropsUrl) => {
   const getResponse = async () => {
     const res: APIOutput = await customFetcher(url);
     if (res.image) {
-      res.description = _.truncate(res.description, {
+      res.description = truncate(res.description, {
         length: 130,
         separator: /,? +/,
       });
     } else {
-      res.description = _.truncate(res.description, {
+      res.description = truncate(res.description, {
         length: 100,
         separator: /,? +/,
       });
