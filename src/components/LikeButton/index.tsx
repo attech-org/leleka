@@ -62,7 +62,7 @@ const LikeButton: React.FC<ILikeButton> = (
         className="m-0 p-0 rounded-circle align-items-center justify-content-center)"
         title={isLiked ? t("likeButton.unlike") : t("likeButton.like")}
       >
-        <input id="toggle-heart" type="checkbox" checked={isLiked} />
+        <input id="toggle-heart" type="checkbox" defaultChecked={isLiked} />
 
         <label htmlFor="toggle-heart" onClick={() => clickLike()}>
           {isLiked ? (
