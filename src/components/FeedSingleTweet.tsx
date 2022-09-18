@@ -213,7 +213,9 @@ const FeedSingleTweet = ({
               <div>
                 <div
                   className=""
-                  dangerouslySetInnerHTML={{ __html: content }}
+                  dangerouslySetInnerHTML={{
+                    __html: content.replace(url[0], ""),
+                  }}
                 />
                 <LinkPreview url={url[0]} />
               </div>
