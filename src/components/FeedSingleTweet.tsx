@@ -12,8 +12,10 @@ import { useTranslation } from "react-i18next";
 import styled from "styled-components";
 
 import { LinkWithLanguageQueryParam } from "../containers/LinkWithLanguageQueryParam";
+import localDateTime from "../services/localDateTime";
 import { Tweet2 } from "../types";
 import LikeButton from "./LikeButton";
+import LinkPreview from "./LinkPreview";
 import RetweetButton from "./RetweetButton";
 import TweetReplyForm from "./TweetReplyForm";
 
@@ -90,6 +92,13 @@ const FeedSingleTweet = ({
   // const handleReplyClick = () => {
   //   return <ReplyTweet />;
   // };
+  const urlSearch = new RegExp(
+    /https?:\/\/(?:www.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9].[^\s<]{2,}|https?:\/\/(?:www.|(?!www))[a-zA-Z0-9]+.[^\s<]{2,}/,
+    "g"
+  );
+
+  const url = content.match(urlSearch) || [];
+
   return (
     <>
       <PostWrapper
@@ -127,7 +136,7 @@ const FeedSingleTweet = ({
                 eventkey={_id}
                 className="text-secondary"
               >
-                {createdAt}
+                {localDateTime(createdAt)}
               </UnderlineHover>
             </div>
 
@@ -200,15 +209,17 @@ const FeedSingleTweet = ({
             ) : (
               ""
             )}
-            <div className="" dangerouslySetInnerHTML={{ __html: content }} />
-
-            {/* <img
-              className="w-100 rounded-4 mt-3"
-              alt=""
-              src={
-                "https://burst.shopifycdn.com/photos/person-holds-a-book-over-a-stack-and-turns-the-page.jpg?width=1200&format=pjpg&exif=0&iptc=0"
-              }
-            /> */}
+            {url[0] ? (
+              <div>
+                <div
+                  className=""
+                  dangerouslySetInnerHTML={{ __html: content }}
+                />
+                <LinkPreview url={url[0]} />
+              </div>
+            ) : (
+              <div className="" dangerouslySetInnerHTML={{ __html: content }} />
+            )}
           </div>
           <div className="px-3 d-flex justify-content-between align-items-center">
             <TweetReplyForm
