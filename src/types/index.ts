@@ -44,6 +44,12 @@ export interface Like extends MongoArtifacts {
   };
 }
 
+export interface Tag extends MongoArtifacts {
+  name: string;
+  createdAt?: string;
+  updatedAt?: string;
+}
+
 export interface User extends MongoArtifacts {
   password?: string;
   username: string;
