@@ -1,5 +1,5 @@
 import { FastAverageColor } from "fast-average-color";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { OverlayTrigger, Tooltip } from "react-bootstrap";
 import { XLg, Camera } from "react-bootstrap-icons";
 import { useTranslation } from "react-i18next";
@@ -74,6 +74,14 @@ const StyledInput = styled.input`
   height: 42px;
 `;
 
+const toBase64 = (file: Blob) =>
+  new Promise<string>((resolve, reject) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => resolve(reader.result);
+    reader.onerror = (error) => reject(error);
+  });
+
 interface BannerProps {
   isEditBanner: boolean;
 }
@@ -82,24 +90,27 @@ const Banner = ({ isEditBanner }: BannerProps) => {
   const { t } = useTranslation();
 
   const dispatch = useDispatch<AppDispatch>();
-  // TODO: Add AsyncThunk action, after adding support for backend PUT and DELETE requests ↓
   //------------------------------ avatar image ------------------------
   const avatar = useSelector<RootState, RootState["user"]["profile"]["avatar"]>(
     (store) => store.user.profile.avatar
   );
 
-  const [fileAvatar, setFileAvatar] = useState<File>();
-  const fileRefAvatar = useRef(null);
+  // const [fileAvatar, setFileAvatar] = useState<File>();
 
-  useEffect(() => {
-    let objectUrlAvatar: string;
-    if (fileAvatar) {
-      objectUrlAvatar = URL.createObjectURL(fileAvatar);
-      dispatch(userActions.addAvatar(objectUrlAvatar)); //
-    }
+  const userId = useSelector<RootState, RootState["user"]["_id"]>(
+    (store) => store.user._id
+  );
 
-    return () => URL.revokeObjectURL(objectUrlAvatar);
-  }, [fileAvatar]);
+  // useEffect(() => {
+  //   // let objectUrlAvatar: string;
+  //   // if (fileAvatar) {
+  //   //   objectUrlAvatar = URL.createObjectURL(fileAvatar);
+  //   //   // dispatch(userActions.addAvatar(objectUrlAvatar)); //
+  //   // }
+
+  //   // return () => URL.revokeObjectURL(objectUrlAvatar);
+  //   dispatch(userActions.addAvatar({ fileAvatar, userId }));
+  // }, [fileAvatar]);
 
   // ------------------------------ banner image ------------------------
   const banner = useSelector<RootState, RootState["user"]["profile"]["banner"]>(
@@ -107,13 +118,12 @@ const Banner = ({ isEditBanner }: BannerProps) => {
   );
 
   const [fileImage, setFileImage] = useState<File>();
-  const fileRefImage = useRef(null);
 
   useEffect(() => {
     let objectUrlImage: string;
     if (fileImage) {
       objectUrlImage = URL.createObjectURL(fileImage);
-      dispatch(userActions.addBanner(objectUrlImage)); //
+      // dispatch(userActions.addBanner(objectUrlImage)); //
     }
 
     return () => URL.revokeObjectURL(objectUrlImage);
@@ -123,9 +133,11 @@ const Banner = ({ isEditBanner }: BannerProps) => {
     dispatch(userActions.removeBanner()); //
   };
   //-----------------------------handleUpload-----------------------------
-  const handleAvatarUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+
+  const handleAvatarUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.currentTarget && e.currentTarget.files) {
-      setFileAvatar(e.currentTarget.files[0]);
+      const base64avatar = await toBase64(e.currentTarget.files[0]);
+      dispatch(userActions.addAvatar({ base64avatar, userId }));
     }
   };
 
@@ -175,7 +187,7 @@ const Banner = ({ isEditBanner }: BannerProps) => {
                     <StyledInput
                       className="opacity-0 position-absolute rounded-circle"
                       type="file"
-                      ref={fileRefImage}
+                      accept="image/*"
                       onChange={handleImageUpload}
                     />
                   </AddPhotoDiv>
@@ -234,7 +246,7 @@ const Banner = ({ isEditBanner }: BannerProps) => {
                 <StyledInput
                   className="opacity-0 position-absolute rounded-circle"
                   type="file"
-                  ref={fileRefAvatar}
+                  accept="image/*"
                   onChange={handleAvatarUpload}
                 />
               </AddLogoDiv>

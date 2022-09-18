@@ -3,13 +3,14 @@ import { Form, Button, FloatingLabel, Container } from "react-bootstrap";
 import { ChevronRight } from "react-bootstrap-icons";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import styled, { css } from "styled-components";
 import * as yup from "yup";
 
 import Banner from "../containers/Banner";
 import ModalUniversal from "../containers/ModalUniversal";
-import { RootState } from "../redux/store";
+import { userActions } from "../redux/reducers/user";
+import { AppDispatch, RootState } from "../redux/store";
 
 interface Label {
   counter?: boolean;
@@ -27,8 +28,11 @@ const StyledLabel = styled.label<Label>`
 `;
 
 const StyledInput = styled.input`
-  width: 28px;
-  height: 28px;
+  width: 60px;
+  height: 30px;
+  font-size: 5rem;
+  top: -50%;
+  cursor: pointer;
 `;
 
 interface IFormInput {
@@ -41,10 +45,11 @@ interface IFormInput {
 
 const EditProfileForm = () => {
   const { t } = useTranslation();
+  const dispatch = useDispatch<AppDispatch>();
 
   //-----------------------------------------------------------------------
-  const username = useSelector<RootState, RootState["user"]["name"]>(
-    (store) => store.user.name
+  const username = useSelector<RootState, RootState["user"]["username"]>(
+    (store) => store.user.username
   );
 
   const bio = useSelector<
@@ -96,11 +101,12 @@ const EditProfileForm = () => {
   const watchLocation = watch("location");
   const watchWebsite = watch("website");
 
-  const submitForm = (data: IFormInput) => {
-    // eslint-disable-next-line no-console
-    console.log(data);
+  const userId = useSelector<RootState, RootState["user"]["_id"]>(
+    (store) => store.user._id
+  );
 
-    // dispatch(userActions.setUserData(data));
+  const submitForm = (data: IFormInput) => {
+    dispatch(userActions.editProfileUser({ ...data, userId }));
   };
 
   const ProfileForm = (
@@ -111,7 +117,7 @@ const EditProfileForm = () => {
         {/*----NameUser input -------*/}
         <FloatingLabel
           label={t(`validation:userSettings.name`)}
-          className="mb-3"
+          className=""
           controlId="inputNameUser"
         >
           <Form.Control
@@ -120,9 +126,6 @@ const EditProfileForm = () => {
             placeholder={t(`validation:userSettings.name`)}
             maxLength={50}
           />
-          <Form.Control.Feedback type="invalid">
-            Please choose a username.
-          </Form.Control.Feedback>
           <StyledLabel
             counter
             className="pt-4 text-end"
@@ -131,7 +134,7 @@ const EditProfileForm = () => {
             {watchUsername ? watchUsername.length : 0} / 50
           </StyledLabel>
         </FloatingLabel>
-        <p className="text-danger mt-1">
+        <p className="text-danger mt-1 mb-2 fs-6 ms-2">
           {errors.username &&
             errors.username.message &&
             t(`${errors.username.message}`)}
@@ -139,7 +142,7 @@ const EditProfileForm = () => {
         {/*----BioUser field -------*/}
         <FloatingLabel
           label={t(`validation:userSettings.bio`)}
-          className="mb-3 flex-wrap"
+          className="mb-3 mt-3 flex-wrap"
           controlId="inputBioUser"
         >
           <Form.Control
@@ -199,14 +202,15 @@ const EditProfileForm = () => {
         {/*----birthDate input -------*/}
         <div className="mb-4">
           <div className="text-secondary mb-1 mt-3 d-flex align-items-center">
-            <p>{t(`validation:userSettings.birthDate`)}</p>{" "}
+            <p>{t(`validation:userSettings.birthDate`)}</p>
             <span className="mb-1 mx-1">.</span>
-            <div className="text-primary p-0 text-decoration-none">
+            <div className="position-relative text-primary p-0 text-decoration-none">
               <StyledInput
+                {...register("birthDate")}
                 className="position-absolute opacity-0"
                 type="date"
                 placeholder={t(`validation:userSettings.birthDate`)}
-                data-date-format="YYYY/MM/DD"
+                data-date-format="DD/MM/YYYY"
               />
               {t(`validation:userSettings.editBirthDate`)}
             </div>

@@ -1,4 +1,4 @@
-import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 import instance from "../../services/api";
 import { LE, User } from "../../types";
@@ -93,25 +93,63 @@ const loginUser = createAsyncThunk<LoginResponse, LoginRequest>(
     return response.data;
   }
 );
+interface EditProfileRequest {
+  username: string;
+  website: string;
+  location: string;
+  bio: string;
+  birthDate: string;
+  userId: string;
+}
+
+interface EditAvatarRequest {
+  base64avatar?: string;
+  userId: string;
+}
+
+const editProfileUser = createAsyncThunk<Partial<User>, EditProfileRequest>(
+  "users/profile",
+  async ({ username, bio, location, website, birthDate, userId }) => {
+    const response = await instance.put(`api/users/${userId}`, {
+      username,
+      url: website,
+      location,
+      profile: {
+        bio,
+        birthDate,
+      },
+    });
+    return response.data;
+  }
+);
+const addAvatar = createAsyncThunk<Partial<User>, EditAvatarRequest>(
+  "users/profile/avatar",
+  async ({ base64avatar, userId }) => {
+    const response = await instance.put(`api/users/${userId}`, {
+      profile: {
+        avatar: base64avatar,
+      },
+    });
+    // {
+    //   profile: {
+    //           avatar: "..."
+    //      }
+    // }
+    return response.data;
+  }
+);
 
 const userSlice = createSlice({
   name: "user",
   initialState: userInitialState,
   reducers: {
     //  temporary reducers
-    addBanner: (state, action: PayloadAction<string>) => {
-      state.profile.banner = action.payload;
-    },
     removeBanner: (state) => {
       state.profile.banner = undefined;
-    },
-    addAvatar: (state, action: PayloadAction<string>) => {
-      state.profile.avatar = action.payload;
     },
     clearError: (state) => {
       state.error = "";
     },
-
     resetUserData: () => {
       return userInitialState;
     },
@@ -162,9 +200,42 @@ const userSlice = createSlice({
       store.isLoading = false;
       store.error = "Failed to login user";
     });
+
+    builder.addCase(editProfileUser.pending, (store) => {
+      store.isLoading = true;
+    });
+    builder.addCase(editProfileUser.fulfilled, (store, { payload }) => {
+      store.error = undefined;
+      Object.assign(store, {
+        ...payload,
+      });
+    });
+    builder.addCase(editProfileUser.rejected, (store) => {
+      store.isLoading = false;
+      store.error = "Failed to edit user";
+    });
+    builder.addCase(addAvatar.pending, (store) => {
+      store.isLoading = true;
+    });
+    builder.addCase(addAvatar.fulfilled, (store, { payload }) => {
+      store.error = undefined;
+      Object.assign(store, {
+        ...payload,
+      });
+    });
+    builder.addCase(addAvatar.rejected, (store) => {
+      store.isLoading = false;
+      store.error = "Failed to add avatar";
+    });
   },
 });
 
-export const userActions = { ...userSlice.actions, registerUser, loginUser };
+export const userActions = {
+  ...userSlice.actions,
+  registerUser,
+  loginUser,
+  editProfileUser,
+  addAvatar,
+};
 
 export default userSlice.reducer;
