@@ -12,8 +12,10 @@ import { useTranslation } from "react-i18next";
 import styled from "styled-components";
 
 import { LinkWithLanguageQueryParam } from "../containers/LinkWithLanguageQueryParam";
+import localDateTime from "../services/localDateTime";
 import { Tweet2 } from "../types";
 import LikeButton from "./LikeButton";
+import LinkPreview from "./LinkPreview";
 import RetweetButton from "./RetweetButton";
 import TweetReplyForm from "./TweetReplyForm";
 
@@ -81,7 +83,7 @@ const FeedSingleTweet = ({
   createdAt,
   author,
   content,
-  // repliedTo,
+  repliedTo,
   // updatedAt,
   stats: { likes, retweets, comments },
 }: Tweet2) => {
@@ -90,6 +92,13 @@ const FeedSingleTweet = ({
   // const handleReplyClick = () => {
   //   return <ReplyTweet />;
   // };
+  const urlSearch = new RegExp(
+    /https?:\/\/(?:www.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9].[^\s<]{2,}|https?:\/\/(?:www.|(?!www))[a-zA-Z0-9]+.[^\s<]{2,}/,
+    "g"
+  );
+
+  const url = content.match(urlSearch) || [];
+
   return (
     <>
       <PostWrapper
@@ -127,7 +136,7 @@ const FeedSingleTweet = ({
                 eventKey={_id}
                 className="text-secondary"
               >
-                {createdAt}
+                {localDateTime(createdAt)}
               </UnderlineHover>
             </div>
 
@@ -192,23 +201,33 @@ const FeedSingleTweet = ({
             </div>
           </div>
           <div className="px-3 py-2">
-            <div className="" dangerouslySetInnerHTML={{ __html: content }} />
-
-            {/* <img
-              className="w-100 rounded-4 mt-3"
-              alt=""
-              src={
-                "https://burst.shopifycdn.com/photos/person-holds-a-book-over-a-stack-and-turns-the-page.jpg?width=1200&format=pjpg&exif=0&iptc=0"
-              }
-            /> */}
+            {repliedTo ? (
+              <div className="mb-3">
+                {t("reply.replyContent")}
+                <a href={repliedTo.author.url}>@{repliedTo.author.username}</a>
+              </div>
+            ) : (
+              ""
+            )}
+            {url[0] ? (
+              <div>
+                <div
+                  className=""
+                  dangerouslySetInnerHTML={{ __html: content }}
+                />
+                <LinkPreview url={url[0]} />
+              </div>
+            ) : (
+              <div className="" dangerouslySetInnerHTML={{ __html: content }} />
+            )}
           </div>
           <div className="px-3 d-flex justify-content-between align-items-center">
-            <StatisticOfTweet className="d-flex align-items-center justify-content-center">
-              <HoverBackgroundBlue className="p-2 rounded-circle d-flex justify-content-center align-items-center">
-                <TweetReplyForm />
-              </HoverBackgroundBlue>
-              <div className="px-1">{comments}</div>
-            </StatisticOfTweet>
+            <TweetReplyForm
+              author={author}
+              content={content}
+              id={_id}
+              commentsCount={comments}
+            />
             <RetweetButton retweetCount={retweets} />
             <LikeButton likesCount={likes} />
             <StatisticOfTweet className="d-flex align-items-center">
