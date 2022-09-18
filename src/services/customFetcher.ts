@@ -4,14 +4,7 @@ export const customFetcher = async (url: string) => {
   );
   const json = await response.json();
   if (response.status !== 200) {
-    return {
-      description: "",
-      image: "",
-      title: "",
-      siteName: "",
-      hostname: "",
-      url,
-    };
+    return {};
   }
   return json.metadata;
 };
