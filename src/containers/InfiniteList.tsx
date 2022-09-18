@@ -1,3 +1,4 @@
+import { Spinner } from "react-bootstrap";
 import InfiniteScroll from "react-infinite-scroller";
 
 import { Pagination } from "../types/mock-api-types";
@@ -15,7 +16,14 @@ const InfiniteList = <T extends object>({
     <InfiniteScroll
       loadMore={showMore}
       hasMore={data.hasNextPage}
-      loader={<div className="loader"> Loading... </div>}
+      loader={
+        <div
+          key="infinite_scroll_spinner"
+          className="m-2 d-flex justify-content-center"
+        >
+          <Spinner animation="border" variant="primary" />
+        </div>
+      }
     >
       {data.docs.map((elem) => itemComponent(elem))}
     </InfiniteScroll>

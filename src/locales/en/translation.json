@@ -1,6 +1,16 @@
 {
   "test": "English",
 
+  "notAuthorized": "You are not authorized",
+
+  "followersList": {
+    "noFollowers": "You have no followers"
+  },
+
+  "followingList": {
+    "noFollowing": "You don't follow anyone"
+  },
+
   "common": {
     "showMore": "Show more",
     "follow": "Follow",
@@ -139,5 +149,10 @@
   "likeButton": {
     "like": "Like",
     "unlike": "Unlike"
+  },
+  "reply": {
+    "placeholder": "Tweet your reply",
+    "tooltip": "Reply",
+    "replyContent": "Replying to "
   }
 }

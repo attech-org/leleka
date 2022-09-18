@@ -4,8 +4,9 @@ import styled from "styled-components";
 
 import { TrendItem } from "../components/TrendItem";
 import { MockTrend } from "../types/mock-api-types";
+import { LinkWithLanguageQueryParam } from "./LinkWithLanguageQueryParam";
 
-const StyledLink = styled.a`
+const StyledLink = styled(LinkWithLanguageQueryParam)`
   transition: 0.3s;
   :hover {
     background-color: rgba(0, 0, 0, 0.03);
@@ -44,7 +45,7 @@ const Trends = () => {
         <TrendItem key={tr.id} trend={tr} />
       ))}
       <StyledLink
-        href="/trends"
+        to="/trends"
         className="text-decoration-none text-reset d-flex flex-row py-2"
       >
         <Container className="py-2 px-3">

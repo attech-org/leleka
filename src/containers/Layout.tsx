@@ -1,4 +1,4 @@
-import { Helmet } from "react-helmet";
+import { Helmet, HelmetProvider } from "react-helmet-async";
 import styled from "styled-components";
 
 import { LeftPanel } from "../components/LeftPanel";
@@ -17,19 +17,21 @@ interface LayoutProps {
 const Layout = ({ children, title }: LayoutProps) => {
   return (
     <>
-      <Helmet>
-        <title>{title ? `${title} | Leleka` : "Leleka"}</title>
-      </Helmet>
-      <GeneralContainer className="container-xxl">
-        <ErrorsToaster />
-        <div className="row">
-          <LeftPanel />
-          <main className="col-xl-6 col-lg-6 col-md-11 col-sm-11 col-12">
-            {children}
-          </main>
-          <RightPanel />
-        </div>
-      </GeneralContainer>
+      <HelmetProvider>
+        <Helmet>
+          <title>{title ? `${title} | Leleka` : "Leleka"}</title>
+        </Helmet>
+        <GeneralContainer className="container-xxl">
+          <ErrorsToaster />
+          <div className="row">
+            <LeftPanel />
+            <main className="col-xl-6 col-lg-6 col-md-11 col-sm-11 col-12">
+              {children}
+            </main>
+            <RightPanel />
+          </div>
+        </GeneralContainer>
+      </HelmetProvider>
     </>
   );
 };

@@ -1,6 +1,16 @@
 {
   "test": "Українська",
 
+  "notAuthorized": "Ви не авторизовані",
+
+  "followersList": {
+    "noFollowers": "У вас немає читачів"
+  },
+
+  "followingList": {
+    "noFollowing": "Ви нікого не читаєте"
+  },
+
   "common": {
     "showMore": "Показати більше",
     "follow": "Читати",
@@ -139,5 +149,10 @@
   "likeButton": {
     "like": "Вподобати",
     "unlike": "Видалити вподобання"
+  },
+  "reply": {
+    "placeholder": "Твiтнiть вiдповiдь",
+    "tooltip": "Відповісти",
+    "replyContent": "У відповідь "
   }
 }
