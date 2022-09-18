@@ -42,8 +42,8 @@ export const AsyncSearch = () => {
     (store) => store.tags.tags
   );
 
-  const handleSearch = (query: string) => {
-    dispatch(tagsActions.fetchTags({ query }));
+  const handleSearch = (searchString: string) => {
+    dispatch(tagsActions.fetchTags({ searchString }));
   };
 
   const { t } = useTranslation();
@@ -59,7 +59,6 @@ export const AsyncSearch = () => {
         </div>
         <div>
           <AsyncTypeahead
-            filterBy={() => true}
             id="async-example"
             isLoading={tags.isLoading || false}
             labelKey="name"

@@ -23,13 +23,13 @@ const tagsInitialStore: TagsStore = {
 
 const fetchTags = createAsyncThunk<
   Pagination<Tag>,
-  { query: string } | undefined
+  { searchString: string } | undefined
 >("tags/fetchTags", async (filters) => {
-  const { query } = filters || {};
+  const { searchString } = filters || {};
 
   const response = await instance.get("api/tags", {
     params: {
-      query: { name: { $regex: query, $options: "i" } },
+      query: { name: { $regex: searchString, $options: "i" } },
     },
   });
   return response.data;
