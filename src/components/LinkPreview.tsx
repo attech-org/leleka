@@ -70,7 +70,7 @@ const LinkPreview = ({ url }: PropsUrl) => {
         <a target="blank" className="text-decoration-none" href={response.url}>
           <Card className="rounded-4 text-secondary">
             <StyledCardImg src={response.image} />
-            <Card.Body>
+            <Card.Body className="border-top">
               <Card.Text className="mb-2 d-flex align-items-center">
                 {response.siteName}
                 {response.siteName && response.hostname && (

@@ -14,11 +14,7 @@ const ModalTweetCreationForm: React.FC = () => {
 
   const tweetButton = (
     <div className="d-grid gap-2">
-      <div
-        // type="submit"
-        // variant="primary"
-        className="rounded-5 my-2 p-2 fw-semibold bg-primary text-white"
-      >
+      <div className="rounded-5 my-2 p-2 fw-semibold bg-primary text-white">
         {t("tweetCreationForm.tweetButton")}
       </div>
     </div>
