@@ -11,6 +11,7 @@ import {
 import { useTranslation } from "react-i18next";
 import styled from "styled-components";
 
+import localDateTime from "../services/localDateTime";
 import { Like } from "../types";
 import LikeButton from "./LikeButton";
 import RetweetButton from "./RetweetButton";
@@ -107,7 +108,7 @@ const FeedLikesTweet = ({ tweet, user }: Like) => {
                 ·
               </div>
               <UnderlineHover className="text-secondary">
-                {tweet.createdAt}
+                {localDateTime(tweet.createdAt)}
               </UnderlineHover>
             </div>
 

@@ -65,6 +65,8 @@ const TweetCreationForm: React.FC = () => {
   const handleTweetButton = (): void => {
     dispatch(tweetsActions.createTweet({ content: content }));
     setContent("");
+    const editorInstance = editor.current?.getEditor();
+    editorInstance?.setText("");
   };
   const handleImgUpload = (): void => {
     console.warn("Img Upload");
