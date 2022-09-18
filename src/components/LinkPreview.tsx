@@ -74,9 +74,7 @@ const LinkPreview = ({ url }: PropsUrl) => {
             </Card.Body>
           </Card>
         </a>
-      ) : Object.keys(response).length == 1 ? (
-        null
-      ) : (
+      ) : Object.keys(response).length == 1 ? null : (
         <a target="blank" className=" text-decoration-none" href={response.url}>
           <div className="text-black border rounded-4 d-flex justify-content-start ">
             <StyledWrapperImage className="border-end px-5 d-flex justify-content-center align-items-center bg-light">
