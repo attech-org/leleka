@@ -1,7 +1,6 @@
 import { Form, InputGroup } from "react-bootstrap";
 import { Search as SearchIcon } from "react-bootstrap-icons";
 import AsyncTypeahead from "react-bootstrap-typeahead/types/components/AsyncTypeahead";
-import { Option } from "react-bootstrap-typeahead/types/types";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
@@ -24,7 +23,7 @@ const StyledInputGroup = styled(InputGroup)`
   }
 `;
 
-const TagItem = ({ tag }: { tag: Tag }) => {
+const TagItem = (tag: Tag) => {
   return (
     <div className="d-flex align-items-center">
       <div className="fs-5 my-2 p-1">
@@ -75,9 +74,19 @@ export const AsyncSearch = () => {
               placeholder: t("search.placeholder"),
             }}
             size="sm"
-            renderMenuItemChildren={(option: Option) => (
-              <TagItem tag={{ ...(option as Tag) }} />
-            )}
+            renderMenuItemChildren={(option) =>
+              typeof option === "object" ? (
+                <TagItem
+                  key={option._id}
+                  _id={option._id}
+                  name={option.name}
+                  createdAt={option.createdAt}
+                  updatedAt={option.updatedAt}
+                />
+              ) : (
+                <>{option}</>
+              )
+            }
           />
         </div>
       </StyledInputGroup>
