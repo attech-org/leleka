@@ -4,11 +4,9 @@ import { Search as SearchIcon } from "react-bootstrap-icons";
 import AsyncTypeahead from "react-bootstrap-typeahead/types/components/AsyncTypeahead";
 import { Option } from "react-bootstrap-typeahead/types/types";
 import { useTranslation } from "react-i18next";
-import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 
-import { tagsActions } from "../redux/reducers/tags";
-import { AppDispatch, RootState } from "../redux/store";
+import instance from "../services/api";
 import { Tag } from "../types";
 
 const StyledForm = styled(Form)`
@@ -39,27 +37,17 @@ const TagItem = ({ tag }: { tag: Tag }) => {
 
 export const AsyncSearch = () => {
   const [options, setOptions] = useState<Tag[]>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  const dispatch = useDispatch<AppDispatch>();
-
-  const tags = useSelector<RootState, RootState["tags"]["tags"]>(
-    (store) => store.tags.tags
-  );
-
-  const isLoading = useSelector<RootState, RootState["tags"]["isLoading"]>(
-    (store) => store.tags.isLoading
-  );
-
-  const handleSearch = (query: string) => {
-    console.log(isLoading);
-    console.log("1. search", query);
-
-    dispatch(tagsActions.fetchTags({ query })).then(() =>
-      setOptions(tags.docs)
-    );
-
-    console.log("3. search res", tags.docs);
-    console.log(isLoading);
+  const handleSearch = async (query: string) => {
+    setIsLoading(true);
+    const response = await instance.get("api/tags", {
+      params: {
+        query: { name: { $regex: query, $options: "i" } },
+      },
+    });
+    setOptions(response.data.docs);
+    setIsLoading(false);
   };
 
   const { t } = useTranslation();
@@ -70,14 +58,14 @@ export const AsyncSearch = () => {
         className="align-items-center bg-light"
         id="basic-addon1"
       >
-        <div style={{ width: "10%" }}>
+        <div>
           <SearchIcon size={18} className="ms-1" />
         </div>
-        <div style={{ width: "90%" }}>
+        <div>
           <AsyncTypeahead
             filterBy={() => true}
-            id="async-example"
-            isLoading={false}
+            id="async-tags"
+            isLoading={isLoading}
             labelKey="name"
             minLength={3}
             onSearch={handleSearch}
@@ -89,7 +77,7 @@ export const AsyncSearch = () => {
               type: "text",
               placeholder: t("search.placeholder"),
             }}
-            size="sm"
+            size="lg"
             renderMenuItemChildren={(option: Option) => (
               <TagItem tag={{ ...(option as Tag) }} />
             )}
