@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { Form, InputGroup } from "react-bootstrap";
 import { Search as SearchIcon } from "react-bootstrap-icons";
 import AsyncTypeahead from "react-bootstrap-typeahead/types/components/AsyncTypeahead";
@@ -38,28 +37,14 @@ const TagItem = ({ tag }: { tag: Tag }) => {
 };
 
 export const AsyncSearch = () => {
-  const [options, setOptions] = useState<Tag[]>([]);
-
   const dispatch = useDispatch<AppDispatch>();
 
   const tags = useSelector<RootState, RootState["tags"]["tags"]>(
     (store) => store.tags.tags
   );
 
-  const isLoading = useSelector<RootState, RootState["tags"]["isLoading"]>(
-    (store) => store.tags.isLoading
-  );
-
   const handleSearch = (query: string) => {
-    console.log(isLoading);
-    console.log("1. search", query);
-
-    dispatch(tagsActions.fetchTags({ query })).then(() =>
-      setOptions(tags.docs)
-    );
-
-    console.log("3. search res", tags.docs);
-    console.log(isLoading);
+    dispatch(tagsActions.fetchTags({ query }));
   };
 
   const { t } = useTranslation();
@@ -70,18 +55,18 @@ export const AsyncSearch = () => {
         className="align-items-center bg-light"
         id="basic-addon1"
       >
-        <div style={{ width: "10%" }}>
+        <div>
           <SearchIcon size={18} className="ms-1" />
         </div>
-        <div style={{ width: "90%" }}>
+        <div>
           <AsyncTypeahead
             filterBy={() => true}
             id="async-example"
-            isLoading={false}
+            isLoading={tags.isLoading || false}
             labelKey="name"
             minLength={3}
             onSearch={handleSearch}
-            options={options}
+            options={tags.docs}
             delay={500}
             caseSensitive={false}
             inputProps={{
