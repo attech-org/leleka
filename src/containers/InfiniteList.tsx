@@ -17,7 +17,10 @@ const InfiniteList = <T extends object>({
       loadMore={showMore}
       hasMore={data.hasNextPage}
       loader={
-        <div className="m-2 d-flex justify-content-center">
+        <div
+          key="infinite_scroll_spinner"
+          className="m-2 d-flex justify-content-center"
+        >
           <Spinner animation="border" variant="primary" />
         </div>
       }

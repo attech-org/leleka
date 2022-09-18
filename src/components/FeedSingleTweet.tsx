@@ -26,7 +26,7 @@ const PostWrapper = styled.section`
   }
 `;
 
-const UnderlineHover = styled(Nav.Link)<{ eventKey: string }>`
+const UnderlineHover = styled(Nav.Link)<{ eventkey: string }>`
   transition-duration: 0.2s;
   text-decoration: none;
   :hover {
@@ -133,7 +133,7 @@ const FeedSingleTweet = ({
               <UnderlineHover
                 as={LinkWithLanguageQueryParam}
                 to={`/tweet/${_id}`}
-                eventKey={_id}
+                eventkey={_id}
                 className="text-secondary"
               >
                 {localDateTime(createdAt)}
