@@ -25,7 +25,7 @@ const persistConfig: IpersistConfig = {
   key: "root",
   storage,
   //whitelist: ['state'],    // only state will be persisted
-  blacklist: ["tweets", "tags"], // state will not be persisted
+  blacklist: ["tweets"], // state will not be persisted
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
