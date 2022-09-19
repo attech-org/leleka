@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Button, Navbar, OverlayTrigger, Popover } from "react-bootstrap";
 import { ThreeDots } from "react-bootstrap-icons";
 import { useTranslation } from "react-i18next";
@@ -44,6 +44,18 @@ const BookmarksList: React.FC = () => {
   const bookmarks = useSelector<RootState, RootState["bookmarks"]["list"]>(
     (store) => store.bookmarks.list
   );
+
+  useEffect(() => {
+    dispatch(
+      bookmarksActions.fetchBookmarks({
+        limit: bookmarks.limit,
+        nextPage: bookmarks.nextPage,
+        bookmarkId: bookmark._id,
+      })
+    );
+  }, []);
+
+  console.log("bookmarks", bookmarks);
 
   const handleShowMore = () => {
     return (
