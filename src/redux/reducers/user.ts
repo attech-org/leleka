@@ -130,11 +130,6 @@ const addAvatar = createAsyncThunk<Partial<User>, EditAvatarRequest>(
         avatar: base64avatar,
       },
     });
-    // {
-    //   profile: {
-    //           avatar: "..."
-    //      }
-    // }
     return response.data;
   }
 );
@@ -219,9 +214,7 @@ const userSlice = createSlice({
     });
     builder.addCase(addAvatar.fulfilled, (store, { payload }) => {
       store.error = undefined;
-      Object.assign(store, {
-        ...payload,
-      });
+      console.log(payload);
     });
     builder.addCase(addAvatar.rejected, (store) => {
       store.isLoading = false;

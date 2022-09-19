@@ -78,7 +78,11 @@ const toBase64 = (file: Blob) =>
   new Promise<string>((resolve, reject) => {
     const reader = new FileReader();
     reader.readAsDataURL(file);
-    reader.onload = () => resolve(reader.result);
+
+    reader.onload = () => {
+      resolve(reader.result ? reader.result.toString() : "");
+      console.log(reader.result);
+    };
     reader.onerror = (error) => reject(error);
   });
 
@@ -138,6 +142,7 @@ const Banner = ({ isEditBanner }: BannerProps) => {
     if (e.currentTarget && e.currentTarget.files) {
       const base64avatar = await toBase64(e.currentTarget.files[0]);
       dispatch(userActions.addAvatar({ base64avatar, userId }));
+      console.log(avatar);
     }
   };
 
