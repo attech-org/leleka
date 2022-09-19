@@ -2,24 +2,44 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 
 import Layout from "../containers/Layout";
+import localDateTime from "../services/localDateTime";
 
 const wsURI = process.env.REACT_APP_WEBSOCKET_URL;
 const ws = new WebSocket(wsURI || "");
 
+interface InfoMessage {
+  message: string;
+  dateTime: Date;
+}
+
 const ExplorePage: React.FunctionComponent = () => {
-  const [messages, setMessages] = useState<string[]>([]);
-  ws.onopen = () => setMessages(["connected", ...messages]);
-  ws.onmessage = (currentMessage) =>
-    setMessages([currentMessage.data, ...messages]);
+  const [messages, setMessages] = useState<InfoMessage[]>([]);
+
+  ws.onopen = () =>
+    setMessages([{ dateTime: new Date(), message: "connected" }, ...messages]);
+  ws.onmessage = (currentMessage) => {
+    setMessages([
+      { dateTime: new Date(), message: currentMessage.data },
+      ...messages,
+    ]);
+    if (messages.length > 10) {
+      messages.length = 10;
+      setMessages(messages);
+    }
+  };
+
   const { t } = useTranslation();
   return (
     <Layout title={t("pageTitles:explorePage")}>
       Explore
-      <li>
+      <ul>
         {messages.map((currentMessage, index) => (
-          <ul key={index}>{currentMessage}</ul>
+          <li key={index}>
+            <strong>{localDateTime(currentMessage.dateTime)}</strong>
+            {currentMessage.message}
+          </li>
         ))}
-      </li>
+      </ul>
     </Layout>
   );
 };
