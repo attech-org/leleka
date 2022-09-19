@@ -1,13 +1,13 @@
-import { useState } from "react";
-import { Form, InputGroup, Image } from "react-bootstrap";
+import { Form, InputGroup } from "react-bootstrap";
 import { Search as SearchIcon } from "react-bootstrap-icons";
 import AsyncTypeahead from "react-bootstrap-typeahead/types/components/AsyncTypeahead";
-import { Option } from "react-bootstrap-typeahead/types/types";
 import { useTranslation } from "react-i18next";
+import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 
-import users from "../MOCKS/users";
-import { MockUser } from "../types/mock-api-types";
+import { tagsActions } from "../redux/reducers/tags";
+import { AppDispatch, RootState } from "../redux/store";
+import { Tag } from "../types";
 
 const StyledForm = styled(Form)`
   border: 2px solid transparent;
@@ -23,67 +23,69 @@ const StyledInputGroup = styled(InputGroup)`
   }
 `;
 
-const UserItem = ({ user }: { user: MockUser }) => {
+const TagItem = (tag: Tag) => {
   return (
-    //TODO: add router push to user details page when created
     <div className="d-flex align-items-center">
-      <div className="p-1">
-        <Image width={50} height={50} roundedCircle src={user.userPhotoUrl} />
-      </div>
-      <div className="p-1">
-        <p className="fw-bold">{user.userFirstName + user.userLastName}</p>
-        <p>@{user.userName}</p>
-        <p>{user.userCaption}</p>
+      <div className="fs-5 my-2 p-1">
+        <p>
+          <SearchIcon size={24} className="me-3" />#{tag.name}
+        </p>
       </div>
     </div>
   );
 };
-export const AsyncSearch = () => {
-  const [isLoading, setIsLoading] = useState(false);
-  const [options, setOptions] = useState<Array<MockUser>>([]);
 
-  const handleSearch = (query: string) => {
-    setIsLoading(true);
-    const arr = users;
-    const searchResult: Array<MockUser> = [];
-    arr.map((user: MockUser) => {
-      if (user.userName.includes(query)) {
-        searchResult.push(user);
-      }
-    });
-    const res = searchResult || [];
-    setOptions(res);
-    setIsLoading(false);
+export const AsyncSearch = () => {
+  const dispatch = useDispatch<AppDispatch>();
+
+  const tags = useSelector<RootState, RootState["tags"]["tags"]>(
+    (store) => store.tags.tags
+  );
+
+  const handleSearch = (searchString: string) => {
+    dispatch(tagsActions.fetchTags({ searchString }));
   };
+
   const { t } = useTranslation();
+
   return (
     <StyledForm className="justify-content-center align-items-center mx-1 my-2 rounded-pill bg-light px-3 py-1">
       <StyledInputGroup
         className="align-items-center bg-light"
         id="basic-addon1"
       >
-        <div style={{ width: "10%" }}>
+        <div>
           <SearchIcon size={18} className="ms-1" />
         </div>
-        <div style={{ width: "90%" }}>
+        <div>
           <AsyncTypeahead
-            filterBy={["userName", "userFirstName", "userLastName"]}
             id="async-example"
-            isLoading={isLoading}
-            labelKey="userName"
+            isLoading={tags.isLoading || false}
+            labelKey="name"
             minLength={3}
             onSearch={handleSearch}
-            options={options}
-            delay={300}
+            options={tags.docs}
+            delay={500}
+            caseSensitive={false}
             inputProps={{
               className: "form-control border-0 bg-light px-3 fs-6  ",
               type: "text",
               placeholder: t("search.placeholder"),
             }}
             size="sm"
-            renderMenuItemChildren={(option: Option) => (
-              <UserItem user={{ ...(option as MockUser) }} />
-            )}
+            renderMenuItemChildren={(option) =>
+              typeof option === "object" ? (
+                <TagItem
+                  key={option._id}
+                  _id={option._id}
+                  name={option.name}
+                  createdAt={option.createdAt}
+                  updatedAt={option.updatedAt}
+                />
+              ) : (
+                <>{option}</>
+              )
+            }
           />
         </div>
       </StyledInputGroup>

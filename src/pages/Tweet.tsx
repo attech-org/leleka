@@ -18,7 +18,7 @@ const Tweet = () => {
 
   useEffect(() => {
     dispatch(tweetsActions.fetchTweetById(tweetId));
-  }, []);
+  }, [tweetId]);
 
   const { data } = useSelector<RootState, RootState["tweets"]["currentTweet"]>(
     (store) => store.tweets.currentTweet

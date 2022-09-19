@@ -11,6 +11,7 @@ import {
 import { useTranslation } from "react-i18next";
 import styled from "styled-components";
 
+import localDateTime from "../services/localDateTime";
 import { Tweet2 } from "../types";
 // import AttachedContent from "./AttachedContent";
 import LikeButton from "./LikeButton";
@@ -97,11 +98,11 @@ const IconBg = styled.div<IIconBg>`
 `;
 
 const SingleTweet = ({
-  // _id,
+  _id,
   author,
   content,
   createdAt,
-  // repliedTo,
+  repliedTo,
   // updatedAt,
   stats: { likes, retweets, comments },
 }: Tweet2) => {
@@ -192,10 +193,18 @@ const SingleTweet = ({
             </div>
           </NameSection>
         </Author>
+        {repliedTo ? (
+          <div className="mb-3">
+            {t("reply.replyContent")}
+            <a href="#">@topic_author</a>
+          </div>
+        ) : (
+          ""
+        )}
         <Text className="py-2">{content}</Text>
         {/* <AttachedContent /> */}
         <Date className="border-bottom py-3 fw-bold">
-          {createdAt} - "lelekaLink"
+          {localDateTime(createdAt)} - "lelekaLink"
         </Date>
         <Statistic className="border-bottom py-3">
           <span className="fw-bold text-dark pe-1">{retweets}</span>
@@ -211,7 +220,7 @@ const SingleTweet = ({
             iconColor={Blue}
             className="m-0 p-0 rounded-circle row align-items-center justify-content-center"
           >
-            <TweetReplyForm />
+            <TweetReplyForm author={author} content={content} id={_id} />
           </IconBg>
           <IconBg
             iconBgColor={""}

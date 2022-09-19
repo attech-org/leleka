@@ -21,7 +21,9 @@ const FeedPostsContainer = () => {
     <InfiniteList<Tweet2>
       showMore={handleShowMore}
       data={posts}
-      itemComponent={(itemData) => <FeedSingleTweet {...itemData} />}
+      itemComponent={(itemData) => (
+        <FeedSingleTweet key={itemData._id} {...itemData} />
+      )}
     />
   );
 };

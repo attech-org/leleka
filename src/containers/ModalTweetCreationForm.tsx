@@ -1,4 +1,3 @@
-import { Button } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
 // import { useSelector } from "react-redux";
 
@@ -15,13 +14,9 @@ const ModalTweetCreationForm: React.FC = () => {
 
   const tweetButton = (
     <div className="d-grid gap-2">
-      <Button
-        type="submit"
-        variant="primary"
-        className="rounded-5 my-2 py-2 fw-semibold"
-      >
+      <div className="rounded-5 my-2 p-2 fw-semibold bg-primary text-white">
         {t("tweetCreationForm.tweetButton")}
-      </Button>
+      </div>
     </div>
   );
 

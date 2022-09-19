@@ -27,7 +27,7 @@ export interface Tweet2 extends MongoArtifacts {
   author: Partial<User>;
   content: string;
   createdAt: string;
-  repliedTo?: string;
+  repliedTo?: Tweet2;
   updatedAt: string;
   stats: {
     likes: number;
@@ -42,6 +42,12 @@ export interface Like extends MongoArtifacts {
     profile: { avatar: string };
     username: string;
   };
+}
+
+export interface Tag extends MongoArtifacts {
+  name: string;
+  createdAt?: string;
+  updatedAt?: string;
 }
 
 export interface User extends MongoArtifacts {
