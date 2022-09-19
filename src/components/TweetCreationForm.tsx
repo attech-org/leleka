@@ -1,7 +1,14 @@
 import Picker, { IEmojiData } from "emoji-picker-react";
-import { memo, MouseEvent, useRef, useState } from "react";
+import {
+  createRef,
+  memo,
+  MouseEvent,
+  RefObject,
+  useEffect,
+  useState,
+} from "react";
 import Avatar from "react-avatar";
-import { OverlayTrigger, Popover, Spinner } from "react-bootstrap";
+import { OverlayTrigger, Popover, Spinner, Form } from "react-bootstrap";
 import {
   EmojiSmile,
   Image as ImageIcon,
@@ -11,7 +18,6 @@ import {
   At,
 } from "react-bootstrap-icons";
 import { useTranslation } from "react-i18next";
-import ReactQuill from "react-quill";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 
@@ -44,9 +50,10 @@ const StyledPopover = styled(Popover)`
 `;
 
 const TweetCreationForm: React.FC = () => {
-  const editor = useRef<ReactQuill>(null);
+  const inputRef: RefObject<HTMLTextAreaElement> = createRef();
   const [content, setContent] = useState("");
   const [showPicker, setShowPicker] = useState(false);
+  const [cursorPosition, setCursorPosition] = useState(0);
 
   const dispatch = useDispatch<AppDispatch>();
   const isLoading = useSelector<RootState, boolean | undefined>(
@@ -62,24 +69,40 @@ const TweetCreationForm: React.FC = () => {
     "translation:tweetCreationForm.whoCanAnswer.button.all"
   );
 
+  const urlSearch = new RegExp(
+    /https?:\/\/(?:www.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9].[^\s<]{2,}|https?:\/\/(?:www.|(?!www))[a-zA-Z0-9]+.[^\s<]{2,}/,
+    "g"
+  );
+
   const handleTweetButton = (): void => {
-    dispatch(tweetsActions.createTweet({ content: content }));
+    const tweetContent = content.replace(
+      urlSearch,
+      (result) => `<a href="${result}">${result}</a>`
+    );
+    dispatch(tweetsActions.createTweet({ content: tweetContent }));
     setContent("");
-    const editorInstance = editor.current?.getEditor();
-    editorInstance?.setText("");
   };
   const handleImgUpload = (): void => {
     console.warn("Img Upload");
   };
 
   const onEmojiClick = (_event: MouseEvent, emojiObject: IEmojiData): void => {
-    const editorInstance = editor.current?.getEditor();
-    const position =
-      editor.current?.selection?.index ||
-      (editorInstance?.getLength() || 0) - 1 ||
-      0;
-    editorInstance?.insertText(position, emojiObject.emoji);
+    if (inputRef.current !== null) {
+      const ref = inputRef.current;
+      ref.focus();
+      const start = content.substring(0, ref.selectionStart);
+      const end = content.substring(ref.selectionStart);
+      const message = start + emojiObject.emoji + end;
+      setContent(message);
+      setCursorPosition(start.length + emojiObject.emoji.length);
+    }
   };
+
+  useEffect(() => {
+    if (inputRef.current !== null) {
+      inputRef.current.selectionEnd = cursorPosition;
+    }
+  }, [cursorPosition]);
 
   return (
     <div>
@@ -92,34 +115,14 @@ const TweetCreationForm: React.FC = () => {
           src={avatar}
         />
         <div className="flex-grow-1 ms-2">
-          <ReactQuill
-            ref={editor}
+          <Form.Control
+            as="textarea"
+            plaintext
             placeholder="What's happening?"
-            modules={{
-              toolbar: false,
-            }}
-            formats={[
-              "header",
-              "font",
-              "size",
-              "bold",
-              "italic",
-              "underline",
-              "strike",
-              "blockquote",
-              "color",
-              "background",
-              "list",
-              "bullet",
-              "indent",
-              "link",
-              "video",
-              "image",
-              "code-block",
-              "align",
-            ]}
+            ref={inputRef}
+            value={content}
             onChange={(val) => {
-              setContent(val);
+              setContent(val.target.value);
             }}
           />
           <div className="border-bottom py-1">
