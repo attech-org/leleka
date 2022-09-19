@@ -1,6 +1,7 @@
 //Redux:
 import { combineReducers } from "redux";
 
+import bookmarksReducer from "./bookmarks";
 import followersReducer from "./followers";
 import followingReducer from "./following";
 import pwaReducer from "./pwa";
@@ -13,4 +14,5 @@ export const rootReducer = combineReducers({
   pwaInfo: pwaReducer,
   followers: followersReducer,
   following: followingReducer,
+  bookmarks: bookmarksReducer,
 });
