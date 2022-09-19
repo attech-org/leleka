@@ -2,10 +2,8 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 
 import Layout from "../containers/Layout";
+import ws from "../services/getWebSocket";
 import localDateTime from "../services/localDateTime";
-
-const wsURI = process.env.REACT_APP_WEBSOCKET_URL;
-const ws = new WebSocket(wsURI || "");
 
 interface InfoMessage {
   message: string;
