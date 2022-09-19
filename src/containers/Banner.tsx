@@ -74,17 +74,17 @@ const StyledInput = styled.input`
   height: 42px;
 `;
 
-const toBase64 = (file: Blob) =>
-  new Promise<string>((resolve, reject) => {
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
+// const toBase64 = (file: Blob) =>
+//   new Promise<string>((resolve, reject) => {
+//     const reader = new FileReader();
+//     reader.readAsDataURL(file);
 
-    reader.onload = () => {
-      resolve(reader.result ? reader.result.toString() : "");
-      console.log(reader.result);
-    };
-    reader.onerror = (error) => reject(error);
-  });
+//     reader.onload = () => {
+//       resolve(reader.result ? reader.result.toString() : "");
+//       console.log(reader.result);
+//     };
+//     reader.onerror = (error) => reject(error);
+//   });
 
 interface BannerProps {
   isEditBanner: boolean;
@@ -140,9 +140,9 @@ const Banner = ({ isEditBanner }: BannerProps) => {
 
   const handleAvatarUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.currentTarget && e.currentTarget.files) {
-      const base64avatar = await toBase64(e.currentTarget.files[0]);
-      dispatch(userActions.addAvatar({ base64avatar, userId }));
-      console.log(avatar);
+      const formData = new FormData();
+      formData.append("avatar", e.currentTarget.files[0]);
+      dispatch(userActions.addAvatar({ formData, userId }));
     }
   };
 

@@ -103,7 +103,7 @@ interface EditProfileRequest {
 }
 
 interface EditAvatarRequest {
-  base64avatar?: string;
+  formData: FormData;
   userId: string;
 }
 
@@ -124,12 +124,9 @@ const editProfileUser = createAsyncThunk<Partial<User>, EditProfileRequest>(
 );
 const addAvatar = createAsyncThunk<Partial<User>, EditAvatarRequest>(
   "users/profile/avatar",
-  async ({ base64avatar, userId }) => {
-    const response = await instance.put(`api/users/${userId}`, {
-      profile: {
-        avatar: base64avatar,
-      },
-    });
+  async ({ formData, userId }) => {
+    const response = await instance.put(`api/users/${userId}`, formData);
+
     return response.data;
   }
 );
