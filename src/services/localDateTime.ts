@@ -1,5 +1,13 @@
-const localDateTime = (iSOString: string) => {
-  const dateTime = new Date(iSOString);
-  return dateTime.toLocaleDateString() + " " + dateTime.toLocaleTimeString();
+const localDateTime = (iSOStringOrDate: string | Date) => {
+  if (typeof iSOStringOrDate === "string") {
+    const dateTime = new Date(iSOStringOrDate);
+    return dateTime.toLocaleDateString() + " " + dateTime.toLocaleTimeString();
+  } else {
+    return (
+      iSOStringOrDate.toLocaleDateString() +
+      " " +
+      iSOStringOrDate.toLocaleTimeString()
+    );
+  }
 };
 export default localDateTime;
