@@ -9,7 +9,7 @@ import { LE, Tweet2 } from "../../types";
 import { Pagination } from "../../types/mock-api-types";
 
 export type BookmarksStore = {
-  id: string;
+  _id: string;
   list: LE<Pagination<Tweet2>>;
 };
 
@@ -20,7 +20,7 @@ const bookmarksInitialStore: BookmarksStore = {
     docs: [],
     hasNextPage: true,
   },
-  id: "",
+  _id: "",
 };
 
 interface FetchBookmarksFunctionArgs {

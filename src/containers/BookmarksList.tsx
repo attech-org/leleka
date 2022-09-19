@@ -52,7 +52,7 @@ const BookmarksList: React.FC = () => {
         bookmarksActions.fetchBookmarks({
           limit: bookmarks.limit,
           nextPage: bookmarks.nextPage,
-          bookmarkId: bookmark.id,
+          bookmarkId: bookmark._id,
         })
       )
     );
@@ -90,7 +90,7 @@ const BookmarksList: React.FC = () => {
         </StyledDiv>
       </StyledNavbar>
       <>
-        {bookmark.id ? (
+        {bookmark._id ? (
           <InfiniteList<Tweet2>
             showMore={handleShowMore}
             data={bookmarks}
