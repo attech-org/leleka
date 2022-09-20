@@ -24,8 +24,6 @@ import styled from "styled-components";
 import { tweetsActions } from "../redux/reducers/tweets";
 import { RootState, AppDispatch } from "../redux/store";
 
-import "react-quill/dist/quill.snow.css";
-
 const StyledButton = styled.button`
   &:hover {
     background-color: rgb(0, 0, 255, 0.1);
@@ -69,17 +67,8 @@ const TweetCreationForm: React.FC = () => {
     "translation:tweetCreationForm.whoCanAnswer.button.all"
   );
 
-  const urlSearch = new RegExp(
-    /https?:\/\/(?:www.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9].[^\s<]{2,}|https?:\/\/(?:www.|(?!www))[a-zA-Z0-9]+.[^\s<]{2,}/,
-    "g"
-  );
-
   const handleTweetButton = (): void => {
-    const tweetContent = content.replace(
-      urlSearch,
-      (result) => `<a href="${result}">${result}</a>`
-    );
-    dispatch(tweetsActions.createTweet({ content: tweetContent }));
+    dispatch(tweetsActions.createTweet({ content: content }));
     setContent("");
   };
   const handleImgUpload = (): void => {
@@ -87,7 +76,7 @@ const TweetCreationForm: React.FC = () => {
   };
 
   const onEmojiClick = (_event: MouseEvent, emojiObject: IEmojiData): void => {
-    if (inputRef.current !== null) {
+    if (inputRef.current) {
       const ref = inputRef.current;
       ref.focus();
       const start = content.substring(0, ref.selectionStart);
@@ -99,7 +88,7 @@ const TweetCreationForm: React.FC = () => {
   };
 
   useEffect(() => {
-    if (inputRef.current !== null) {
+    if (inputRef.current) {
       inputRef.current.selectionEnd = cursorPosition;
     }
   }, [cursorPosition]);
@@ -118,7 +107,7 @@ const TweetCreationForm: React.FC = () => {
           <Form.Control
             as="textarea"
             plaintext
-            placeholder="What's happening?"
+            placeholder={t("translation:tweetCreationForm.inputField")}
             ref={inputRef}
             value={content}
             onChange={(val) => {
