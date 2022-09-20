@@ -74,18 +74,6 @@ const StyledInput = styled.input`
   height: 42px;
 `;
 
-// const toBase64 = (file: Blob) =>
-//   new Promise<string>((resolve, reject) => {
-//     const reader = new FileReader();
-//     reader.readAsDataURL(file);
-
-//     reader.onload = () => {
-//       resolve(reader.result ? reader.result.toString() : "");
-//       console.log(reader.result);
-//     };
-//     reader.onerror = (error) => reject(error);
-//   });
-
 interface BannerProps {
   isEditBanner: boolean;
 }
@@ -99,39 +87,14 @@ const Banner = ({ isEditBanner }: BannerProps) => {
     (store) => store.user.profile.avatar
   );
 
-  // const [fileAvatar, setFileAvatar] = useState<File>();
-
   const userId = useSelector<RootState, RootState["user"]["_id"]>(
     (store) => store.user._id
   );
-
-  // useEffect(() => {
-  //   // let objectUrlAvatar: string;
-  //   // if (fileAvatar) {
-  //   //   objectUrlAvatar = URL.createObjectURL(fileAvatar);
-  //   //   // dispatch(userActions.addAvatar(objectUrlAvatar)); //
-  //   // }
-
-  //   // return () => URL.revokeObjectURL(objectUrlAvatar);
-  //   dispatch(userActions.addAvatar({ fileAvatar, userId }));
-  // }, [fileAvatar]);
 
   // ------------------------------ banner image ------------------------
   const banner = useSelector<RootState, RootState["user"]["profile"]["banner"]>(
     (store) => store.user.profile.banner
   );
-
-  const [fileImage, setFileImage] = useState<File>();
-
-  useEffect(() => {
-    let objectUrlImage: string;
-    if (fileImage) {
-      objectUrlImage = URL.createObjectURL(fileImage);
-      // dispatch(userActions.addBanner(objectUrlImage)); //
-    }
-
-    return () => URL.revokeObjectURL(objectUrlImage);
-  }, [fileImage]);
 
   const removeBanner = () => {
     dispatch(userActions.removeBanner()); //
@@ -146,11 +109,14 @@ const Banner = ({ isEditBanner }: BannerProps) => {
     }
   };
 
-  const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.currentTarget && e.currentTarget.files) {
-      setFileImage(e.currentTarget.files[0]);
-    }
-  };
+  // const handleBannerUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+  //   if (e.currentTarget && e.currentTarget.files) {
+  //     const formData = new FormData();
+  //     formData.append("banner", e.currentTarget.files[0]);
+  //     dispatch(userActions.addBanner({ formData, userId }));
+  //   }
+  // };
+
   //-------------------------FastAverageColor-----------------------------
   const [backgroundColor, setBackgroundColor] = useState("rgba(181,192,200,1)");
 
@@ -193,7 +159,7 @@ const Banner = ({ isEditBanner }: BannerProps) => {
                       className="opacity-0 position-absolute rounded-circle"
                       type="file"
                       accept="image/*"
-                      onChange={handleImageUpload}
+                      // onChange={handleBannerUpload}
                     />
                   </AddPhotoDiv>
                 </OverlayTrigger>
