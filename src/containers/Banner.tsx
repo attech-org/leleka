@@ -157,7 +157,7 @@ const Banner = ({ isEditBanner }: BannerProps) => {
   useEffect(() => {
     const fac = new FastAverageColor();
     fac
-      .getColorAsync(avatar)
+      .getColorAsync(`data:image/png;base64,  ${avatar}`)
       .then((color) => {
         setBackgroundColor(color.rgba);
       })
@@ -262,7 +262,7 @@ const Banner = ({ isEditBanner }: BannerProps) => {
             <AvatarImg
               crossOrigin="anonymous"
               className="rounded-circle"
-              src={avatar}
+              src={`data:image/png;base64,  ${avatar}`}
               alt=""
             />
           ) : (

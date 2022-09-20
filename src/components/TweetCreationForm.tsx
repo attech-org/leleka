@@ -78,7 +78,7 @@ const TweetCreationForm: React.FC = () => {
           round="50%"
           twitterHandle="sitebase"
           name="Artem Ligerko"
-          src={avatar}
+          src={`data:image/png;base64,  ${avatar}`}
         />
         <div className="flex-grow-1 ms-2">
           <ReactQuill

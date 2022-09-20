@@ -211,7 +211,9 @@ const userSlice = createSlice({
     });
     builder.addCase(addAvatar.fulfilled, (store, { payload }) => {
       store.error = undefined;
-      console.log(payload);
+      Object.assign(store, {
+        ...payload,
+      });
     });
     builder.addCase(addAvatar.rejected, (store) => {
       store.isLoading = false;

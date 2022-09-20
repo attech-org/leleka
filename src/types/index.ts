@@ -63,7 +63,7 @@ export interface User extends MongoArtifacts {
   profile: {
     firstName?: string;
     lastName?: string;
-    avatar: string;
+    avatar?: string;
     banner?: string;
     bio?: string;
     birthDate?: string;
