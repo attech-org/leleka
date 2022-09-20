@@ -11,6 +11,10 @@
     "noFollowing": "Ви нікого не читаєте"
   },
 
+  "mentionsList": {
+    "noMentions": "У вас нема згадуваннь"
+  },
+
   "common": {
     "showMore": "Показати більше",
     "follow": "Читати",
