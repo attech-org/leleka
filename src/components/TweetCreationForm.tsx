@@ -47,7 +47,11 @@ const StyledPopover = styled(Popover)`
   }
 `;
 
-const TweetCreationForm: React.FC = () => {
+interface TweetCreationFormProps {
+  repliedId?: string;
+}
+
+const TweetCreationForm: React.FC<TweetCreationFormProps> = ({ repliedId }) => {
   const inputRef: RefObject<HTMLTextAreaElement> = createRef();
   const [content, setContent] = useState("");
   const [showPicker, setShowPicker] = useState(false);
@@ -68,7 +72,9 @@ const TweetCreationForm: React.FC = () => {
   );
 
   const handleTweetButton = (): void => {
-    dispatch(tweetsActions.createTweet({ content: content }));
+    dispatch(
+      tweetsActions.createTweet({ content: content, repliedTo: repliedId })
+    );
     setContent("");
   };
   const handleImgUpload = (): void => {
@@ -107,83 +113,89 @@ const TweetCreationForm: React.FC = () => {
           <Form.Control
             as="textarea"
             plaintext
-            placeholder={t("translation:tweetCreationForm.inputField")}
+            placeholder={
+              repliedId
+                ? t("translation:reply.placeholder")
+                : t("translation:tweetCreationForm.inputField")
+            }
             ref={inputRef}
             value={content}
             onChange={(val) => {
               setContent(val.target.value);
             }}
           />
-          <div className="border-bottom py-1">
-            <div>
-              <OverlayTrigger
-                rootClose
-                trigger="click"
-                key="bottom"
-                placement="bottom"
-                overlay={
-                  <StyledPopover className="py-2 rounded-4">
-                    <div className="fs-6 fw-bold px-3 lh-sm">
-                      {t(
-                        "translation:tweetCreationForm.whoCanAnswer.popover.header"
-                      )}
-                    </div>
-                    <div className="px-3 fs-6 lh-sm">
-                      {t(
-                        "translation:tweetCreationForm.whoCanAnswer.popover.text"
-                      )}
-                    </div>
-                    <div className="d-flex flex-column">
-                      <StyledPopoverButton className="btn py-0 px-3 py-2 d-flex align-items-center secondary rounded-0 text-primary border-0">
-                        <div className="bg-primary me-2 p-2 d-flex justify-content-center align-items-center rounded-circle">
-                          <Globe2 className="text-white fs-5 m-1" />
-                        </div>
-                        <div className="text-start text-black-50">
-                          {t(
-                            "translation:tweetCreationForm.whoCanAnswer.popover.all"
-                          )}
-                        </div>
-                        <div className="flex-grow-1 text-end fs-4">
-                          <CheckLg />
-                        </div>
-                      </StyledPopoverButton>
-                      <StyledPopoverButton className="btn py-0 px-3 py-2 d-flex align-items-center secondary rounded-0 text-primary border-0">
-                        <div className="bg-primary me-2 p-2 d-flex justify-content-center align-items-center rounded-circle">
-                          <PersonCheck className="text-white fs-5 m-1" />
-                        </div>
-                        <div className="text-start text-black-50">
-                          {t(
-                            "translation:tweetCreationForm.whoCanAnswer.popover.follow"
-                          )}
-                        </div>
-                        <div className="flex-grow-1 text-end fs-4">
-                          <CheckLg />
-                        </div>
-                      </StyledPopoverButton>
-                      <StyledPopoverButton className="btn py-0 px-3 py-2 d-flex align-items-center secondary rounded-0 text-primary border-0">
-                        <div className="bg-primary me-2 p-2 d-flex justify-content-center align-items-center rounded-circle">
-                          <At className="text-white fs-5 m-1" />
-                        </div>
-                        <div className="text-start text-black-50">
-                          {t(
-                            "translation:tweetCreationForm.whoCanAnswer.popover.mention"
-                          )}
-                        </div>
-                        <div className="flex-grow-1 text-end fs-4">
-                          <CheckLg />
-                        </div>
-                      </StyledPopoverButton>
-                    </div>
-                  </StyledPopover>
-                }
-              >
-                <StyledButton className="btn py-0 px-2 my-2 d-flex align-items-center secondary rounded-5 fw-bold text-primary border-0">
-                  <Globe2 className="me-1" />
-                  <span>{whoCanAnswer}</span>
-                </StyledButton>
-              </OverlayTrigger>
+          {!repliedId && (
+            <div className="border-bottom py-1">
+              <div>
+                <OverlayTrigger
+                  rootClose
+                  trigger="click"
+                  key="bottom"
+                  placement="bottom"
+                  overlay={
+                    <StyledPopover className="py-2 rounded-4">
+                      <div className="fs-6 fw-bold px-3 lh-sm">
+                        {t(
+                          "translation:tweetCreationForm.whoCanAnswer.popover.header"
+                        )}
+                      </div>
+                      <div className="px-3 fs-6 lh-sm">
+                        {t(
+                          "translation:tweetCreationForm.whoCanAnswer.popover.text"
+                        )}
+                      </div>
+                      <div className="d-flex flex-column">
+                        <StyledPopoverButton className="btn py-0 px-3 py-2 d-flex align-items-center secondary rounded-0 text-primary border-0">
+                          <div className="bg-primary me-2 p-2 d-flex justify-content-center align-items-center rounded-circle">
+                            <Globe2 className="text-white fs-5 m-1" />
+                          </div>
+                          <div className="text-start text-black-50">
+                            {t(
+                              "translation:tweetCreationForm.whoCanAnswer.popover.all"
+                            )}
+                          </div>
+                          <div className="flex-grow-1 text-end fs-4">
+                            <CheckLg />
+                          </div>
+                        </StyledPopoverButton>
+                        <StyledPopoverButton className="btn py-0 px-3 py-2 d-flex align-items-center secondary rounded-0 text-primary border-0">
+                          <div className="bg-primary me-2 p-2 d-flex justify-content-center align-items-center rounded-circle">
+                            <PersonCheck className="text-white fs-5 m-1" />
+                          </div>
+                          <div className="text-start text-black-50">
+                            {t(
+                              "translation:tweetCreationForm.whoCanAnswer.popover.follow"
+                            )}
+                          </div>
+                          <div className="flex-grow-1 text-end fs-4">
+                            <CheckLg />
+                          </div>
+                        </StyledPopoverButton>
+                        <StyledPopoverButton className="btn py-0 px-3 py-2 d-flex align-items-center secondary rounded-0 text-primary border-0">
+                          <div className="bg-primary me-2 p-2 d-flex justify-content-center align-items-center rounded-circle">
+                            <At className="text-white fs-5 m-1" />
+                          </div>
+                          <div className="text-start text-black-50">
+                            {t(
+                              "translation:tweetCreationForm.whoCanAnswer.popover.mention"
+                            )}
+                          </div>
+                          <div className="flex-grow-1 text-end fs-4">
+                            <CheckLg />
+                          </div>
+                        </StyledPopoverButton>
+                      </div>
+                    </StyledPopover>
+                  }
+                >
+                  <StyledButton className="btn py-0 px-2 my-2 d-flex align-items-center secondary rounded-5 fw-bold text-primary border-0">
+                    <Globe2 className="me-1" />
+                    <span>{whoCanAnswer}</span>
+                  </StyledButton>
+                </OverlayTrigger>
+              </div>
             </div>
-          </div>
+          )}
           <div className="d-flex justify-content-between">
             <div className="d-flex p-2">
               <StyledIcon className="rounded-circle" onClick={handleImgUpload}>
