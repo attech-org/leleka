@@ -5,7 +5,7 @@ import { LE, User } from "../../types";
 
 export type UserStore = User &
   LE<{
-    // some custom typings for store
+    usersByUsername: LE<{ data?: User }>;
   }>;
 
 const userInitialState: UserStore = {
@@ -47,6 +47,10 @@ const userInitialState: UserStore = {
   },
   isLoading: false,
   error: undefined,
+  usersByUsername: {
+    isLoading: false,
+    error: undefined,
+  },
 };
 interface RegisterResponse {
   user: Partial<User>;
@@ -90,6 +94,18 @@ const loginUser = createAsyncThunk<LoginResponse, LoginRequest>(
       password,
       email: "",
     });
+    return response.data;
+  }
+);
+
+const fetchUser = createAsyncThunk<User, string>(
+  "username",
+  async (username) => {
+    const response = await instance.get("api/users", {
+      params: { query: { username: username } },
+    });
+    console.log("1111");
+    console.log(response.data);
     return response.data;
   }
 );
@@ -162,9 +178,32 @@ const userSlice = createSlice({
       store.isLoading = false;
       store.error = "Failed to login user";
     });
+    builder.addCase(fetchUser.pending, (store) => {
+      console.log("444444");
+      console.log(store);
+      store.usersByUsername.isLoading = true;
+      console.log(store.usersByUsername.isLoading);
+    });
+    builder.addCase(fetchUser.fulfilled, (store, { payload }) => {
+      console.log("5555555");
+      store.usersByUsername.data = { ...payload };
+      store.usersByUsername.isLoading = false;
+    });
+    builder.addCase(fetchUser.rejected, (store) => {
+      console.log("33333");
+      console.log(store.usersByUsername);
+
+      store.usersByUsername.isLoading = false;
+      store.usersByUsername.error = "Failed to fetch user by username";
+    });
   },
 });
 
-export const userActions = { ...userSlice.actions, registerUser, loginUser };
+export const userActions = {
+  ...userSlice.actions,
+  registerUser,
+  loginUser,
+  fetchUser,
+};
 
 export default userSlice.reducer;

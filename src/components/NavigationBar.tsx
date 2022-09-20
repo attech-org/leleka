@@ -10,10 +10,13 @@ import {
   Envelope,
 } from "react-bootstrap-icons";
 import { useTranslation } from "react-i18next";
+import { useSelector } from "react-redux";
 import styled from "styled-components";
 
 import { LinkWithLanguageQueryParam } from "../containers/LinkWithLanguageQueryParam";
 import ModalTweetCreationForm from "../containers/ModalTweetCreationForm";
+import { UserStore } from "../redux/reducers/user";
+import { RootState } from "../redux/store";
 
 const StyledNav = styled(Nav)`
   .nav-link,
@@ -30,6 +33,7 @@ const StyledSpan = styled.span`
 `;
 
 const NavigationBar = () => {
+  const user = useSelector<RootState>((store) => store.user) as UserStore;
   const { t } = useTranslation();
   return (
     <StyledNav className="d-flex flex-column " defaultActiveKey="/">
@@ -77,7 +81,7 @@ const NavigationBar = () => {
       </Nav.Item>
       <Nav.Item className="d-flex align-items-center ps-2 py-2">
         <Person size={20} className="my-2" />
-        <Nav.Link as={LinkWithLanguageQueryParam} to="/profile">
+        <Nav.Link as={LinkWithLanguageQueryParam} to={`/${user.username}`}>
           <StyledSpan className="fs-5">{t("navigationBar.profile")}</StyledSpan>
         </Nav.Link>
       </Nav.Item>

@@ -1,7 +1,8 @@
+import { useEffect } from "react";
 import { Button } from "react-bootstrap";
 import { Gear } from "react-bootstrap-icons";
 import { useTranslation } from "react-i18next";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 
 import Banner from "../containers/Banner";
@@ -12,8 +13,8 @@ import Media from "../containers/ProfileMedia";
 import ProfileTweets from "../containers/ProfileTweets";
 import TabsContainer from "../containers/Tabs";
 import { TweetsWithReplies } from "../containers/TweetsWithReplies";
-import { UserStore } from "../redux/reducers/user";
-import { RootState } from "../redux/store";
+import { userActions, UserStore } from "../redux/reducers/user";
+import { AppDispatch, RootState } from "../redux/store";
 import { TabKeyProps } from "../types/tabs-types";
 
 const StyledButton = styled(Button)`
@@ -28,8 +29,19 @@ const StyledButton = styled(Button)`
 `;
 
 const ProfilePage = ({ tabKey }: TabKeyProps) => {
-  const user = useSelector<RootState>((store) => store.user) as UserStore;
+  const usernameId = "leleka1";
+  const dispatch = useDispatch<AppDispatch>();
 
+  useEffect(() => {
+    dispatch(userActions.fetchUser(usernameId));
+  }, [usernameId]);
+
+  const user = useSelector<RootState>((store) => store.user) as UserStore;
+  const user1 = useSelector<RootState, RootState["user"]["usersByUsername"]>(
+    (store) => store.user.usersByUsername
+  );
+  console.log("22222");
+  console.log(user1);
   const { t } = useTranslation();
 
   const tabsData = [
@@ -37,27 +49,27 @@ const ProfilePage = ({ tabKey }: TabKeyProps) => {
       label: t("profile.tabsLabel.tweets"),
       content: <ProfileTweets />,
       key: "tweets",
-      route: "/profile",
+      route: `/${user.username}`,
     },
 
     {
       label: t("profile.tabsLabel.tweetsWithReplies"),
       content: <TweetsWithReplies />,
       key: "tweets-with-replies",
-      route: "/profile/with_replies",
+      route: `/${user.username}/with_replies`,
     },
 
     {
       label: t("profile.tabsLabel.media"),
       content: <Media />,
       key: "media",
-      route: "/profile/media",
+      route: `/${user.username}/media`,
     },
     {
       label: t("profile.tabsLabel.likes"),
       content: <Likes />,
       key: "likes",
-      route: "/profile/likes",
+      route: `/${user.username}/likes`,
     },
   ];
 
