@@ -92,6 +92,7 @@ const EditProfileForm = () => {
     watch,
     formState: { errors },
   } = useForm<IFormInput>({
+    mode: "all",
     resolver: yupResolver(schema),
     defaultValues: preloadedValues,
   });
@@ -117,7 +118,6 @@ const EditProfileForm = () => {
         {/*----NameUser input -------*/}
         <FloatingLabel
           label={t(`validation:userSettings.name`)}
-          className=""
           controlId="inputNameUser"
         >
           <Form.Control
@@ -125,20 +125,23 @@ const EditProfileForm = () => {
             type="text"
             placeholder={t(`validation:userSettings.name`)}
             maxLength={50}
+            isInvalid={!!errors.username}
           />
-          <StyledLabel
-            counter
-            className="pt-4 text-end"
-            htmlFor="floatingInputCustom"
-          >
-            {watchUsername ? watchUsername.length : 0} / 50
-          </StyledLabel>
+          <Form.Control.Feedback type="invalid">
+            {t(`${errors?.username?.message}`)}
+          </Form.Control.Feedback>
+
+          {!errors?.username && (
+            <StyledLabel
+              counter
+              className="pt-4 text-end"
+              htmlFor="floatingInputCustom"
+            >
+              {watchUsername ? watchUsername.length : 0} / 50
+            </StyledLabel>
+          )}
         </FloatingLabel>
-        <p className="text-danger mt-1 mb-2 fs-6 ms-2">
-          {errors.username &&
-            errors.username.message &&
-            t(`${errors.username.message}`)}
-        </p>
+
         {/*----BioUser field -------*/}
         <FloatingLabel
           label={t(`validation:userSettings.bio`)}
