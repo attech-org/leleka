@@ -165,11 +165,6 @@ const fetchMentions = createAsyncThunk<Pagination<Tweet2>, FetchMentionsArgs>(
         limit: limit,
         page: nextPage,
         query: { content: { $regex: searchString, $options: "i" } },
-        // query: {
-        //   content: {
-        //     $text: { $search: "artlee", $caseSensitive: false },
-        //   },
-        // },
         sort: "-updatedAt",
       },
     });
