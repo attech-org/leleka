@@ -88,7 +88,7 @@ export interface User extends MongoArtifacts {
   };
 }
 
-export interface Bookmark extends Document {
+export interface Bookmark extends MongoArtifacts {
   tweet: Tweet2;
   owner: User;
   createdAt: string;

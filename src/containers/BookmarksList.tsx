@@ -100,7 +100,11 @@ const BookmarksList: React.FC = () => {
             showMore={handleShowMore}
             data={bookmarks}
             itemComponent={(itemData) => (
-              <FeedSingleTweet {...itemData.tweet} {...itemData.owner} />
+              <FeedSingleTweet
+                key={itemData._id}
+                {...itemData.tweet}
+                {...itemData.owner}
+              />
             )}
           />
         ) : (
