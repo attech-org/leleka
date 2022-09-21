@@ -112,7 +112,7 @@ const LoginForm = () => {
             <div className="bg-secondary border-bottom border-secondary w-50" />
           </div>
 
-          <div className="form-floating my-3">
+          <div className="form-floating mt-3">
             <input
               {...register("username")}
               type="text"
@@ -124,14 +124,12 @@ const LoginForm = () => {
             <label>{t("login.usernameTitle")}</label>
           </div>
           {errors.username && (
-            <div className="position-absolute start-0 end-0 bottom-0 text-center mb-5 text-white">
-              <span className="bg-primary rounded-1 px-4 p-3">
-                {errors?.username?.message}
-              </span>
+            <div className="text-danger fst-italic fs-6">
+              {errors?.username?.message}
             </div>
           )}
 
-          <div className="form-floating mb-3">
+          <div className="form-floating my-3">
             <input
               {...register("password")}
               type="password"

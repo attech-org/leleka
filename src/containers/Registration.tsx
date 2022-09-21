@@ -115,13 +115,13 @@ const Registration = () => {
           </StyledLabel>
           <StyledLabel
             counter
-            className="fs-6 text-end"
+            className="fs-6 mt-2 text-end"
             htmlFor="floatingInputCustom"
           >
             {watchusername ? watchusername.length : 0} / 50
           </StyledLabel>
         </StyledFormFloating>
-        <p className="text-danger fs-6 mt-1">
+        <p className="text-danger fst-italic fs-6 mt-1">
           {errors.username &&
             errors.username.message &&
             t(`${errors.username.message}`)}
@@ -141,7 +141,7 @@ const Registration = () => {
             {t("validation:fields.email")}
           </StyledLabel>
         </StyledFormFloating>
-        <p className="text-danger mt-1 fs-6">
+        <p className="text-danger fst-italic mt-1 fs-6">
           {errors.email && errors.email.message && t(`${errors.email.message}`)}
         </p>
         <StyledFormFloating className="form-floating mt-3">
@@ -158,7 +158,7 @@ const Registration = () => {
             {t("validation:fields.dateOfBirth")}
           </StyledLabel>
         </StyledFormFloating>
-        <p className="text-danger mt-1 fs-6">
+        <p className="text-danger fst-italic mt-1 fs-6">
           {errors.dateOfBirth &&
             errors.dateOfBirth.message &&
             t(`${errors.dateOfBirth.message}`)}
@@ -179,7 +179,7 @@ const Registration = () => {
             {t("validation:fields.password")}
           </StyledLabel>
         </StyledFormFloating>
-        <p className="text-danger mt-1 fs-6">
+        <p className="text-danger fst-italic mt-1 fs-6">
           {errors.password &&
             errors.password.message &&
             t(`${errors.password.message}`)}
@@ -200,7 +200,7 @@ const Registration = () => {
             {t("validation:fields.confirmPassword")}
           </StyledLabel>
         </StyledFormFloating>
-        <p className="text-danger mt-1 fs-6">
+        <p className="text-danger fst-italic mt-1 fs-6">
           {errors.confirmPassword &&
             errors.confirmPassword.message &&
             t(`${errors.confirmPassword.message}`)}
