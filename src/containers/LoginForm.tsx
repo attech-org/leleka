@@ -3,15 +3,14 @@ import {
   Container,
   Form,
   Button,
-  ToastContainer,
-  Toast,
+  // ToastContainer,
+  // Toast,
 } from "react-bootstrap";
 import { Apple, Google } from "react-bootstrap-icons";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import styled from "styled-components";
 import * as yup from "yup";
 
 import icon_1 from "../images/icon_1.png";
@@ -24,17 +23,13 @@ interface MyForm {
   password: string;
 }
 
-const StyledContainer = styled(Container)`
-  width: 100%;
-`;
-
 const LoginForm = () => {
   const dispatch = useDispatch<AppDispatch>();
   const loginError = useSelector<RootState, RootState["user"]["error"]>(
     (store) => store.user.error
   );
 
-  const toggleShowMessage = () => {
+  const clearLoginError = () => {
     dispatch(userActions.clearError());
   };
   const { t } = useTranslation();
@@ -68,8 +63,8 @@ const LoginForm = () => {
   );
 
   const LoginFormContainer = (
-    <StyledContainer className="rounded-4 p-2">
-      <ToastContainer position="top-center">
+    <Container className="rounded-4 w-50 p-2">
+      {/* <ToastContainer position="top-center">
         {loginError ? (
           <Toast bg="danger" onClose={toggleShowMessage}>
             <Toast.Header>
@@ -78,9 +73,9 @@ const LoginForm = () => {
             <Toast.Body>{`${loginError}`}</Toast.Body>
           </Toast>
         ) : null}
-      </ToastContainer>
+      </ToastContainer> */}
 
-      <section className="w-50 mt-4 m-auto d-grid gap-4">
+      <section className="mt-4 m-auto d-grid gap-4">
         <h1 className="text-center text-nowrap fs-2 fw-bold">
           {t("login.loginTitle")}
         </h1>
@@ -129,7 +124,7 @@ const LoginForm = () => {
             </div>
           )}
 
-          <div className="form-floating my-3">
+          <div className="form-floating mt-3">
             <input
               {...register("password")}
               type="password"
@@ -140,17 +135,14 @@ const LoginForm = () => {
             />
             <label>{t("login.passwordTitle")}</label>
           </div>
-          {errors.password && (
-            <div className="position-absolute start-0 end-0 bottom-0 text-center mb-5 text-white">
-              <span className="bg-primary rounded-1 px-4 p-3">
-                {errors?.password?.message}
-              </span>
-            </div>
+          {loginError && (
+            <div className="text-danger fst-italic fs-6">{`${loginError}`}</div>
           )}
 
           <Button
-            className="btn btn-dark fw-700 w-100 d-block mb-3 rounded-5 py-2 border border-0"
+            className="btn btn-dark fw-700 w-100 d-block my-3 rounded-5 py-2 border border-0"
             type="submit"
+            onClick={clearLoginError}
           >
             {t("login.nextButton")}
           </Button>
@@ -169,7 +161,7 @@ const LoginForm = () => {
           </div>
         </Form>
       </section>
-    </StyledContainer>
+    </Container>
   );
 
   return (
@@ -178,6 +170,7 @@ const LoginForm = () => {
       header={logo}
       title={currentUserId ? `Welcome, ${currentUserName}` : ""}
       content={currentUserId ? null : LoginFormContainer}
+      toggleClose={clearLoginError}
     />
   );
 };
