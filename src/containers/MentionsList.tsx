@@ -45,7 +45,7 @@ const MentionsList = () => {
   return (
     <>
       {user._id ? (
-        mentions.docs.length || null ? (
+        mentions.docs.length ? (
           <InfiniteList<Tweet2>
             showMore={handleShowMore}
             data={mentions}
