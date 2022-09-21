@@ -6,7 +6,7 @@ import {
   ToastContainer,
   Toast,
 } from "react-bootstrap";
-import { Apple, Google, Twitter } from "react-bootstrap-icons";
+import { Apple, Google } from "react-bootstrap-icons";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
@@ -14,6 +14,7 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import * as yup from "yup";
 
+import icon_1 from "../images/icon_1.png";
 import { userActions } from "../redux/reducers/user";
 import { AppDispatch, RootState } from "../redux/store";
 import ModalUniversal from "./ModalUniversal";
@@ -24,8 +25,7 @@ interface MyForm {
 }
 
 const StyledContainer = styled(Container)`
-  height: 650px;
-  width: 600px;
+  width: 100%;
 `;
 
 const LoginForm = () => {
@@ -61,6 +61,12 @@ const LoginForm = () => {
     reset();
   };
 
+  const logo = (
+    <header className="d-flex justify-content-center align-items-center w-100">
+      <img src={icon_1} width="50px" alt="Logo" />
+    </header>
+  );
+
   const LoginFormContainer = (
     <StyledContainer className="rounded-4 p-2">
       <ToastContainer position="top-center">
@@ -73,14 +79,13 @@ const LoginForm = () => {
           </Toast>
         ) : null}
       </ToastContainer>
-      <header className="d-flex justify-content-center align-items-center">
-        <Twitter color="blue" size={25} />
-      </header>
 
       <section className="w-50 mt-4 m-auto d-grid gap-4">
-        <h1 className="text-nowrap fs-1 fw-700 ">{t("login.loginTitle")}</h1>
+        <h1 className="text-left text-nowrap fs-2 fw-bold">
+          {t("login.loginTitle")}
+        </h1>
 
-        <Form onSubmit={handleSubmit(submitForm)} className="d-grid gap-2 ">
+        <Form onSubmit={handleSubmit(submitForm)} className="d-grid gap-2">
           <Button
             variant="light"
             className="d-flex justify-content-center align-items-center fw-500 w-100 d-block mb-3 rounded-5 py-2 border border-gray-400"
@@ -103,11 +108,11 @@ const LoginForm = () => {
 
           <div className="d-flex justify-content-between align-items-center">
             <div className="bg-secondary border-bottom border-secondary w-50" />
-            <div className="fs-5 text-secondary mx-2">{t("login.or")}</div>
+            <div className="fs-6 text-secondary mx-2">{t("login.or")}</div>
             <div className="bg-secondary border-bottom border-secondary w-50" />
           </div>
 
-          <div className="form-floating mb-3">
+          <div className="form-floating my-3">
             <input
               {...register("username")}
               type="text"
@@ -172,6 +177,7 @@ const LoginForm = () => {
   return (
     <ModalUniversal
       button={t("login.loginButton")}
+      header={logo}
       title={currentUserId ? `Welcome, ${currentUserName}` : ""}
       content={currentUserId ? null : LoginFormContainer}
     />
