@@ -104,7 +104,7 @@ const Registration = () => {
             className="form-control"
             type="text"
             name="username"
-            placeholder="Ім'я"
+            placeholder={t("validation:fields.fullname")}
             maxLength={50}
           />
           <StyledLabel
@@ -132,7 +132,7 @@ const Registration = () => {
             {...register("email")}
             type="text"
             name="email"
-            placeholder="Ел. пошта"
+            placeholder={t("validation:fields.email")}
           />
           <StyledLabel
             className="pt-1 text-muted"
@@ -169,7 +169,7 @@ const Registration = () => {
             {...register("password")}
             type="password"
             name="password"
-            placeholder="Пароль"
+            placeholder={t("validation:fields.password")}
             autoComplete="on"
           />
           <StyledLabel
@@ -190,7 +190,7 @@ const Registration = () => {
             {...register("confirmPassword")}
             type="password"
             name="confirmPassword"
-            placeholder="Підтвердіть пароль"
+            placeholder={t("validation:fields.confirmPassword")}
             autoComplete="on"
           />
           <StyledLabel

@@ -131,12 +131,14 @@ const LoginForm = () => {
               name="password"
               className="form-control"
               id="floatingInputLoginPassword"
-              placeholder="Name"
+              placeholder="Password"
             />
             <label>{t("login.passwordTitle")}</label>
           </div>
-          {loginError && (
-            <div className="text-danger fst-italic fs-6">{`${loginError}`}</div>
+          {(loginError || errors?.password?.message) && (
+            <div className="text-danger fst-italic fs-6">
+              {`${loginError || errors?.password?.message}`}
+            </div>
           )}
 
           <Button
