@@ -27,12 +27,12 @@ interface Label {
 const StyledFormFloating = styled(Form.Floating)`
   .form-control:focus ~ label,
   .form-control:not(:placeholder-shown) ~ label {
-    transform: scale(0.85) translateY(-1.3rem) translateX(0.15rem);
+    transform: scale(0.85) translateY(-1rem) translateX(0.15rem);
   }
 `;
 
 const StyledLabel = styled.label<Label>`
-  padding-top: 2rem !important;
+  padding-top: 1rem !important;
   ${(props) =>
     props.counter &&
     css`
@@ -96,9 +96,9 @@ const Registration = () => {
   const watchusername = watch("username");
 
   const registerForm = (
-    <section className="w-90 mt-4 m-auto d-grid gap-4">
+    <section className="w-50 mt-4 m-auto d-grid gap-4">
       <Form className="d-grid" onSubmit={handleSubmit(submitForm)}>
-        <StyledFormFloating className="form-floating mt-3">
+        <StyledFormFloating className="form-floating">
           <Form.Control
             {...register("username")}
             className="form-control"
@@ -115,7 +115,7 @@ const Registration = () => {
           </StyledLabel>
           <StyledLabel
             counter
-            className="fs-6 pt-4 text-end"
+            className="fs-6 text-end"
             htmlFor="floatingInputCustom"
           >
             {watchusername ? watchusername.length : 0} / 50
@@ -146,7 +146,7 @@ const Registration = () => {
         </p>
         <StyledFormFloating className="form-floating mt-3">
           <Form.Control
-            className="fs-6 "
+            className="fs-6"
             {...register("dateOfBirth")}
             type="date"
             name="dateOfBirth"
@@ -186,7 +186,7 @@ const Registration = () => {
         </p>
         <StyledFormFloating className="form-floating mt-3">
           <Form.Control
-            className="form-control text-center"
+            className="form-control"
             {...register("confirmPassword")}
             type="password"
             name="confirmPassword"
@@ -207,7 +207,7 @@ const Registration = () => {
         </p>
         <div className="d-grid gap-2">
           <Button
-            className="fw-700 w-100 d-block mb-4 rounded-5 py-2 border border-gray-400"
+            className="fw-700 w-100 d-block my-4 rounded-5 py-2 border border-gray-400"
             type="submit"
             variant="secondary"
           >

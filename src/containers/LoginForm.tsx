@@ -81,7 +81,7 @@ const LoginForm = () => {
       </ToastContainer>
 
       <section className="w-50 mt-4 m-auto d-grid gap-4">
-        <h1 className="text-left text-nowrap fs-2 fw-bold">
+        <h1 className="text-center text-nowrap fs-2 fw-bold">
           {t("login.loginTitle")}
         </h1>
 
