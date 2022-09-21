@@ -6,9 +6,9 @@ import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 
 import FeedSingleTweet from "../components/FeedSingleTweet";
-import { bookmarksActions, BookmarksStore } from "../redux/reducers/bookmarks";
+import { bookmarksActions } from "../redux/reducers/bookmarks";
 import { AppDispatch, RootState } from "../redux/store";
-import { Tweet2 } from "../types";
+import { Bookmark } from "../types";
 import InfiniteList from "./InfiniteList";
 
 const StyledNavbar = styled(Navbar)`
@@ -38,9 +38,6 @@ const StyledThreeDots = styled(ThreeDots)`
 
 const BookmarksList: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
-  const bookmark = useSelector<RootState>(
-    (store) => store.bookmarks
-  ) as BookmarksStore;
   const bookmarks = useSelector<RootState, RootState["bookmarks"]["list"]>(
     (store) => store.bookmarks.list
   );
@@ -50,12 +47,9 @@ const BookmarksList: React.FC = () => {
       bookmarksActions.fetchBookmarks({
         limit: bookmarks.limit,
         nextPage: bookmarks.nextPage,
-        bookmarkId: bookmark._id,
       })
     );
   }, []);
-
-  console.log("bookmarks", bookmarks);
 
   const handleShowMore = () => {
     return (
@@ -64,7 +58,6 @@ const BookmarksList: React.FC = () => {
         bookmarksActions.fetchBookmarks({
           limit: bookmarks.limit,
           nextPage: bookmarks.nextPage,
-          bookmarkId: bookmark._id,
         })
       )
     );
@@ -102,12 +95,12 @@ const BookmarksList: React.FC = () => {
         </StyledDiv>
       </StyledNavbar>
       <>
-        {bookmark._id ? (
-          <InfiniteList<Tweet2>
+        {bookmarks.docs.length ? (
+          <InfiniteList<Bookmark>
             showMore={handleShowMore}
             data={bookmarks}
             itemComponent={(itemData) => (
-              <FeedSingleTweet key={itemData._id} {...itemData} />
+              <FeedSingleTweet {...itemData.tweet} {...itemData.owner} />
             )}
           />
         ) : (
