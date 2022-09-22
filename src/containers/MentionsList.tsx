@@ -19,7 +19,7 @@ const MentionsList = () => {
     (store) => store.tweets.myMentions
   );
 
-  useEffect(() => {
+  const dipatchMentions = () => {
     dispatch(
       tweetsActions.fetchMentions({
         limit: mentions.limit,
@@ -27,19 +27,14 @@ const MentionsList = () => {
         searchString: `@${user.username}`,
       })
     );
+  };
+
+  useEffect(() => {
+    dipatchMentions();
   }, []);
 
   const handleShowMore = () => {
-    return (
-      !mentions.isLoading &&
-      dispatch(
-        tweetsActions.fetchMentions({
-          limit: mentions.limit,
-          nextPage: mentions.nextPage,
-          searchString: `@${user.username}`,
-        })
-      )
-    );
+    return !mentions.isLoading && mentions.hasNextPage && dipatchMentions();
   };
 
   return (
