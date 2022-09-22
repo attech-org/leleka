@@ -229,30 +229,30 @@ const userSlice = createSlice({
     });
 
     builder.addCase(editProfileUser.pending, (store) => {
-      store.isLoading = true;
+      store.authUser.isLoading = true;
     });
     builder.addCase(editProfileUser.fulfilled, (store, { payload }) => {
-      store.error = undefined;
+      store.authUser.error = undefined;
       Object.assign(store, {
         ...payload,
       });
     });
     builder.addCase(editProfileUser.rejected, (store) => {
-      store.isLoading = false;
-      store.error = "Failed to edit user";
+      store.authUser.isLoading = false;
+      store.authUser.error = "Failed to edit user";
     });
     builder.addCase(addAvatar.pending, (store) => {
-      store.isLoading = true;
+      store.authUser.isLoading = true;
     });
     builder.addCase(addAvatar.fulfilled, (store, { payload }) => {
-      store.error = undefined;
+      store.authUser.error = undefined;
       Object.assign(store, {
         ...payload,
       });
     });
     builder.addCase(addAvatar.rejected, (store) => {
-      store.isLoading = false;
-      store.error = "Failed to add avatar";
+      store.authUser.isLoading = false;
+      store.authUser.error = "Failed to add avatar";
     });
   },
 });
@@ -262,6 +262,8 @@ export const userActions = {
   registerUser,
   loginUser,
   fetchUser,
+  editProfileUser,
+  addAvatar,
 };
 
 export default userSlice.reducer;

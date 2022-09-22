@@ -104,8 +104,8 @@ const EditProfileForm = () => {
   const watchLocation = watch("location");
   const watchWebsite = watch("website");
 
-  const userId = useSelector<RootState, RootState["user"]["_id"]>(
-    (store) => store.user._id
+  const userId = useSelector<RootState, RootState["user"]["authUser"]["_id"]>(
+    (store) => store.user.authUser._id
   );
 
   const submitForm = (data: IFormInput) => {

@@ -85,18 +85,33 @@ const Banner = ({ isEditBanner, user }: BannerProps) => {
 
   const dispatch = useDispatch<AppDispatch>();
   //------------------------------ avatar image ------------------------
+  const authUserAvatar =
+    useSelector<RootState, RootState["user"]["authUser"]["profile"]["avatar"]>(
+      (store) => store.user.authUser.profile.avatar
+    ) || "";
+  let avatar = "";
+  if (user) {
+    avatar = user?.profile?.avatar || "";
+  } else {
+    avatar = authUserAvatar;
+  }
+
+  // const avatar = user?.profile?.avatar;
+
+  console.log(avatar);
   const authUser = useSelector<RootState, RootState["user"]["authUser"]>(
     (store) => store.user.authUser
   );
 
-  const userId = useSelector<RootState, RootState["user"]["_id"]>(
-    (store) => store.user._id
+  const userId = useSelector<RootState, RootState["user"]["authUser"]["_id"]>(
+    (store) => store.user.authUser._id
   );
 
   // ------------------------------ banner image ------------------------
-  const banner = useSelector<RootState, RootState["user"]["profile"]["banner"]>(
-    (store) => store.user.profile.banner
-  );
+  const banner = useSelector<
+    RootState,
+    RootState["user"]["authUser"]["profile"]["banner"]
+  >((store) => store.user.authUser.profile.banner);
 
   const removeBanner = () => {
     dispatch(userActions.removeBanner()); //
@@ -126,7 +141,8 @@ const Banner = ({ isEditBanner, user }: BannerProps) => {
     const fac = new FastAverageColor();
     if (avatar) {
       fac
-        .getColorAsync(`data:image/png;base64,  ${avatar}`)
+        .getColorAsync(avatar)
+        // .getColorAsync(`data:image/png;base64,  ${avatar}`)
         .then((color) => {
           setBackgroundColor(color.rgba);
         })
@@ -234,7 +250,8 @@ const Banner = ({ isEditBanner, user }: BannerProps) => {
             <AvatarImg
               crossOrigin="anonymous"
               className="rounded-circle"
-              src={`data:image/png;base64,  ${avatar}`}
+              // src={`data:image/png;base64,  ${avatar}`}
+              src={avatar}
               alt=""
             />
           ) : (

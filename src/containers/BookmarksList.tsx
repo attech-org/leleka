@@ -38,7 +38,9 @@ const StyledThreeDots = styled(ThreeDots)`
 
 const BookmarksList: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
-  const user = useSelector<RootState, RootState["user"]>((store) => store.user);
+  const user = useSelector<RootState, RootState["user"]["authUser"]>(
+    (store) => store.user.authUser
+  );
   const bookmarks = useSelector<RootState, RootState["bookmarks"]["list"]>(
     (store) => store.bookmarks.list
   );
