@@ -38,6 +38,7 @@ const StyledThreeDots = styled(ThreeDots)`
 
 const BookmarksList: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
+  const user = useSelector<RootState, RootState["user"]>((store) => store.user);
   const bookmarks = useSelector<RootState, RootState["bookmarks"]["list"]>(
     (store) => store.bookmarks.list
   );
@@ -74,7 +75,7 @@ const BookmarksList: React.FC = () => {
               {t("bookmarks.windowTitle")}
             </Navbar.Brand>
             <div className="px-3 py-0 m-0 row justify-comtent-start">
-              @artlee4
+              {user._id ? `@${user.username}` : ""}
             </div>
           </div>
           <div>
