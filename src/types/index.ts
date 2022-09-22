@@ -87,3 +87,10 @@ export interface User extends MongoArtifacts {
     };
   };
 }
+
+export interface Bookmark extends MongoArtifacts {
+  tweet: Tweet2;
+  owner: User;
+  createdAt: string;
+  updatedAt?: string;
+}
