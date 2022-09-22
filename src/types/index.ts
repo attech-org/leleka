@@ -58,14 +58,16 @@ export interface User extends MongoArtifacts {
   url?: string;
   description?: string;
   verified?: boolean;
-  followersCount?: number;
-  friendsCount?: number;
-  listedCount?: number;
-  favouritesCount?: number;
-  statusesCount?: number;
   createdAt?: string;
   updatedAt?: string;
   email: string;
+  stats: {
+    listedCount?: number;
+    favouritesCount?: number;
+    statusesCount?: number;
+    followersCount?: number;
+    followingCount?: number;
+  };
   profile: {
     firstName?: string;
     lastName?: string;
