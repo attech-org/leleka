@@ -61,10 +61,10 @@ const FollowersPage: React.FunctionComponent = () => {
           </div>
           <div className="d-flex flex-column ms-2">
             <h1 className="fs-5 fw-bold ms-1">
-              {user.name ? user.name : "Full Name"}
+              {user.authUser.name ? user.authUser.name : "Full Name"}
             </h1>
             <h3 className="fs-9 mt-1">
-              @{user.username ? user.username : "username"}
+              @{user.authUser.username ? user.authUser.username : "username"}
             </h3>
           </div>
         </div>

@@ -9,6 +9,7 @@ import styled from "styled-components";
 import EditProfileForm from "../components/EditProfileForm";
 import { userActions } from "../redux/reducers/user";
 import { AppDispatch, RootState } from "../redux/store";
+import { LE, User } from "../types";
 
 const Layout = styled.div`
   position: relative;
@@ -76,17 +77,26 @@ const StyledInput = styled.input`
 
 interface BannerProps {
   isEditBanner: boolean;
+  user?: LE<User>;
 }
 
-const Banner = ({ isEditBanner }: BannerProps) => {
+const Banner = ({ isEditBanner, user }: BannerProps) => {
   const { t } = useTranslation();
 
   const dispatch = useDispatch<AppDispatch>();
   // TODO: Add AsyncThunk action, after adding support for backend PUT and DELETE requests ↓
   //------------------------------ avatar image ------------------------
-  const avatar = useSelector<RootState, RootState["user"]["profile"]["avatar"]>(
-    (store) => store.user.profile.avatar
-  );
+  const authUserAvatar = useSelector<
+    RootState,
+    RootState["user"]["authUser"]["profile"]["avatar"]
+  >((store) => store.user.authUser.profile.avatar);
+  let avatar = "";
+  if (user) {
+    avatar = user.profile && user.profile.avatar ? user.profile.avatar : "";
+    console.log(user.profile);
+  } else {
+    avatar = authUserAvatar;
+  }
 
   const [fileAvatar, setFileAvatar] = useState<File>();
   const fileRefAvatar = useRef(null);
@@ -102,9 +112,10 @@ const Banner = ({ isEditBanner }: BannerProps) => {
   }, [fileAvatar]);
 
   // ------------------------------ banner image ------------------------
-  const banner = useSelector<RootState, RootState["user"]["profile"]["banner"]>(
-    (store) => store.user.profile.banner
-  );
+  const banner = useSelector<
+    RootState,
+    RootState["user"]["authUser"]["profile"]["banner"]
+  >((store) => store.user.authUser.profile.banner);
 
   const [fileImage, setFileImage] = useState<File>();
   const fileRefImage = useRef(null);
@@ -139,14 +150,18 @@ const Banner = ({ isEditBanner }: BannerProps) => {
 
   useEffect(() => {
     const fac = new FastAverageColor();
-    fac
-      .getColorAsync(avatar)
-      .then((color) => {
-        setBackgroundColor(color.rgba);
-      })
-      .catch((e) => {
-        console.warn(e);
-      });
+    if (avatar) {
+      fac
+        .getColorAsync(avatar)
+        .then((color) => {
+          setBackgroundColor(color.rgba);
+        })
+        .catch((e) => {
+          console.warn(e);
+        });
+    } else {
+      setBackgroundColor("rgba(181,192,200,1)");
+    }
   }, [avatar]);
 
   return (

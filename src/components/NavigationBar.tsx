@@ -81,7 +81,10 @@ const NavigationBar = () => {
       </Nav.Item>
       <Nav.Item className="d-flex align-items-center ps-2 py-2">
         <Person size={20} className="my-2" />
-        <Nav.Link as={LinkWithLanguageQueryParam} to={`/${user.username}`}>
+        <Nav.Link
+          as={LinkWithLanguageQueryParam}
+          to={`/${user.authUser.username}`}
+        >
           <StyledSpan className="fs-5">{t("navigationBar.profile")}</StyledSpan>
         </Nav.Link>
       </Nav.Item>

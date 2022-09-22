@@ -3,12 +3,12 @@ import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import instance from "../../services/api";
 import { LE, User } from "../../types";
 
-export type UserStore = User &
-  LE<{
-    usersByUsername: LE<{ data?: User }>;
-  }>;
+export interface UserStore {
+  authUser: LE<User>;
+  userByUsername: LE<User>;
+}
 
-const userInitialState: UserStore = {
+const initialState = {
   _id: "",
   username: "",
   name: "",
@@ -47,10 +47,11 @@ const userInitialState: UserStore = {
   },
   isLoading: false,
   error: undefined,
-  usersByUsername: {
-    isLoading: false,
-    error: undefined,
-  },
+};
+
+const userInitialState: UserStore = {
+  authUser: initialState,
+  userByUsername: initialState,
 };
 interface RegisterResponse {
   user: Partial<User>;
@@ -94,19 +95,20 @@ const loginUser = createAsyncThunk<LoginResponse, LoginRequest>(
       password,
       email: "",
     });
+    console.log(`loginUser ${JSON.stringify(response.data)}`);
     return response.data;
   }
 );
 
 const fetchUser = createAsyncThunk<User, string>(
-  "username",
+  "profile/username",
   async (username) => {
     const response = await instance.get("api/users", {
       params: { query: { username: username } },
     });
-    console.log("1111");
-    console.log(response.data);
-    return response.data;
+    console.log("RESPONSE DATA FETCHUSER");
+    console.log(response.data.docs);
+    return response.data.docs[0];
   }
 );
 
@@ -116,16 +118,16 @@ const userSlice = createSlice({
   reducers: {
     //  temporary reducers
     addBanner: (state, action: PayloadAction<string>) => {
-      state.profile.banner = action.payload;
+      state.authUser.profile.banner = action.payload;
     },
     removeBanner: (state) => {
-      state.profile.banner = undefined;
+      state.authUser.profile.banner = undefined;
     },
     addAvatar: (state, action: PayloadAction<string>) => {
-      state.profile.avatar = action.payload;
+      state.authUser.profile.avatar = action.payload;
     },
     clearError: (state) => {
-      state.error = "";
+      state.authUser.error = "";
     },
 
     resetUserData: () => {
@@ -134,14 +136,14 @@ const userSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder.addCase(registerUser.pending, (store) => {
-      store.isLoading = true;
+      store.authUser.isLoading = true;
     });
     builder.addCase(registerUser.fulfilled, (store, { payload }) => {
-      store.error = undefined;
+      store.authUser.error = undefined;
       localStorage.setItem("accessToken", payload.accessToken);
       localStorage.setItem("refreshToken", payload.refreshToken);
-      Object.assign(store, {
-        ...userInitialState,
+      Object.assign(store.authUser, {
+        ...userInitialState.authUser,
         ...payload.user,
         auth: {
           local: {
@@ -152,19 +154,20 @@ const userSlice = createSlice({
       });
     });
     builder.addCase(registerUser.rejected, (store) => {
-      store.isLoading = false;
-      store.error = "Failed to register user";
+      store.authUser.isLoading = false;
+      store.authUser.error = "Failed to register user";
     });
 
     builder.addCase(loginUser.pending, (store) => {
-      store.isLoading = true;
+      store.authUser.isLoading = true;
     });
     builder.addCase(loginUser.fulfilled, (store, { payload }) => {
-      store.error = undefined;
+      store.authUser.error = undefined;
       localStorage.setItem("accessToken", payload.accessToken);
+      console.log(`access token: ${payload.accessToken}`);
       localStorage.setItem("refreshToken", payload.refreshToken);
-      Object.assign(store, {
-        ...userInitialState,
+      Object.assign(store.authUser, {
+        ...userInitialState.authUser,
         ...payload.user,
         auth: {
           local: {
@@ -175,26 +178,19 @@ const userSlice = createSlice({
       });
     });
     builder.addCase(loginUser.rejected, (store) => {
-      store.isLoading = false;
-      store.error = "Failed to login user";
+      store.authUser.isLoading = false;
+      store.authUser.error = "Failed to login user";
     });
     builder.addCase(fetchUser.pending, (store) => {
-      console.log("444444");
-      console.log(store);
-      store.usersByUsername.isLoading = true;
-      console.log(store.usersByUsername.isLoading);
+      store.userByUsername.isLoading = true;
     });
     builder.addCase(fetchUser.fulfilled, (store, { payload }) => {
-      console.log("5555555");
-      store.usersByUsername.data = { ...payload };
-      store.usersByUsername.isLoading = false;
+      store.userByUsername = { ...userInitialState, ...payload };
+      store.userByUsername.isLoading = false;
     });
     builder.addCase(fetchUser.rejected, (store) => {
-      console.log("33333");
-      console.log(store.usersByUsername);
-
-      store.usersByUsername.isLoading = false;
-      store.usersByUsername.error = "Failed to fetch user by username";
+      store.userByUsername.isLoading = false;
+      store.userByUsername.error = "Failed to fetch user by username";
     });
   },
 });

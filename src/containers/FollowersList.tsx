@@ -26,7 +26,9 @@ const FollowersList: React.FunctionComponent = () => {
   const { t } = useTranslation();
 
   const dispatch = useDispatch<AppDispatch>();
-  const user = useSelector<RootState>((store) => store.user) as UserStore;
+  const user = useSelector<RootState>(
+    (store) => store.user.authUser
+  ) as UserStore;
   const followers = useSelector<RootState>(
     (store) => store.followers.list
   ) as LE<Pagination<User>>;
@@ -38,8 +40,8 @@ const FollowersList: React.FunctionComponent = () => {
         followersActions.fetchFollowers({
           limit: followers.limit,
           nextPage: followers.nextPage,
-          userId: user._id,
-          userAccessToken: user.auth?.local?.accessToken || "",
+          userId: user.authUser._id,
+          userAccessToken: user.authUser.auth?.local?.accessToken || "",
         })
       )
     );
@@ -47,7 +49,7 @@ const FollowersList: React.FunctionComponent = () => {
 
   return (
     <>
-      {user._id ? (
+      {user.authUser._id ? (
         followers.docs.length ? (
           <ListGroup>
             <InfiniteList

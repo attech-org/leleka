@@ -97,7 +97,7 @@ const FeedSingleTweet = ({
     "g"
   );
 
-  const url = content.match(urlSearch) || [];
+  const url = content ? content.match(urlSearch) || [] : [];
 
   return (
     <>
@@ -117,16 +117,25 @@ const FeedSingleTweet = ({
         <div className="w-100">
           <div className="d-flex justify-content-between">
             <div className="d-flex align-items-center px-3 flex-wrap">
-              <UnderlineHover className="fw-600 pe-1 fw-bold text-dark">
+              <UnderlineHover
+                as={LinkWithLanguageQueryParam}
+                to={`/${author.username}`}
+                className="fw-600 pe-1 fw-bold text-dark"
+                eventkey={_id}
+              >
                 {author.name}
               </UnderlineHover>
 
               {/* {isVerified && (
                 <PatchCheckFill size={20} className="text-info pe-1" />
               )} */}
-              <a className="text-muted text-decoration-none">
+              <Nav.Link
+                as={LinkWithLanguageQueryParam}
+                to={`/${author.username}`}
+                className="text-muted text-decoration-none"
+              >
                 @{author.username}
-              </a>
+              </Nav.Link>
               <div className="mx-1 text-secondary d-flex justify-content-center align-items-center">
                 ·
               </div>
@@ -213,18 +222,21 @@ const FeedSingleTweet = ({
               <div>
                 <div
                   className=""
-                  dangerouslySetInnerHTML={{ __html: content }}
+                  dangerouslySetInnerHTML={{ __html: content || "" }}
                 />
                 <LinkPreview url={url[0]} />
               </div>
             ) : (
-              <div className="" dangerouslySetInnerHTML={{ __html: content }} />
+              <div
+                className=""
+                dangerouslySetInnerHTML={{ __html: content || "" }}
+              />
             )}
           </div>
           <div className="px-3 d-flex justify-content-between align-items-center">
             <TweetReplyForm
               author={author}
-              content={content}
+              content={content || ""}
               id={_id}
               commentsCount={comments}
             />

@@ -19,7 +19,9 @@ const FixMenu = styled.div`
 
 export const LeftPanel = () => {
   const dispatch = useDispatch<AppDispatch>();
-  const currentUserId = useSelector<RootState>((store) => store.user._id);
+  const currentUserId = useSelector<RootState>(
+    (store) => store.user.authUser._id
+  );
 
   return (
     <Wrapper className="col-xl-2 col-lg-2 col-md-1 col-sm-1 col-12">

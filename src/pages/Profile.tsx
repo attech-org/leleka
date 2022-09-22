@@ -3,6 +3,7 @@ import { Button } from "react-bootstrap";
 import { Gear } from "react-bootstrap-icons";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
 import styled from "styled-components";
 
 import Banner from "../containers/Banner";
@@ -13,7 +14,7 @@ import Media from "../containers/ProfileMedia";
 import ProfileTweets from "../containers/ProfileTweets";
 import TabsContainer from "../containers/Tabs";
 import { TweetsWithReplies } from "../containers/TweetsWithReplies";
-import { userActions, UserStore } from "../redux/reducers/user";
+import { userActions } from "../redux/reducers/user";
 import { AppDispatch, RootState } from "../redux/store";
 import { TabKeyProps } from "../types/tabs-types";
 
@@ -29,25 +30,31 @@ const StyledButton = styled(Button)`
 `;
 
 const ProfilePage = ({ tabKey }: TabKeyProps) => {
-  const usernameId = "leleka1";
+  const match = useParams();
+
+  const usernameId = match.id || "";
+  console.log("PROFILE MATCH ID");
+  console.log(match.id);
   const dispatch = useDispatch<AppDispatch>();
 
   useEffect(() => {
     dispatch(userActions.fetchUser(usernameId));
-  }, [usernameId]);
+  }, [match.id]);
 
-  const user = useSelector<RootState>((store) => store.user) as UserStore;
-  const user1 = useSelector<RootState, RootState["user"]["usersByUsername"]>(
-    (store) => store.user.usersByUsername
+  // const user2 = useSelector<RootState, RootState["user"]["authUser"]>(
+  //   (store) => store.user.authUser
+  // );
+  const user = useSelector<RootState, RootState["user"]["userByUsername"]>(
+    (store) => store.user.userByUsername
   );
-  console.log("22222");
-  console.log(user1);
-  const { t } = useTranslation();
 
+  const { t } = useTranslation();
+  console.log("PROFILE");
+  console.log(user.username);
   const tabsData = [
     {
       label: t("profile.tabsLabel.tweets"),
-      content: <ProfileTweets />,
+      content: <ProfileTweets userProps={user} />,
       key: "tweets",
       route: `/${user.username}`,
     },
@@ -90,7 +97,7 @@ const ProfilePage = ({ tabKey }: TabKeyProps) => {
             </StyledButton>
           </div>
         </div>
-        <Banner isEditBanner={false} />
+        <Banner user={user} isEditBanner={false} />
         <div className="d-flex pb-4">
           <LinkWithLanguageQueryParam
             to="/following"

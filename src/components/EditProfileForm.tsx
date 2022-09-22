@@ -43,27 +43,29 @@ const EditProfileForm = () => {
   const { t } = useTranslation();
 
   //-----------------------------------------------------------------------
-  const username = useSelector<RootState, RootState["user"]["name"]>(
-    (store) => store.user.name
-  );
+  const username = useSelector<
+    RootState,
+    RootState["user"]["authUser"]["name"]
+  >((store) => store.user.authUser.name);
 
   const bio = useSelector<
     RootState,
-    Partial<RootState["user"]["profile"]["bio"]>
-  >((store) => store.user.profile.bio);
+    Partial<RootState["user"]["authUser"]["profile"]["bio"]>
+  >((store) => store.user.authUser.profile.bio);
 
-  const location = useSelector<RootState, RootState["user"]["location"]>(
-    (store) => store.user.location
-  );
+  const location = useSelector<
+    RootState,
+    RootState["user"]["authUser"]["location"]
+  >((store) => store.user.authUser.location);
 
-  const website = useSelector<RootState, RootState["user"]["url"]>(
-    (store) => store.user.url
+  const website = useSelector<RootState, RootState["user"]["authUser"]["url"]>(
+    (store) => store.user.authUser.url
   );
 
   const birthDate = useSelector<
     RootState,
-    RootState["user"]["profile"]["birthDate"]
-  >((store) => store.user.profile.birthDate);
+    RootState["user"]["authUser"]["profile"]["birthDate"]
+  >((store) => store.user.authUser.profile.birthDate);
 
   //-----------------------------------------------------------------------
 

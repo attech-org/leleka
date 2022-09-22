@@ -54,9 +54,10 @@ const TweetReplyForm: React.FC<{
   const handleEmojiPaste = (): void => {
     console.warn("Emoji paste");
   };
-  const avatar = useSelector<RootState, RootState["user"]["profile"]["avatar"]>(
-    (store) => store.user.profile.avatar
-  );
+  const avatar = useSelector<
+    RootState,
+    RootState["user"]["authUser"]["profile"]["avatar"]
+  >((store) => store.user.authUser.profile.avatar);
 
   const ReplyFormContainer = (
     <div>
