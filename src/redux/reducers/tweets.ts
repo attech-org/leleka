@@ -172,6 +172,14 @@ const fetchMentions = createAsyncThunk<Pagination<Tweet2>, FetchMentionsArgs>(
   }
 );
 
+export const likeDislike = createAsyncThunk<
+  Like,
+  { tweet: string | undefined }
+>("tweets/likeDislike", async (body) => {
+  const response = await instance.post("api/likes", body);
+  return response.data;
+});
+
 const tweetsSlice = createSlice<TweetsStore, SliceCaseReducers<TweetsStore>>({
   name: "tweets",
   initialState: tweetsInitialStore,
@@ -305,6 +313,16 @@ const tweetsSlice = createSlice<TweetsStore, SliceCaseReducers<TweetsStore>>({
       store.myMentions.isLoading = false;
       store.myMentions.error = "Failed to fetch tweets for feed";
     });
+    builder.addCase(likeDislike.pending, (store) => {
+      store.currentTweet.isLoading = true;
+    });
+    builder.addCase(likeDislike.fulfilled, (store) => {
+      store.currentTweet.isLoading = false;
+    });
+    builder.addCase(likeDislike.rejected, (store) => {
+      store.currentTweet.isLoading = false;
+      store.currentTweet.error = "Failed to like/dislike tweet";
+    });
   },
 });
 
@@ -318,6 +336,7 @@ export const tweetsActions = {
   fetchMyTweets,
   fetchMyTweetsAndReplies,
   fetchMentions,
+  likeDislike,
 };
 
 export default tweetsSlice.reducer;

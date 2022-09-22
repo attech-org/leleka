@@ -229,7 +229,7 @@ const FeedSingleTweet = ({
               commentsCount={comments}
             />
             <RetweetButton retweetCount={retweets} />
-            <LikeButton likesCount={likes} />
+            <LikeButton likesCount={likes} id={_id} />
             <StatisticOfTweet className="d-flex align-items-center">
               <HoverBackgroundBlue className="p-2 rounded-circle d-flex justify-content-center align-items-center">
                 <Upload size="16" />

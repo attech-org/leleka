@@ -1,12 +1,17 @@
 import { useState } from "react";
 import { Heart, HeartFill } from "react-bootstrap-icons";
 import { useTranslation } from "react-i18next";
+import { useDispatch } from "react-redux";
 import styled from "styled-components";
+
+import { tweetsActions } from "../../redux/reducers/tweets";
+import { AppDispatch } from "../../redux/store";
 import "./animationLike.css";
 
 interface ILikeButton {
   //     isLiked: boolean;
   likesCount: number;
+  id?: string | undefined;
   //     onLike: () => void;
 }
 
@@ -34,12 +39,16 @@ const Like = styled.div`
 
 const LikeButton: React.FC<ILikeButton> = (
   // { isLiked, likesCount, onLike }
-  { likesCount }
+  { likesCount, id }
 ) => {
-  const [isLiked, setisLiked] = useState(false);
+  const [isLiked, setisLiked] = useState(likesCount === 0 ? false : true);
   const [temporaryСounter, setlikesCount] = useState(likesCount);
   const [countAnimation, setcountAnimation] = useState("static");
+
+  const dispatch = useDispatch<AppDispatch>();
+
   const clickLike = () => {
+    dispatch(tweetsActions.likeDislike({ tweet: id }));
     if (isLiked) {
       setisLiked(!isLiked);
       setcountAnimation("move up");
