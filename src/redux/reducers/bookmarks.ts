@@ -29,8 +29,15 @@ interface FetchBookmarksFunctionArgs {
 export const fetchBookmarks = createAsyncThunk<
   Pagination<Bookmark>,
   FetchBookmarksFunctionArgs
->("bookmarks/fetch", async () => {
-  const response = await instance.get("api/bookmarks");
+>("bookmarks/fetch", async (params) => {
+  const { limit = 10, nextPage = 1 } = params;
+  const response = await instance.get("api/bookmarks", {
+    params: {
+      limit,
+      page: nextPage,
+      sort: "-createdAt",
+    },
+  });
   return response.data;
 });
 
