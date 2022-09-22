@@ -96,9 +96,6 @@ const Banner = ({ isEditBanner, user }: BannerProps) => {
     avatar = authUserAvatar;
   }
 
-  // const avatar = user?.profile?.avatar;
-
-  console.log(avatar);
   const authUser = useSelector<RootState, RootState["user"]["authUser"]>(
     (store) => store.user.authUser
   );
