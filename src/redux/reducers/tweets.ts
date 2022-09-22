@@ -16,6 +16,7 @@ export interface TweetsStore {
   likes: LE<Pagination<Like>>;
   myTweets: LE<Pagination<Tweet2>>;
   myTweetsAndReplies: LE<Pagination<Tweet2>>;
+  myMentions: LE<Pagination<Tweet2>>;
   userTweets: LE<Pagination<Tweet2>>;
   userTweetsAndReplies: LE<Pagination<Tweet2>>;
   userLikes: LE<Pagination<Like>>;
@@ -42,6 +43,12 @@ const tweetsInitialStore: TweetsStore = {
   userTweets: initialStore,
   userTweetsAndReplies: initialStore,
   userLikes: initialStore,
+  myMentions: {
+    page: 1,
+    limit: 10,
+    docs: [],
+    hasNextPage: true,
+  },
 };
 
 interface NewTweetBody {
@@ -202,6 +209,28 @@ const fetchUserLikes = createAsyncThunk<
   return response.data;
 });
 
+interface FetchMentionsArgs {
+  limit: number | undefined;
+  nextPage: number | undefined;
+  searchString: string;
+}
+
+const fetchMentions = createAsyncThunk<Pagination<Tweet2>, FetchMentionsArgs>(
+  "notifications/mentions",
+  async (params) => {
+    const { limit = 10, nextPage = 1, searchString } = params || {};
+    const response = await instance.get("api/tweets", {
+      params: {
+        limit: limit,
+        page: nextPage,
+        query: { content: { $regex: searchString, $options: "i" } },
+        sort: "-updatedAt",
+      },
+    });
+    return response.data;
+  }
+);
+
 const tweetsSlice = createSlice<TweetsStore, SliceCaseReducers<TweetsStore>>({
   name: "tweets",
   initialState: tweetsInitialStore,
@@ -317,6 +346,24 @@ const tweetsSlice = createSlice<TweetsStore, SliceCaseReducers<TweetsStore>>({
       store.myTweetsAndReplies.isLoading = false;
       store.myTweetsAndReplies.error = "Failed to fetch tweets for feed";
     });
+
+    builder.addCase(fetchMentions.pending, (store) => {
+      store.myMentions.isLoading = true;
+    });
+    builder.addCase(fetchMentions.fulfilled, (store, { payload }) => {
+      if (store.myMentions.docs.length === 0 || payload.page !== 1) {
+        store.myMentions = {
+          ...store.myMentions,
+          ...payload,
+          docs: [...store.myMentions.docs, ...payload.docs],
+        };
+      }
+      store.myMentions.isLoading = false;
+    });
+    builder.addCase(fetchMentions.rejected, (store) => {
+      store.myMentions.isLoading = false;
+      store.myMentions.error = "Failed to fetch tweets for feed";
+    });
     builder.addCase(fetchUserTweets.pending, (store) => {
       store.userTweets.isLoading = true;
     });
@@ -401,6 +448,7 @@ export const tweetsActions = {
   fetchLikes,
   fetchMyTweets,
   fetchMyTweetsAndReplies,
+  fetchMentions,
   fetchUserTweets,
   fetchUserTweetsReplies,
   fetchUserLikes,

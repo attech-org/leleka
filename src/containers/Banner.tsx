@@ -1,5 +1,5 @@
 import { FastAverageColor } from "fast-average-color";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { Button, OverlayTrigger, Tooltip } from "react-bootstrap";
 import { XLg, Camera } from "react-bootstrap-icons";
 import { useTranslation } from "react-i18next";
@@ -84,65 +84,41 @@ const Banner = ({ isEditBanner, user }: BannerProps) => {
   const { t } = useTranslation();
 
   const dispatch = useDispatch<AppDispatch>();
-  // TODO: Add AsyncThunk action, after adding support for backend PUT and DELETE requests ↓
   //------------------------------ avatar image ------------------------
   const authUser = useSelector<RootState, RootState["user"]["authUser"]>(
     (store) => store.user.authUser
   );
-  let avatar = "";
-  if (user) {
-    avatar = user.profile && user.profile.avatar ? user.profile.avatar : "";
-  } else {
-    avatar = authUser.profile.avatar;
-  }
 
-  const [fileAvatar, setFileAvatar] = useState<File>();
-  const fileRefAvatar = useRef(null);
-
-  useEffect(() => {
-    let objectUrlAvatar: string;
-    if (fileAvatar) {
-      objectUrlAvatar = URL.createObjectURL(fileAvatar);
-      dispatch(userActions.addAvatar(objectUrlAvatar)); //
-    }
-
-    return () => URL.revokeObjectURL(objectUrlAvatar);
-  }, [fileAvatar]);
+  const userId = useSelector<RootState, RootState["user"]["_id"]>(
+    (store) => store.user._id
+  );
 
   // ------------------------------ banner image ------------------------
-  const banner = useSelector<
-    RootState,
-    RootState["user"]["authUser"]["profile"]["banner"]
-  >((store) => store.user.authUser.profile.banner);
-
-  const [fileImage, setFileImage] = useState<File>();
-  const fileRefImage = useRef(null);
-
-  useEffect(() => {
-    let objectUrlImage: string;
-    if (fileImage) {
-      objectUrlImage = URL.createObjectURL(fileImage);
-      dispatch(userActions.addBanner(objectUrlImage)); //
-    }
-
-    return () => URL.revokeObjectURL(objectUrlImage);
-  }, [fileImage]);
+  const banner = useSelector<RootState, RootState["user"]["profile"]["banner"]>(
+    (store) => store.user.profile.banner
+  );
 
   const removeBanner = () => {
     dispatch(userActions.removeBanner()); //
   };
   //-----------------------------handleUpload-----------------------------
-  const handleAvatarUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+
+  const handleAvatarUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.currentTarget && e.currentTarget.files) {
-      setFileAvatar(e.currentTarget.files[0]);
+      const formData = new FormData();
+      formData.append("avatar", e.currentTarget.files[0]);
+      dispatch(userActions.addAvatar({ formData, userId }));
     }
   };
 
-  const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.currentTarget && e.currentTarget.files) {
-      setFileImage(e.currentTarget.files[0]);
-    }
-  };
+  // const handleBannerUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+  //   if (e.currentTarget && e.currentTarget.files) {
+  //     const formData = new FormData();
+  //     formData.append("banner", e.currentTarget.files[0]);
+  //     dispatch(userActions.addBanner({ formData, userId }));
+  //   }
+  // };
+
   //-------------------------FastAverageColor-----------------------------
   const [backgroundColor, setBackgroundColor] = useState("rgba(181,192,200,1)");
 
@@ -150,7 +126,7 @@ const Banner = ({ isEditBanner, user }: BannerProps) => {
     const fac = new FastAverageColor();
     if (avatar) {
       fac
-        .getColorAsync(avatar)
+        .getColorAsync(`data:image/png;base64,  ${avatar}`)
         .then((color) => {
           setBackgroundColor(color.rgba);
         })
@@ -188,8 +164,8 @@ const Banner = ({ isEditBanner, user }: BannerProps) => {
                     <StyledInput
                       className="opacity-0 position-absolute rounded-circle"
                       type="file"
-                      ref={fileRefImage}
-                      onChange={handleImageUpload}
+                      accept="image/*"
+                      // onChange={handleBannerUpload}
                     />
                   </AddPhotoDiv>
                 </OverlayTrigger>
@@ -247,7 +223,7 @@ const Banner = ({ isEditBanner, user }: BannerProps) => {
                 <StyledInput
                   className="opacity-0 position-absolute rounded-circle"
                   type="file"
-                  ref={fileRefAvatar}
+                  accept="image/*"
                   onChange={handleAvatarUpload}
                 />
               </AddLogoDiv>
@@ -258,7 +234,7 @@ const Banner = ({ isEditBanner, user }: BannerProps) => {
             <AvatarImg
               crossOrigin="anonymous"
               className="rounded-circle"
-              src={avatar}
+              src={`data:image/png;base64,  ${avatar}`}
               alt=""
             />
           ) : (

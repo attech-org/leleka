@@ -1,4 +1,4 @@
-import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 import instance from "../../services/api";
 import { LE, User } from "../../types";
@@ -16,20 +16,21 @@ const initialState = {
   url: undefined,
   description: undefined,
   verified: false,
-  followersCount: 0,
-  friendsCount: 0,
-  listedCount: 0,
-  favouritesCount: 0,
-  statusesCount: 0,
   createdAt: undefined,
   updatedAt: undefined,
   email: "",
+  stats: {
+    listedCount: 0,
+    favouritesCount: 0,
+    statusesCount: 0,
+    followersCount: 0,
+    followingCount: 0,
+  },
   profile: {
     firstName: "",
     lastName: "",
     banner: undefined,
-    avatar:
-      "https://abs.twimg.com/sticky/default_profile_images/default_profile_400x400.png",
+    avatar: undefined,
     bio: undefined,
     birthDate: undefined,
     phone: undefined,
@@ -98,6 +99,43 @@ const loginUser = createAsyncThunk<LoginResponse, LoginRequest>(
     return response.data;
   }
 );
+interface EditProfileRequest {
+  username: string;
+  website: string;
+  location: string;
+  bio: string;
+  birthDate: string;
+  userId: string;
+}
+
+interface EditAvatarRequest {
+  formData: FormData;
+  userId: string;
+}
+
+const editProfileUser = createAsyncThunk<Partial<User>, EditProfileRequest>(
+  "users/profile",
+  async ({ username, bio, location, website, birthDate, userId }) => {
+    const response = await instance.put(`api/users/${userId}`, {
+      username,
+      url: website,
+      location,
+      profile: {
+        bio,
+        birthDate,
+      },
+    });
+    return response.data;
+  }
+);
+const addAvatar = createAsyncThunk<Partial<User>, EditAvatarRequest>(
+  "users/profile/avatar",
+  async ({ formData, userId }) => {
+    const response = await instance.put(`api/users/${userId}`, formData);
+
+    return response.data;
+  }
+);
 
 const fetchUser = createAsyncThunk<User, string>(
   "profile/username",
@@ -114,19 +152,20 @@ const userSlice = createSlice({
   initialState: userInitialState,
   reducers: {
     //  temporary reducers
-    addBanner: (state, action: PayloadAction<string>) => {
-      state.authUser.profile.banner = action.payload;
-    },
+    // addAvatar: (state, (payload: PayloadAction<FormData>)) => {
+    //  state.profile.avatar = payload
+    // },
+
+    // addBanner: (state, (payload: PayloadAction<FormData>)) => {
+    //  state.profile.banner = payload
+    // },
+
     removeBanner: (state) => {
       state.authUser.profile.banner = undefined;
-    },
-    addAvatar: (state, action: PayloadAction<string>) => {
-      state.authUser.profile.avatar = action.payload;
     },
     clearError: (state) => {
       state.authUser.error = "";
     },
-
     resetUserData: () => {
       return userInitialState;
     },
@@ -187,6 +226,33 @@ const userSlice = createSlice({
     builder.addCase(fetchUser.rejected, (store) => {
       store.userByUsername.isLoading = false;
       store.userByUsername.error = "Failed to fetch user by username";
+    });
+
+    builder.addCase(editProfileUser.pending, (store) => {
+      store.isLoading = true;
+    });
+    builder.addCase(editProfileUser.fulfilled, (store, { payload }) => {
+      store.error = undefined;
+      Object.assign(store, {
+        ...payload,
+      });
+    });
+    builder.addCase(editProfileUser.rejected, (store) => {
+      store.isLoading = false;
+      store.error = "Failed to edit user";
+    });
+    builder.addCase(addAvatar.pending, (store) => {
+      store.isLoading = true;
+    });
+    builder.addCase(addAvatar.fulfilled, (store, { payload }) => {
+      store.error = undefined;
+      Object.assign(store, {
+        ...payload,
+      });
+    });
+    builder.addCase(addAvatar.rejected, (store) => {
+      store.isLoading = false;
+      store.error = "Failed to add avatar";
     });
   },
 });

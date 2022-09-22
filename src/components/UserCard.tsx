@@ -36,10 +36,10 @@ const FollowerUserCard = ({ user }: { user: User }) => {
 
         <div style={{ marginTop: "10px" }}>
           <Card.Link className="link-dark" href="#">
-            {user.followersCount} following
+            {user.stats.followersCount} following
           </Card.Link>
           <Card.Link className="link-dark" href="#">
-            {user.friendsCount} followers
+            {user.stats.followingCount} followers
           </Card.Link>
         </div>
       </Card.Body>
