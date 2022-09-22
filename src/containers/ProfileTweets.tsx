@@ -9,46 +9,21 @@ import { Pagination } from "../types/mock-api-types";
 import InfiniteList from "./InfiniteList";
 
 const ProfileTweets = ({ userProps }: { userProps: LE<User> }) => {
-  console.log(userProps.username);
-
   const dispatch = useDispatch<AppDispatch>();
 
-  const user = userProps;
-  // const user = useSelector<RootState, RootState["user"]["userByUsername"]>(
-  //   (store) => store.user.userByUsername
-  // );
-  const userId = user._id;
-  // const posts = useSelector<RootState, RootState["tweets"]["myTweets"]>(
-  //   (store) => store.tweets.myTweets
-  // );
+  const userId = userProps._id;
 
   const userPosts = useSelector<RootState, RootState["tweets"]["userTweets"]>(
     (store) => store.tweets.userTweets
   );
-  console.log(userProps.username);
   const handleShowMore = () => {
-    console.log("BIG TEST");
-    console.log(userProps._id);
-    console.log(userId);
     return (
       !userPosts.isLoading &&
       userPosts.hasNextPage &&
       !userPosts.error &&
       dispatch(tweetsActions.fetchUserTweets({ ...userPosts, userId }))
     );
-    // !posts.isLoading && dispatch(tweetsActions.fetchMyTweets(posts));
   };
-  // useEffect(() => {
-  //   dispatch(
-  //     tweetsActions.initUserTweets({
-  //       ...({} as LE<Pagination<Tweet2>>),
-  //       userId,
-  //       nextPage: 1,
-  //       hasNextPage: true,
-
-  //     })
-  //   );
-  // }, [userProps]);
   useEffect(() => {
     dispatch(
       tweetsActions.fetchUserTweets({

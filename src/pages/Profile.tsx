@@ -33,24 +33,17 @@ const ProfilePage = ({ tabKey }: TabKeyProps) => {
   const match = useParams();
 
   const usernameId = match.id || "";
-  console.log("PROFILE MATCH ID");
-  console.log(match.id);
   const dispatch = useDispatch<AppDispatch>();
 
   useEffect(() => {
     dispatch(userActions.fetchUser(usernameId));
   }, [match.id]);
 
-  // const user2 = useSelector<RootState, RootState["user"]["authUser"]>(
-  //   (store) => store.user.authUser
-  // );
   const user = useSelector<RootState, RootState["user"]["userByUsername"]>(
     (store) => store.user.userByUsername
   );
 
   const { t } = useTranslation();
-  console.log("PROFILE");
-  console.log(user.username);
   const tabsData = [
     {
       label: t("profile.tabsLabel.tweets"),
@@ -61,20 +54,20 @@ const ProfilePage = ({ tabKey }: TabKeyProps) => {
 
     {
       label: t("profile.tabsLabel.tweetsWithReplies"),
-      content: <TweetsWithReplies />,
+      content: <TweetsWithReplies userProps={user} />,
       key: "tweets-with-replies",
       route: `/${user.username}/with_replies`,
     },
 
     {
       label: t("profile.tabsLabel.media"),
-      content: <Media />,
+      content: <Media userProps={user} />,
       key: "media",
       route: `/${user.username}/media`,
     },
     {
       label: t("profile.tabsLabel.likes"),
-      content: <Likes />,
+      content: <Likes userProps={user} />,
       key: "likes",
       route: `/${user.username}/likes`,
     },

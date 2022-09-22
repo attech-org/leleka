@@ -95,7 +95,6 @@ const loginUser = createAsyncThunk<LoginResponse, LoginRequest>(
       password,
       email: "",
     });
-    console.log(`loginUser ${JSON.stringify(response.data)}`);
     return response.data;
   }
 );
@@ -106,8 +105,6 @@ const fetchUser = createAsyncThunk<User, string>(
     const response = await instance.get("api/users", {
       params: { query: { username: username } },
     });
-    console.log("RESPONSE DATA FETCHUSER");
-    console.log(response.data.docs);
     return response.data.docs[0];
   }
 );
@@ -164,7 +161,6 @@ const userSlice = createSlice({
     builder.addCase(loginUser.fulfilled, (store, { payload }) => {
       store.authUser.error = undefined;
       localStorage.setItem("accessToken", payload.accessToken);
-      console.log(`access token: ${payload.accessToken}`);
       localStorage.setItem("refreshToken", payload.refreshToken);
       Object.assign(store.authUser, {
         ...userInitialState.authUser,

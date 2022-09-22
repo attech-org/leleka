@@ -1,6 +1,6 @@
 import { FastAverageColor } from "fast-average-color";
 import { useEffect, useRef, useState } from "react";
-import { OverlayTrigger, Tooltip } from "react-bootstrap";
+import { Button, OverlayTrigger, Tooltip } from "react-bootstrap";
 import { XLg, Camera } from "react-bootstrap-icons";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
@@ -86,16 +86,14 @@ const Banner = ({ isEditBanner, user }: BannerProps) => {
   const dispatch = useDispatch<AppDispatch>();
   // TODO: Add AsyncThunk action, after adding support for backend PUT and DELETE requests ↓
   //------------------------------ avatar image ------------------------
-  const authUserAvatar = useSelector<
-    RootState,
-    RootState["user"]["authUser"]["profile"]["avatar"]
-  >((store) => store.user.authUser.profile.avatar);
+  const authUser = useSelector<RootState, RootState["user"]["authUser"]>(
+    (store) => store.user.authUser
+  );
   let avatar = "";
   if (user) {
     avatar = user.profile && user.profile.avatar ? user.profile.avatar : "";
-    console.log(user.profile);
   } else {
-    avatar = authUserAvatar;
+    avatar = authUser.profile.avatar;
   }
 
   const [fileAvatar, setFileAvatar] = useState<File>();
@@ -271,8 +269,16 @@ const Banner = ({ isEditBanner, user }: BannerProps) => {
             />
           )}
         </LogoDiv>
-
-        {!isEditBanner && <EditProfileForm />}
+        {user?._id === authUser._id ? (
+          !isEditBanner && <EditProfileForm />
+        ) : (
+          <Button
+            className="rounded-pill fw-bold px-2 mt-3 me-3"
+            variant="dark"
+          >
+            {t("common.follow")}
+          </Button>
+        )}
       </Layout>
     </>
   );
