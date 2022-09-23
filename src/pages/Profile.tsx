@@ -1,7 +1,9 @@
+import { useEffect } from "react";
 import { Button } from "react-bootstrap";
 import { Gear } from "react-bootstrap-icons";
 import { useTranslation } from "react-i18next";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
 import styled from "styled-components";
 
 import Banner from "../containers/Banner";
@@ -12,8 +14,8 @@ import Media from "../containers/ProfileMedia";
 import ProfileTweets from "../containers/ProfileTweets";
 import TabsContainer from "../containers/Tabs";
 import { TweetsWithReplies } from "../containers/TweetsWithReplies";
-import { UserStore } from "../redux/reducers/user";
-import { RootState } from "../redux/store";
+import { userActions } from "../redux/reducers/user";
+import { AppDispatch, RootState } from "../redux/store";
 import { TabKeyProps } from "../types/tabs-types";
 
 const StyledButton = styled(Button)`
@@ -28,40 +30,54 @@ const StyledButton = styled(Button)`
 `;
 
 const ProfilePage = ({ tabKey }: TabKeyProps) => {
-  const user = useSelector<RootState>((store) => store.user) as UserStore;
+  const match = useParams();
+
+  const usernameId = match.id || "";
+  const dispatch = useDispatch<AppDispatch>();
+
+  const authUser = useSelector<RootState, RootState["user"]["authUser"]>(
+    (store) => store.user.authUser
+  );
+
+  useEffect(() => {
+    dispatch(userActions.fetchUser(usernameId));
+  }, [match.id, authUser._id]);
+
+  const user = useSelector<RootState, RootState["user"]["userByUsername"]>(
+    (store) => store.user.userByUsername
+  );
 
   const { t } = useTranslation();
-
   const tabsData = [
     {
       label: t("profile.tabsLabel.tweets"),
-      content: <ProfileTweets />,
+      content: <ProfileTweets userProps={user} />,
       key: "tweets",
-      route: "/profile",
+      route: `/${user.username}`,
     },
 
     {
       label: t("profile.tabsLabel.tweetsWithReplies"),
-      content: <TweetsWithReplies />,
+      content: <TweetsWithReplies userProps={user} />,
       key: "tweets-with-replies",
-      route: "/profile/with_replies",
+      route: `/${user.username}/with_replies`,
     },
 
     {
       label: t("profile.tabsLabel.media"),
-      content: <Media />,
+      content: <Media userProps={user} />,
       key: "media",
-      route: "/profile/media",
+      route: `/${user.username}/media`,
     },
     {
       label: t("profile.tabsLabel.likes"),
-      content: <Likes />,
+      content: <Likes userProps={user} />,
       key: "likes",
-      route: "/profile/likes",
+      route: `/${user.username}/likes`,
     },
   ];
 
-  return (
+  return authUser._id ? (
     <Layout title={t("pageTitles:profilePage")}>
       <div className="border-start border-end">
         <div className="d-flex justify-content-between p-2 align-items-center justify-content-center">
@@ -78,7 +94,7 @@ const ProfilePage = ({ tabKey }: TabKeyProps) => {
             </StyledButton>
           </div>
         </div>
-        <Banner isEditBanner={false} />
+        <Banner user={user} />
         <div className="d-flex pb-4">
           <LinkWithLanguageQueryParam
             to="/following"
@@ -99,6 +115,10 @@ const ProfilePage = ({ tabKey }: TabKeyProps) => {
 
         <TabsContainer tabsData={tabsData} defaultActiveKey={tabKey} />
       </div>
+    </Layout>
+  ) : (
+    <Layout title={t("pageTitles:profilePage")}>
+      <div className="text-center pt-3">{t("common.accessDenied")}</div>
     </Layout>
   );
 };

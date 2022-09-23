@@ -48,27 +48,29 @@ const EditProfileForm = () => {
   const dispatch = useDispatch<AppDispatch>();
 
   //-----------------------------------------------------------------------
-  const username = useSelector<RootState, RootState["user"]["username"]>(
-    (store) => store.user.username
-  );
+  const username = useSelector<
+    RootState,
+    RootState["user"]["authUser"]["username"]
+  >((store) => store.user.authUser.username);
 
   const bio = useSelector<
     RootState,
-    Partial<RootState["user"]["profile"]["bio"]>
-  >((store) => store.user.profile.bio);
+    Partial<RootState["user"]["authUser"]["profile"]["bio"]>
+  >((store) => store.user.authUser.profile.bio);
 
-  const location = useSelector<RootState, RootState["user"]["location"]>(
-    (store) => store.user.location
-  );
+  const location = useSelector<
+    RootState,
+    RootState["user"]["authUser"]["location"]
+  >((store) => store.user.authUser.location);
 
-  const website = useSelector<RootState, RootState["user"]["url"]>(
-    (store) => store.user.url
+  const website = useSelector<RootState, RootState["user"]["authUser"]["url"]>(
+    (store) => store.user.authUser.url
   );
 
   const birthDate = useSelector<
     RootState,
-    RootState["user"]["profile"]["birthDate"]
-  >((store) => store.user.profile.birthDate);
+    RootState["user"]["authUser"]["profile"]["birthDate"]
+  >((store) => store.user.authUser.profile.birthDate);
 
   //-----------------------------------------------------------------------
 
@@ -102,8 +104,8 @@ const EditProfileForm = () => {
   const watchLocation = watch("location");
   const watchWebsite = watch("website");
 
-  const userId = useSelector<RootState, RootState["user"]["_id"]>(
-    (store) => store.user._id
+  const userId = useSelector<RootState, RootState["user"]["authUser"]["_id"]>(
+    (store) => store.user.authUser._id
   );
 
   const submitForm = (data: IFormInput) => {

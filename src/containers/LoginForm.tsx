@@ -30,9 +30,10 @@ const StyledContainer = styled(Container)`
 
 const LoginForm = () => {
   const dispatch = useDispatch<AppDispatch>();
-  const loginError = useSelector<RootState, RootState["user"]["error"]>(
-    (store) => store.user.error
-  );
+  const loginError = useSelector<
+    RootState,
+    RootState["user"]["authUser"]["error"]
+  >((store) => store.user.authUser.error);
 
   const toggleShowMessage = () => {
     dispatch(userActions.clearError());
@@ -50,10 +51,14 @@ const LoginForm = () => {
     resolver: yupResolver(sampleSchema),
   });
 
-  const currentUserId = useSelector<RootState>((store) => store.user._id);
-  const currentUserName = useSelector<RootState>(
-    (store) => store.user.username
-  );
+  const currentUserId = useSelector<
+    RootState,
+    RootState["user"]["authUser"]["_id"]
+  >((store) => store.user.authUser._id);
+  const currentUserName = useSelector<
+    RootState,
+    RootState["user"]["authUser"]["username"]
+  >((store) => store.user.authUser.username);
 
   const submitForm = (data: MyForm) => {
     dispatch(userActions.clearError());

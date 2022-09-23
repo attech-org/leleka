@@ -13,7 +13,9 @@ const MentionsList = () => {
 
   const dispatch = useDispatch<AppDispatch>();
 
-  const user = useSelector<RootState, RootState["user"]>((store) => store.user);
+  const user = useSelector<RootState, RootState["user"]["authUser"]>(
+    (store) => store.user.authUser
+  );
 
   const mentions = useSelector<RootState, RootState["tweets"]["myMentions"]>(
     (store) => store.tweets.myMentions

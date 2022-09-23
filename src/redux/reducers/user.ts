@@ -3,12 +3,12 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import instance from "../../services/api";
 import { LE, User } from "../../types";
 
-export type UserStore = User &
-  LE<{
-    // some custom typings for store
-  }>;
+export interface UserStore {
+  authUser: LE<User>;
+  userByUsername: LE<User>;
+}
 
-const userInitialState: UserStore = {
+const initialState = {
   _id: "",
   username: "",
   name: "",
@@ -48,6 +48,11 @@ const userInitialState: UserStore = {
   },
   isLoading: false,
   error: undefined,
+};
+
+const userInitialState: UserStore = {
+  authUser: initialState,
+  userByUsername: initialState,
 };
 interface RegisterResponse {
   user: Partial<User>;
@@ -132,6 +137,16 @@ const addAvatar = createAsyncThunk<Partial<User>, EditAvatarRequest>(
   }
 );
 
+const fetchUser = createAsyncThunk<User, string>(
+  "profile/username",
+  async (username) => {
+    const response = await instance.get("api/users", {
+      params: { query: { username: username } },
+    });
+    return response.data.docs[0];
+  }
+);
+
 const userSlice = createSlice({
   name: "user",
   initialState: userInitialState,
@@ -146,10 +161,10 @@ const userSlice = createSlice({
     // },
 
     removeBanner: (state) => {
-      state.profile.banner = undefined;
+      state.authUser.profile.banner = undefined;
     },
     clearError: (state) => {
-      state.error = "";
+      state.authUser.error = "";
     },
     resetUserData: () => {
       return userInitialState;
@@ -157,14 +172,14 @@ const userSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder.addCase(registerUser.pending, (store) => {
-      store.isLoading = true;
+      store.authUser.isLoading = true;
     });
     builder.addCase(registerUser.fulfilled, (store, { payload }) => {
-      store.error = undefined;
+      store.authUser.error = undefined;
       localStorage.setItem("accessToken", payload.accessToken);
       localStorage.setItem("refreshToken", payload.refreshToken);
-      Object.assign(store, {
-        ...userInitialState,
+      Object.assign(store.authUser, {
+        ...userInitialState.authUser,
         ...payload.user,
         auth: {
           local: {
@@ -175,19 +190,19 @@ const userSlice = createSlice({
       });
     });
     builder.addCase(registerUser.rejected, (store) => {
-      store.isLoading = false;
-      store.error = "Failed to register user";
+      store.authUser.isLoading = false;
+      store.authUser.error = "Failed to register user";
     });
 
     builder.addCase(loginUser.pending, (store) => {
-      store.isLoading = true;
+      store.authUser.isLoading = true;
     });
     builder.addCase(loginUser.fulfilled, (store, { payload }) => {
-      store.error = undefined;
+      store.authUser.error = undefined;
       localStorage.setItem("accessToken", payload.accessToken);
       localStorage.setItem("refreshToken", payload.refreshToken);
-      Object.assign(store, {
-        ...userInitialState,
+      Object.assign(store.authUser, {
+        ...userInitialState.authUser,
         ...payload.user,
         auth: {
           local: {
@@ -198,35 +213,46 @@ const userSlice = createSlice({
       });
     });
     builder.addCase(loginUser.rejected, (store) => {
-      store.isLoading = false;
-      store.error = "Failed to login user";
+      store.authUser.isLoading = false;
+      store.authUser.error = "Failed to login user";
+    });
+    builder.addCase(fetchUser.pending, (store) => {
+      store.userByUsername.isLoading = true;
+    });
+    builder.addCase(fetchUser.fulfilled, (store, { payload }) => {
+      store.userByUsername = { ...userInitialState, ...payload };
+      store.userByUsername.isLoading = false;
+    });
+    builder.addCase(fetchUser.rejected, (store) => {
+      store.userByUsername.isLoading = false;
+      store.userByUsername.error = "Failed to fetch user by username";
     });
 
     builder.addCase(editProfileUser.pending, (store) => {
-      store.isLoading = true;
+      store.authUser.isLoading = true;
     });
     builder.addCase(editProfileUser.fulfilled, (store, { payload }) => {
-      store.error = undefined;
+      store.authUser.error = undefined;
       Object.assign(store, {
         ...payload,
       });
     });
     builder.addCase(editProfileUser.rejected, (store) => {
-      store.isLoading = false;
-      store.error = "Failed to edit user";
+      store.authUser.isLoading = false;
+      store.authUser.error = "Failed to edit user";
     });
     builder.addCase(addAvatar.pending, (store) => {
-      store.isLoading = true;
+      store.authUser.isLoading = true;
     });
     builder.addCase(addAvatar.fulfilled, (store, { payload }) => {
-      store.error = undefined;
+      store.authUser.error = undefined;
       Object.assign(store, {
         ...payload,
       });
     });
     builder.addCase(addAvatar.rejected, (store) => {
-      store.isLoading = false;
-      store.error = "Failed to add avatar";
+      store.authUser.isLoading = false;
+      store.authUser.error = "Failed to add avatar";
     });
   },
 });
@@ -235,6 +261,7 @@ export const userActions = {
   ...userSlice.actions,
   registerUser,
   loginUser,
+  fetchUser,
   editProfileUser,
   addAvatar,
 };
