@@ -11,6 +11,10 @@
     "noFollowing": "You don't follow anyone"
   },
 
+  "mentionsList": {
+    "noMentions": "You haven't mentions"
+  },
+
   "common": {
     "showMore": "Show more",
     "follow": "Follow",

@@ -1,11 +1,15 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Button, Navbar, OverlayTrigger, Popover } from "react-bootstrap";
 import { ThreeDots } from "react-bootstrap-icons";
 import { useTranslation } from "react-i18next";
+import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 
-import Bookmark from "../components/SingleTweetComment";
-import { bookmarksData } from "../MOCKS/bookmarks";
+import FeedSingleTweet from "../components/FeedSingleTweet";
+import { bookmarksActions } from "../redux/reducers/bookmarks";
+import { AppDispatch, RootState } from "../redux/store";
+import { Bookmark } from "../types";
+import InfiniteList from "./InfiniteList";
 
 const StyledNavbar = styled(Navbar)`
   background-color: rgba(255, 255, 255, 0.97) !important;
@@ -33,7 +37,35 @@ const StyledThreeDots = styled(ThreeDots)`
 `;
 
 const BookmarksList: React.FC = () => {
+  const dispatch = useDispatch<AppDispatch>();
+  const user = useSelector<RootState, RootState["user"]>((store) => store.user);
+  const bookmarks = useSelector<RootState, RootState["bookmarks"]["list"]>(
+    (store) => store.bookmarks.list
+  );
+
+  useEffect(() => {
+    dispatch(
+      bookmarksActions.fetchBookmarks({
+        limit: bookmarks.limit,
+        nextPage: bookmarks.nextPage,
+      })
+    );
+  }, []);
+
+  const handleShowMore = () => {
+    return (
+      !bookmarks.isLoading &&
+      dispatch(
+        bookmarksActions.fetchBookmarks({
+          limit: bookmarks.limit,
+          nextPage: bookmarks.nextPage,
+        })
+      )
+    );
+  };
+
   const { t } = useTranslation();
+
   return (
     <div>
       <StyledNavbar sticky="top" expand="false" variant="light" bg="white">
@@ -43,7 +75,7 @@ const BookmarksList: React.FC = () => {
               {t("bookmarks.windowTitle")}
             </Navbar.Brand>
             <div className="px-3 py-0 m-0 row justify-comtent-start">
-              @artlee4
+              {user._id ? `@${user.username}` : ""}
             </div>
           </div>
           <div>
@@ -63,21 +95,23 @@ const BookmarksList: React.FC = () => {
           </div>
         </StyledDiv>
       </StyledNavbar>
-
-      {bookmarksData.map((item) => (
-        <Bookmark
-          key={item.id}
-          userlogo={item.userlogo}
-          username={item.username}
-          userNickname={item.userNickname}
-          responserUserNickname={item.responserUserNickname}
-          messageText={item.messageText}
-          messageDate={item.messageDate}
-          answerCount={item.answerCount}
-          retweetCount={item.retweetCount}
-          likeCount={item.likeCount}
-        />
-      ))}
+      <>
+        {bookmarks.docs.length ? (
+          <InfiniteList<Bookmark>
+            showMore={handleShowMore}
+            data={bookmarks}
+            itemComponent={(itemData) => (
+              <FeedSingleTweet
+                {...itemData.tweet}
+                key={itemData._id}
+                author={itemData.owner}
+              />
+            )}
+          />
+        ) : (
+          t("bookmarksList.noBookmarks")
+        )}
+      </>
     </div>
   );
 };
