@@ -220,7 +220,7 @@ const FeedSingleTweet = ({
             )}
             <div dangerouslySetInnerHTML={{ __html: content || "" }} />
             <div className="pt-2">
-              <LinkPreview url={url[0]} />
+              {url[0] ? <LinkPreview url={url[0]} /> : null}
             </div>
           </div>
           <div className="px-3 d-flex justify-content-between align-items-center">
