@@ -7,6 +7,7 @@ import {
 import instance from "../../services/api";
 import { LE, Tweet2, Like } from "../../types";
 import { Pagination } from "../../types/mock-api-types";
+import { UserStore } from "./user";
 
 export interface TweetsStore {
   currentTweet: LE<{ data?: Tweet2 }>;
@@ -149,7 +150,7 @@ const fetchMyTweetsAndReplies = createAsyncThunk<
 const fetchUserTweets = createAsyncThunk<
   Pagination<Tweet2>,
   (Pagination<Tweet2> & { userId: string; init?: boolean }) | undefined
->("profile/usertweets", async (filters) => {
+>("profile/usertweets", async (filters, { getState }) => {
   const {
     limit = tweetsInitialStore.userTweets.limit,
     nextPage = 1,
@@ -164,7 +165,25 @@ const fetchUserTweets = createAsyncThunk<
     },
   });
   response.data.init = filters?.init;
-  return response.data;
+  //   const st:  EmptyObject & {
+  //     user: UserStore;
+  // }= getState();
+  //   const { user } = { ...st };
+  //   console.log(getState()?.user.userByUsername._id);
+  // (getState() as { user: UserStore }).user.userByUsername;
+  console.log((getState() as { user: UserStore }).user.userByUsername);
+  response.data.userByUsername = (
+    getState() as { user: UserStore }
+  ).user.userByUsername;
+  if (
+    filters?.init &&
+    response.data.docs[0].author._id !== response.data.userByUsername._id
+  ) {
+    console.log("WIN");
+    return null;
+  } else {
+    return response.data;
+  }
 });
 
 const fetchUserTweetsReplies = createAsyncThunk<
@@ -369,10 +388,19 @@ const tweetsSlice = createSlice<TweetsStore, SliceCaseReducers<TweetsStore>>({
     });
     builder.addCase(fetchUserTweets.fulfilled, (store, { payload }) => {
       if (payload.init) {
+        // if (payload.docs[0].author._id !== getStoredState()) {
+        //   console.log("Clear store");
+        //   store.userTweets = initialStore;
+        // }
+        console.log("init");
+        console.log(payload);
+        console.log(payload.docs[0].author.username);
         store.userTweets = { ...payload, docs: [...payload.docs] };
         store.userTweets.isLoading = false;
         store.userTweets.init = false;
       } else {
+        console.log("no init");
+        console.log(payload.docs[0].author.username);
         if (store.userTweets.docs.length === 0 || payload.page !== 1) {
           store.userTweets = {
             ...store.userTweets,
