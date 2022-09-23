@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next";
 import styled from "styled-components";
 
 import { TabKeyProps } from "../types/tabs-types";
-import FeedPost from "./FeedPosts";
+import MentionsList from "./MentionsList";
 import NotificationsPage from "./NotificationsPage";
 import TabsContainer from "./Tabs";
 
@@ -31,7 +31,7 @@ const NotificationsList = ({ tabKey }: TabKeyProps) => {
     },
     {
       label: t("notifications.tabsLabel.mentions"),
-      content: <FeedPost />,
+      content: <MentionsList />,
       key: "mentions",
       route: "/notifications/mentions",
     },
