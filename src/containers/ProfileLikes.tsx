@@ -23,7 +23,9 @@ const Likes = () => {
     <InfiniteList<Like>
       showMore={handleShowMore}
       data={likedTweets}
-      itemComponent={(itemData) => <FeedLikesTweet {...itemData} />}
+      itemComponent={(itemData) => (
+        <FeedLikesTweet key={itemData._id} {...itemData} />
+      )}
     />
   );
 };

@@ -234,7 +234,7 @@ const SingleTweet = ({
             iconColor={""}
             className="m-0 p-0 rounded-circle row align-items-center justify-content-center"
           >
-            <LikeButton likesCount={likes} />
+            <LikeButton likesCount={likes} id={_id} />
           </IconBg>
           <IconBg
             iconBgColor={bgBlue}

@@ -187,7 +187,7 @@ const FeedLikesTweet = ({ tweet, user }: Like) => {
               <div className="px-1">{tweet.stats.comments}</div>
             </StatisticOfTweet>
             <RetweetButton retweetCount={tweet.stats.retweets} />
-            <LikeButton likesCount={tweet.stats.likes} />
+            <LikeButton likesCount={tweet.stats.likes} id={tweet._id} />
             <StatisticOfTweet className="d-flex align-items-center">
               <HoverBackgroundBlue className="p-2 rounded-circle d-flex justify-content-center align-items-center">
                 <Upload size="16" />

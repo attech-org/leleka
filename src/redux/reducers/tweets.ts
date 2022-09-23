@@ -17,6 +17,7 @@ export interface TweetsStore {
   myTweets: LE<Pagination<Tweet2>>;
   myTweetsAndReplies: LE<Pagination<Tweet2>>;
   myMentions: LE<Pagination<Tweet2>>;
+  likeInfo: LE<TweetLike>;
 }
 
 const tweetsInitialStore: TweetsStore = {
@@ -58,6 +59,11 @@ const tweetsInitialStore: TweetsStore = {
     limit: 10,
     docs: [],
     hasNextPage: true,
+  },
+  likeInfo: {
+    user: "",
+    tweet: "",
+    _id: "",
   },
 };
 
@@ -172,8 +178,14 @@ const fetchMentions = createAsyncThunk<Pagination<Tweet2>, FetchMentionsArgs>(
   }
 );
 
+interface TweetLike {
+  user: string;
+  tweet: string;
+  _id: string;
+}
+
 export const likeDislike = createAsyncThunk<
-  Like,
+  TweetLike,
   { tweet: string | undefined }
 >("tweets/likeDislike", async (body) => {
   const response = await instance.post("api/likes", body);
@@ -314,14 +326,14 @@ const tweetsSlice = createSlice<TweetsStore, SliceCaseReducers<TweetsStore>>({
       store.myMentions.error = "Failed to fetch tweets for feed";
     });
     builder.addCase(likeDislike.pending, (store) => {
-      store.currentTweet.isLoading = true;
+      store.likeInfo.isLoading = true;
     });
     builder.addCase(likeDislike.fulfilled, (store) => {
-      store.currentTweet.isLoading = false;
+      store.likeInfo.isLoading = false;
     });
     builder.addCase(likeDislike.rejected, (store) => {
-      store.currentTweet.isLoading = false;
-      store.currentTweet.error = "Failed to like/dislike tweet";
+      store.likeInfo.isLoading = false;
+      store.likeInfo.error = "Failed to like/dislike tweet";
     });
   },
 });

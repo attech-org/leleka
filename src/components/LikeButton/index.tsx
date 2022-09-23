@@ -41,12 +41,11 @@ const LikeButton: React.FC<ILikeButton> = (
   // { isLiked, likesCount, onLike }
   { likesCount, id }
 ) => {
-  const [isLiked, setisLiked] = useState(likesCount === 0 ? false : true);
+  const [isLiked, setisLiked] = useState(false);
   const [temporaryСounter, setlikesCount] = useState(likesCount);
   const [countAnimation, setcountAnimation] = useState("static");
 
   const dispatch = useDispatch<AppDispatch>();
-
   const clickLike = () => {
     dispatch(tweetsActions.likeDislike({ tweet: id }));
     if (isLiked) {
