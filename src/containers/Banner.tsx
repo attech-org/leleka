@@ -76,7 +76,7 @@ const StyledInput = styled.input`
 `;
 
 interface BannerProps {
-  isEditBanner: boolean;
+  isEditBanner?: boolean;
   user?: LE<User>;
 }
 

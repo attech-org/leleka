@@ -35,9 +35,13 @@ const ProfilePage = ({ tabKey }: TabKeyProps) => {
   const usernameId = match.id || "";
   const dispatch = useDispatch<AppDispatch>();
 
+  const authUser = useSelector<RootState, RootState["user"]["authUser"]>(
+    (store) => store.user.authUser
+  );
+
   useEffect(() => {
     dispatch(userActions.fetchUser(usernameId));
-  }, [match.id]);
+  }, [match.id, authUser._id]);
 
   const user = useSelector<RootState, RootState["user"]["userByUsername"]>(
     (store) => store.user.userByUsername
@@ -73,7 +77,7 @@ const ProfilePage = ({ tabKey }: TabKeyProps) => {
     },
   ];
 
-  return (
+  return authUser._id ? (
     <Layout title={t("pageTitles:profilePage")}>
       <div className="border-start border-end">
         <div className="d-flex justify-content-between p-2 align-items-center justify-content-center">
@@ -90,7 +94,7 @@ const ProfilePage = ({ tabKey }: TabKeyProps) => {
             </StyledButton>
           </div>
         </div>
-        <Banner user={user} isEditBanner={false} />
+        <Banner user={user} />
         <div className="d-flex pb-4">
           <LinkWithLanguageQueryParam
             to="/following"
@@ -111,6 +115,10 @@ const ProfilePage = ({ tabKey }: TabKeyProps) => {
 
         <TabsContainer tabsData={tabsData} defaultActiveKey={tabKey} />
       </div>
+    </Layout>
+  ) : (
+    <Layout title={t("pageTitles:profilePage")}>
+      <div className="text-center pt-3">{t("common.accessDenied")}</div>
     </Layout>
   );
 };

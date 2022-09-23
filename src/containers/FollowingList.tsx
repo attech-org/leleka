@@ -6,7 +6,6 @@ import styled from "styled-components";
 
 import FollowerUserItem from "../components/FollowUserItem";
 import { followingActions } from "../redux/reducers/following";
-import { UserStore } from "../redux/reducers/user";
 import { AppDispatch, RootState } from "../redux/store";
 import { LE, User } from "../types";
 import { Pagination } from "../types/mock-api-types";
@@ -26,9 +25,9 @@ const FollowingList: React.FunctionComponent = () => {
   const { t } = useTranslation();
 
   const dispatch = useDispatch<AppDispatch>();
-  const user = useSelector<RootState>(
+  const user = useSelector<RootState, RootState["user"]["authUser"]>(
     (store) => store.user.authUser
-  ) as UserStore;
+  );
   const following = useSelector<RootState>(
     (store) => store.following.list
   ) as LE<Pagination<User>>;
@@ -40,8 +39,8 @@ const FollowingList: React.FunctionComponent = () => {
         followingActions.fetchFollowing({
           limit: following.limit,
           nextPage: following.nextPage,
-          userId: user.authUser._id,
-          userAccessToken: user.authUser.auth?.local?.accessToken || "",
+          userId: user._id,
+          userAccessToken: user.auth?.local?.accessToken || "",
         })
       )
     );
@@ -49,7 +48,7 @@ const FollowingList: React.FunctionComponent = () => {
 
   return (
     <>
-      {user.authUser._id ? (
+      {user._id ? (
         following.docs.length ? (
           <ListGroup>
             <InfiniteList

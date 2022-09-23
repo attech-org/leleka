@@ -218,20 +218,10 @@ const FeedSingleTweet = ({
             ) : (
               ""
             )}
-            {url[0] ? (
-              <div>
-                <div
-                  className=""
-                  dangerouslySetInnerHTML={{ __html: content || "" }}
-                />
-                <LinkPreview url={url[0]} />
-              </div>
-            ) : (
-              <div
-                className=""
-                dangerouslySetInnerHTML={{ __html: content || "" }}
-              />
-            )}
+            <div dangerouslySetInnerHTML={{ __html: content || "" }} />
+            <div className="pt-2">
+              <LinkPreview url={url[0]} />
+            </div>
           </div>
           <div className="px-3 d-flex justify-content-between align-items-center">
             <TweetReplyForm

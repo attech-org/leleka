@@ -61,10 +61,15 @@ const FollowingPage: React.FunctionComponent = () => {
           </div>
           <div className="d-flex flex-column ms-2">
             <h1 className="fs-5 fw-bold ms-1">
-              {user.authUser.name ? user.authUser.name : "Full Name"}
+              {user.authUser.name
+                ? user.authUser.name
+                : t("followersList.fullUsername")}
             </h1>
             <h3 className="fs-9 mt-1">
-              @{user.authUser.username ? user.authUser.username : "username"}
+              @
+              {user.authUser.username
+                ? user.authUser.username
+                : t("followersList.username")}
             </h3>
           </div>
         </div>
