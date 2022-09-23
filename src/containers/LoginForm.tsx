@@ -1,21 +1,15 @@
 import { yupResolver } from "@hookform/resolvers/yup";
-import {
-  Container,
-  Form,
-  Button,
-  // ToastContainer,
-  // Toast,
-} from "react-bootstrap";
+import { Container, Form, Button } from "react-bootstrap";
 import { Apple, Google } from "react-bootstrap-icons";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
 import * as yup from "yup";
 
 import icon_1 from "../images/icon_1.png";
 import { userActions } from "../redux/reducers/user";
 import { AppDispatch, RootState } from "../redux/store";
+import { LinkWithLanguageQueryParam } from "./LinkWithLanguageQueryParam";
 import ModalUniversal from "./ModalUniversal";
 
 interface MyForm {
@@ -64,17 +58,6 @@ const LoginForm = () => {
 
   const LoginFormContainer = (
     <Container className="rounded-4 w-50 p-2">
-      {/* <ToastContainer position="top-center">
-        {loginError ? (
-          <Toast bg="danger" onClose={toggleShowMessage}>
-            <Toast.Header>
-              <strong className="me-auto" />
-            </Toast.Header>
-            <Toast.Body>{`${loginError}`}</Toast.Body>
-          </Toast>
-        ) : null}
-      </ToastContainer> */}
-
       <section className="mt-4 m-auto d-grid gap-4">
         <h1 className="text-center text-nowrap fs-2 fw-bold">
           {t("login.loginTitle")}
@@ -114,7 +97,7 @@ const LoginForm = () => {
               name="username"
               className="form-control"
               id="floatingInputLoginUsername"
-              placeholder="Name"
+              placeholder={t("login.usernameTitle")}
             />
             <label>{t("login.usernameTitle")}</label>
           </div>
@@ -131,7 +114,7 @@ const LoginForm = () => {
               name="password"
               className="form-control"
               id="floatingInputLoginPassword"
-              placeholder="Password"
+              placeholder={t("login.passwordTitle")}
             />
             <label>{t("login.passwordTitle")}</label>
           </div>
@@ -157,9 +140,12 @@ const LoginForm = () => {
           </Button>
           <div>
             <span className="text-secondary">{t("login.noAccount")}</span>
-            <Link className="ms-1 text-decoration-none" to="/SignUpModal">
+            <LinkWithLanguageQueryParam
+              className="ms-1 text-decoration-none"
+              to="/SignUpModal"
+            >
               {t("login.signUp")}
-            </Link>
+            </LinkWithLanguageQueryParam>
           </div>
         </Form>
       </section>
