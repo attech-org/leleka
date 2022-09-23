@@ -6,7 +6,6 @@ import styled from "styled-components";
 
 import FollowerUserItem from "../components/FollowUserItem";
 import { followersActions } from "../redux/reducers/followers";
-import { UserStore } from "../redux/reducers/user";
 import { AppDispatch, RootState } from "../redux/store";
 import { LE, User } from "../types";
 import { Pagination } from "../types/mock-api-types";
@@ -26,7 +25,9 @@ const FollowersList: React.FunctionComponent = () => {
   const { t } = useTranslation();
 
   const dispatch = useDispatch<AppDispatch>();
-  const user = useSelector<RootState>((store) => store.user) as UserStore;
+  const user = useSelector<RootState, RootState["user"]["authUser"]>(
+    (store) => store.user.authUser
+  );
   const followers = useSelector<RootState>(
     (store) => store.followers.list
   ) as LE<Pagination<User>>;
