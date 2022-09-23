@@ -22,6 +22,7 @@ export interface Pagination<T = object> {
   hasNextPage?: boolean;
   page: number;
   nextPage?: number;
+  init?: boolean;
 }
 
 export interface MockTrend extends DbEntity {

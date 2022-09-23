@@ -70,9 +70,11 @@ const schema = yup.object().shape({
 const Registration = () => {
   const dispatch = useDispatch<AppDispatch>();
   const { t } = useTranslation();
-  const currentUserId = useSelector<RootState>((store) => store.user._id);
+  const currentUserId = useSelector<RootState>(
+    (store) => store.user.authUser._id
+  );
   const currentUserName = useSelector<RootState>(
-    (store) => store.user.username
+    (store) => store.user.authUser.username
   );
 
   const registrationButtonName = t("validation:fields.buttonName");

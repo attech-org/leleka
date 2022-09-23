@@ -4,7 +4,9 @@
   "notAuthorized": "You are not authorized",
 
   "followersList": {
-    "noFollowers": "You have no followers"
+    "noFollowers": "You have no followers",
+    "fullUsername": "Full username",
+    "username": "username"
   },
 
   "followingList": {
@@ -24,7 +26,8 @@
     "close": "Close",
     "retweets": "Retweets",
     "quoteTweets": "Quote Tweets",
-    "likes": "Likes"
+    "likes": "Likes",
+    "accessDenied": "Access denied! Please, login or register"
   },
 
   "homepage": {
