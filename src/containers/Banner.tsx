@@ -7,9 +7,11 @@ import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 
 import EditProfileForm from "../components/EditProfileForm";
+import { followersActions } from "../redux/reducers/followers";
 import { userActions } from "../redux/reducers/user";
 import { AppDispatch, RootState } from "../redux/store";
 import { LE, User } from "../types";
+import { Pagination } from "../types/mock-api-types";
 
 const Layout = styled.div`
   position: relative;
@@ -150,6 +152,34 @@ const Banner = ({ isEditBanner, user }: BannerProps) => {
       setBackgroundColor("rgba(181,192,200,1)");
     }
   }, [avatar]);
+
+  //Artlee----------------------------------------------------------------
+  const userProfile = useSelector<
+    RootState,
+    RootState["user"]["userByUsername"]
+  >((store) => store.user.userByUsername);
+  console.log(userProfile.username);
+
+  const followers = useSelector<RootState>(
+    (store) => store.followers.list
+  ) as LE<Pagination<User>>;
+
+  useEffect(() => {
+    dispatch(
+      followersActions.fetchFollowers({
+        limit: followers.limit,
+        nextPage: followers.nextPage,
+        userId: authUser._id,
+        userAccessToken: authUser.auth?.local?.accessToken || "",
+      })
+    );
+  }, []);
+
+  const followersList = useSelector<RootState, RootState["followers"]["list"]>(
+    (store) => store.followers.list
+  );
+  console.log(followersList);
+  //Artlee----------------------------------------------------------------
 
   return (
     <>
