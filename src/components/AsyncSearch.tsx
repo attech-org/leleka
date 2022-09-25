@@ -54,6 +54,9 @@ export const AsyncSearch = () => {
 
   const { t } = useTranslation();
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const isTag = (data: any): data is Tag => data && typeof data === "object";
+
   return (
     <StyledForm className="justify-content-center align-items-center mx-1 my-2 rounded-pill bg-light px-3 py-1">
       <StyledInputGroup
@@ -80,14 +83,16 @@ export const AsyncSearch = () => {
             }}
             size="sm"
             renderMenuItemChildren={(option) =>
-              typeof option === "object" ? (
+              isTag(option) ? (
                 <TagItem
                   key={option._id}
                   _id={option._id}
                   name={option.name}
-                  stats={option.tweets}
                   createdAt={option.createdAt}
                   updatedAt={option.updatedAt}
+                  stats={{
+                    tweets: 0,
+                  }}
                 />
               ) : (
                 <>{option}</>
