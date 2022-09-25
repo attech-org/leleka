@@ -14,6 +14,7 @@ import MessagesPage from "./pages/Messages";
 import MorePage from "./pages/More";
 import NotificationsPage from "./pages/Notifications";
 import ProfilePage from "./pages/Profile";
+import RecommendationsPage from "./pages/RecommendationUsers";
 import Trends from "./pages/Trends";
 import Tweet from "./pages/Tweet";
 
@@ -65,6 +66,7 @@ const App: React.FunctionComponent = () => {
         <Route path="/following" element={<Following />} />
         <Route path="/trends" element={<Trends />} />
         <Route path="/tweet/:id" element={<Tweet />} />
+        <Route path="/recommendationUsers" element={<RecommendationsPage />} />
       </Routes>
     </div>
   );
