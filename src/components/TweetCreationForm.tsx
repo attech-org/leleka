@@ -108,7 +108,7 @@ const TweetCreationForm: React.FC<TweetCreationFormProps> = ({ repliedId }) => {
           round="50%"
           twitterHandle="sitebase"
           name="Artem Ligerko"
-          src={`data:image/png;base64,  ${avatar}`}
+          src={avatar}
         />
         <div className="flex-grow-1 ms-2">
           <Form.Control

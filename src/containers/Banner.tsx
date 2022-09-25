@@ -92,7 +92,10 @@ const Banner = ({ isEditBanner, user, uploadedImages }: BannerProps) => {
     ) || "";
   let avatar = "";
   if (user) {
-    avatar = `data:image/png;base64,${user?.profile?.avatar}` || "";
+    // avatar = `data:image/png;base64,${user?.profile?.avatar}` || "";
+    avatar = user?.profile?.avatar || "";
+    // } else if (isEditBanner) {
+    //   avatar = `data:image/png;base64,${authUserAvatar}`;
   } else {
     avatar = authUserAvatar;
   }
@@ -264,11 +267,9 @@ const Banner = ({ isEditBanner, user, uploadedImages }: BannerProps) => {
 
           {avatar ? (
             <AvatarImg
-              crossOrigin="anonymous"
               className="rounded-circle"
               // src={`data:image/png;base64,${avatar}`}
-              src={avatar}
-              alt=""
+              src={authUserAvatar}
             />
           ) : (
             <AvatarImg
