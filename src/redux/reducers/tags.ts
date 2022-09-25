@@ -35,6 +35,7 @@ const fetchTags = createAsyncThunk<Pagination<Tag>, FetchTagsFunctionArgs>(
     const response = await instance.get("api/tags", {
       params: {
         query: { name: { $regex: searchString, $options: "i" } },
+        sort: "-stats.tweets",
       },
     });
     return response.data;

@@ -68,7 +68,7 @@ const Trends = () => {
             data={tags}
             itemComponent={(itemData) => (
               <LiWrapper>
-                <TrendItem {...itemData} />
+                <TrendItem key={itemData._id} {...itemData} />
               </LiWrapper>
             )}
           />

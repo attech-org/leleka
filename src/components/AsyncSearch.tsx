@@ -85,6 +85,7 @@ export const AsyncSearch = () => {
                   key={option._id}
                   _id={option._id}
                   name={option.name}
+                  stats={option.tweets}
                   createdAt={option.createdAt}
                   updatedAt={option.updatedAt}
                 />

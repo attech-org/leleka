@@ -3,9 +3,7 @@ import { useTranslation } from "react-i18next";
 import styled from "styled-components";
 
 import { Tag } from "../types";
-
-// import { MockTrend } from "../types/mock-api-types";
-// import { ContextMenu } from "./ContextMenu";
+import { ContextMenu } from "./ContextMenu";
 
 const StyledLink = styled.a`
   transition: 0.3s;
@@ -26,26 +24,28 @@ export const TrendItem = (trend: Tag) => {
         <p className="pb-1 text-secondary">{trend.name}</p>
         <p className="pb-1 fw-bold">{trend.name}</p>
         <span className="pb-1 text-secondary">{t("trends.tweets")}</span>
-        {/* <span className="pb-1 text-secondary">{` ${trend.tweetsCount}`}</span> */}
+        <span className="pb-1 text-secondary">{` ${
+          trend.stats?.tweets || 1
+        }`}</span>
       </Container>
-      {/* <ContextMenu
+      <ContextMenu
         contextItems={[
           {
-            itemId: `context_menu_trend_${trend.id}__interested`,
+            itemId: `context_menu_trend_${trend._id}__interested`,
             contextItemText: t("trends.trendInterest"),
             onClick: async () => {
               return;
             },
           },
           {
-            itemId: `context_menu_trend_${trend.id}__spam_report`,
+            itemId: `context_menu_trend_${trend._id}__spam_report`,
             contextItemText: t("trends.trendSpam"),
             onClick: async () => {
               return;
             },
           },
         ]}
-      /> */}
+      />
     </StyledLink>
   );
 };
