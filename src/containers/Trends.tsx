@@ -17,6 +17,7 @@ const StyledLink = styled(LinkWithLanguageQueryParam)`
     background-color: rgba(0, 0, 0, 0.03);
   }
 `;
+
 const LiWrapper = styled(ListGroupItem)`
   width: 100%;
   text-align: start;
@@ -73,7 +74,7 @@ const Trends = () => {
           />
         </ListGroup>
       ) : (
-        t("tags.noTags")
+        t("Search for trends below")
       )}
       <StyledLink
         to="/trends"

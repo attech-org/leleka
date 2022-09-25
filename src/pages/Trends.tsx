@@ -1,13 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { ListGroup, ListGroupItem, TabContainer } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
+import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 
 import { SinglePageHeader } from "../components/PageHeader";
 import { TrendItem } from "../components/TrendItem";
 import InfiniteList from "../containers/InfiniteList";
 import Layout from "../containers/Layout";
-import { MockTrend, Pagination } from "../types/mock-api-types";
+import { tagsActions } from "../redux/reducers/tags";
+import { AppDispatch, RootState } from "../redux/store";
+import { Tag } from "../types";
 
 const LiWrapper = styled(ListGroupItem)`
   width: 100%;
@@ -18,54 +21,49 @@ const LiWrapper = styled(ListGroupItem)`
   }
   border: 0;
 `;
-function sleep(ms: number) {
-  return new Promise((resolve) => setTimeout(resolve, ms));
-}
+
 const RecomendedFollowsPage: React.FunctionComponent = () => {
-  const [mockTrends, setMockTrends] = useState<Pagination<MockTrend>>();
+  const dispatch = useDispatch<AppDispatch>();
+  const tags = useSelector<RootState, RootState["tags"]["tags"]>(
+    (store) => store.tags.tags
+  );
 
-  const fetchAndProcessData = async (page = 1) => {
-    const mockData: Array<MockTrend> = [];
-    const tempPage = page === 1 ? 0 : page;
-
-    for (let i = tempPage * 10; i < tempPage * 10 + 10; i++) {
-      const id = Math.floor((1 + Math.random()) * 0x10000)
-        .toString(16)
-        .substring(1);
-      const suffix: string = i.toString();
-      mockData.push({
-        id: id,
-        categoryName: "category name" + suffix,
-        categoryValue: "category value" + suffix,
-        tweetsCount: Math.floor(Math.random() * 1000),
-        contentRefName: "Zaporizska aes",
-      });
-    }
-    await sleep(2000);
-    setMockTrends({
-      docs: [...(mockTrends?.docs || []), ...mockData],
-      hasNextPage: true,
-      limit: 10,
-      page: page + 1,
-    });
-  };
   useEffect(() => {
-    fetchAndProcessData();
+    dispatch(
+      tagsActions.fetchTags({
+        limit: tags.limit,
+        nextPage: tags.nextPage,
+        searchString: undefined,
+      })
+    );
   }, []);
+
+  const handleShowMore = () => {
+    return (
+      !tags.isLoading &&
+      dispatch(
+        tagsActions.fetchTags({
+          limit: tags.limit,
+          nextPage: tags.nextPage,
+          searchString: undefined,
+        })
+      )
+    );
+  };
 
   const { t } = useTranslation();
   return (
     <Layout title={t("pageTitles:trendsPage")}>
       <SinglePageHeader pageName={t("trends.pageTitle")} />
       <TabContainer />
-      {mockTrends && (
+      {tags.docs.length && (
         <ListGroup>
-          <InfiniteList<MockTrend>
-            showMore={fetchAndProcessData}
-            data={mockTrends}
+          <InfiniteList<Tag>
+            showMore={handleShowMore}
+            data={tags}
             itemComponent={(itemData) => (
               <LiWrapper>
-                <TrendItem name={""} _id={""} key={itemData.id} {...itemData} />
+                <TrendItem {...itemData} />
               </LiWrapper>
             )}
           />

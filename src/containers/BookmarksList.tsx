@@ -111,7 +111,9 @@ const BookmarksList: React.FC = () => {
             )}
           />
         ) : (
-          t("bookmarksList.noBookmarks")
+          t(
+            "You have not any bookmarks yet. Please add some and you will see them here"
+          )
         )}
       </>
     </div>
