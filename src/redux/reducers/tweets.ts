@@ -240,12 +240,12 @@ const fetchMentions = createAsyncThunk<Pagination<Tweet2>, FetchMentionsArgs>(
 interface TweetLike {
   user: string;
   tweet: string;
-  _id: string;
+  _id?: string | undefined;
 }
 
 export const likeDislike = createAsyncThunk<
   TweetLike,
-  { tweet: string }
+  { tweet: string | undefined }
 >("tweets/likeDislike", async (body) => {
   const response = await instance.post("api/likes", body);
   return response.data;
