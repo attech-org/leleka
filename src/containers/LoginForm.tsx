@@ -123,9 +123,14 @@ const LoginForm = () => {
             />
             <label>{t("login.passwordTitle")}</label>
           </div>
-          {(loginError || errors?.password?.message) && (
+          {loginError && (
             <div className="text-danger fst-italic fs-6">
-              {`${loginError || errors?.password?.message}`}
+              {t("validation:errors.loginError")}
+            </div>
+          )}
+          {errors?.password?.message && (
+            <div className="text-danger fst-italic fs-6">
+              {errors?.password?.message}
             </div>
           )}
 
@@ -147,7 +152,7 @@ const LoginForm = () => {
             <span className="text-secondary">{t("login.noAccount")}</span>
             <LinkWithLanguageQueryParam
               className="ms-1 text-decoration-none"
-              to="/SignUpModal"
+              to="/authorization"
             >
               {t("login.signUp")}
             </LinkWithLanguageQueryParam>

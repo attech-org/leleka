@@ -124,9 +124,9 @@ const Registration = () => {
           </StyledLabel>
         </StyledFormFloating>
         {errors.username && (
-          <div className="text-danger fst-italic fs-6 mt-1">
-            {errors?.username?.message}
-          </div>
+          <p className="text-danger fst-italic fs-6 mt-1">
+            {t(`${errors?.username?.message}`)}
+          </p>
         )}
         <StyledFormFloating className="form-floating mt-3">
           <Form.Control
@@ -145,13 +145,10 @@ const Registration = () => {
         </StyledFormFloating>
         {errors.email && (
           <p className="text-danger fst-italic fs-6 mt-1">
-            {errors?.email?.message}
+            {t(`${errors?.email?.message}`)}
           </p>
         )}
 
-        {/* <p className="text-danger fst-italic mt-1 fs-6">
-          {errors.email && errors.email.message && t(`${errors.email.message}`)}
-        </p> */}
         <StyledFormFloating className="form-floating mt-3">
           <Form.Control
             className="fs-6"
@@ -168,15 +165,10 @@ const Registration = () => {
         </StyledFormFloating>
         {errors.dateOfBirth && (
           <p className="text-danger fst-italic fs-6 mt-1">
-            {errors?.dateOfBirth?.message}
+            {t(`${errors?.dateOfBirth?.message}`)}
           </p>
         )}
 
-        {/* <p className="text-danger fst-italic mt-1 fs-6">
-          {errors.dateOfBirth &&
-            errors.dateOfBirth.message &&
-            t(`${errors.dateOfBirth.message}`)}
-        </p> */}
         <StyledFormFloating className="form-floating mt-3">
           <Form.Control
             className="form-control"
@@ -195,15 +187,10 @@ const Registration = () => {
         </StyledFormFloating>
         {errors.password && (
           <p className="text-danger fst-italic fs-6 mt-1">
-            {errors?.password?.message}
+            {t(`${errors?.password?.message}`)}
           </p>
         )}
 
-        {/* <p className="text-danger fst-italic mt-1 fs-6">
-          {errors.password &&
-            errors.password.message &&
-            t(`${errors.password.message}`)}
-        </p> */}
         <StyledFormFloating className="form-floating mt-3">
           <Form.Control
             className="form-control"
@@ -222,15 +209,10 @@ const Registration = () => {
         </StyledFormFloating>
         {errors.confirmPassword && (
           <p className="text-danger fst-italic fs-6 mt-1">
-            {errors?.confirmPassword?.message}
+            {t(`${errors?.confirmPassword?.message}`)}
           </p>
         )}
 
-        {/* <p className="text-danger fst-italic mt-1 fs-6">
-          {errors.confirmPassword &&
-            errors.confirmPassword.message &&
-            t(`${errors.confirmPassword.message}`)}
-        </p> */}
         <div className="d-grid gap-2">
           <Button
             className="fw-700 w-100 d-block my-4 rounded-5 py-2 border border-gray-400"
