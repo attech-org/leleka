@@ -43,7 +43,13 @@ export const AsyncSearch = () => {
   );
 
   const handleSearch = (searchString: string) => {
-    dispatch(tagsActions.fetchTags({ searchString }));
+    dispatch(
+      tagsActions.fetchTags({
+        searchString,
+        limit: undefined,
+        nextPage: undefined,
+      })
+    );
   };
 
   const { t } = useTranslation();

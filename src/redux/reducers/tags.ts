@@ -21,19 +21,25 @@ const tagsInitialStore: TagsStore = {
   },
 };
 
-const fetchTags = createAsyncThunk<
-  Pagination<Tag>,
-  { searchString: string } | undefined
->("tags/fetchTags", async (filters) => {
-  const { searchString } = filters || {};
+interface FetchTagsFunctionArgs {
+  limit: number | undefined;
+  nextPage: number | undefined;
+  searchString: string | undefined;
+}
 
-  const response = await instance.get("api/tags", {
-    params: {
-      query: { name: { $regex: searchString, $options: "i" } },
-    },
-  });
-  return response.data;
-});
+const fetchTags = createAsyncThunk<Pagination<Tag>, FetchTagsFunctionArgs>(
+  "tags/fetchTags",
+  async (filters) => {
+    const { searchString } = filters || {};
+
+    const response = await instance.get("api/tags", {
+      params: {
+        query: { name: { $regex: searchString, $options: "i" } },
+      },
+    });
+    return response.data;
+  }
+);
 
 const tagsSlice = createSlice<TagsStore, SliceCaseReducers<TagsStore>>({
   name: "tags",

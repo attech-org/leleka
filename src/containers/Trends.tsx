@@ -1,9 +1,14 @@
-import { Container } from "react-bootstrap";
+import { useEffect } from "react";
+import { Container, ListGroup, ListGroupItem } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
+import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 
 import { TrendItem } from "../components/TrendItem";
-import { MockTrend } from "../types/mock-api-types";
+import { tagsActions } from "../redux/reducers/tags";
+import { AppDispatch, RootState } from "../redux/store";
+import { Tag } from "../types";
+import InfiniteList from "./InfiniteList";
 import { LinkWithLanguageQueryParam } from "./LinkWithLanguageQueryParam";
 
 const StyledLink = styled(LinkWithLanguageQueryParam)`
@@ -12,38 +17,64 @@ const StyledLink = styled(LinkWithLanguageQueryParam)`
     background-color: rgba(0, 0, 0, 0.03);
   }
 `;
+const LiWrapper = styled(ListGroupItem)`
+  width: 100%;
+  text-align: start;
+  &:hover {
+    background-color: rgb(247, 247, 247);
+    cursor: pointer;
+  }
+  border: 0;
+`;
 
 const Trends = () => {
-  const trends: Array<MockTrend> = [
-    {
-      id: "1",
-      categoryName: "Полытика",
-      categoryValue: "Aktyalne",
-      contentRefName: "zaporiska AES",
-      tweetsCount: 1234,
-    },
-    {
-      id: "2",
-      categoryName: "trending",
-      categoryValue: "Ukraine",
-      contentRefName: "zaporiska AES",
-      tweetsCount: 1234,
-    },
-    {
-      id: "3",
-      categoryName: "Полытика",
-      categoryValue: "Aktyalne",
-      contentRefName: "zaporiska AES",
-      tweetsCount: 1234,
-    },
-  ];
+  const dispatch = useDispatch<AppDispatch>();
+  const tags = useSelector<RootState, RootState["tags"]["tags"]>(
+    (store) => store.tags.tags
+  );
+
+  useEffect(() => {
+    dispatch(
+      tagsActions.fetchTags({
+        limit: tags.limit,
+        nextPage: tags.nextPage,
+        searchString: undefined,
+      })
+    );
+  }, []);
+
+  const handleShowMore = () => {
+    return (
+      !tags.isLoading &&
+      dispatch(
+        tagsActions.fetchTags({
+          limit: tags.limit,
+          nextPage: tags.nextPage,
+          searchString: undefined,
+        })
+      )
+    );
+  };
+
   const { t } = useTranslation();
   return (
     <div className="bg-light my-3 mx-1 rounded-3">
       <div className="py-3 px-3 fs-5 fw-bold">{t("trends.windowTitle")}</div>
-      {trends.map((tr) => (
-        <TrendItem key={tr.id} trend={tr} />
-      ))}
+      {tags.docs.length ? (
+        <ListGroup>
+          <InfiniteList<Tag>
+            showMore={handleShowMore}
+            data={tags}
+            itemComponent={(itemData) => (
+              <LiWrapper>
+                <TrendItem {...itemData} />
+              </LiWrapper>
+            )}
+          />
+        </ListGroup>
+      ) : (
+        t("tags.noTags")
+      )}
       <StyledLink
         to="/trends"
         className="text-decoration-none text-reset d-flex flex-row py-2"

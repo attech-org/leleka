@@ -65,7 +65,7 @@ const RecomendedFollowsPage: React.FunctionComponent = () => {
             data={mockTrends}
             itemComponent={(itemData) => (
               <LiWrapper>
-                <TrendItem key={itemData.id} trend={itemData} />
+                <TrendItem name={""} _id={""} key={itemData.id} {...itemData} />
               </LiWrapper>
             )}
           />
