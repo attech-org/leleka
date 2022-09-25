@@ -171,7 +171,7 @@ const fetchUserTweets = createAsyncThunk<
   //   const { user } = { ...st };
   //   console.log(getState()?.user.userByUsername._id);
   // (getState() as { user: UserStore }).user.userByUsername;
-  console.log((getState() as { user: UserStore }).user.userByUsername);
+  // console.log((getState() as { user: UserStore }).user.userByUsername);
   response.data.userByUsername = (
     getState() as { user: UserStore }
   ).user.userByUsername;
@@ -180,10 +180,32 @@ const fetchUserTweets = createAsyncThunk<
     response.data.docs[0].author._id !== response.data.userByUsername._id
   ) {
     console.log("WIN");
-    return null;
+    console.log(response.data);
+    return {
+      ...response.data,
+      docs: [],
+      nextPage: null,
+      totalPages: 1,
+      init: true,
+    };
   } else {
     return response.data;
   }
+});
+
+const initUserTweets = createAsyncThunk<
+  Pagination<Tweet2>,
+  (Pagination<Tweet2> & { userId: string; init?: boolean }) | undefined
+>("profile/initusertweets", (filters) => {
+  const { limit = tweetsInitialStore.userTweets.limit, userId } = filters || {};
+  const response: Pagination<Tweet2> & { userId: string; init?: boolean } = {
+    init: filters?.init,
+    docs: [],
+    userId: userId || "",
+    limit,
+    page: 0,
+  };
+  return response;
 });
 
 const fetchUserTweetsReplies = createAsyncThunk<
@@ -388,10 +410,6 @@ const tweetsSlice = createSlice<TweetsStore, SliceCaseReducers<TweetsStore>>({
     });
     builder.addCase(fetchUserTweets.fulfilled, (store, { payload }) => {
       if (payload.init) {
-        // if (payload.docs[0].author._id !== getStoredState()) {
-        //   console.log("Clear store");
-        //   store.userTweets = initialStore;
-        // }
         console.log("init");
         console.log(payload);
         console.log(payload.docs[0].author.username);
@@ -464,6 +482,13 @@ const tweetsSlice = createSlice<TweetsStore, SliceCaseReducers<TweetsStore>>({
       store.userLikes.isLoading = false;
       store.userLikes.error = "Failed to fetch tweets for feed";
     });
+    builder.addCase(initUserTweets.fulfilled, (store) => {
+      store.userTweets.docs.length = 0;
+      store.userTweets.hasNextPage = false;
+      store.userTweets.limit = initialStore.limit;
+      store.userTweets.isLoading = false;
+      store.userTweets.init = false;
+    });
   },
 });
 
@@ -480,6 +505,7 @@ export const tweetsActions = {
   fetchUserTweets,
   fetchUserTweetsReplies,
   fetchUserLikes,
+  initUserTweets,
 };
 
 export default tweetsSlice.reducer;

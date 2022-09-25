@@ -16,6 +16,21 @@ const ProfileTweets = ({ userProps }: { userProps: LE<User> }) => {
   const userPosts = useSelector<RootState, RootState["tweets"]["userTweets"]>(
     (store) => store.tweets.userTweets
   );
+
+  const authUser = useSelector<RootState, RootState["user"]["authUser"]>(
+    (store) => store.user.authUser
+  );
+
+  const userPostsInit = useSelector<
+    RootState,
+    RootState["tweets"]["userTweets"]["init"]
+  >((store) => store.tweets.userTweets.init);
+
+  const userByUsername = useSelector<
+    RootState,
+    RootState["user"]["userByUsername"]
+  >((store) => store.user.userByUsername);
+
   const handleShowMore = () => {
     return (
       !userPosts.isLoading &&
@@ -24,6 +39,22 @@ const ProfileTweets = ({ userProps }: { userProps: LE<User> }) => {
       dispatch(tweetsActions.fetchUserTweets({ ...userPosts, userId }))
     );
   };
+
+  useEffect(() => {
+    dispatch(
+      tweetsActions.initUserTweets({
+        ...({} as LE<Pagination<Tweet2>>),
+        userId,
+        nextPage: 1,
+        hasNextPage: true,
+        init: true,
+      })
+    );
+    console.log("useEffect INIT");
+    console.log(userPostsInit);
+    console.log(userPosts.docs.length);
+  }, [userProps, authUser, userByUsername]);
+
   useEffect(() => {
     dispatch(
       tweetsActions.fetchUserTweets({
@@ -34,14 +65,17 @@ const ProfileTweets = ({ userProps }: { userProps: LE<User> }) => {
         init: true,
       })
     );
-  }, [userProps]);
+    console.log("useEffect");
+    console.log(userPostsInit);
+    console.log(userPosts.docs.length);
+  }, [userProps, authUser, userByUsername, userPostsInit]);
   return (
     <>
       <InfiniteList<Tweet2>
         showMore={handleShowMore}
         data={userPosts}
         itemComponent={(itemData) => (
-          <FeedSingleTweet key={itemData._id} {...itemData} />
+          <FeedSingleTweet key={`proftweet${itemData._id}`} {...itemData} />
         )}
       />
     </>
