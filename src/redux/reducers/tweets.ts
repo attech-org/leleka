@@ -240,16 +240,16 @@ const fetchMentions = createAsyncThunk<Pagination<Tweet2>, FetchMentionsArgs>(
 interface TweetLike {
   user: string;
   tweet: string;
-  _id?: string | undefined;
+  _id: string;
 }
 
-export const likeDislike = createAsyncThunk<
-  TweetLike,
-  { tweet: string | undefined }
->("tweets/likeDislike", async (body) => {
-  const response = await instance.post("api/likes", body);
-  return response.data;
-});
+export const likeDislike = createAsyncThunk<TweetLike, { tweet: string }>(
+  "tweets/likeDislike",
+  async (body) => {
+    const response = await instance.post("api/likes", body);
+    return response.data;
+  }
+);
 
 const tweetsSlice = createSlice<TweetsStore, SliceCaseReducers<TweetsStore>>({
   name: "tweets",
