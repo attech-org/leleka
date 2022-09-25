@@ -245,7 +245,7 @@ interface TweetLike {
 
 export const likeDislike = createAsyncThunk<
   TweetLike,
-  { tweet: string | undefined }
+  { tweet: string }
 >("tweets/likeDislike", async (body) => {
   const response = await instance.post("api/likes", body);
   return response.data;
