@@ -11,7 +11,7 @@ import "./animationLike.css";
 interface ILikeButton {
   //     isLiked: boolean;
   likesCount: number;
-  id?: string;
+  id: string;
   //     onLike: () => void;
 }
 
