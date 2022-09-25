@@ -78,9 +78,10 @@ const StyledInput = styled.input`
 interface BannerProps {
   isEditBanner?: boolean;
   user?: LE<User>;
+  uploadedImages?: (formData: FormData) => void;
 }
 
-const Banner = ({ isEditBanner, user }: BannerProps) => {
+const Banner = ({ isEditBanner, user, uploadedImages }: BannerProps) => {
   const { t } = useTranslation();
 
   const dispatch = useDispatch<AppDispatch>();
@@ -100,9 +101,9 @@ const Banner = ({ isEditBanner, user }: BannerProps) => {
     (store) => store.user.authUser
   );
 
-  const userId = useSelector<RootState, RootState["user"]["authUser"]["_id"]>(
-    (store) => store.user.authUser._id
-  );
+  // const userId = useSelector<RootState, RootState["user"]["authUser"]["_id"]>(
+  //   (store) => store.user.authUser._id
+  // );
 
   // ------------------------------ banner image ------------------------
   const banner = useSelector<
@@ -115,14 +116,32 @@ const Banner = ({ isEditBanner, user }: BannerProps) => {
   };
   //-----------------------------handleUpload-----------------------------
 
+  const toBase64 = (file: Blob) =>
+    new Promise<string>((resolve, reject) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+
+      reader.onload = () =>
+        resolve(reader.result ? reader.result.toString() : "");
+
+      reader.onerror = (error) => reject(error);
+    });
+
   const handleAvatarUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.currentTarget && e.currentTarget.files) {
+    if (e.target && e.target.files) {
       const formData = new FormData();
-      formData.append("avatar", e.currentTarget.files[0]);
-      dispatch(userActions.addAvatar({ formData, userId }));
+      formData.append("avatar", e.target.files[0]);
+      // dispatch(userActions.addAvatar({ formData, userId }));
+
+      dispatch(userActions.addAvatar(await toBase64(e.target.files[0])));
+      if (uploadedImages) {
+        uploadedImages(formData);
+      }
+      // console.log(e.target.files[0]);
+      // console.log(formData);
     }
   };
-
+  // console.log(avatar);
   // const handleBannerUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
   //   if (e.currentTarget && e.currentTarget.files) {
   //     const formData = new FormData();
@@ -139,7 +158,7 @@ const Banner = ({ isEditBanner, user }: BannerProps) => {
     if (avatar) {
       fac
         .getColorAsync(avatar)
-        // .getColorAsync(`data:image/png;base64,  ${avatar}`)
+        // .getColorAsync(`data:image/png;base64,${avatar}`)
         .then((color) => {
           setBackgroundColor(color.rgba);
         })
@@ -247,7 +266,7 @@ const Banner = ({ isEditBanner, user }: BannerProps) => {
             <AvatarImg
               crossOrigin="anonymous"
               className="rounded-circle"
-              // src={`data:image/png;base64,  ${avatar}`}
+              // src={`data:image/png;base64,${avatar}`}
               src={avatar}
               alt=""
             />

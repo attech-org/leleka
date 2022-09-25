@@ -106,21 +106,31 @@ interface EditProfileRequest {
   bio: string;
   birthDate: string;
   userId: string;
+  avatarImage?: FormData;
 }
 
-interface EditAvatarRequest {
-  formData: FormData;
-  userId: string;
-}
+// interface EditAvatarRequest {
+//   formData: FormData;
+//   userId: string;
+// }
 
 const editProfileUser = createAsyncThunk<Partial<User>, EditProfileRequest>(
   "users/profile",
-  async ({ username, bio, location, website, birthDate, userId }) => {
+  async ({
+    username,
+    bio,
+    location,
+    website,
+    birthDate,
+    userId,
+    avatarImage,
+  }) => {
     const response = await instance.put(`api/users/${userId}`, {
       username,
       url: website,
       location,
       profile: {
+        avatar: avatarImage,
         bio,
         birthDate,
       },
@@ -128,14 +138,14 @@ const editProfileUser = createAsyncThunk<Partial<User>, EditProfileRequest>(
     return response.data;
   }
 );
-const addAvatar = createAsyncThunk<Partial<User>, EditAvatarRequest>(
-  "users/profile/avatar",
-  async ({ formData, userId }) => {
-    const response = await instance.put(`api/users/${userId}`, formData);
+// const addAvatar = createAsyncThunk<Partial<User>, EditAvatarRequest>(
+//   "users/profile/avatar",
+//   async ({ formData, userId }) => {
+//     const response = await instance.put(`api/users/${userId}`, formData);
 
-    return response.data;
-  }
-);
+//     return response.data;
+//   }
+// );
 
 const fetchUser = createAsyncThunk<User, string>(
   "profile/username",
@@ -152,9 +162,12 @@ const userSlice = createSlice({
   initialState: userInitialState,
   reducers: {
     //  temporary reducers
-    // addAvatar: (state, (payload: PayloadAction<FormData>)) => {
-    //  state.profile.avatar = payload
-    // },
+    addAvatar: (state, action) => {
+      // state.authUser.profile.avatar = `data:image/png;base64,${action.payload}`;
+      state.authUser.profile.avatar = action.payload;
+      // console.log(state.authUser.profile.avatar);
+      // console.log(action.payload);
+    },
 
     // addBanner: (state, (payload: PayloadAction<FormData>)) => {
     //  state.profile.banner = payload
@@ -236,24 +249,25 @@ const userSlice = createSlice({
       Object.assign(store, {
         ...payload,
       });
+      // store.authUser.profile.avatar = `data:image/png;base64,${payload.profile?.avatar}`;
     });
     builder.addCase(editProfileUser.rejected, (store) => {
       store.authUser.isLoading = false;
       store.authUser.error = "Failed to edit user";
     });
-    builder.addCase(addAvatar.pending, (store) => {
-      store.authUser.isLoading = true;
-    });
-    builder.addCase(addAvatar.fulfilled, (store, { payload }) => {
-      store.authUser.error = undefined;
-      Object.assign(store, {
-        ...payload,
-      });
-    });
-    builder.addCase(addAvatar.rejected, (store) => {
-      store.authUser.isLoading = false;
-      store.authUser.error = "Failed to add avatar";
-    });
+    // builder.addCase(addAvatar.pending, (store) => {
+    //   store.authUser.isLoading = true;
+    // });
+    // builder.addCase(addAvatar.fulfilled, (store, { payload }) => {
+    //   store.authUser.error = undefined;
+    //   Object.assign(store, {
+    //     ...payload,
+    //   });
+    // });
+    // builder.addCase(addAvatar.rejected, (store) => {
+    //   store.authUser.isLoading = false;
+    //   store.authUser.error = "Failed to add avatar";
+    // });
   },
 });
 
@@ -263,7 +277,7 @@ export const userActions = {
   loginUser,
   fetchUser,
   editProfileUser,
-  addAvatar,
+  // addAvatar,
 };
 
 export default userSlice.reducer;
