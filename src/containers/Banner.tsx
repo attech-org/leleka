@@ -92,7 +92,7 @@ const Banner = ({ isEditBanner, user, uploadedImages }: BannerProps) => {
     ) || "";
   let avatar = "";
   if (user) {
-    avatar = user?.profile?.avatar || "";
+    avatar = `data:image/png;base64,${user?.profile?.avatar}` || "";
   } else {
     avatar = authUserAvatar;
   }

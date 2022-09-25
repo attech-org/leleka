@@ -116,6 +116,7 @@ const EditProfileForm = () => {
   };
 
   const submitForm = (data: IFormInput) => {
+    // dispatch(userActions.editProfileUser({ ...data, userId }));
     dispatch(userActions.editProfileUser({ ...data, userId, avatarImage }));
   };
 

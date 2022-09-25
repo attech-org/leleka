@@ -249,7 +249,7 @@ const userSlice = createSlice({
       Object.assign(store, {
         ...payload,
       });
-      // store.authUser.profile.avatar = `data:image/png;base64,${payload.profile?.avatar}`;
+      store.authUser.profile.avatar = `data:image/png;base64,${payload.profile?.avatar}`;
     });
     builder.addCase(editProfileUser.rejected, (store) => {
       store.authUser.isLoading = false;
@@ -260,9 +260,8 @@ const userSlice = createSlice({
     // });
     // builder.addCase(addAvatar.fulfilled, (store, { payload }) => {
     //   store.authUser.error = undefined;
-    //   Object.assign(store, {
-    //     ...payload,
-    //   });
+
+    //   store.authUser.profile.avatar = `data:image/png;base64,${payload.profile?.avatar}`;
     // });
     // builder.addCase(addAvatar.rejected, (store) => {
     //   store.authUser.isLoading = false;
