@@ -165,13 +165,6 @@ const fetchUserTweets = createAsyncThunk<
     },
   });
   response.data.init = filters?.init;
-  //   const st:  EmptyObject & {
-  //     user: UserStore;
-  // }= getState();
-  //   const { user } = { ...st };
-  //   console.log(getState()?.user.userByUsername._id);
-  // (getState() as { user: UserStore }).user.userByUsername;
-  // console.log((getState() as { user: UserStore }).user.userByUsername);
   response.data.userByUsername = (
     getState() as { user: UserStore }
   ).user.userByUsername;
@@ -179,8 +172,6 @@ const fetchUserTweets = createAsyncThunk<
     filters?.init &&
     response.data.docs[0].author._id !== response.data.userByUsername._id
   ) {
-    console.log("WIN");
-    console.log(response.data);
     return {
       ...response.data,
       docs: [],
@@ -410,15 +401,10 @@ const tweetsSlice = createSlice<TweetsStore, SliceCaseReducers<TweetsStore>>({
     });
     builder.addCase(fetchUserTweets.fulfilled, (store, { payload }) => {
       if (payload.init) {
-        console.log("init");
-        console.log(payload);
-        console.log(payload.docs[0].author.username);
         store.userTweets = { ...payload, docs: [...payload.docs] };
         store.userTweets.isLoading = false;
         store.userTweets.init = false;
       } else {
-        console.log("no init");
-        console.log(payload.docs[0].author.username);
         if (store.userTweets.docs.length === 0 || payload.page !== 1) {
           store.userTweets = {
             ...store.userTweets,

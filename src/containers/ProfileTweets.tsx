@@ -17,15 +17,6 @@ const ProfileTweets = ({ userProps }: { userProps: LE<User> }) => {
     (store) => store.tweets.userTweets
   );
 
-  const authUser = useSelector<RootState, RootState["user"]["authUser"]>(
-    (store) => store.user.authUser
-  );
-
-  const userPostsInit = useSelector<
-    RootState,
-    RootState["tweets"]["userTweets"]["init"]
-  >((store) => store.tweets.userTweets.init);
-
   const userByUsername = useSelector<
     RootState,
     RootState["user"]["userByUsername"]
@@ -50,25 +41,8 @@ const ProfileTweets = ({ userProps }: { userProps: LE<User> }) => {
         init: true,
       })
     );
-    console.log("useEffect INIT");
-    console.log(userPostsInit);
-    console.log(userPosts.docs.length);
-  }, [userProps, authUser, userByUsername]);
+  }, [userProps, userByUsername]);
 
-  useEffect(() => {
-    dispatch(
-      tweetsActions.fetchUserTweets({
-        ...({} as LE<Pagination<Tweet2>>),
-        userId,
-        nextPage: 1,
-        hasNextPage: true,
-        init: true,
-      })
-    );
-    console.log("useEffect");
-    console.log(userPostsInit);
-    console.log(userPosts.docs.length);
-  }, [userProps, authUser, userByUsername, userPostsInit]);
   return (
     <>
       <InfiniteList<Tweet2>
