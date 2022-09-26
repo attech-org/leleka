@@ -119,15 +119,36 @@ const Banner = ({ isEditBanner, uploadedImages }: BannerProps) => {
   //-----------------------------handleUpload-----------------------------
 
   const handleAvatarUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target && e.target.files) {
+    if (e.currentTarget && e.currentTarget.files) {
       const formData = new FormData();
-      formData.append("avatar", e.target.files[0]);
+      formData.append("avatar", e.currentTarget.files[0]);
       // dispatch(userActions.addAvatar({ formData, userId }));
 
-      dispatch(userActions.addAvatar(await toBase64(e.target.files[0])));
+      dispatch(userActions.addAvatar(await toBase64(e.currentTarget.files[0])));
+
+      // eslint-disable-next-line no-console
+      console.log("avatar", formData);
+
       if (uploadedImages) {
         uploadedImages(formData);
       }
+    }
+  };
+
+  const handleBannerUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.currentTarget && e.currentTarget.files) {
+      const formData = new FormData();
+      formData.append("avatar", e.currentTarget.files[0]);
+      // dispatch(userActions.addAvatar({ formData, userId }));
+
+      dispatch(userActions.addBanner(await toBase64(e.currentTarget.files[0])));
+
+      // eslint-disable-next-line no-console
+      console.log("banner", formData);
+
+      // if (uploadedImages) {
+      //   uploadedImages(formData);
+      // }
     }
   };
 
@@ -186,7 +207,7 @@ const Banner = ({ isEditBanner, uploadedImages }: BannerProps) => {
                       className="opacity-0 position-absolute rounded-circle"
                       type="file"
                       accept="image/*"
-                      // onChange={handleBannerUpload}
+                      onChange={handleBannerUpload}
                     />
                   </AddPhotoDiv>
                 </OverlayTrigger>

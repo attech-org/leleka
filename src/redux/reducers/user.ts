@@ -1,4 +1,4 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 import instance from "../../services/api";
 import { LE, User } from "../../types";
@@ -106,7 +106,7 @@ interface EditProfileRequest {
   bio: string;
   birthDate: string;
   userId: string;
-  // avatarImage?: FormData;
+  avatarImage?: FormData;
 }
 
 // interface EditAvatarRequest {
@@ -123,14 +123,14 @@ const editProfileUser = createAsyncThunk<Partial<User>, EditProfileRequest>(
     website,
     birthDate,
     userId,
-    // avatarImage,
+    avatarImage,
   }) => {
     const response = await instance.put(`api/users/${userId}`, {
       username,
       url: website,
       location,
       profile: {
-        // avatar: avatarImage,
+        avatar: avatarImage,
         bio,
         birthDate,
       },
@@ -161,18 +161,13 @@ const userSlice = createSlice({
   name: "user",
   initialState: userInitialState,
   reducers: {
-    //  temporary reducers
-    addAvatar: (state, action) => {
-      // state.authUser.profile.avatar = `data:image/png;base64,${action.payload}`;
+    addAvatar: (state, action: PayloadAction<string>) => {
       state.authUser.profile.avatar = action.payload;
-      // console.log(state.authUser.profile.avatar);
-      // console.log(action.payload);
     },
-
-    // addBanner: (state, (payload: PayloadAction<FormData>)) => {
-    //  state.profile.banner = payload
-    // },
-
+    // TODO: Connect the banner to AsyncThunk after implemention on the backend
+    addBanner: (state, action: PayloadAction<string>) => {
+      state.authUser.profile.banner = action.payload;
+    },
     removeBanner: (state) => {
       state.authUser.profile.banner = undefined;
     },
@@ -249,7 +244,7 @@ const userSlice = createSlice({
       Object.assign(store, {
         ...payload,
       });
-      store.authUser.profile.avatar = `data:image/png;base64,${payload.profile?.avatar}`;
+      // store.authUser.profile.avatar = `data:image/png;base64,${payload.profile?.avatar}`;
     });
     builder.addCase(editProfileUser.rejected, (store) => {
       store.authUser.isLoading = false;
