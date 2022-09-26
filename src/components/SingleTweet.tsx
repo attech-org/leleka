@@ -1,5 +1,4 @@
 import React from "react";
-import Avatar from "react-avatar";
 import { Popover, OverlayTrigger, Button } from "react-bootstrap";
 import {
   ThreeDots,
@@ -13,6 +12,7 @@ import styled from "styled-components";
 
 import localDateTime from "../services/localDateTime";
 import { Tweet2 } from "../types";
+import UserAvatar from "./Avatar";
 // import AttachedContent from "./AttachedContent";
 import LikeButton from "./LikeButton";
 import RetweetButton from "./RetweetButton";
@@ -122,11 +122,7 @@ const SingleTweet = ({
     <div>
       <Wrapper className="px-3 border border-bottom-0 border-grey">
         <Author className="my-2">
-          <Avatar
-            className="rounded-circle flex-shrink-0"
-            src={author.profile?.avatar}
-            size="50"
-          />
+          <UserAvatar user={author} />
           <NameSection>
             <NameWrapper className="ps-2">
               <StyledUsername className="fw-bold">{author.name}</StyledUsername>
