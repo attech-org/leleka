@@ -244,7 +244,14 @@ const userSlice = createSlice({
       Object.assign(store, {
         ...payload,
       });
-      // store.authUser.profile.avatar = `data:image/png;base64,${payload.profile?.avatar}`;
+
+      store.authUser.profile.avatar =
+        payload.profile?.avatar &&
+        `data:image/png;base64,${payload.profile?.avatar}`;
+
+      store.authUser.profile.banner =
+        payload.profile?.avatar &&
+        `data:image/png;base64,${payload.profile?.avatar}`;
     });
     builder.addCase(editProfileUser.rejected, (store) => {
       store.authUser.isLoading = false;
