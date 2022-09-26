@@ -1,4 +1,3 @@
-import Avatar from "react-avatar";
 import { Popover, OverlayTrigger, Button } from "react-bootstrap";
 import {
   // PatchCheckFill,
@@ -13,6 +12,7 @@ import styled from "styled-components";
 
 import localDateTime from "../services/localDateTime";
 import { Like } from "../types";
+import UserAvatar from "./Avatar";
 import LikeButton from "./LikeButton";
 import RetweetButton from "./RetweetButton";
 import TweetReplyForm from "./TweetReplyForm";
@@ -86,13 +86,7 @@ const FeedLikesTweet = ({ tweet, user }: Like) => {
         role="button"
         key={tweet._id}
       >
-        <Avatar
-          size="48"
-          round="50%"
-          twitterHandle="sitebase"
-          name={user.username}
-          src={user.profile.avatar}
-        />
+        <UserAvatar user={user} />
 
         <div className="w-100">
           <div className="d-flex justify-content-between">

@@ -1,4 +1,3 @@
-import Avatar from "react-avatar";
 import { Popover, OverlayTrigger, Button, Nav } from "react-bootstrap";
 import {
   // PatchCheckFill,
@@ -14,6 +13,7 @@ import styled from "styled-components";
 import { LinkWithLanguageQueryParam } from "../containers/LinkWithLanguageQueryParam";
 import localDateTime from "../services/localDateTime";
 import { Tweet2 } from "../types";
+import UserAvatar from "./Avatar";
 import LikeButton from "./LikeButton";
 import LinkPreview from "./LinkPreview";
 import RetweetButton from "./RetweetButton";
@@ -106,13 +106,7 @@ const FeedSingleTweet = ({
         role="button"
         key={_id}
       >
-        <Avatar
-          size="48"
-          round="50%"
-          twitterHandle="sitebase"
-          name={author.username}
-          src={author.profile?.avatar}
-        />
+        <UserAvatar user={author} />
 
         <div className="w-100">
           <div className="d-flex justify-content-between">
