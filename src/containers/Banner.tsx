@@ -9,7 +9,7 @@ import styled from "styled-components";
 import EditProfileForm from "../components/EditProfileForm";
 import { userActions } from "../redux/reducers/user";
 import { AppDispatch, RootState } from "../redux/store";
-import { LE, User } from "../types";
+import toBase64 from "../services/toBase64";
 
 const Layout = styled.div`
   position: relative;
@@ -77,36 +77,35 @@ const StyledInput = styled.input`
 
 interface BannerProps {
   isEditBanner?: boolean;
-  user?: LE<User>;
   uploadedImages?: (formData: FormData) => void;
 }
 
-const Banner = ({ isEditBanner, user, uploadedImages }: BannerProps) => {
+const Banner = ({ isEditBanner, uploadedImages }: BannerProps) => {
   const { t } = useTranslation();
 
   const dispatch = useDispatch<AppDispatch>();
-  //------------------------------ avatar image ------------------------
-  const authUserAvatar =
-    useSelector<RootState, RootState["user"]["authUser"]["profile"]["avatar"]>(
-      (store) => store.user.authUser.profile.avatar
-    ) || "";
-  let avatar = "";
-  if (user) {
-    // avatar = `data:image/png;base64,${user?.profile?.avatar}` || "";
-    avatar = user?.profile?.avatar || "";
-    // } else if (isEditBanner) {
-    //   avatar = `data:image/png;base64,${authUserAvatar}`;
-  } else {
-    avatar = authUserAvatar;
-  }
 
   const authUser = useSelector<RootState, RootState["user"]["authUser"]>(
     (store) => store.user.authUser
   );
 
-  // const userId = useSelector<RootState, RootState["user"]["authUser"]["_id"]>(
-  //   (store) => store.user.authUser._id
-  // );
+  const userByUsername = useSelector<
+    RootState,
+    RootState["user"]["userByUsername"]
+  >((store) => store.user.userByUsername);
+  //------------------------------ avatar image ------------------------
+
+  const avatar =
+    userByUsername?._id !== authUser._id && userByUsername
+      ? userByUsername?.profile?.avatar
+      : authUser.profile.avatar;
+
+  // let avatar;
+  // if (userByUsername) {
+  //   avatar = userByUsername?.profile?.avatar;
+  // } else {
+  //   avatar = authUserAvatar;
+  // }
 
   // ------------------------------ banner image ------------------------
   const banner = useSelector<
@@ -119,17 +118,6 @@ const Banner = ({ isEditBanner, user, uploadedImages }: BannerProps) => {
   };
   //-----------------------------handleUpload-----------------------------
 
-  const toBase64 = (file: Blob) =>
-    new Promise<string>((resolve, reject) => {
-      const reader = new FileReader();
-      reader.readAsDataURL(file);
-
-      reader.onload = () =>
-        resolve(reader.result ? reader.result.toString() : "");
-
-      reader.onerror = (error) => reject(error);
-    });
-
   const handleAvatarUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target && e.target.files) {
       const formData = new FormData();
@@ -140,11 +128,9 @@ const Banner = ({ isEditBanner, user, uploadedImages }: BannerProps) => {
       if (uploadedImages) {
         uploadedImages(formData);
       }
-      // console.log(e.target.files[0]);
-      // console.log(formData);
     }
   };
-  // console.log(avatar);
+
   // const handleBannerUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
   //   if (e.currentTarget && e.currentTarget.files) {
   //     const formData = new FormData();
@@ -269,7 +255,7 @@ const Banner = ({ isEditBanner, user, uploadedImages }: BannerProps) => {
             <AvatarImg
               className="rounded-circle"
               // src={`data:image/png;base64,${avatar}`}
-              src={authUserAvatar}
+              src={avatar}
             />
           ) : (
             <AvatarImg
@@ -279,15 +265,15 @@ const Banner = ({ isEditBanner, user, uploadedImages }: BannerProps) => {
             />
           )}
         </LogoDiv>
-        {user?._id === authUser._id ? (
-          !isEditBanner && <EditProfileForm />
-        ) : (
+        {userByUsername?._id !== authUser._id && userByUsername ? (
           <Button
             className="rounded-pill fw-bold px-2 mt-3 me-3"
             variant="dark"
           >
             {t("common.follow")}
           </Button>
+        ) : (
+          !isEditBanner && <EditProfileForm />
         )}
       </Layout>
     </>

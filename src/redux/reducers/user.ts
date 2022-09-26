@@ -106,7 +106,7 @@ interface EditProfileRequest {
   bio: string;
   birthDate: string;
   userId: string;
-  avatarImage?: FormData;
+  // avatarImage?: FormData;
 }
 
 // interface EditAvatarRequest {
@@ -123,14 +123,14 @@ const editProfileUser = createAsyncThunk<Partial<User>, EditProfileRequest>(
     website,
     birthDate,
     userId,
-    avatarImage,
+    // avatarImage,
   }) => {
     const response = await instance.put(`api/users/${userId}`, {
       username,
       url: website,
       location,
       profile: {
-        avatar: avatarImage,
+        // avatar: avatarImage,
         bio,
         birthDate,
       },
