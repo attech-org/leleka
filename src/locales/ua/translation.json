@@ -114,7 +114,8 @@
     "tweets": "твітів:",
     "trendInterest": "Мене це не цікавить",
     "trendSpam": "Цей тренд шкідливий або містить багато спаму",
-    "windowTitle": "Тренди для вас"
+    "windowTitle": "Тренди для вас",
+    "search": "Пошук трендів"
   },
   "login": {
     "loginButton": "Вхід",
@@ -142,7 +143,8 @@
     "menuAdd": "Читати",
     "menuRemove": "Додати/Видалити",
     "menuMute": "Ігнорувати",
-    "replyingTo": "У відповідь"
+    "replyingTo": "У відповідь",
+    "noBookmarks": "У вас поки що нема закладок"
   },
   "retweetButton": {
     "retweet": "Ретвітнути",

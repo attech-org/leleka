@@ -59,7 +59,7 @@ const Trends = () => {
           />
         </ListGroup>
       ) : (
-        t("Search for trends below")
+        t("trends.search")
       )}
       <StyledLink
         to="/trends"
