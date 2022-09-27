@@ -21,20 +21,25 @@ const tagsInitialStore: TagsStore = {
   },
 };
 
-interface FetchTagsFunctionArgs {
-  limit: number | undefined;
-  nextPage: number | undefined;
-  searchString: string | undefined;
-}
+const fetchTags = createAsyncThunk<
+  Pagination<Tag>,
+  { searchString: string } | undefined
+>("tags/fetchTags", async (filters) => {
+  const { searchString } = filters || {};
 
-const fetchTags = createAsyncThunk<Pagination<Tag>, FetchTagsFunctionArgs>(
-  "tags/fetchTags",
-  async (filters) => {
-    const { searchString } = filters || {};
+  const response = await instance.get("api/tags", {
+    params: {
+      query: { name: { $regex: searchString, $options: "i" } },
+    },
+  });
+  return response.data;
+});
 
+const fetchTagsList = createAsyncThunk<Pagination<Tag>>(
+  "tags/fetchTagsList",
+  async () => {
     const response = await instance.get("api/tags", {
       params: {
-        query: { name: { $regex: searchString, $options: "i" } },
         sort: "-stats.tweets",
       },
     });
@@ -58,12 +63,24 @@ const tagsSlice = createSlice<TagsStore, SliceCaseReducers<TagsStore>>({
       store.tags.isLoading = false;
       store.tags.error = "Failed to fetch tags";
     });
+    builder.addCase(fetchTagsList.pending, (store) => {
+      store.tags.isLoading = true;
+    });
+    builder.addCase(fetchTagsList.fulfilled, (store, { payload }) => {
+      store.tags = { ...payload };
+      store.tags.isLoading = false;
+    });
+    builder.addCase(fetchTagsList.rejected, (store) => {
+      store.tags.isLoading = false;
+      store.tags.error = "Failed to fetch tags";
+    });
   },
 });
 
 export const tagsActions = {
   ...tagsSlice.actions,
   fetchTags,
+  fetchTagsList,
 };
 
 export default tagsSlice.reducer;

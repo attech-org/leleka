@@ -46,8 +46,6 @@ export const AsyncSearch = () => {
     dispatch(
       tagsActions.fetchTags({
         searchString,
-        limit: undefined,
-        nextPage: undefined,
       })
     );
   };

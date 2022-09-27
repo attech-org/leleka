@@ -35,26 +35,11 @@ const Trends = () => {
   );
 
   useEffect(() => {
-    dispatch(
-      tagsActions.fetchTags({
-        limit: tags.limit,
-        nextPage: tags.nextPage,
-        searchString: undefined,
-      })
-    );
+    dispatch(tagsActions.fetchTagsList());
   }, []);
 
   const handleShowMore = () => {
-    return (
-      !tags.isLoading &&
-      dispatch(
-        tagsActions.fetchTags({
-          limit: tags.limit,
-          nextPage: tags.nextPage,
-          searchString: undefined,
-        })
-      )
-    );
+    return !tags.isLoading && dispatch(tagsActions.fetchTagsList());
   };
 
   const { t } = useTranslation();
