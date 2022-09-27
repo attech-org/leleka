@@ -34,7 +34,7 @@ const Trends = () => {
         ? tags.docs.map((itemData) => {
             return <TrendItem key={itemData._id} {...itemData} />;
           })
-        : t("Search for trends below")}
+        : t("trends.search")}
       <StyledLink
         to="/trends"
         className="text-decoration-none text-reset d-flex flex-row py-2"
