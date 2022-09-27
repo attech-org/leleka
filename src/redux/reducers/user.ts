@@ -106,13 +106,13 @@ interface EditProfileRequest {
   bio: string;
   birthDate: string;
   userId: string;
-  avatarImage?: FormData;
+  // avatarImage?: FormData;
 }
 
-// interface EditAvatarRequest {
-//   formData: FormData;
-//   userId: string;
-// }
+interface EditAvatarRequest {
+  avatarImage: FormData;
+  userId: string;
+}
 
 const editProfileUser = createAsyncThunk<Partial<User>, EditProfileRequest>(
   "users/profile",
@@ -123,14 +123,14 @@ const editProfileUser = createAsyncThunk<Partial<User>, EditProfileRequest>(
     website,
     birthDate,
     userId,
-    avatarImage,
+    // avatarImage,
   }) => {
     const response = await instance.put(`api/users/${userId}`, {
       username,
       url: website,
       location,
       profile: {
-        avatar: avatarImage,
+        // avatar: avatarImage,
         bio,
         birthDate,
       },
@@ -138,14 +138,14 @@ const editProfileUser = createAsyncThunk<Partial<User>, EditProfileRequest>(
     return response.data;
   }
 );
-// const addAvatar = createAsyncThunk<Partial<User>, EditAvatarRequest>(
-//   "users/profile/avatar",
-//   async ({ formData, userId }) => {
-//     const response = await instance.put(`api/users/${userId}`, formData);
+const addAvatarAsync = createAsyncThunk<Partial<User>, EditAvatarRequest>(
+  "users/profile/avatar",
+  async ({ avatarImage, userId }) => {
+    const response = await instance.put(`api/users/${userId}`, avatarImage);
 
-//     return response.data;
-//   }
-// );
+    return response.data;
+  }
+);
 
 const fetchUser = createAsyncThunk<User, string>(
   "profile/username",
@@ -245,30 +245,29 @@ const userSlice = createSlice({
         ...payload,
       });
 
-      store.authUser.profile.avatar =
-        payload.profile?.avatar &&
-        `data:image/png;base64,${payload.profile?.avatar}`;
+      // store.authUser.profile.avatar =
+      //   payload.profile?.avatar &&
+      //   `data:image/png;base64,${payload.profile?.avatar}`;
 
-      store.authUser.profile.banner =
-        payload.profile?.avatar &&
-        `data:image/png;base64,${payload.profile?.avatar}`;
+      // store.authUser.profile.banner =
+      //   payload.profile?.avatar &&
+      //   `data:image/png;base64,${payload.profile?.avatar}`;
     });
     builder.addCase(editProfileUser.rejected, (store) => {
       store.authUser.isLoading = false;
       store.authUser.error = "Failed to edit user";
     });
-    // builder.addCase(addAvatar.pending, (store) => {
-    //   store.authUser.isLoading = true;
-    // });
-    // builder.addCase(addAvatar.fulfilled, (store, { payload }) => {
-    //   store.authUser.error = undefined;
-
-    //   store.authUser.profile.avatar = `data:image/png;base64,${payload.profile?.avatar}`;
-    // });
-    // builder.addCase(addAvatar.rejected, (store) => {
-    //   store.authUser.isLoading = false;
-    //   store.authUser.error = "Failed to add avatar";
-    // });
+    builder.addCase(addAvatarAsync.pending, (store) => {
+      store.authUser.isLoading = true;
+    });
+    builder.addCase(addAvatarAsync.fulfilled, (store, { payload }) => {
+      store.authUser.error = undefined;
+      store.authUser.profile.avatar = payload.profile?.avatar;
+    });
+    builder.addCase(addAvatarAsync.rejected, (store) => {
+      store.authUser.isLoading = false;
+      store.authUser.error = "Failed to add avatar";
+    });
   },
 });
 
@@ -278,7 +277,7 @@ export const userActions = {
   loginUser,
   fetchUser,
   editProfileUser,
-  // addAvatar,
+  addAvatarAsync,
 };
 
 export default userSlice.reducer;

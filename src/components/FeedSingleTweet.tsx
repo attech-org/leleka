@@ -111,7 +111,7 @@ const FeedSingleTweet = ({
           round="50%"
           twitterHandle="sitebase"
           name={author.username}
-          src={author.profile?.avatar}
+          src={`data:image/png;base64,${author.profile?.avatar}`}
         />
 
         <div className="w-100">
