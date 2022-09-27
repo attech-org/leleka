@@ -21,7 +21,8 @@
 
     "confirmPassword": {
       "match": "Password must match"
-    }
+    },
+    "loginError": "We couldn't find your account."
   },
 
   "fields": {

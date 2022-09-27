@@ -7,7 +7,6 @@ import {
   useEffect,
   useState,
 } from "react";
-import Avatar from "react-avatar";
 import { OverlayTrigger, Popover, Spinner, Form } from "react-bootstrap";
 import {
   EmojiSmile,
@@ -23,6 +22,7 @@ import styled from "styled-components";
 
 import { tweetsActions } from "../redux/reducers/tweets";
 import { RootState, AppDispatch } from "../redux/store";
+import UserAvatar from "./Avatar";
 
 const StyledButton = styled.button`
   &:hover {
@@ -102,13 +102,7 @@ const TweetCreationForm: React.FC<TweetCreationFormProps> = ({ repliedId }) => {
   return (
     <div>
       <div className="border-0 p-3 d-flex text-start justify-content-start">
-        <Avatar
-          size="48"
-          round="50%"
-          twitterHandle="sitebase"
-          name={authUser.username}
-          src={authUser.profile.avatar}
-        />
+        <UserAvatar user={authUser} />
         <div className="flex-grow-1 ms-2">
           <Form.Control
             as="textarea"
