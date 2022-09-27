@@ -10,10 +10,17 @@ import { Pagination } from "../../types/mock-api-types";
 
 export interface TagsStore {
   tags: LE<Pagination<Tag>>;
+  tagsList: LE<Pagination<Tag>>;
 }
 
 const tagsInitialStore: TagsStore = {
   tags: {
+    page: 1,
+    limit: 10,
+    docs: [],
+    hasNextPage: true,
+  },
+  tagsList: {
     page: 1,
     limit: 10,
     docs: [],
@@ -64,15 +71,15 @@ const tagsSlice = createSlice<TagsStore, SliceCaseReducers<TagsStore>>({
       store.tags.error = "Failed to fetch tags";
     });
     builder.addCase(fetchTagsList.pending, (store) => {
-      store.tags.isLoading = true;
+      store.tagsList.isLoading = true;
     });
     builder.addCase(fetchTagsList.fulfilled, (store, { payload }) => {
-      store.tags = { ...payload };
-      store.tags.isLoading = false;
+      store.tagsList = { ...payload };
+      store.tagsList.isLoading = false;
     });
     builder.addCase(fetchTagsList.rejected, (store) => {
-      store.tags.isLoading = false;
-      store.tags.error = "Failed to fetch tags";
+      store.tagsList.isLoading = false;
+      store.tagsList.error = "Failed to fetch tags";
     });
   },
 });
