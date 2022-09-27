@@ -1,4 +1,4 @@
-import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 import instance from "../../services/api";
 import { LE, User } from "../../types";
@@ -106,7 +106,6 @@ interface EditProfileRequest {
   bio: string;
   birthDate: string;
   userId: string;
-  // avatarImage?: FormData;
 }
 
 interface EditAvatarRequest {
@@ -114,23 +113,19 @@ interface EditAvatarRequest {
   userId: string;
 }
 
+interface EditBannerRequest {
+  bannerImage: FormData;
+  userId: string;
+}
+
 const editProfileUser = createAsyncThunk<Partial<User>, EditProfileRequest>(
   "users/profile",
-  async ({
-    username,
-    bio,
-    location,
-    website,
-    birthDate,
-    userId,
-    // avatarImage,
-  }) => {
+  async ({ username, bio, location, website, birthDate, userId }) => {
     const response = await instance.put(`api/users/${userId}`, {
       username,
       url: website,
       location,
       profile: {
-        // avatar: avatarImage,
         bio,
         birthDate,
       },
@@ -142,6 +137,14 @@ const addAvatarAsync = createAsyncThunk<Partial<User>, EditAvatarRequest>(
   "users/profile/avatar",
   async ({ avatarImage, userId }) => {
     const response = await instance.put(`api/users/${userId}`, avatarImage);
+
+    return response.data;
+  }
+);
+const addBannerAsync = createAsyncThunk<Partial<User>, EditBannerRequest>(
+  "users/profile/banner",
+  async ({ bannerImage, userId }) => {
+    const response = await instance.put(`api/users/${userId}`, bannerImage);
 
     return response.data;
   }
@@ -161,13 +164,6 @@ const userSlice = createSlice({
   name: "user",
   initialState: userInitialState,
   reducers: {
-    addAvatar: (state, action: PayloadAction<string>) => {
-      state.authUser.profile.avatar = action.payload;
-    },
-    // TODO: Connect the banner to AsyncThunk after implemention on the backend
-    addBanner: (state, action: PayloadAction<string>) => {
-      state.authUser.profile.banner = action.payload;
-    },
     removeBanner: (state) => {
       state.authUser.profile.banner = undefined;
     },
@@ -244,14 +240,6 @@ const userSlice = createSlice({
       Object.assign(store, {
         ...payload,
       });
-
-      // store.authUser.profile.avatar =
-      //   payload.profile?.avatar &&
-      //   `data:image/png;base64,${payload.profile?.avatar}`;
-
-      // store.authUser.profile.banner =
-      //   payload.profile?.avatar &&
-      //   `data:image/png;base64,${payload.profile?.avatar}`;
     });
     builder.addCase(editProfileUser.rejected, (store) => {
       store.authUser.isLoading = false;
@@ -268,6 +256,17 @@ const userSlice = createSlice({
       store.authUser.isLoading = false;
       store.authUser.error = "Failed to add avatar";
     });
+    builder.addCase(addBannerAsync.pending, (store) => {
+      store.authUser.isLoading = true;
+    });
+    builder.addCase(addBannerAsync.fulfilled, (store, { payload }) => {
+      store.authUser.error = undefined;
+      store.authUser.profile.banner = payload.profile?.banner;
+    });
+    builder.addCase(addBannerAsync.rejected, (store) => {
+      store.authUser.isLoading = false;
+      store.authUser.error = "Failed to add avatar";
+    });
   },
 });
 
@@ -278,6 +277,7 @@ export const userActions = {
   fetchUser,
   editProfileUser,
   addAvatarAsync,
+  addBannerAsync,
 };
 
 export default userSlice.reducer;

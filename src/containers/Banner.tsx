@@ -9,7 +9,6 @@ import styled from "styled-components";
 import EditProfileForm from "../components/EditProfileForm";
 import { userActions } from "../redux/reducers/user";
 import { AppDispatch, RootState } from "../redux/store";
-import toBase64 from "../services/toBase64";
 
 const Layout = styled.div`
   position: relative;
@@ -77,11 +76,19 @@ const StyledInput = styled.input`
 
 interface BannerProps {
   isEditBanner?: boolean;
-  uploadedImages?: (formData: FormData) => void;
+  uploadedAvatar?: (formData: FormData) => void;
+  uploadedBanner?: (formData: FormData) => void;
 }
 
-const Banner = ({ isEditBanner, uploadedImages }: BannerProps) => {
+const Banner = ({
+  isEditBanner,
+  uploadedAvatar,
+  uploadedBanner,
+}: BannerProps) => {
   const { t } = useTranslation();
+
+  const [temporaryAvatar, setTemporaryAvatar] = useState<string>();
+  const [temporaryBanner, setTemporaryBanner] = useState<string>();
 
   const dispatch = useDispatch<AppDispatch>();
 
@@ -100,13 +107,6 @@ const Banner = ({ isEditBanner, uploadedImages }: BannerProps) => {
       ? userByUsername?.profile?.avatar
       : authUser.profile.avatar;
 
-  // let avatar;
-  // if (userByUsername) {
-  //   avatar = userByUsername?.profile?.avatar;
-  // } else {
-  //   avatar = authUserAvatar;
-  // }
-
   // ------------------------------ banner image ------------------------
   const banner = useSelector<
     RootState,
@@ -118,47 +118,31 @@ const Banner = ({ isEditBanner, uploadedImages }: BannerProps) => {
   };
   //-----------------------------handleUpload-----------------------------
 
-  const handleAvatarUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleAvatarUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.currentTarget && e.currentTarget.files) {
       const formData = new FormData();
       formData.append("avatar", e.currentTarget.files[0]);
-      // dispatch(userActions.addAvatar({ formData, userId }));
 
-      dispatch(userActions.addAvatar(await toBase64(e.currentTarget.files[0])));
+      setTemporaryAvatar(URL.createObjectURL(e.currentTarget.files[0]));
 
-      // eslint-disable-next-line no-console
-      console.log("avatar", formData);
-
-      if (uploadedImages) {
-        uploadedImages(formData);
+      if (uploadedAvatar) {
+        uploadedAvatar(formData);
       }
     }
   };
 
-  const handleBannerUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleBannerUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.currentTarget && e.currentTarget.files) {
       const formData = new FormData();
-      formData.append("avatar", e.currentTarget.files[0]);
-      // dispatch(userActions.addAvatar({ formData, userId }));
+      formData.append("banner", e.currentTarget.files[0]);
 
-      dispatch(userActions.addBanner(await toBase64(e.currentTarget.files[0])));
+      setTemporaryBanner(URL.createObjectURL(e.currentTarget.files[0]));
 
-      // eslint-disable-next-line no-console
-      console.log("banner", formData);
-
-      // if (uploadedImages) {
-      //   uploadedImages(formData);
-      // }
+      if (uploadedBanner) {
+        uploadedBanner(formData);
+      }
     }
   };
-
-  // const handleBannerUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
-  //   if (e.currentTarget && e.currentTarget.files) {
-  //     const formData = new FormData();
-  //     formData.append("banner", e.currentTarget.files[0]);
-  //     dispatch(userActions.addBanner({ formData, userId }));
-  //   }
-  // };
 
   //-------------------------FastAverageColor-----------------------------
   const [backgroundColor, setBackgroundColor] = useState("rgba(181,192,200,1)");
@@ -234,8 +218,20 @@ const Banner = ({ isEditBanner, uploadedImages }: BannerProps) => {
               )}
             </ChangePhotoDiv>
 
-            {banner && (
-              <img className="img-fluid w-100 h-100" src={banner} alt="" />
+            {temporaryBanner && isEditBanner ? (
+              <img
+                className="img-fluid w-100 h-100"
+                src={temporaryBanner}
+                alt=""
+              />
+            ) : (
+              banner && (
+                <img
+                  className="img-fluid w-100 h-100"
+                  src={`data:image/png;base64,${banner}`}
+                  alt=""
+                />
+              )
             )}
           </div>
         </BannerPictureDiv>
@@ -272,17 +268,17 @@ const Banner = ({ isEditBanner, uploadedImages }: BannerProps) => {
             </OverlayTrigger>
           )}
 
-          {avatar ? (
+          {temporaryAvatar && isEditBanner ? (
+            <AvatarImg className="rounded-circle" src={temporaryAvatar} />
+          ) : avatar ? (
             <AvatarImg
               className="rounded-circle"
-              // src={`data:image/png;base64,${avatar}`}
-              src={avatar}
+              src={`data:image/png;base64,${avatar}`}
             />
           ) : (
             <AvatarImg
               className="rounded-circle"
               src="https://abs.twimg.com/sticky/default_profile_images/default_profile_400x400.png"
-              alt=""
             />
           )}
         </LogoDiv>

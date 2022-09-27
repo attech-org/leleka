@@ -110,9 +110,13 @@ const EditProfileForm = () => {
   );
 
   const [avatarImage, setAvatarImage] = useState<FormData>();
+  const [bannerImage, setBannerImage] = useState<FormData>();
 
-  const uploadedImages = (avatarImageProps: FormData) => {
+  const uploadedAvatar = (avatarImageProps: FormData) => {
     setAvatarImage(avatarImageProps);
+  };
+  const uploadedBanner = (bannerImageProps: FormData) => {
+    setBannerImage(bannerImageProps);
   };
 
   const submitForm = (data: IFormInput) => {
@@ -120,14 +124,17 @@ const EditProfileForm = () => {
     if (avatarImage) {
       dispatch(userActions.addAvatarAsync({ avatarImage, userId }));
     }
-    // dispatch(userActions.editProfileUser({ ...data, userId, avatarImage }));
+    if (bannerImage) {
+      dispatch(userActions.addBannerAsync({ bannerImage, userId }));
+    }
   };
 
   const ProfileForm = (
     <Container className="p-0">
       <Banner
         isEditBanner
-        uploadedImages={(formData: FormData) => uploadedImages(formData)}
+        uploadedAvatar={(formData: FormData) => uploadedAvatar(formData)}
+        uploadedBanner={(formData: FormData) => uploadedBanner(formData)}
       />
       <Form onSubmit={handleSubmit(submitForm)}>
         {/*----NameUser input -------*/}

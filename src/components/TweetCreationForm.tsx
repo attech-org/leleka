@@ -62,10 +62,9 @@ const TweetCreationForm: React.FC<TweetCreationFormProps> = ({ repliedId }) => {
     (store) => store.tweets.singleTweet.isLoading
   );
 
-  const avatar = useSelector<
-    RootState,
-    RootState["user"]["authUser"]["profile"]["avatar"]
-  >((store) => store.user.authUser.profile.avatar);
+  const authUser = useSelector<RootState, RootState["user"]["authUser"]>(
+    (store) => store.user.authUser
+  );
 
   const { t } = useTranslation();
   const whoCanAnswer = t(
@@ -107,8 +106,8 @@ const TweetCreationForm: React.FC<TweetCreationFormProps> = ({ repliedId }) => {
           size="48"
           round="50%"
           twitterHandle="sitebase"
-          name="Artem Ligerko"
-          src={avatar}
+          name={authUser.username}
+          src={authUser.profile.avatar}
         />
         <div className="flex-grow-1 ms-2">
           <Form.Control
