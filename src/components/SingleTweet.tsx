@@ -8,8 +8,11 @@ import {
   Flag,
 } from "react-bootstrap-icons";
 import { useTranslation } from "react-i18next";
+import { useDispatch } from "react-redux";
 import styled from "styled-components";
 
+import { tweetsActions } from "../redux/reducers/tweets";
+import { AppDispatch } from "../redux/store";
 import localDateTime from "../services/localDateTime";
 import { Tweet2 } from "../types";
 import UserAvatar from "./Avatar";
@@ -117,6 +120,12 @@ const SingleTweet = ({
   // const handleReplyClick = () => {
   //   return <ReplyTweet />;
   // };
+
+  const dispatch = useDispatch<AppDispatch>();
+
+  const onLike = () => {
+    dispatch(tweetsActions.likeDislike({ tweet: _id }));
+  };
 
   return (
     <div>
@@ -230,7 +239,7 @@ const SingleTweet = ({
             iconColor={""}
             className="m-0 p-0 rounded-circle row align-items-center justify-content-center"
           >
-            <LikeButton likesCount={likes} />
+            <LikeButton likesCount={likes} onLike={onLike} />
           </IconBg>
           <IconBg
             iconBgColor={bgBlue}

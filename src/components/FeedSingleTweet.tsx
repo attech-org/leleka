@@ -8,9 +8,12 @@ import {
   ThreeDots,
 } from "react-bootstrap-icons";
 import { useTranslation } from "react-i18next";
+import { useDispatch } from "react-redux";
 import styled from "styled-components";
 
 import { LinkWithLanguageQueryParam } from "../containers/LinkWithLanguageQueryParam";
+import { tweetsActions } from "../redux/reducers/tweets";
+import { AppDispatch } from "../redux/store";
 import localDateTime from "../services/localDateTime";
 import { Tweet2 } from "../types";
 import UserAvatar from "./Avatar";
@@ -88,6 +91,12 @@ const FeedSingleTweet = ({
   stats: { likes, retweets, comments },
 }: Tweet2) => {
   const { t } = useTranslation();
+
+  const dispatch = useDispatch<AppDispatch>();
+
+  const onLike = () => {
+    dispatch(tweetsActions.likeDislike({ tweet: _id }));
+  };
 
   // const handleReplyClick = () => {
   //   return <ReplyTweet />;
@@ -225,7 +234,7 @@ const FeedSingleTweet = ({
               commentsCount={comments}
             />
             <RetweetButton retweetCount={retweets} />
-            <LikeButton likesCount={likes} />
+            <LikeButton likesCount={likes} onLike={onLike} />
             <StatisticOfTweet className="d-flex align-items-center">
               <HoverBackgroundBlue className="p-2 rounded-circle d-flex justify-content-center align-items-center">
                 <Upload size="16" />
