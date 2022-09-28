@@ -1,7 +1,6 @@
 import { Popover, OverlayTrigger, Button, Nav } from "react-bootstrap";
 import {
   // PatchCheckFill,
-  Upload,
   PersonX,
   ClipboardPlus,
   Flag,
@@ -17,6 +16,7 @@ import UserAvatar from "./Avatar";
 import LikeButton from "./LikeButton";
 import LinkPreview from "./LinkPreview";
 import RetweetButton from "./RetweetButton";
+import ShareButton from "./ShareButton";
 import TweetReplyForm from "./TweetReplyForm";
 
 const PostWrapper = styled.section`
@@ -31,20 +31,6 @@ const UnderlineHover = styled(Nav.Link)<{ eventkey: string }>`
   text-decoration: none;
   :hover {
     text-decoration: underline !important;
-  }
-`;
-
-const StatisticOfTweet = styled.div`
-  transition-duration: 0.2s;
-  :hover {
-    color: rgb(0, 153, 255);
-  }
-`;
-
-const HoverBackgroundBlue = styled.div`
-  :hover {
-    background: rgb(230, 241, 248);
-    transition-duration: 0.2s;
   }
 `;
 
@@ -226,11 +212,7 @@ const FeedSingleTweet = ({
             />
             <RetweetButton retweetCount={retweets} />
             <LikeButton likesCount={likes} />
-            <StatisticOfTweet className="d-flex align-items-center">
-              <HoverBackgroundBlue className="p-2 rounded-circle d-flex justify-content-center align-items-center">
-                <Upload size="16" />
-              </HoverBackgroundBlue>
-            </StatisticOfTweet>
+            <ShareButton isAddedBookmark={false} tweetId={_id} />
           </div>
         </div>
       </PostWrapper>

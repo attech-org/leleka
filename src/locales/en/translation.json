@@ -153,6 +153,10 @@
       "quote": "Quote Tweet"
     }
   },
+  "sharebutton": {
+    "share": "share",
+    "bookmarks": "add to bookmarks"
+  },
   "likeButton": {
     "like": "Like",
     "unlike": "Unlike"
