@@ -1,16 +1,29 @@
 import React from "react";
-import { Button } from "react-bootstrap";
+import { Button, ListGroup, ListGroupItem } from "react-bootstrap";
 import { ArrowLeft } from "react-bootstrap-icons";
 import { useTranslation } from "react-i18next";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
-import FollowingList from "../containers/FollowingList";
+import FollowerUserItem from "../components/FollowUserItem";
+import InfiniteList from "../containers/InfiniteList";
 import Layout from "../containers/Layout";
 import { LinkTabsContainer } from "../containers/Tabs";
-import { UserStore } from "../redux/reducers/user";
-import { RootState } from "../redux/store";
+import { followingActions } from "../redux/reducers/following";
+import { RootState, AppDispatch } from "../redux/store";
+import { LE, User } from "../types";
+import { Pagination } from "../types/mock-api-types";
+
+const LiWrapper = styled(ListGroupItem)`
+  width: 100%;
+  text-align: start;
+  &:hover {
+    background-color: rgb(247, 247, 247);
+    cursor: pointer;
+  }
+  border: 0;
+`;
 
 const StyledButton = styled(Button)`
   height: 2rem;
@@ -24,8 +37,29 @@ const StyledButton = styled(Button)`
 `;
 
 const FollowingPage: React.FunctionComponent = () => {
-  const user = useSelector<RootState>((store) => store.user) as UserStore;
+  //const user = useSelector<RootState>((store) => store.user) as UserStore;
 
+  const dispatch = useDispatch<AppDispatch>();
+  const user = useSelector<RootState, RootState["user"]["authUser"]>(
+    (store) => store.user.authUser
+  );
+  const following = useSelector<RootState>(
+    (store) => store.following.list
+  ) as LE<Pagination<User>>;
+
+  const handleShowMore = () => {
+    return (
+      !following.isLoading &&
+      dispatch(
+        followingActions.fetchFollowing({
+          limit: following.limit,
+          nextPage: following.nextPage,
+          userId: user._id,
+          userAccessToken: user.auth?.local?.accessToken || "",
+        })
+      )
+    );
+  };
   const { t, i18n } = useTranslation();
   const tabsData = [
     {
@@ -42,7 +76,10 @@ const FollowingPage: React.FunctionComponent = () => {
   const navigate = useNavigate();
 
   return (
-    <Layout title={t("pageTitles:followingPage")}>
+    <Layout
+      title={t("pageTitles:followingPage")}
+      errors={[user?.error as string, following?.error as string]}
+    >
       <div className="border-start border-end">
         <div className="d-flex  p-2 align-items-center ">
           <div className="p-2">
@@ -61,15 +98,10 @@ const FollowingPage: React.FunctionComponent = () => {
           </div>
           <div className="d-flex flex-column ms-2">
             <h1 className="fs-5 fw-bold ms-1">
-              {user.authUser.name
-                ? user.authUser.name
-                : t("followersList.fullUsername")}
+              {user.name ? user.name : t("followersList.fullUsername")}
             </h1>
             <h3 className="fs-9 mt-1">
-              @
-              {user.authUser.username
-                ? user.authUser.username
-                : t("followersList.username")}
+              @{user.username ? user.username : t("followersList.username")}
             </h3>
           </div>
         </div>
@@ -77,7 +109,27 @@ const FollowingPage: React.FunctionComponent = () => {
           tabsData={tabsData}
           defaultActiveKey={"/following"}
         />
-        <FollowingList />
+        <>
+          {user._id ? (
+            following.docs.length ? (
+              <ListGroup>
+                <InfiniteList
+                  showMore={handleShowMore}
+                  data={following}
+                  itemComponent={(itemData) => (
+                    <LiWrapper>
+                      <FollowerUserItem key={itemData._id} user={itemData} />
+                    </LiWrapper>
+                  )}
+                />
+              </ListGroup>
+            ) : (
+              t("followingList.noFollowing")
+            )
+          ) : (
+            t("followersList.noFollowers")
+          )}
+        </>
       </div>
     </Layout>
   );

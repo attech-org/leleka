@@ -12,9 +12,10 @@ const GeneralContainer = styled.main`
 interface LayoutProps {
   children?: React.ReactNode;
   title?: string;
+  errors?: Array<string>;
 }
 
-const Layout = ({ children, title }: LayoutProps) => {
+const Layout = ({ children, title, errors }: LayoutProps) => {
   return (
     <>
       <HelmetProvider>
@@ -22,7 +23,10 @@ const Layout = ({ children, title }: LayoutProps) => {
           <title>{title ? `${title} | Leleka` : "Leleka"}</title>
         </Helmet>
         <GeneralContainer className="container-xxl">
-          <ErrorsToaster />
+          {errors?.length &&
+            errors.map((err) => (
+              <ErrorsToaster errorMsg={err} key={`__error:${err}__`} />
+            ))}
           <div className="row">
             <LeftPanel />
             <main className="col-xl-6 col-lg-6 col-md-11 col-sm-11 col-12">

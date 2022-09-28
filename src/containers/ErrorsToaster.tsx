@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { pwaActions } from "../redux/reducers/pwa";
 import { RootState, AppDispatch } from "../redux/store";
-const ErrorsToaster = () => {
+const ErrorsToaster = ({ errorMsg }: { errorMsg: string }) => {
   const dispatch = useDispatch<AppDispatch>();
   const tweetsFetch = useSelector<RootState, RootState["tweets"]["feedTweets"]>(
     (store) => store.tweets.feedTweets
@@ -49,11 +49,14 @@ const ErrorsToaster = () => {
           delay={3000}
           autohide
         >
-          <Toast.Header>
-            <strong className="me-auto" />
-          </Toast.Header>
-
-          <Toast.Body>{`${tweetsFetch.error}`}</Toast.Body>
+          <Toast.Body>
+            <div className="flex">
+              <p style={{ color: "white" }}>{errorMsg}</p>
+              <div>
+                <button>x</button>
+              </div>
+            </div>
+          </Toast.Body>
         </Toast>
       ) : null}
     </ToastContainer>

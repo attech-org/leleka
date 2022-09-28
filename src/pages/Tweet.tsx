@@ -38,7 +38,7 @@ const Tweet = () => {
   };
 
   return (
-    <Layout>
+    <Layout errors={[posts?.error as string]}>
       {data && <SingleTweet {...data} />}
       <InfiniteList<Tweet2>
         showMore={handleShowMore}

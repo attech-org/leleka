@@ -48,7 +48,7 @@ const HomePage: React.FunctionComponent = () => {
     return !posts.isLoading && dispatch(tweetsActions.fetchFeedTweets(posts));
   };
   return (
-    <Layout title={t("pageTitles:homePage")}>
+    <Layout title={t("pageTitles:homePage")} errors={[posts.error as string]}>
       <div className="border">
         <StyledNavbar sticky="top" expand="false" variant="light" bg="white">
           <StyledDiv>

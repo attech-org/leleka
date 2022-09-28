@@ -21,7 +21,7 @@ const RecomendedFollowsPage: React.FunctionComponent = () => {
 
   const { t } = useTranslation();
   return (
-    <Layout title={t("pageTitles:trendsPage")}>
+    <Layout title={t("pageTitles:trendsPage")} errors={[tags.error as string]}>
       <SinglePageHeader pageName={t("trends.pageTitle")} />
       <TabContainer />
       {tags.docs.length &&

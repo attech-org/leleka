@@ -68,9 +68,9 @@ const followingSlice = createSlice<
       }
       store.list.isLoading = false;
     });
-    builder.addCase(fetchFollowing.rejected, (store) => {
+    builder.addCase(fetchFollowing.rejected, (store, { error }) => {
       store.list.isLoading = false;
-      store.list.error = "Failed to fetch following";
+      store.list.error = error.message;
     });
   },
 });

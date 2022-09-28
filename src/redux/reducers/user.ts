@@ -189,9 +189,9 @@ const userSlice = createSlice({
         },
       });
     });
-    builder.addCase(registerUser.rejected, (store) => {
+    builder.addCase(registerUser.rejected, (store, { error }) => {
       store.authUser.isLoading = false;
-      store.authUser.error = "Failed to register user";
+      store.authUser.error = error.message;
     });
 
     builder.addCase(loginUser.pending, (store) => {
@@ -212,9 +212,9 @@ const userSlice = createSlice({
         },
       });
     });
-    builder.addCase(loginUser.rejected, (store) => {
+    builder.addCase(loginUser.rejected, (store, { error }) => {
       store.authUser.isLoading = false;
-      store.authUser.error = "Failed to login user";
+      store.authUser.error = error.message;
     });
     builder.addCase(fetchUser.pending, (store) => {
       store.userByUsername.isLoading = true;
@@ -223,9 +223,9 @@ const userSlice = createSlice({
       store.userByUsername = { ...userInitialState, ...payload };
       store.userByUsername.isLoading = false;
     });
-    builder.addCase(fetchUser.rejected, (store) => {
+    builder.addCase(fetchUser.rejected, (store, { error }) => {
       store.userByUsername.isLoading = false;
-      store.userByUsername.error = "Failed to fetch user by username";
+      store.userByUsername.error = error.message;
     });
 
     builder.addCase(editProfileUser.pending, (store) => {
@@ -237,9 +237,9 @@ const userSlice = createSlice({
         ...payload,
       });
     });
-    builder.addCase(editProfileUser.rejected, (store) => {
+    builder.addCase(editProfileUser.rejected, (store, { error }) => {
       store.authUser.isLoading = false;
-      store.authUser.error = "Failed to edit user";
+      store.authUser.error = error.message;
     });
     builder.addCase(addAvatar.pending, (store) => {
       store.authUser.isLoading = true;
@@ -250,9 +250,9 @@ const userSlice = createSlice({
         ...payload,
       });
     });
-    builder.addCase(addAvatar.rejected, (store) => {
+    builder.addCase(addAvatar.rejected, (store, { error }) => {
       store.authUser.isLoading = false;
-      store.authUser.error = "Failed to add avatar";
+      store.authUser.error = error.message;
     });
   },
 });

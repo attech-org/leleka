@@ -70,7 +70,10 @@ const BookmarksPage: React.FC = () => {
   const { t } = useTranslation();
 
   return (
-    <Layout title={t("pageTitles:bookmarksPage")}>
+    <Layout
+      title={t("pageTitles:bookmarksPage")}
+      errors={[user.error as string, bookmarks.error as string]}
+    >
       <div>
         <StyledNavbar sticky="top" expand="false" variant="light" bg="white">
           <StyledDiv>
