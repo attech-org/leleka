@@ -43,7 +43,10 @@ export const TweetsWithReplies = ({ userProps }: { userProps: LE<User> }) => {
       showMore={handleShowMore}
       data={posts}
       itemComponent={(itemData) => (
-        <FeedSingleTweet key={itemData._id} {...itemData} />
+        <FeedSingleTweet
+          key={`tweetsAndReplies${itemData._id}`}
+          {...itemData}
+        />
       )}
     />
   );

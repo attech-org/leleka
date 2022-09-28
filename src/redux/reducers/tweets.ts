@@ -7,6 +7,7 @@ import {
 import instance from "../../services/api";
 import { LE, Tweet2, Like } from "../../types";
 import { Pagination } from "../../types/mock-api-types";
+import { UserStore } from "./user";
 
 export interface TweetsStore {
   currentTweet: LE<{ data?: Tweet2 }>;
@@ -155,7 +156,7 @@ const fetchMyTweetsAndReplies = createAsyncThunk<
 const fetchUserTweets = createAsyncThunk<
   Pagination<Tweet2>,
   (Pagination<Tweet2> & { userId: string; init?: boolean }) | undefined
->("profile/usertweets", async (filters) => {
+>("profile/usertweets", async (filters, { getState }) => {
   const {
     limit = tweetsInitialStore.userTweets.limit,
     nextPage = 1,
@@ -170,7 +171,38 @@ const fetchUserTweets = createAsyncThunk<
     },
   });
   response.data.init = filters?.init;
-  return response.data;
+  response.data.userByUsername = (
+    getState() as { user: UserStore }
+  ).user.userByUsername;
+  if (
+    filters?.init &&
+    response.data.docs[0].author._id !== response.data.userByUsername._id
+  ) {
+    return {
+      ...response.data,
+      docs: [],
+      nextPage: null,
+      totalPages: 1,
+      init: true,
+    };
+  } else {
+    return response.data;
+  }
+});
+
+const initUserTweets = createAsyncThunk<
+  Pagination<Tweet2>,
+  (Pagination<Tweet2> & { userId: string; init?: boolean }) | undefined
+>("profile/initusertweets", (filters) => {
+  const { limit = tweetsInitialStore.userTweets.limit, userId } = filters || {};
+  const response: Pagination<Tweet2> & { userId: string; init?: boolean } = {
+    init: filters?.init,
+    docs: [],
+    userId: userId || "",
+    limit,
+    page: 0,
+  };
+  return response;
 });
 
 const fetchUserTweetsReplies = createAsyncThunk<
@@ -466,6 +498,13 @@ const tweetsSlice = createSlice<TweetsStore, SliceCaseReducers<TweetsStore>>({
       store.userLikes.isLoading = false;
       store.userLikes.error = "Failed to fetch tweets for feed";
     });
+    builder.addCase(initUserTweets.fulfilled, (store) => {
+      store.userTweets.docs.length = 0;
+      store.userTweets.hasNextPage = false;
+      store.userTweets.limit = initialStore.limit;
+      store.userTweets.isLoading = false;
+      store.userTweets.init = false;
+    });
   },
 });
 
@@ -483,6 +522,7 @@ export const tweetsActions = {
   fetchUserTweets,
   fetchUserTweetsReplies,
   fetchUserLikes,
+  initUserTweets,
 };
 
 export default tweetsSlice.reducer;
