@@ -43,7 +43,7 @@ const Likes = ({ userProps }: { userProps: LE<User> }) => {
       showMore={handleShowMore}
       data={likedTweets}
       itemComponent={(itemData) => (
-        <FeedLikesTweet {...itemData} key={itemData._id} />
+        <FeedLikesTweet {...itemData} key={`likes${itemData._id}`} />
       )}
     />
   );

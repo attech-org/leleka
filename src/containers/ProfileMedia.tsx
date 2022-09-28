@@ -41,7 +41,7 @@ const Media = ({ userProps }: { userProps: LE<User> }) => {
         showMore={handleShowMore}
         data={userPosts}
         itemComponent={(itemData) => (
-          <FeedSingleTweet key={itemData._id} {...itemData} />
+          <FeedSingleTweet key={`media${itemData._id}`} {...itemData} />
         )}
       />
     </>
