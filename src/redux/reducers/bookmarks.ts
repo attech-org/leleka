@@ -41,6 +41,22 @@ export const fetchBookmarks = createAsyncThunk<
   return response.data;
 });
 
+export const addBookmark = createAsyncThunk<Bookmark, string>(
+  "bookmarks/addBookmark",
+  async (tweet) => {
+    const response = await instance.post("api/bookmarks", { tweet });
+    return response.data;
+  }
+);
+
+export const deleteBookmark = createAsyncThunk<Pagination<Bookmark>, string>(
+  "bookmarks/deleteBookmark",
+  async (id) => {
+    const response = await instance.delete(`api/bookmarks/${id}`);
+    return response.data;
+  }
+);
+
 const bookmarksSlice = createSlice<
   BookmarksStore,
   SliceCaseReducers<BookmarksStore>
@@ -68,12 +84,38 @@ const bookmarksSlice = createSlice<
       store.list.isLoading = false;
       store.list.error = error.message;
     });
+
+    builder.addCase(addBookmark.pending, (store) => {
+      store.list.isLoading = true;
+    });
+    builder.addCase(addBookmark.fulfilled, (store, { payload }) => {
+      store.list.docs = [payload, ...store.list.docs];
+      store.list.isLoading = false;
+    });
+    builder.addCase(addBookmark.rejected, (store) => {
+      store.list.isLoading = false;
+      store.list.error = "Failed to add bookmark";
+    });
+
+    builder.addCase(deleteBookmark.pending, (store) => {
+      store.list.isLoading = true;
+    });
+    builder.addCase(deleteBookmark.fulfilled, (store, { payload }) => {
+      console.warn(payload);
+      store.list.isLoading = false;
+    });
+    builder.addCase(deleteBookmark.rejected, (store) => {
+      store.list.isLoading = false;
+      store.list.error = "Failed to delete bookmark";
+    });
   },
 });
 
 export const bookmarksActions = {
   ...bookmarksSlice.actions,
   fetchBookmarks,
+  addBookmark,
+  deleteBookmark,
 };
 
 export default bookmarksSlice.reducer;
