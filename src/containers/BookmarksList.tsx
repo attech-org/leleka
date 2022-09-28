@@ -111,7 +111,7 @@ const BookmarksList: React.FC = () => {
             )}
           />
         ) : (
-          t("bookmarksList.noBookmarks")
+          t("bookmarks.noBookmarks")
         )}
       </>
     </div>

@@ -46,6 +46,9 @@ export interface Like extends MongoArtifacts {
 
 export interface Tag extends MongoArtifacts {
   name: string;
+  stats: {
+    tweets: number;
+  };
   createdAt?: string;
   updatedAt?: string;
 }
