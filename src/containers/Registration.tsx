@@ -27,12 +27,12 @@ interface Label {
 const StyledFormFloating = styled(Form.Floating)`
   .form-control:focus ~ label,
   .form-control:not(:placeholder-shown) ~ label {
-    transform: scale(0.85) translateY(-1.3rem) translateX(0.15rem);
+    transform: scale(0.85) translateY(-1rem) translateX(0.15rem);
   }
 `;
 
 const StyledLabel = styled.label<Label>`
-  padding-top: 2rem !important;
+  padding-top: 1rem !important;
   ${(props) =>
     props.counter &&
     css`
@@ -70,9 +70,11 @@ const schema = yup.object().shape({
 const Registration = () => {
   const dispatch = useDispatch<AppDispatch>();
   const { t } = useTranslation();
-  const currentUserId = useSelector<RootState>((store) => store.user._id);
+  const currentUserId = useSelector<RootState>(
+    (store) => store.user.authUser._id
+  );
   const currentUserName = useSelector<RootState>(
-    (store) => store.user.username
+    (store) => store.user.authUser.username
   );
 
   const registrationButtonName = t("validation:fields.buttonName");
@@ -96,110 +98,132 @@ const Registration = () => {
   const watchusername = watch("username");
 
   const registerForm = (
-    <Form className="px-4" onSubmit={handleSubmit(submitForm)}>
-      <StyledFormFloating className="fs-4">
-        <Form.Control
-          {...register("username")}
-          className="fs-4 py-5"
-          type="text"
-          name="username"
-          placeholder="Ім'я"
-          maxLength={50}
-        />
-        <StyledLabel className="pt-4 text-muted" htmlFor="floatingInputCustom">
-          {t("validation:fields.fullname")}
-        </StyledLabel>
-        <StyledLabel
-          counter
-          className="pt-4 text-end"
-          htmlFor="floatingInputCustom"
-        >
-          {watchusername ? watchusername.length : 0} / 50
-        </StyledLabel>
-      </StyledFormFloating>
-      <p className="text-danger mt-1">
-        {errors.username &&
-          errors.username.message &&
-          t(`${errors.username.message}`)}
-      </p>
-      <StyledFormFloating className="fs-4">
-        <Form.Control
-          className="mt-3 fs-4 py-5"
-          {...register("email")}
-          type="text"
-          name="email"
-          placeholder="Ел. пошта"
-        />
-        <StyledLabel className="pt-4 text-muted" htmlFor="floatingInputCustom">
-          {t("validation:fields.email")}
-        </StyledLabel>
-      </StyledFormFloating>
-      <p className="text-danger mt-1">
-        {errors.email && errors.email.message && t(`${errors.email.message}`)}
-      </p>
-      <StyledFormFloating className="fs-4">
-        <Form.Control
-          className="mt-3 fs-4 py-5"
-          {...register("dateOfBirth")}
-          type="date"
-          name="dateOfBirth"
-        />
-        <StyledLabel className="pt-4 text-muted" htmlFor="floatingInputCustom">
-          {t("validation:fields.dateOfBirth")}
-        </StyledLabel>
-      </StyledFormFloating>
-      <p className="text-danger">
-        {errors.dateOfBirth &&
-          errors.dateOfBirth.message &&
-          t(`${errors.dateOfBirth.message}`)}
-      </p>
-      <StyledFormFloating className="fs-4">
-        <Form.Control
-          className="mt-3 fs-4 py-5"
-          {...register("password")}
-          type="password"
-          name="password"
-          placeholder="Пароль"
-          autoComplete="on"
-        />
-        <StyledLabel className="pt-4 text-muted" htmlFor="floatingInputCustom">
-          {t("validation:fields.password")}
-        </StyledLabel>
-      </StyledFormFloating>
-      <p className="text-danger">
-        {errors.password &&
-          errors.password.message &&
-          t(`${errors.password.message}`)}
-      </p>
-      <StyledFormFloating className="fs-4">
-        <Form.Control
-          className="mt-3 fs-4 py-5"
-          {...register("confirmPassword")}
-          type="password"
-          name="confirmPassword"
-          placeholder="Підтвердіть пароль"
-          autoComplete="on"
-        />
-        <StyledLabel className="pt-4 text-muted" htmlFor="floatingInputCustom">
-          {t("validation:fields.confirmPassword")}
-        </StyledLabel>
-      </StyledFormFloating>
-      <p className="text-danger">
-        {errors.confirmPassword &&
-          errors.confirmPassword.message &&
-          t(`${errors.confirmPassword.message}`)}
-      </p>
-      <div className="d-grid gap-2">
-        <Button
-          className="mt-3 p-4 square rounded-pill"
-          type="submit"
-          variant="secondary"
-          size="lg"
-        >
-          {t("validation:fields.register")}
-        </Button>
-      </div>
-    </Form>
+    <section className="w-50 mt-4 m-auto d-grid gap-4">
+      <Form className="d-grid" onSubmit={handleSubmit(submitForm)}>
+        <StyledFormFloating className="form-floating">
+          <Form.Control
+            {...register("username")}
+            className="form-control"
+            type="text"
+            name="username"
+            placeholder={t("validation:fields.fullname")}
+            maxLength={50}
+          />
+          <StyledLabel
+            className="pt-1 text-muted"
+            htmlFor="floatingInputCustom"
+          >
+            {t("validation:fields.fullname")}
+          </StyledLabel>
+          <StyledLabel
+            counter
+            className="fs-6 mt-2 text-end"
+            htmlFor="floatingInputCustom"
+          >
+            {watchusername ? watchusername.length : 0} / 50
+          </StyledLabel>
+        </StyledFormFloating>
+        {errors.username && (
+          <p className="text-danger fst-italic fs-6 mt-1">
+            {t(`${errors?.username?.message}`)}
+          </p>
+        )}
+        <StyledFormFloating className="form-floating mt-3">
+          <Form.Control
+            className="form-control"
+            {...register("email")}
+            type="text"
+            name="email"
+            placeholder={t("validation:fields.email")}
+          />
+          <StyledLabel
+            className="pt-1 text-muted"
+            htmlFor="floatingInputCustom"
+          >
+            {t("validation:fields.email")}
+          </StyledLabel>
+        </StyledFormFloating>
+        {errors.email && (
+          <p className="text-danger fst-italic fs-6 mt-1">
+            {t(`${errors?.email?.message}`)}
+          </p>
+        )}
+
+        <StyledFormFloating className="form-floating mt-3">
+          <Form.Control
+            className="fs-6"
+            {...register("dateOfBirth")}
+            type="date"
+            name="dateOfBirth"
+          />
+          <StyledLabel
+            className="pt-1 text-muted"
+            htmlFor="floatingInputCustom"
+          >
+            {t("validation:fields.dateOfBirth")}
+          </StyledLabel>
+        </StyledFormFloating>
+        {errors.dateOfBirth && (
+          <p className="text-danger fst-italic fs-6 mt-1">
+            {t(`${errors?.dateOfBirth?.message}`)}
+          </p>
+        )}
+
+        <StyledFormFloating className="form-floating mt-3">
+          <Form.Control
+            className="form-control"
+            {...register("password")}
+            type="password"
+            name="password"
+            placeholder={t("validation:fields.password")}
+            autoComplete="on"
+          />
+          <StyledLabel
+            className="pt-1 text-muted"
+            htmlFor="floatingInputCustom"
+          >
+            {t("validation:fields.password")}
+          </StyledLabel>
+        </StyledFormFloating>
+        {errors.password && (
+          <p className="text-danger fst-italic fs-6 mt-1">
+            {t(`${errors?.password?.message}`)}
+          </p>
+        )}
+
+        <StyledFormFloating className="form-floating mt-3">
+          <Form.Control
+            className="form-control"
+            {...register("confirmPassword")}
+            type="password"
+            name="confirmPassword"
+            placeholder={t("validation:fields.confirmPassword")}
+            autoComplete="on"
+          />
+          <StyledLabel
+            className="pt-1 text-muted"
+            htmlFor="floatingInputCustom"
+          >
+            {t("validation:fields.confirmPassword")}
+          </StyledLabel>
+        </StyledFormFloating>
+        {errors.confirmPassword && (
+          <p className="text-danger fst-italic fs-6 mt-1">
+            {t(`${errors?.confirmPassword?.message}`)}
+          </p>
+        )}
+
+        <div className="d-grid gap-2">
+          <Button
+            className="fw-700 w-100 d-block my-4 rounded-5 py-2 border border-gray-400"
+            type="submit"
+            variant="secondary"
+          >
+            {t("validation:fields.register")}
+          </Button>
+        </div>
+      </Form>
+    </section>
   );
 
   return (

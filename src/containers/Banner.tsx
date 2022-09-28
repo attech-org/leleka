@@ -1,6 +1,6 @@
 import { FastAverageColor } from "fast-average-color";
 import { useEffect, useState } from "react";
-import { OverlayTrigger, Tooltip } from "react-bootstrap";
+import { Button, OverlayTrigger, Tooltip } from "react-bootstrap";
 import { XLg, Camera } from "react-bootstrap-icons";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
@@ -9,6 +9,7 @@ import styled from "styled-components";
 import EditProfileForm from "../components/EditProfileForm";
 import { userActions } from "../redux/reducers/user";
 import { AppDispatch, RootState } from "../redux/store";
+import { LE, User } from "../types";
 
 const Layout = styled.div`
   position: relative;
@@ -75,26 +76,39 @@ const StyledInput = styled.input`
 `;
 
 interface BannerProps {
-  isEditBanner: boolean;
+  isEditBanner?: boolean;
+  user?: LE<User>;
 }
 
-const Banner = ({ isEditBanner }: BannerProps) => {
+const Banner = ({ isEditBanner, user }: BannerProps) => {
   const { t } = useTranslation();
 
   const dispatch = useDispatch<AppDispatch>();
   //------------------------------ avatar image ------------------------
-  const avatar = useSelector<RootState, RootState["user"]["profile"]["avatar"]>(
-    (store) => store.user.profile.avatar
+  const authUserAvatar =
+    useSelector<RootState, RootState["user"]["authUser"]["profile"]["avatar"]>(
+      (store) => store.user.authUser.profile.avatar
+    ) || "";
+  let avatar = "";
+  if (user) {
+    avatar = user?.profile?.avatar || "";
+  } else {
+    avatar = authUserAvatar;
+  }
+
+  const authUser = useSelector<RootState, RootState["user"]["authUser"]>(
+    (store) => store.user.authUser
   );
 
-  const userId = useSelector<RootState, RootState["user"]["_id"]>(
-    (store) => store.user._id
+  const userId = useSelector<RootState, RootState["user"]["authUser"]["_id"]>(
+    (store) => store.user.authUser._id
   );
 
   // ------------------------------ banner image ------------------------
-  const banner = useSelector<RootState, RootState["user"]["profile"]["banner"]>(
-    (store) => store.user.profile.banner
-  );
+  const banner = useSelector<
+    RootState,
+    RootState["user"]["authUser"]["profile"]["banner"]
+  >((store) => store.user.authUser.profile.banner);
 
   const removeBanner = () => {
     dispatch(userActions.removeBanner()); //
@@ -122,14 +136,19 @@ const Banner = ({ isEditBanner }: BannerProps) => {
 
   useEffect(() => {
     const fac = new FastAverageColor();
-    fac
-      .getColorAsync(`data:image/png;base64,  ${avatar}`)
-      .then((color) => {
-        setBackgroundColor(color.rgba);
-      })
-      .catch((e) => {
-        console.warn(e);
-      });
+    if (avatar) {
+      fac
+        .getColorAsync(avatar)
+        // .getColorAsync(`data:image/png;base64,  ${avatar}`)
+        .then((color) => {
+          setBackgroundColor(color.rgba);
+        })
+        .catch((e) => {
+          console.warn(e);
+        });
+    } else {
+      setBackgroundColor("rgba(181,192,200,1)");
+    }
   }, [avatar]);
 
   return (
@@ -228,7 +247,8 @@ const Banner = ({ isEditBanner }: BannerProps) => {
             <AvatarImg
               crossOrigin="anonymous"
               className="rounded-circle"
-              src={`data:image/png;base64,  ${avatar}`}
+              // src={`data:image/png;base64,  ${avatar}`}
+              src={avatar}
               alt=""
             />
           ) : (
@@ -239,8 +259,16 @@ const Banner = ({ isEditBanner }: BannerProps) => {
             />
           )}
         </LogoDiv>
-
-        {!isEditBanner && <EditProfileForm />}
+        {user?._id === authUser._id ? (
+          !isEditBanner && <EditProfileForm />
+        ) : (
+          <Button
+            className="rounded-pill fw-bold px-2 mt-3 me-3"
+            variant="dark"
+          >
+            {t("common.follow")}
+          </Button>
+        )}
       </Layout>
     </>
   );

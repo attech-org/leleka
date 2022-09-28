@@ -1,5 +1,4 @@
 import React from "react";
-import Avatar from "react-avatar";
 import { Popover, OverlayTrigger, Button } from "react-bootstrap";
 import {
   ThreeDots,
@@ -9,10 +8,14 @@ import {
   Flag,
 } from "react-bootstrap-icons";
 import { useTranslation } from "react-i18next";
+import { useDispatch } from "react-redux";
 import styled from "styled-components";
 
+import { tweetsActions } from "../redux/reducers/tweets";
+import { AppDispatch } from "../redux/store";
 import localDateTime from "../services/localDateTime";
 import { Tweet2 } from "../types";
+import UserAvatar from "./Avatar";
 // import AttachedContent from "./AttachedContent";
 import LikeButton from "./LikeButton";
 import RetweetButton from "./RetweetButton";
@@ -118,15 +121,17 @@ const SingleTweet = ({
   //   return <ReplyTweet />;
   // };
 
+  const dispatch = useDispatch<AppDispatch>();
+
+  const onLike = () => {
+    dispatch(tweetsActions.likeDislike({ tweet: _id }));
+  };
+
   return (
     <div>
       <Wrapper className="px-3 border border-bottom-0 border-grey">
         <Author className="my-2">
-          <Avatar
-            className="rounded-circle flex-shrink-0"
-            src={author.profile?.avatar}
-            size="50"
-          />
+          <UserAvatar user={author} />
           <NameSection>
             <NameWrapper className="ps-2">
               <StyledUsername className="fw-bold">{author.name}</StyledUsername>
@@ -234,7 +239,7 @@ const SingleTweet = ({
             iconColor={""}
             className="m-0 p-0 rounded-circle row align-items-center justify-content-center"
           >
-            <LikeButton likesCount={likes} />
+            <LikeButton likesCount={likes} onLike={onLike} />
           </IconBg>
           <IconBg
             iconBgColor={bgBlue}

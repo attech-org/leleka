@@ -1,4 +1,3 @@
-import Avatar from "react-avatar";
 import { Popover, OverlayTrigger, Button, Nav } from "react-bootstrap";
 import {
   // PatchCheckFill,
@@ -9,11 +8,15 @@ import {
   ThreeDots,
 } from "react-bootstrap-icons";
 import { useTranslation } from "react-i18next";
+import { useDispatch } from "react-redux";
 import styled from "styled-components";
 
 import { LinkWithLanguageQueryParam } from "../containers/LinkWithLanguageQueryParam";
+import { tweetsActions } from "../redux/reducers/tweets";
+import { AppDispatch } from "../redux/store";
 import localDateTime from "../services/localDateTime";
 import { Tweet2 } from "../types";
+import UserAvatar from "./Avatar";
 import LikeButton from "./LikeButton";
 import LinkPreview from "./LinkPreview";
 import RetweetButton from "./RetweetButton";
@@ -89,6 +92,12 @@ const FeedSingleTweet = ({
 }: Tweet2) => {
   const { t } = useTranslation();
 
+  const dispatch = useDispatch<AppDispatch>();
+
+  const onLike = () => {
+    dispatch(tweetsActions.likeDislike({ tweet: _id }));
+  };
+
   // const handleReplyClick = () => {
   //   return <ReplyTweet />;
   // };
@@ -97,7 +106,7 @@ const FeedSingleTweet = ({
     "g"
   );
 
-  const url = content.match(urlSearch) || [];
+  const url = content ? content.match(urlSearch) || [] : [];
 
   return (
     <>
@@ -106,27 +115,30 @@ const FeedSingleTweet = ({
         role="button"
         key={_id}
       >
-        <Avatar
-          size="48"
-          round="50%"
-          twitterHandle="sitebase"
-          name={author.username}
-          src={author.profile?.avatar}
-        />
+        <UserAvatar user={author} />
 
         <div className="w-100">
           <div className="d-flex justify-content-between">
             <div className="d-flex align-items-center px-3 flex-wrap">
-              <UnderlineHover className="fw-600 pe-1 fw-bold text-dark">
+              <UnderlineHover
+                as={LinkWithLanguageQueryParam}
+                to={`/${author.username}`}
+                className="fw-600 pe-1 fw-bold text-dark"
+                eventkey={_id}
+              >
                 {author.name}
               </UnderlineHover>
 
               {/* {isVerified && (
                 <PatchCheckFill size={20} className="text-info pe-1" />
               )} */}
-              <a className="text-muted text-decoration-none">
+              <Nav.Link
+                as={LinkWithLanguageQueryParam}
+                to={`/${author.username}`}
+                className="text-muted text-decoration-none"
+              >
                 @{author.username}
-              </a>
+              </Nav.Link>
               <div className="mx-1 text-secondary d-flex justify-content-center align-items-center">
                 ·
               </div>
@@ -209,27 +221,20 @@ const FeedSingleTweet = ({
             ) : (
               ""
             )}
-            {url[0] ? (
-              <div>
-                <div
-                  className=""
-                  dangerouslySetInnerHTML={{ __html: content }}
-                />
-                <LinkPreview url={url[0]} />
-              </div>
-            ) : (
-              <div className="" dangerouslySetInnerHTML={{ __html: content }} />
-            )}
+            <div dangerouslySetInnerHTML={{ __html: content || "" }} />
+            <div className="pt-2">
+              {url[0] ? <LinkPreview url={url[0]} /> : null}
+            </div>
           </div>
           <div className="px-3 d-flex justify-content-between align-items-center">
             <TweetReplyForm
               author={author}
-              content={content}
+              content={content || ""}
               id={_id}
               commentsCount={comments}
             />
             <RetweetButton retweetCount={retweets} />
-            <LikeButton likesCount={likes} />
+            <LikeButton likesCount={likes} onLike={onLike} />
             <StatisticOfTweet className="d-flex align-items-center">
               <HoverBackgroundBlue className="p-2 rounded-circle d-flex justify-content-center align-items-center">
                 <Upload size="16" />

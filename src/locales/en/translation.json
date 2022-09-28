@@ -4,7 +4,9 @@
   "notAuthorized": "You are not authorized",
 
   "followersList": {
-    "noFollowers": "You have no followers"
+    "noFollowers": "You have no followers",
+    "fullUsername": "Full username",
+    "username": "username"
   },
 
   "followingList": {
@@ -24,7 +26,8 @@
     "close": "Close",
     "retweets": "Retweets",
     "quoteTweets": "Quote Tweets",
-    "likes": "Likes"
+    "likes": "Likes",
+    "accessDenied": "Access denied! Please, login or register"
   },
 
   "homepage": {
@@ -111,11 +114,12 @@
     "tweets": "tweets:",
     "trendInterest": "I'm not interested",
     "trendSpam": "This trend is harmful or spammy",
-    "windowTitle": "Trends for you"
+    "windowTitle": "Trends for you",
+    "search": "Search for trends"
   },
   "login": {
     "loginButton": "Login",
-    "loginTitle": "Sign in to Twitter",
+    "loginTitle": "Sign in to Leleka",
     "signGoogle": "Continue with Google",
     "signApple": "Continue with Apple",
     "or": "or",
@@ -139,7 +143,8 @@
     "menuAdd": "Follow",
     "menuRemove": "Add/Remove",
     "menuMute": "Mute",
-    "replyingTo": "Replying to"
+    "replyingTo": "Replying to",
+    "noBookmarks": "You have no bookmarks yet"
   },
   "retweetButton": {
     "retweet": "Retweet",

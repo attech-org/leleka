@@ -4,7 +4,9 @@
   "notAuthorized": "Ви не авторизовані",
 
   "followersList": {
-    "noFollowers": "У вас немає читачів"
+    "noFollowers": "У вас немає читачів",
+    "fullUsername": "Повне імʼя користувача",
+    "username": "імʼя користувача"
   },
 
   "followingList": {
@@ -24,7 +26,8 @@
     "close": "Закрити",
     "retweets": "Ретвітів",
     "quoteTweets": "Твітів з цитатами",
-    "likes": "видміток 'Подобається'"
+    "likes": "видміток 'Подобається'",
+    "accessDenied": "Доступ заборонено! Будь ласка, увійдіть або зареєструйтеся"
   },
 
   "homepage": {
@@ -111,11 +114,12 @@
     "tweets": "твітів:",
     "trendInterest": "Мене це не цікавить",
     "trendSpam": "Цей тренд шкідливий або містить багато спаму",
-    "windowTitle": "Тренди для вас"
+    "windowTitle": "Тренди для вас",
+    "search": "Пошук трендів"
   },
   "login": {
     "loginButton": "Вхід",
-    "loginTitle": "Увійдіть у Твіттер",
+    "loginTitle": "Увійдіть у Лелека",
     "signGoogle": "Вхід через Google",
     "signApple": "Вхід через Apple",
     "or": "або",
@@ -139,7 +143,8 @@
     "menuAdd": "Читати",
     "menuRemove": "Додати/Видалити",
     "menuMute": "Ігнорувати",
-    "replyingTo": "У відповідь"
+    "replyingTo": "У відповідь",
+    "noBookmarks": "У вас поки що нема закладок"
   },
   "retweetButton": {
     "retweet": "Ретвітнути",
