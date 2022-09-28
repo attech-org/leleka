@@ -22,7 +22,7 @@ const FeedPostsContainer = () => {
       showMore={handleShowMore}
       data={posts}
       itemComponent={(itemData) => (
-        <FeedSingleTweet key={itemData._id} {...itemData} />
+        <FeedSingleTweet key={`feedpost${itemData._id}`} {...itemData} />
       )}
     />
   );

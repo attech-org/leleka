@@ -7,6 +7,7 @@ import {
 import instance from "../../services/api";
 import { LE, Tweet2, Like } from "../../types";
 import { Pagination } from "../../types/mock-api-types";
+import { UserStore } from "./user";
 
 export interface TweetsStore {
   currentTweet: LE<{ data?: Tweet2 }>;
@@ -17,6 +18,7 @@ export interface TweetsStore {
   myTweets: LE<Pagination<Tweet2>>;
   myTweetsAndReplies: LE<Pagination<Tweet2>>;
   myMentions: LE<Pagination<Tweet2>>;
+  likeInfo: LE<TweetLike>;
   userTweets: LE<Pagination<Tweet2>>;
   userTweetsAndReplies: LE<Pagination<Tweet2>>;
   userLikes: LE<Pagination<Like>>;
@@ -48,6 +50,11 @@ const tweetsInitialStore: TweetsStore = {
     limit: 10,
     docs: [],
     hasNextPage: true,
+  },
+  likeInfo: {
+    user: "",
+    tweet: "",
+    _id: "",
   },
 };
 
@@ -149,7 +156,7 @@ const fetchMyTweetsAndReplies = createAsyncThunk<
 const fetchUserTweets = createAsyncThunk<
   Pagination<Tweet2>,
   (Pagination<Tweet2> & { userId: string; init?: boolean }) | undefined
->("profile/usertweets", async (filters) => {
+>("profile/usertweets", async (filters, { getState }) => {
   const {
     limit = tweetsInitialStore.userTweets.limit,
     nextPage = 1,
@@ -164,7 +171,38 @@ const fetchUserTweets = createAsyncThunk<
     },
   });
   response.data.init = filters?.init;
-  return response.data;
+  response.data.userByUsername = (
+    getState() as { user: UserStore }
+  ).user.userByUsername;
+  if (
+    filters?.init &&
+    response.data.docs[0].author._id !== response.data.userByUsername._id
+  ) {
+    return {
+      ...response.data,
+      docs: [],
+      nextPage: null,
+      totalPages: 1,
+      init: true,
+    };
+  } else {
+    return response.data;
+  }
+});
+
+const initUserTweets = createAsyncThunk<
+  Pagination<Tweet2>,
+  (Pagination<Tweet2> & { userId: string; init?: boolean }) | undefined
+>("profile/initusertweets", (filters) => {
+  const { limit = tweetsInitialStore.userTweets.limit, userId } = filters || {};
+  const response: Pagination<Tweet2> & { userId: string; init?: boolean } = {
+    init: filters?.init,
+    docs: [],
+    userId: userId || "",
+    limit,
+    page: 0,
+  };
+  return response;
 });
 
 const fetchUserTweetsReplies = createAsyncThunk<
@@ -227,6 +265,20 @@ const fetchMentions = createAsyncThunk<Pagination<Tweet2>, FetchMentionsArgs>(
         sort: "-updatedAt",
       },
     });
+    return response.data;
+  }
+);
+
+interface TweetLike {
+  user: string;
+  tweet: string;
+  _id: string;
+}
+
+export const likeDislike = createAsyncThunk<TweetLike, { tweet: string }>(
+  "tweets/likeDislike",
+  async (body) => {
+    const response = await instance.post("api/likes", body);
     return response.data;
   }
 );
@@ -364,6 +416,16 @@ const tweetsSlice = createSlice<TweetsStore, SliceCaseReducers<TweetsStore>>({
       store.myMentions.isLoading = false;
       store.myMentions.error = "Failed to fetch tweets for feed";
     });
+    builder.addCase(likeDislike.pending, (store) => {
+      store.likeInfo.isLoading = true;
+    });
+    builder.addCase(likeDislike.fulfilled, (store) => {
+      store.likeInfo.isLoading = false;
+    });
+    builder.addCase(likeDislike.rejected, (store) => {
+      store.likeInfo.isLoading = false;
+      store.likeInfo.error = "Failed to like/dislike tweet";
+    });
     builder.addCase(fetchUserTweets.pending, (store) => {
       store.userTweets.isLoading = true;
     });
@@ -436,6 +498,13 @@ const tweetsSlice = createSlice<TweetsStore, SliceCaseReducers<TweetsStore>>({
       store.userLikes.isLoading = false;
       store.userLikes.error = "Failed to fetch tweets for feed";
     });
+    builder.addCase(initUserTweets.fulfilled, (store) => {
+      store.userTweets.docs.length = 0;
+      store.userTweets.hasNextPage = false;
+      store.userTweets.limit = initialStore.limit;
+      store.userTweets.isLoading = false;
+      store.userTweets.init = false;
+    });
   },
 });
 
@@ -449,9 +518,11 @@ export const tweetsActions = {
   fetchMyTweets,
   fetchMyTweetsAndReplies,
   fetchMentions,
+  likeDislike,
   fetchUserTweets,
   fetchUserTweetsReplies,
   fetchUserLikes,
+  initUserTweets,
 };
 
 export default tweetsSlice.reducer;

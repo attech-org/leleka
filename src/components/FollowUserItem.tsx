@@ -1,8 +1,9 @@
-import { Image, Anchor, Popover, OverlayTrigger } from "react-bootstrap";
+import { Anchor, Popover, OverlayTrigger } from "react-bootstrap";
 import styled from "styled-components";
 
 import { User } from "../types";
 import { FollowStatus } from "../types/constants";
+import UserAvatar from "./Avatar";
 import FollowButton from "./FollowUserDialogueButton";
 import FollowCard from "./UserCard";
 
@@ -43,12 +44,7 @@ const FollowerUserItem = ({ user }: { user: User }) => {
             placement="auto"
             overlay={popover}
           >
-            <Image
-              width={50}
-              height={50}
-              roundedCircle
-              src={user.profile.avatar}
-            />
+            <UserAvatar user={user} />
           </OverlayTrigger>
         </LeftSectionWrapper>
         <MiddleSectionWrapper>
