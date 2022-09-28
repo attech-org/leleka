@@ -296,7 +296,7 @@ const Banner = ({ isEditBanner, user }: BannerProps) => {
             className="rounded-pill fw-bold px-2 mt-3 me-3"
             variant="dark"
           >
-            {t("common.follow")}
+            {t("common.follow")}++
           </Button>
         )}
       </Layout>
