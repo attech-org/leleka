@@ -23,7 +23,7 @@ const StyledImage = styled(Image)`
 
 const retweet = false;
 
-export const UserAvatars = ({ username }: { username: string }) => {
+export const Usernames = ({ username }: { username: string }) => {
   return (
     <>
       <span className="fw-bold">{username} </span>
@@ -81,7 +81,7 @@ const SingleNotification = ({ _id, content, stats }: Tweet2) => {
             <div className="pb-3 text-start" id={_id}>
               {likes.docs.map((item) =>
                 item.tweet._id === _id ? (
-                  <UserAvatars username={item.user.username} key={item._id} />
+                  <Usernames username={item.user.username} key={item._id} />
                 ) : null
               )}
               <span>

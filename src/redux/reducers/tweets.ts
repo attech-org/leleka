@@ -499,7 +499,12 @@ const tweetsSlice = createSlice<TweetsStore, SliceCaseReducers<TweetsStore>>({
       store.tweetLikes = {
         ...store.tweetLikes,
         ...payload,
-        docs: [...store.tweetLikes.docs, ...payload.docs],
+        docs: [
+          ...store.tweetLikes.docs.filter(
+            (item) => item.tweet._id !== payload.docs[0].tweet._id
+          ),
+          ...payload.docs,
+        ],
       };
       console.log("NEVER HERE");
       console.log(store.tweetLikes);
