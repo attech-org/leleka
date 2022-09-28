@@ -18,6 +18,7 @@ export interface TweetsStore {
   myTweets: LE<Pagination<Tweet2>>;
   myTweetsAndReplies: LE<Pagination<Tweet2>>;
   myMentions: LE<Pagination<Tweet2>>;
+  likeInfo: LE<TweetLike>;
   userTweets: LE<Pagination<Tweet2>>;
   userTweetsAndReplies: LE<Pagination<Tweet2>>;
   userLikes: LE<Pagination<Like>>;
@@ -49,6 +50,11 @@ const tweetsInitialStore: TweetsStore = {
     limit: 10,
     docs: [],
     hasNextPage: true,
+  },
+  likeInfo: {
+    user: "",
+    tweet: "",
+    _id: "",
   },
 };
 
@@ -263,6 +269,20 @@ const fetchMentions = createAsyncThunk<Pagination<Tweet2>, FetchMentionsArgs>(
   }
 );
 
+interface TweetLike {
+  user: string;
+  tweet: string;
+  _id: string;
+}
+
+export const likeDislike = createAsyncThunk<TweetLike, { tweet: string }>(
+  "tweets/likeDislike",
+  async (body) => {
+    const response = await instance.post("api/likes", body);
+    return response.data;
+  }
+);
+
 const tweetsSlice = createSlice<TweetsStore, SliceCaseReducers<TweetsStore>>({
   name: "tweets",
   initialState: tweetsInitialStore,
@@ -396,6 +416,16 @@ const tweetsSlice = createSlice<TweetsStore, SliceCaseReducers<TweetsStore>>({
       store.myMentions.isLoading = false;
       store.myMentions.error = "Failed to fetch tweets for feed";
     });
+    builder.addCase(likeDislike.pending, (store) => {
+      store.likeInfo.isLoading = true;
+    });
+    builder.addCase(likeDislike.fulfilled, (store) => {
+      store.likeInfo.isLoading = false;
+    });
+    builder.addCase(likeDislike.rejected, (store) => {
+      store.likeInfo.isLoading = false;
+      store.likeInfo.error = "Failed to like/dislike tweet";
+    });
     builder.addCase(fetchUserTweets.pending, (store) => {
       store.userTweets.isLoading = true;
     });
@@ -488,6 +518,7 @@ export const tweetsActions = {
   fetchMyTweets,
   fetchMyTweetsAndReplies,
   fetchMentions,
+  likeDislike,
   fetchUserTweets,
   fetchUserTweetsReplies,
   fetchUserLikes,
