@@ -10,10 +10,17 @@ import { Pagination } from "../../types/mock-api-types";
 
 export interface TagsStore {
   tags: LE<Pagination<Tag>>;
+  tagsList: LE<Pagination<Tag>>;
 }
 
 const tagsInitialStore: TagsStore = {
   tags: {
+    page: 1,
+    limit: 10,
+    docs: [],
+    hasNextPage: true,
+  },
+  tagsList: {
     page: 1,
     limit: 10,
     docs: [],
@@ -35,6 +42,18 @@ const fetchTags = createAsyncThunk<
   return response.data;
 });
 
+const fetchTagsList = createAsyncThunk<Pagination<Tag>>(
+  "tags/fetchTagsList",
+  async () => {
+    const response = await instance.get("api/tags", {
+      params: {
+        sort: "-stats.tweets",
+      },
+    });
+    return response.data;
+  }
+);
+
 const tagsSlice = createSlice<TagsStore, SliceCaseReducers<TagsStore>>({
   name: "tags",
   initialState: tagsInitialStore,
@@ -51,12 +70,24 @@ const tagsSlice = createSlice<TagsStore, SliceCaseReducers<TagsStore>>({
       store.tags.isLoading = false;
       store.tags.error = "Failed to fetch tags";
     });
+    builder.addCase(fetchTagsList.pending, (store) => {
+      store.tagsList.isLoading = true;
+    });
+    builder.addCase(fetchTagsList.fulfilled, (store, { payload }) => {
+      store.tagsList = { ...payload };
+      store.tagsList.isLoading = false;
+    });
+    builder.addCase(fetchTagsList.rejected, (store) => {
+      store.tagsList.isLoading = false;
+      store.tagsList.error = "Failed to fetch tags";
+    });
   },
 });
 
 export const tagsActions = {
   ...tagsSlice.actions,
   fetchTags,
+  fetchTagsList,
 };
 
 export default tagsSlice.reducer;

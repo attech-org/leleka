@@ -152,6 +152,10 @@ const SingleTweetComment: React.FC<SingleTweetCommentInterface> = ({
 
   const { t } = useTranslation();
 
+  const onLike = () => {
+    // dispatch(tweetsActions.likeDislike({ tweet: _id }));
+  };
+
   return (
     <div>
       <Wrapper>
@@ -210,7 +214,7 @@ const SingleTweetComment: React.FC<SingleTweetCommentInterface> = ({
               <Count>{answerCount}</Count>
             </IconBox>
             <RetweetButton retweetCount={retweetCount} />
-            <LikeButton likesCount={likeCount} />
+            <LikeButton likesCount={likeCount} onLike={onLike} />
             <IconBox>
               <IconBg
                 iconBgColor={bgBlue}
