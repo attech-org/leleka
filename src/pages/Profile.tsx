@@ -78,7 +78,10 @@ const ProfilePage = ({ tabKey }: TabKeyProps) => {
   ];
 
   return authUser._id ? (
-    <Layout title={t("pageTitles:profilePage")}>
+    <Layout
+      title={t("pageTitles:profilePage")}
+      errors={[authUser?.error as string, user?.error as string]}
+    >
       <div className="border-start border-end">
         <div className="d-flex justify-content-between p-2 align-items-center justify-content-center">
           <h1 className="fs-5 fw-bold ps-3">{t("profile.title")}</h1>
@@ -117,7 +120,10 @@ const ProfilePage = ({ tabKey }: TabKeyProps) => {
       </div>
     </Layout>
   ) : (
-    <Layout title={t("pageTitles:profilePage")}>
+    <Layout
+      title={t("pageTitles:profilePage")}
+      errors={[authUser?.error as string, user?.error as string]}
+    >
       <div className="text-center pt-3">{t("common.accessDenied")}</div>
     </Layout>
   );

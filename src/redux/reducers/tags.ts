@@ -66,9 +66,9 @@ const tagsSlice = createSlice<TagsStore, SliceCaseReducers<TagsStore>>({
       store.tags = { ...payload };
       store.tags.isLoading = false;
     });
-    builder.addCase(fetchTags.rejected, (store) => {
+    builder.addCase(fetchTags.rejected, (store, { error }) => {
       store.tags.isLoading = false;
-      store.tags.error = "Failed to fetch tags";
+      store.tags.error = error.message;
     });
     builder.addCase(fetchTagsList.pending, (store) => {
       store.tagsList.isLoading = true;
@@ -77,9 +77,9 @@ const tagsSlice = createSlice<TagsStore, SliceCaseReducers<TagsStore>>({
       store.tagsList = { ...payload };
       store.tagsList.isLoading = false;
     });
-    builder.addCase(fetchTagsList.rejected, (store) => {
+    builder.addCase(fetchTagsList.rejected, (store, { error }) => {
       store.tagsList.isLoading = false;
-      store.tagsList.error = "Failed to fetch tags";
+      store.tagsList.error = error.message;
     });
   },
 });

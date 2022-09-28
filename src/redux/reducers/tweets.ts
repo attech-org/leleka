@@ -304,9 +304,9 @@ const tweetsSlice = createSlice<TweetsStore, SliceCaseReducers<TweetsStore>>({
       }
       store.feedTweets.isLoading = false;
     });
-    builder.addCase(fetchFeedTweets.rejected, (store) => {
+    builder.addCase(fetchFeedTweets.rejected, (store, { error }) => {
       store.feedTweets.isLoading = false;
-      store.feedTweets.error = "Failed to fetch tweets for feed";
+      store.feedTweets.error = error.message;
     });
     builder.addCase(createTweet.pending, (store) => {
       store.singleTweet.isLoading = true;
@@ -315,9 +315,9 @@ const tweetsSlice = createSlice<TweetsStore, SliceCaseReducers<TweetsStore>>({
       store.singleTweet.isLoading = false;
       store.feedTweets.docs = [payload, ...store.feedTweets.docs];
     });
-    builder.addCase(createTweet.rejected, (store) => {
+    builder.addCase(createTweet.rejected, (store, { error }) => {
       store.singleTweet.isLoading = false;
-      store.singleTweet.error = "Failed to post tweet on server";
+      store.singleTweet.error = error.message;
     });
     builder.addCase(fetchTweetById.pending, (store) => {
       store.currentTweet.isLoading = true;
@@ -326,9 +326,9 @@ const tweetsSlice = createSlice<TweetsStore, SliceCaseReducers<TweetsStore>>({
       store.currentTweet.data = payload;
       store.currentTweet.isLoading = false;
     });
-    builder.addCase(fetchTweetById.rejected, (store) => {
+    builder.addCase(fetchTweetById.rejected, (store, { error }) => {
       store.currentTweet.isLoading = false;
-      store.currentTweet.error = "Failed to fetch tweets for feed";
+      store.currentTweet.error = error.message;
     });
     builder.addCase(fetchTweetReplies.pending, (store) => {
       store.currentTweetReplies.isLoading = true;
@@ -343,9 +343,9 @@ const tweetsSlice = createSlice<TweetsStore, SliceCaseReducers<TweetsStore>>({
       }
       store.currentTweetReplies.isLoading = false;
     });
-    builder.addCase(fetchTweetReplies.rejected, (store) => {
+    builder.addCase(fetchTweetReplies.rejected, (store, { error }) => {
       store.currentTweetReplies.isLoading = false;
-      store.currentTweetReplies.error = "Failed to fetch tweets for feed";
+      store.currentTweetReplies.error = error.message;
     });
     builder.addCase(fetchLikes.pending, (store) => {
       store.likes.isLoading = true;
@@ -360,9 +360,9 @@ const tweetsSlice = createSlice<TweetsStore, SliceCaseReducers<TweetsStore>>({
       }
       store.likes.isLoading = false;
     });
-    builder.addCase(fetchLikes.rejected, (store) => {
+    builder.addCase(fetchLikes.rejected, (store, { error }) => {
       store.likes.isLoading = false;
-      store.likes.error = "Failed to fetch tweets for feed";
+      store.likes.error = error.message;
     });
     builder.addCase(fetchMyTweets.pending, (store) => {
       store.myTweets.isLoading = true;
@@ -377,9 +377,9 @@ const tweetsSlice = createSlice<TweetsStore, SliceCaseReducers<TweetsStore>>({
       }
       store.myTweets.isLoading = false;
     });
-    builder.addCase(fetchMyTweets.rejected, (store) => {
+    builder.addCase(fetchMyTweets.rejected, (store, { error }) => {
       store.myTweets.isLoading = false;
-      store.myTweets.error = "Failed to fetch tweets for feed";
+      store.myTweets.error = error.message;
     });
     builder.addCase(fetchMyTweetsAndReplies.pending, (store) => {
       store.myTweetsAndReplies.isLoading = true;
@@ -394,9 +394,9 @@ const tweetsSlice = createSlice<TweetsStore, SliceCaseReducers<TweetsStore>>({
       }
       store.myTweetsAndReplies.isLoading = false;
     });
-    builder.addCase(fetchMyTweetsAndReplies.rejected, (store) => {
+    builder.addCase(fetchMyTweetsAndReplies.rejected, (store, { error }) => {
       store.myTweetsAndReplies.isLoading = false;
-      store.myTweetsAndReplies.error = "Failed to fetch tweets for feed";
+      store.myTweetsAndReplies.error = error.message;
     });
 
     builder.addCase(fetchMentions.pending, (store) => {
@@ -412,9 +412,9 @@ const tweetsSlice = createSlice<TweetsStore, SliceCaseReducers<TweetsStore>>({
       }
       store.myMentions.isLoading = false;
     });
-    builder.addCase(fetchMentions.rejected, (store) => {
+    builder.addCase(fetchMentions.rejected, (store, { error }) => {
       store.myMentions.isLoading = false;
-      store.myMentions.error = "Failed to fetch tweets for feed";
+      store.myMentions.error = error.message;
     });
     builder.addCase(likeDislike.pending, (store) => {
       store.likeInfo.isLoading = true;
@@ -422,9 +422,9 @@ const tweetsSlice = createSlice<TweetsStore, SliceCaseReducers<TweetsStore>>({
     builder.addCase(likeDislike.fulfilled, (store) => {
       store.likeInfo.isLoading = false;
     });
-    builder.addCase(likeDislike.rejected, (store) => {
+    builder.addCase(likeDislike.rejected, (store, { error }) => {
       store.likeInfo.isLoading = false;
-      store.likeInfo.error = "Failed to like/dislike tweet";
+      store.likeInfo.error = error.message;
     });
     builder.addCase(fetchUserTweets.pending, (store) => {
       store.userTweets.isLoading = true;
@@ -445,9 +445,9 @@ const tweetsSlice = createSlice<TweetsStore, SliceCaseReducers<TweetsStore>>({
       }
       store.userTweets.isLoading = false;
     });
-    builder.addCase(fetchUserTweets.rejected, (store) => {
+    builder.addCase(fetchUserTweets.rejected, (store, { error }) => {
       store.userTweets.isLoading = false;
-      store.userTweets.error = "Failed to fetch tweets for feed";
+      store.userTweets.error = error.message;
     });
     builder.addCase(fetchUserTweetsReplies.pending, (store) => {
       store.userTweetsAndReplies.isLoading = true;
@@ -471,9 +471,9 @@ const tweetsSlice = createSlice<TweetsStore, SliceCaseReducers<TweetsStore>>({
       }
       store.userTweetsAndReplies.isLoading = false;
     });
-    builder.addCase(fetchUserTweetsReplies.rejected, (store) => {
+    builder.addCase(fetchUserTweetsReplies.rejected, (store, { error }) => {
       store.userTweetsAndReplies.isLoading = false;
-      store.userTweetsAndReplies.error = "Failed to fetch tweets for feed";
+      store.userTweetsAndReplies.error = error.message;
     });
     builder.addCase(fetchUserLikes.pending, (store) => {
       store.userLikes.isLoading = true;
@@ -494,9 +494,9 @@ const tweetsSlice = createSlice<TweetsStore, SliceCaseReducers<TweetsStore>>({
       }
       store.userLikes.isLoading = false;
     });
-    builder.addCase(fetchUserLikes.rejected, (store) => {
+    builder.addCase(fetchUserLikes.rejected, (store, { error }) => {
       store.userLikes.isLoading = false;
-      store.userLikes.error = "Failed to fetch tweets for feed";
+      store.userLikes.error = error.message;
     });
     builder.addCase(initUserTweets.fulfilled, (store) => {
       store.userTweets.docs.length = 0;

@@ -68,9 +68,9 @@ const followersSlice = createSlice<
       }
       store.list.isLoading = false;
     });
-    builder.addCase(fetchFollowers.rejected, (store) => {
+    builder.addCase(fetchFollowers.rejected, (store, { error }) => {
       store.list.isLoading = false;
-      store.list.error = "Failed to fetch followers";
+      store.list.error = error.message;
     });
   },
 });

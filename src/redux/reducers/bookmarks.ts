@@ -80,9 +80,9 @@ const bookmarksSlice = createSlice<
       }
       store.list.isLoading = false;
     });
-    builder.addCase(fetchBookmarks.rejected, (store) => {
+    builder.addCase(fetchBookmarks.rejected, (store, { error }) => {
       store.list.isLoading = false;
-      store.list.error = "Failed to fetch bookmarks";
+      store.list.error = error.message;
     });
 
     builder.addCase(addBookmark.pending, (store) => {

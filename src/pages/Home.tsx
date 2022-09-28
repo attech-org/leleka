@@ -1,11 +1,16 @@
 import { Button, Navbar, OverlayTrigger, Popover } from "react-bootstrap";
 import { Stars } from "react-bootstrap-icons";
 import { useTranslation } from "react-i18next";
+import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 
+import FeedSingleTweet from "../components/FeedSingleTweet";
 import TweetCreationForm from "../components/TweetCreationForm";
-import FeedPostsContainer from "../containers/FeedPosts";
+import InfiniteList from "../containers/InfiniteList";
 import Layout from "../containers/Layout";
+import { tweetsActions } from "../redux/reducers/tweets";
+import { AppDispatch, RootState } from "../redux/store";
+import { Tweet2 } from "../types";
 
 const StyledNavbar = styled(Navbar)`
   background-color: rgba(255, 255, 255, 0.97) !important;
@@ -34,9 +39,16 @@ const StyledStars = styled(Stars)`
 
 const HomePage: React.FunctionComponent = () => {
   const { t } = useTranslation();
+  const dispatch = useDispatch<AppDispatch>();
+  const posts = useSelector<RootState, RootState["tweets"]["feedTweets"]>(
+    (store) => store.tweets.feedTweets
+  );
 
+  const handleShowMore = () => {
+    return !posts.isLoading && dispatch(tweetsActions.fetchFeedTweets(posts));
+  };
   return (
-    <Layout title={t("pageTitles:homePage")}>
+    <Layout title={t("pageTitles:homePage")} errors={[posts.error as string]}>
       <div className="border">
         <StyledNavbar sticky="top" expand="false" variant="light" bg="white">
           <StyledDiv>
@@ -63,7 +75,13 @@ const HomePage: React.FunctionComponent = () => {
           </StyledDiv>
         </StyledNavbar>
         <TweetCreationForm />
-        <FeedPostsContainer />
+        <InfiniteList<Tweet2>
+          showMore={handleShowMore}
+          data={posts}
+          itemComponent={(itemData) => (
+            <FeedSingleTweet key={`feedpost${itemData._id}`} {...itemData} />
+          )}
+        />
       </div>
     </Layout>
   );
