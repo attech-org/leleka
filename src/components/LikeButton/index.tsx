@@ -40,8 +40,8 @@ const LikeButton: React.FC<ILikeButton> = (
   const [isLiked, setisLiked] = useState(false);
   const [temporaryСounter, setlikesCount] = useState(likesCount);
   const [countAnimation, setcountAnimation] = useState("static");
-
-  const clickLike = () => {
+  const clickLike = (e: React.FormEvent): void => {
+    e.preventDefault();
     onLike();
     if (isLiked) {
       setisLiked(!isLiked);
@@ -58,16 +58,14 @@ const LikeButton: React.FC<ILikeButton> = (
     }
   };
   const { t } = useTranslation();
-
   return (
     <Like>
       <IconBg
         className="m-0 p-0 rounded-circle align-items-center justify-content-center)"
         title={isLiked ? t("likeButton.unlike") : t("likeButton.like")}
       >
-        <input id="toggle-heart" type="checkbox" defaultChecked={isLiked} />
-
-        <label htmlFor="toggle-heart" onClick={() => clickLike()}>
+        <input id="toggle-heart" type="checkbox" checked={isLiked} readOnly />
+        <label htmlFor="toggle-heart" onClick={(e) => clickLike(e)}>
           {isLiked ? (
             <HeartFill className="p-0 m-0" />
           ) : (
