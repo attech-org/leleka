@@ -101,139 +101,143 @@ const FeedSingleTweet = ({
 
   return (
     <>
-      <PostWrapper
-        className="border border-bottom-0 border-grey px-3 py-3 text-start d-flex fs-6"
-        role="button"
-        key={_id}
-      >
-        <UserAvatar user={author} />
+      <Nav.Link as={LinkWithLanguageQueryParam} to={`/tweet/${_id}`}>
+        <PostWrapper
+          className="border border-bottom-0 border-grey px-3 py-3 text-start d-flex fs-6"
+          role="button"
+          key={_id}
+        >
+          <UserAvatar user={author} />
 
-        <div className="w-100">
-          <div className="d-flex justify-content-between">
-            <div className="d-flex align-items-center px-3 flex-wrap">
-              <UnderlineHover
-                as={LinkWithLanguageQueryParam}
-                to={`/${author.username}`}
-                className="fw-600 pe-1 fw-bold text-dark"
-                eventkey={_id}
-              >
-                {author.name}
-              </UnderlineHover>
+          <div className="w-100">
+            <div className="d-flex justify-content-between">
+              <div className="d-flex align-items-center px-3 flex-wrap">
+                <UnderlineHover
+                  as={LinkWithLanguageQueryParam}
+                  to={`/${author.username}`}
+                  className="fw-600 pe-1 fw-bold text-dark"
+                  eventkey={_id}
+                >
+                  {author.name}
+                </UnderlineHover>
 
-              {/* {isVerified && (
+                {/* {isVerified && (
                 <PatchCheckFill size={20} className="text-info pe-1" />
               )} */}
-              <Nav.Link
-                as={LinkWithLanguageQueryParam}
-                to={`/${author.username}`}
-                className="text-muted text-decoration-none"
-              >
-                @{author.username}
-              </Nav.Link>
-              <div className="mx-1 text-secondary d-flex justify-content-center align-items-center">
-                ·
-              </div>
-              <UnderlineHover
-                as={LinkWithLanguageQueryParam}
-                to={`/tweet/${_id}`}
-                eventkey={_id}
-                className="text-secondary"
-              >
-                {localDateTime(createdAt)}
-              </UnderlineHover>
-            </div>
-
-            <div className="d-flex justify-content-end">
-              <OverlayTrigger
-                transition
-                rootClose
-                trigger="click"
-                key="left"
-                placement="left"
-                overlay={
-                  <StyledPopover id="popover-positioned-left">
-                    <Popover.Body>
-                      <p>
-                        <StyledLink
-                          className="text-decoration-none text-reset d-flex flex-row p-1 pe-2 fs-6"
-                          href="#"
-                        >
-                          <span className="px-2">
-                            <PersonX />
-                          </span>
-                          {`${t("SingleTweetMenu.stopFollow")} ${
-                            author.username
-                          }`}
-                        </StyledLink>
-                      </p>
-                      <p>
-                        <StyledLink
-                          className="text-decoration-none text-reset d-flex flex-row p-1 pe-2 fs-6"
-                          href="#"
-                        >
-                          <span className="px-2">
-                            <ClipboardPlus />
-                          </span>
-                          {`${t("SingleTweetMenu.add")} ${author.username} ${t(
-                            "SingleTweetMenu.toList"
-                          )}`}
-                        </StyledLink>
-                      </p>
-                      <p>
-                        <StyledLink
-                          className="text-decoration-none text-reset d-flex flex-row p-1 pe-2 fs-6"
-                          href="#"
-                        >
-                          <span className="px-2">
-                            <Flag />
-                          </span>
-                          {t("SingleTweetMenu.report")}
-                        </StyledLink>
-                      </p>
-                    </Popover.Body>
-                  </StyledPopover>
-                }
-              >
-                <StyledButton
-                  className="text-secondary me-3 p-0 rounded-circle"
-                  variant="link"
+                <Nav.Link
+                  as={LinkWithLanguageQueryParam}
+                  to={`/${author.username}`}
+                  className="text-muted text-decoration-none"
                 >
-                  <ThreeDots size={16} />
-                </StyledButton>
-              </OverlayTrigger>
-            </div>
-          </div>
-          <div className="px-3 py-2">
-            {repliedTo ? (
-              <div className="mb-3">
-                {t("reply.replyContent")}
-                <a href={repliedTo.author.url}>@{repliedTo.author.username}</a>
+                  @{author.username}
+                </Nav.Link>
+                <div className="mx-1 text-secondary d-flex justify-content-center align-items-center">
+                  ·
+                </div>
+                <UnderlineHover
+                  as={LinkWithLanguageQueryParam}
+                  to={`/tweet/${_id}`}
+                  eventkey={_id}
+                  className="text-secondary"
+                >
+                  {localDateTime(createdAt)}
+                </UnderlineHover>
               </div>
-            ) : (
-              ""
-            )}
-            <div dangerouslySetInnerHTML={{ __html: content || "" }} />
-            <div className="pt-2">
-              {url[0] ? <LinkPreview url={url[0]} /> : null}
+
+              <div className="d-flex justify-content-end">
+                <OverlayTrigger
+                  transition
+                  rootClose
+                  trigger="click"
+                  key="left"
+                  placement="left"
+                  overlay={
+                    <StyledPopover id="popover-positioned-left">
+                      <Popover.Body>
+                        <p>
+                          <StyledLink
+                            className="text-decoration-none text-reset d-flex flex-row p-1 pe-2 fs-6"
+                            href="#"
+                          >
+                            <span className="px-2">
+                              <PersonX />
+                            </span>
+                            {`${t("SingleTweetMenu.stopFollow")} ${
+                              author.username
+                            }`}
+                          </StyledLink>
+                        </p>
+                        <p>
+                          <StyledLink
+                            className="text-decoration-none text-reset d-flex flex-row p-1 pe-2 fs-6"
+                            href="#"
+                          >
+                            <span className="px-2">
+                              <ClipboardPlus />
+                            </span>
+                            {`${t("SingleTweetMenu.add")} ${
+                              author.username
+                            } ${t("SingleTweetMenu.toList")}`}
+                          </StyledLink>
+                        </p>
+                        <p>
+                          <StyledLink
+                            className="text-decoration-none text-reset d-flex flex-row p-1 pe-2 fs-6"
+                            href="#"
+                          >
+                            <span className="px-2">
+                              <Flag />
+                            </span>
+                            {t("SingleTweetMenu.report")}
+                          </StyledLink>
+                        </p>
+                      </Popover.Body>
+                    </StyledPopover>
+                  }
+                >
+                  <StyledButton
+                    className="text-secondary me-3 p-0 rounded-circle"
+                    variant="link"
+                  >
+                    <ThreeDots size={16} />
+                  </StyledButton>
+                </OverlayTrigger>
+              </div>
+            </div>
+            <div className="px-3 py-2">
+              {repliedTo ? (
+                <div className="mb-3">
+                  {t("reply.replyContent")}
+                  <a href={repliedTo.author.url}>
+                    @{repliedTo.author.username}
+                  </a>
+                </div>
+              ) : (
+                ""
+              )}
+              <div dangerouslySetInnerHTML={{ __html: content || "" }} />
+              <div className="pt-2">
+                {url[0] ? <LinkPreview url={url[0]} /> : null}
+              </div>
+            </div>
+            <div className="px-3 d-flex justify-content-between align-items-center">
+              <TweetReplyForm
+                author={author}
+                content={content || ""}
+                id={_id}
+                commentsCount={comments}
+              />
+              <RetweetButton retweetCount={retweets} />
+              <LikeButton likesCount={likes} />
+              <StatisticOfTweet className="d-flex align-items-center">
+                <HoverBackgroundBlue className="p-2 rounded-circle d-flex justify-content-center align-items-center">
+                  <Upload size="16" />
+                </HoverBackgroundBlue>
+              </StatisticOfTweet>
             </div>
           </div>
-          <div className="px-3 d-flex justify-content-between align-items-center">
-            <TweetReplyForm
-              author={author}
-              content={content || ""}
-              id={_id}
-              commentsCount={comments}
-            />
-            <RetweetButton retweetCount={retweets} />
-            <LikeButton likesCount={likes} />
-            <StatisticOfTweet className="d-flex align-items-center">
-              <HoverBackgroundBlue className="p-2 rounded-circle d-flex justify-content-center align-items-center">
-                <Upload size="16" />
-              </HoverBackgroundBlue>
-            </StatisticOfTweet>
-          </div>
-        </div>
-      </PostWrapper>
+        </PostWrapper>
+      </Nav.Link>
     </>
   );
 };

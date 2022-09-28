@@ -20,6 +20,8 @@ export interface TweetsStore {
   userTweets: LE<Pagination<Tweet2>>;
   userTweetsAndReplies: LE<Pagination<Tweet2>>;
   userLikes: LE<Pagination<Like>>;
+  userNotifications: LE<Pagination<Tweet2>>;
+  tweetLikes: LE<Pagination<Like>>;
 }
 
 const initialStore = {
@@ -43,12 +45,9 @@ const tweetsInitialStore: TweetsStore = {
   userTweets: initialStore,
   userTweetsAndReplies: initialStore,
   userLikes: initialStore,
-  myMentions: {
-    page: 1,
-    limit: 10,
-    docs: [],
-    hasNextPage: true,
-  },
+  userNotifications: initialStore,
+  myMentions: initialStore,
+  tweetLikes: initialStore,
 };
 
 interface NewTweetBody {
@@ -230,6 +229,40 @@ const fetchMentions = createAsyncThunk<Pagination<Tweet2>, FetchMentionsArgs>(
     return response.data;
   }
 );
+
+const fetchNotifications = createAsyncThunk<
+  Pagination<Tweet2>,
+  Pagination<Tweet2> | undefined
+>("notifications", async (filters) => {
+  const { limit = 10, nextPage = 1 } = filters || {};
+
+  const response = await instance.get("api/tweets/my", {
+    params: {
+      limit,
+      page: nextPage,
+      query: { "stats.likes": { $gt: 0 } },
+      sort: "-createdAt",
+    },
+  });
+  return response.data;
+});
+
+const fetchTweetLikes = createAsyncThunk<
+  Pagination<Like>,
+  (Pagination<Like> & { tweetId: string }) | undefined
+>("tweet/likes", async (filters) => {
+  const { limit = 10, nextPage = 1, tweetId } = filters || {};
+  const response = await instance.get("api/likes", {
+    params: {
+      limit,
+      page: nextPage,
+      query: { tweet: tweetId },
+    },
+  });
+  response.data.init = filters?.init;
+  console.log(response.data);
+  return response.data;
+});
 
 const tweetsSlice = createSlice<TweetsStore, SliceCaseReducers<TweetsStore>>({
   name: "tweets",
@@ -436,6 +469,46 @@ const tweetsSlice = createSlice<TweetsStore, SliceCaseReducers<TweetsStore>>({
       store.userLikes.isLoading = false;
       store.userLikes.error = "Failed to fetch tweets for feed";
     });
+    builder.addCase(fetchNotifications.pending, (store) => {
+      store.userNotifications.isLoading = true;
+    });
+    builder.addCase(fetchNotifications.fulfilled, (store, { payload }) => {
+      if (payload.init) {
+        store.userNotifications = { ...payload, docs: [...payload.docs] };
+        store.userNotifications.isLoading = false;
+        store.userNotifications.init = false;
+      } else {
+        if (store.userNotifications.docs.length === 0 || payload.page !== 1) {
+          store.userNotifications = {
+            ...store.userNotifications,
+            ...payload,
+            docs: [...store.userNotifications.docs, ...payload.docs],
+          };
+        }
+      }
+      store.userNotifications.isLoading = false;
+    });
+    builder.addCase(fetchNotifications.rejected, (store) => {
+      store.userNotifications.isLoading = false;
+      store.userNotifications.error = "Failed to fetch tweets for feed";
+    });
+    builder.addCase(fetchTweetLikes.pending, (store) => {
+      store.tweetLikes.isLoading = true;
+    });
+    builder.addCase(fetchTweetLikes.fulfilled, (store, { payload }) => {
+      store.tweetLikes = {
+        ...store.tweetLikes,
+        ...payload,
+        docs: [...store.tweetLikes.docs, ...payload.docs],
+      };
+      console.log("NEVER HERE");
+      console.log(store.tweetLikes);
+      store.tweetLikes.isLoading = false;
+    });
+    builder.addCase(fetchTweetLikes.rejected, (store) => {
+      store.tweetLikes.isLoading = false;
+      store.tweetLikes.error = "Failed to fetch tweets for feed";
+    });
   },
 });
 
@@ -452,6 +525,8 @@ export const tweetsActions = {
   fetchUserTweets,
   fetchUserTweetsReplies,
   fetchUserLikes,
+  fetchNotifications,
+  fetchTweetLikes,
 };
 
 export default tweetsSlice.reducer;
