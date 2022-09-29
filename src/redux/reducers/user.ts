@@ -163,7 +163,7 @@ const fetchUser = createAsyncThunk<User, string>(
 );
 
 const follow = createAsyncThunk<User, string>(
-  "profile/followUser",
+  "profile/follow",
   async (followedUserId) => {
     const response = await instance.post("api/followers", {
       following: followedUserId,
@@ -173,7 +173,7 @@ const follow = createAsyncThunk<User, string>(
 );
 
 const unfollow = createAsyncThunk<User, string>(
-  "profile/deleteFollower",
+  "profile/unfollow",
   async (id) => {
     const response = await instance.delete(`api/followers/${id}`);
     return response.data;
