@@ -94,7 +94,7 @@ const ProfilePage = ({ tabKey }: TabKeyProps) => {
             </StyledButton>
           </div>
         </div>
-        <Banner user={user} />
+        <Banner />
         <div className="d-flex pb-4">
           <LinkWithLanguageQueryParam
             to="/following"
