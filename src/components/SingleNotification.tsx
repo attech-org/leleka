@@ -108,7 +108,9 @@ const SingleNotification = ({ _id, content }: Tweet2) => {
               </span>{" "}
             </div>
             <div className="pb-3 text-start text-secondary">
-              <span dangerouslySetInnerHTML={{ __html: content || "" }} />
+              <Nav.Link as={LinkWithLanguageQueryParam} to={`/tweet/${_id}`}>
+                <div dangerouslySetInnerHTML={{ __html: content || "" }} />
+              </Nav.Link>
             </div>
           </div>
         </div>
