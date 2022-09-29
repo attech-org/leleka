@@ -1,26 +1,34 @@
+import { useDispatch, useSelector } from "react-redux";
+
 import SingleNotification from "../components/SingleNotification";
-import { notificationPageMocks } from "../MOCKS/notificationsPage";
-import { TabKeyProps } from "../types/tabs-types";
+import { tweetsActions } from "../redux/reducers/tweets";
+import { AppDispatch, RootState } from "../redux/store";
+import { Tweet2 } from "../types";
+import InfiniteList from "./InfiniteList";
 
-const Notifications = notificationPageMocks.map(
-  ({ id, username, userlogo, content, mentionedTweets, retweet }) => (
-    <SingleNotification
-      username={username}
-      userlogo={userlogo}
-      content={content}
-      mentionedTweets={mentionedTweets}
-      key={id}
-      id={String(id)}
-      retweet={retweet}
-    />
-  )
-);
-
-const NotificationsPage = ({ tabKey }: TabKeyProps) => {
+const NotificationsPage = () => {
+  const dispatch = useDispatch<AppDispatch>();
+  const notifications = useSelector<
+    RootState,
+    RootState["tweets"]["userNotifications"]
+  >((store) => store.tweets.userNotifications);
+  const handleShowMore = () => {
+    return (
+      !notifications.isLoading &&
+      notifications.hasNextPage &&
+      !notifications.error &&
+      dispatch(tweetsActions.fetchNotifications({ ...notifications }))
+    );
+  };
   return (
     <>
-      {Notifications}
-      tabKey={tabKey}
+      <InfiniteList<Tweet2>
+        showMore={handleShowMore}
+        data={notifications}
+        itemComponent={(itemData) => (
+          <SingleNotification key={itemData._id} {...itemData} />
+        )}
+      />
     </>
   );
 };

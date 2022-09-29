@@ -207,7 +207,9 @@ const FeedSingleTweet = ({
             ) : (
               ""
             )}
-            <div dangerouslySetInnerHTML={{ __html: content || "" }} />
+            <Nav.Link as={LinkWithLanguageQueryParam} to={`/tweet/${_id}`}>
+              <div dangerouslySetInnerHTML={{ __html: content || "" }} />
+            </Nav.Link>
             <div className="pt-2">
               {url[0] ? <LinkPreview url={url[0]} /> : null}
             </div>

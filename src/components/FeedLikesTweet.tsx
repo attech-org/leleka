@@ -1,4 +1,4 @@
-import { Popover, OverlayTrigger, Button } from "react-bootstrap";
+import { Popover, OverlayTrigger, Button, Nav } from "react-bootstrap";
 import {
   // PatchCheckFill,
   Upload,
@@ -11,6 +11,7 @@ import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
 import styled from "styled-components";
 
+import { LinkWithLanguageQueryParam } from "../containers/LinkWithLanguageQueryParam";
 import { tweetsActions } from "../redux/reducers/tweets";
 import { AppDispatch } from "../redux/store";
 import localDateTime from "../services/localDateTime";
@@ -27,11 +28,11 @@ const PostWrapper = styled.section`
   }
 `;
 
-const UnderlineHover = styled.span`
+const UnderlineHover = styled(Nav.Link)<{ eventkey: string }>`
   transition-duration: 0.2s;
-
+  text-decoration: none;
   :hover {
-    text-decoration: underline;
+    text-decoration: underline !important;
   }
 `;
 
@@ -100,7 +101,12 @@ const FeedLikesTweet = ({ tweet, user }: Like) => {
         <div className="w-100">
           <div className="d-flex justify-content-between">
             <div className="d-flex align-items-center px-3 flex-wrap">
-              <UnderlineHover className="fw-600 pe-1 fw-bold">
+              <UnderlineHover
+                as={LinkWithLanguageQueryParam}
+                to={`/${tweet.author.username}`}
+                className="fw-600 pe-1 fw-bold text-dark"
+                eventkey={tweet._id}
+              >
                 {user.username}
               </UnderlineHover>
 
@@ -176,7 +182,12 @@ const FeedLikesTweet = ({ tweet, user }: Like) => {
             </div>
           </div>
           <div className="px-3 py-2">
-            <div className="">{tweet.content}</div>
+            <Nav.Link
+              as={LinkWithLanguageQueryParam}
+              to={`/tweet/${tweet._id}`}
+            >
+              <div dangerouslySetInnerHTML={{ __html: tweet.content || "" }} />
+            </Nav.Link>
           </div>
           <div className="px-3 d-flex justify-content-between align-items-center">
             <StatisticOfTweet className="d-flex align-items-center justify-content-center">

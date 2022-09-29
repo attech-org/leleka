@@ -59,7 +59,7 @@
     "fields": {
       "liked": "вподобав(ла)",
       "retweeted": "ретвітнув(ла)",
-      "yourTweets": "ваших твітів:"
+      "yourTweets": "ваш твіт"
     },
     "links": {
       "showAll": "Показати всі"
