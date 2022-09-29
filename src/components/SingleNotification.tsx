@@ -1,10 +1,11 @@
 import { useEffect } from "react";
-import { Image } from "react-bootstrap";
+import { Image, Nav } from "react-bootstrap";
 import { HeartFill, ArrowRepeat } from "react-bootstrap-icons";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 
+import { LinkWithLanguageQueryParam } from "../containers/LinkWithLanguageQueryParam";
 import { tweetsActions } from "../redux/reducers/tweets";
 import { AppDispatch, RootState } from "../redux/store";
 import { Tweet2 } from "../types";
@@ -21,12 +22,25 @@ const StyledImage = styled(Image)`
   height: 2.5rem;
 `;
 
+const UnderlineHover = styled(Nav.Link)<{ eventkey: string }>`
+  transition-duration: 0.2s;
+  text-decoration: none;
+`;
+
 const retweet = false;
 
 export const Usernames = ({ username }: { username: string }) => {
   return (
     <>
-      <span className="fw-bold">{`${username}, `} </span>
+      <span className="fw-bold"> </span>
+      <UnderlineHover
+        as={LinkWithLanguageQueryParam}
+        to={`/${username}`}
+        className="fw-600 pe-1 fw-bold text-dark"
+        eventkey={username}
+      >
+        {`${username}, `}
+      </UnderlineHover>
     </>
   );
 };
