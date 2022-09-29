@@ -111,7 +111,12 @@ interface EditProfileRequest {
 }
 
 interface EditAvatarRequest {
-  formData: FormData;
+  avatarImage: FormData;
+  userId: string;
+}
+
+interface EditBannerRequest {
+  bannerImage: FormData;
   userId: string;
 }
 
@@ -130,10 +135,18 @@ const editProfileUser = createAsyncThunk<Partial<User>, EditProfileRequest>(
     return response.data;
   }
 );
-const addAvatar = createAsyncThunk<Partial<User>, EditAvatarRequest>(
+const addAvatarAsync = createAsyncThunk<Partial<User>, EditAvatarRequest>(
   "users/profile/avatar",
-  async ({ formData, userId }) => {
-    const response = await instance.put(`api/users/${userId}`, formData);
+  async ({ avatarImage, userId }) => {
+    const response = await instance.put(`api/users/${userId}`, avatarImage);
+
+    return response.data;
+  }
+);
+const addBannerAsync = createAsyncThunk<Partial<User>, EditBannerRequest>(
+  "users/profile/banner",
+  async ({ bannerImage, userId }) => {
+    const response = await instance.put(`api/users/${userId}`, bannerImage);
 
     return response.data;
   }
@@ -171,18 +184,6 @@ const userSlice = createSlice({
   name: "user",
   initialState: userInitialState,
   reducers: {
-    //  temporary reducers
-    // addAvatar: (state, (payload: PayloadAction<FormData>)) => {
-    //  state.profile.avatar = payload
-    // },
-
-    // addBanner: (state, (payload: PayloadAction<FormData>)) => {
-    //  state.profile.banner = payload
-    // },
-
-    removeBanner: (state) => {
-      state.authUser.profile.banner = undefined;
-    },
     clearError: (state) => {
       state.authUser.error = "";
     },
@@ -262,16 +263,25 @@ const userSlice = createSlice({
       store.authUser.isLoading = false;
       store.authUser.error = "Failed to edit user";
     });
-    builder.addCase(addAvatar.pending, (store) => {
+    builder.addCase(addAvatarAsync.pending, (store) => {
       store.authUser.isLoading = true;
     });
-    builder.addCase(addAvatar.fulfilled, (store, { payload }) => {
+    builder.addCase(addAvatarAsync.fulfilled, (store, { payload }) => {
       store.authUser.error = undefined;
-      Object.assign(store, {
-        ...payload,
-      });
+      store.authUser.profile.avatar = payload.profile?.avatar;
     });
-    builder.addCase(addAvatar.rejected, (store) => {
+    builder.addCase(addAvatarAsync.rejected, (store) => {
+      store.authUser.isLoading = false;
+      store.authUser.error = "Failed to add avatar";
+    });
+    builder.addCase(addBannerAsync.pending, (store) => {
+      store.authUser.isLoading = true;
+    });
+    builder.addCase(addBannerAsync.fulfilled, (store, { payload }) => {
+      store.authUser.error = undefined;
+      store.authUser.profile.banner = payload.profile?.banner;
+    });
+    builder.addCase(addBannerAsync.rejected, (store) => {
       store.authUser.isLoading = false;
       store.authUser.error = "Failed to add avatar";
     });
@@ -306,7 +316,8 @@ export const userActions = {
   loginUser,
   fetchUser,
   editProfileUser,
-  addAvatar,
+  addAvatarAsync,
+  addBannerAsync,
   follow,
   unfollow,
 };
