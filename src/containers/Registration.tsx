@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import styled, { css } from "styled-components";
 import * as yup from "yup";
 
+import icon_1 from "../images/icon_1.png";
 import { userActions } from "../redux/reducers/user";
 import { AppDispatch, RootState } from "../redux/store";
 import ModalUniversal from "./ModalUniversal";
@@ -66,6 +67,12 @@ const schema = yup.object().shape({
       "validation:errors.confirmPassword.match"
     ),
 });
+
+const logo = (
+  <header className="d-flex justify-content-center align-items-center w-100">
+    <img src={icon_1} width="50px" alt="Logo" />
+  </header>
+);
 
 const Registration = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -229,6 +236,7 @@ const Registration = () => {
   return (
     <ModalUniversal
       button={registrationButtonName}
+      header={logo}
       title={currentUserId ? `Welcome, ${currentUserName}` : registrationTitle}
       content={currentUserId ? null : registerForm}
     />
