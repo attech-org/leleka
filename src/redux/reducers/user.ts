@@ -49,7 +49,6 @@ const initialState = {
   },
   isLoading: false,
   error: undefined,
-  // isFollowed: undefined,
 };
 
 const userInitialState: UserStore = {
@@ -286,7 +285,7 @@ const userSlice = createSlice({
     });
     builder.addCase(addFollower.rejected, (store) => {
       store.followedUser.isLoading = false;
-      store.followedUser.error = "Failed to fetch followimg user";
+      store.followedUser.error = "Failed to fetch to follow user";
     });
 
     builder.addCase(deleteFollower.pending, (store) => {
@@ -298,7 +297,7 @@ const userSlice = createSlice({
     });
     builder.addCase(deleteFollower.rejected, (store) => {
       store.followedUser.isLoading = false;
-      store.followedUser.error = "Failed to fetch followimg user";
+      store.followedUser.error = "Failed to fetch to unfollow user";
     });
   },
 });

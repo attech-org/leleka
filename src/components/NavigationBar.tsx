@@ -24,7 +24,6 @@ const StyledNav = styled(Nav)`
     color: black;
     text-decoration: none;
   }
-  min-width: 200px;
 `;
 
 const StyledSpan = styled.span`
