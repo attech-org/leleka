@@ -183,9 +183,9 @@ const userSlice = createSlice({
       store.authUser.error = undefined;
       localStorage.setItem("accessToken", payload.accessToken);
       localStorage.setItem("refreshToken", payload.refreshToken);
-      const message = { event: "connect", userid: payload.user._id };
+      // send to WebSocket
       if (ws.readyState == ws.OPEN) {
-        ws.send(JSON.stringify(message));
+        ws.send(JSON.stringify({ event: "connect", userid: payload.user._id }));
       }
       Object.assign(store.authUser, {
         ...userInitialState.authUser,
@@ -210,9 +210,9 @@ const userSlice = createSlice({
       store.authUser.error = undefined;
       localStorage.setItem("accessToken", payload.accessToken);
       localStorage.setItem("refreshToken", payload.refreshToken);
-      const message = { event: "connect", userid: payload.user._id };
+      // send to WebSocket
       if (ws.readyState == ws.OPEN) {
-        ws.send(JSON.stringify(message));
+        ws.send(JSON.stringify({ event: "connect", userid: payload.user._id }));
       }
       Object.assign(store.authUser, {
         ...userInitialState.authUser,
