@@ -26,12 +26,12 @@ const retweet = false;
 export const Usernames = ({ username }: { username: string }) => {
   return (
     <>
-      <span className="fw-bold">{username} </span>
+      <span className="fw-bold">{`${username}, `} </span>
     </>
   );
 };
 
-const SingleNotification = ({ _id, content, stats }: Tweet2) => {
+const SingleNotification = ({ _id, content }: Tweet2) => {
   const { t } = useTranslation();
 
   const dispatch = useDispatch<AppDispatch>();
@@ -40,13 +40,10 @@ const SingleNotification = ({ _id, content, stats }: Tweet2) => {
     (store) => store.tweets.tweetLikes
   );
 
-  console.log("likes");
-  console.log(likes);
-
   const tweetId = _id;
 
   useEffect(() => {
-    dispatch(tweetsActions.fetchTweetLikes({ ...likes, tweetId, init: true }));
+    dispatch(tweetsActions.fetchTweetLikes({ ...likes, tweetId }));
   }, [_id]);
 
   return (
@@ -69,9 +66,14 @@ const SingleNotification = ({ _id, content, stats }: Tweet2) => {
                 {likes.docs.map((item) => (
                   <span key={item._id}>
                     <StyledImage
+                      className="me-2"
                       roundedCircle
                       fluid
-                      src={item.user.profile.avatar}
+                      src={
+                        item.user?.profile?.avatar
+                          ? item.user.profile.avatar
+                          : "https://abs.twimg.com/sticky/default_profile_images/default_profile_400x400.png"
+                      }
                       key={item._id}
                     />
                   </span>
@@ -90,15 +92,9 @@ const SingleNotification = ({ _id, content, stats }: Tweet2) => {
                   : t("notifications.fields.liked")}{" "}
                 {t("notifications.fields.yourTweets")}
               </span>{" "}
-              <span>{stats.likes}</span>
             </div>
             <div className="pb-3 text-start text-secondary">
               <span dangerouslySetInnerHTML={{ __html: content || "" }} />
-            </div>
-            <div className="pb-3 text-start text-secondary">
-              <a href="#" className="text-decoration-none py-1 link-info">
-                {t("notifications.links.showAll")}
-              </a>
             </div>
           </div>
         </div>

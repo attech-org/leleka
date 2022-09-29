@@ -260,7 +260,6 @@ const fetchTweetLikes = createAsyncThunk<
     },
   });
   response.data.init = filters?.init;
-  console.log(response.data);
   return response.data;
 });
 
@@ -506,8 +505,6 @@ const tweetsSlice = createSlice<TweetsStore, SliceCaseReducers<TweetsStore>>({
           ...payload.docs,
         ],
       };
-      console.log("NEVER HERE");
-      console.log(store.tweetLikes);
       store.tweetLikes.isLoading = false;
     });
     builder.addCase(fetchTweetLikes.rejected, (store) => {
