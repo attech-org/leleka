@@ -59,7 +59,7 @@
     "fields": {
       "liked": "вподобав(ла)",
       "retweeted": "ретвітнув(ла)",
-      "yourTweets": "ваших твітів:"
+      "yourTweets": "ваш твіт"
     },
     "links": {
       "showAll": "Показати всі"
@@ -154,6 +154,10 @@
       "undoRetweet": "Скасувати ретвіт",
       "quote": "Цитувати Твіт"
     }
+  },
+  "sharebutton": {
+    "share": "Поділитися",
+    "bookmarks": "Додати у закладки"
   },
   "likeButton": {
     "like": "Вподобати",

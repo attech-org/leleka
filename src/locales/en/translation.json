@@ -59,7 +59,7 @@
     "fields": {
       "liked": "liked",
       "retweeted": "retweeted",
-      "yourTweets": "of your tweets:"
+      "yourTweets": "your tweet"
     },
     "links": {
       "showAll": "Show all"
@@ -154,6 +154,10 @@
       "undoRetweet": "Undo Retweet",
       "quote": "Quote Tweet"
     }
+  },
+  "sharebutton": {
+    "share": "share",
+    "bookmarks": "add to bookmarks"
   },
   "likeButton": {
     "like": "Like",
