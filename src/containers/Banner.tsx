@@ -3,11 +3,12 @@ import { useEffect, useState } from "react";
 import { Button, OverlayTrigger, Tooltip } from "react-bootstrap";
 import { XLg, Camera } from "react-bootstrap-icons";
 import { useTranslation } from "react-i18next";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 
 import EditProfileForm from "../components/EditProfileForm";
-import { RootState } from "../redux/store";
+import { userActions } from "../redux/reducers/user";
+import { AppDispatch, RootState } from "../redux/store";
 
 const Layout = styled.div`
   position: relative;
@@ -170,6 +171,8 @@ const Banner = ({
       setBackgroundColor("rgba(181,192,200,1)");
     }
   }, [avatar]);
+
+  const dispatch = useDispatch<AppDispatch>();
 
   const currentUser = useSelector<
     RootState,
