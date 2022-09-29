@@ -91,6 +91,7 @@ export interface User extends MongoArtifacts {
       refreshToken?: string;
     };
   };
+  isFollowed?: boolean;
 }
 
 export interface Bookmark extends MongoArtifacts {

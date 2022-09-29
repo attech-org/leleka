@@ -6,6 +6,7 @@ import { LE, User } from "../../types";
 export interface UserStore {
   authUser: LE<User>;
   userByUsername: LE<User>;
+  followedUser: LE<User>;
 }
 
 const initialState = {
@@ -48,11 +49,13 @@ const initialState = {
   },
   isLoading: false,
   error: undefined,
+  // isFollowed: undefined,
 };
 
 const userInitialState: UserStore = {
   authUser: initialState,
   userByUsername: initialState,
+  followedUser: initialState,
 };
 interface RegisterResponse {
   user: Partial<User>;
@@ -147,6 +150,24 @@ const fetchUser = createAsyncThunk<User, string>(
   }
 );
 
+const addFollower = createAsyncThunk<User, string>(
+  "profile/followUser",
+  async (followedUserId) => {
+    const response = await instance.post("api/followers", {
+      following: followedUserId,
+    });
+    return response.data;
+  }
+);
+
+const deleteFollower = createAsyncThunk<User, string>(
+  "profile/deleteFollower",
+  async (id) => {
+    const response = await instance.delete(`api/followers/${id}`);
+    return response.data;
+  }
+);
+
 const userSlice = createSlice({
   name: "user",
   initialState: userInitialState,
@@ -216,6 +237,7 @@ const userSlice = createSlice({
       store.authUser.isLoading = false;
       store.authUser.error = "Failed to login user";
     });
+
     builder.addCase(fetchUser.pending, (store) => {
       store.userByUsername.isLoading = true;
     });
@@ -254,6 +276,30 @@ const userSlice = createSlice({
       store.authUser.isLoading = false;
       store.authUser.error = "Failed to add avatar";
     });
+
+    builder.addCase(addFollower.pending, (store) => {
+      store.followedUser.isLoading = true;
+    });
+    builder.addCase(addFollower.fulfilled, (store, { payload }) => {
+      store.followedUser = { ...payload };
+      store.followedUser.isLoading = false;
+    });
+    builder.addCase(addFollower.rejected, (store) => {
+      store.followedUser.isLoading = false;
+      store.followedUser.error = "Failed to fetch followimg user";
+    });
+
+    builder.addCase(deleteFollower.pending, (store) => {
+      store.followedUser.isLoading = true;
+    });
+    builder.addCase(deleteFollower.fulfilled, (store, { payload }) => {
+      store.followedUser = { ...payload };
+      store.followedUser.isLoading = false;
+    });
+    builder.addCase(deleteFollower.rejected, (store) => {
+      store.followedUser.isLoading = false;
+      store.followedUser.error = "Failed to fetch followimg user";
+    });
   },
 });
 
@@ -264,6 +310,8 @@ export const userActions = {
   fetchUser,
   editProfileUser,
   addAvatar,
+  addFollower,
+  deleteFollower,
 };
 
 export default userSlice.reducer;

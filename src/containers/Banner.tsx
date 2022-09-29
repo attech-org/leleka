@@ -7,11 +7,9 @@ import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 
 import EditProfileForm from "../components/EditProfileForm";
-import { followersActions } from "../redux/reducers/followers";
 import { userActions } from "../redux/reducers/user";
 import { AppDispatch, RootState } from "../redux/store";
 import { LE, User } from "../types";
-import { Pagination } from "../types/mock-api-types";
 
 const Layout = styled.div`
   position: relative;
@@ -75,6 +73,10 @@ const AddLogoDiv = styled(AddPhotoDiv)`
 const StyledInput = styled.input`
   width: 42px;
   height: 42px;
+`;
+
+const StyledButton = styled(Button)`
+  width: 120px;
 `;
 
 interface BannerProps {
@@ -153,33 +155,47 @@ const Banner = ({ isEditBanner, user }: BannerProps) => {
     }
   }, [avatar]);
 
-  //Artlee----------------------------------------------------------------
-  const userProfile = useSelector<
+  const [isFollowed, setIsFollowed] = useState(user?.isFollowed);
+
+  const initialText = () => {
+    if (isFollowed || false) {
+      return t("common.following");
+    } else {
+      return t("common.follow");
+    }
+  };
+
+  const [buttonText, setButtonText] = useState(initialText);
+
+  const userByUsernameId = useSelector<
     RootState,
-    RootState["user"]["userByUsername"]
-  >((store) => store.user.userByUsername);
-  console.log(userProfile.username);
+    RootState["user"]["userByUsername"]["_id"]
+  >((store) => store.user.userByUsername._id);
 
-  const followers = useSelector<RootState>(
-    (store) => store.followers.list
-  ) as LE<Pagination<User>>;
+  const handleFollowClick = () => {
+    if (isFollowed) {
+      dispatch(userActions.deleteFollower(userByUsernameId));
+      setIsFollowed(false);
+      setButtonText(t("common.follow"));
+    } else {
+      dispatch(userActions.addFollower(userByUsernameId));
+      setIsFollowed(true);
+      setButtonText(t("common.following"));
+    }
+  };
 
-  useEffect(() => {
-    dispatch(
-      followersActions.fetchFollowers({
-        limit: followers.limit,
-        nextPage: followers.nextPage,
-        userId: authUser._id,
-        userAccessToken: authUser.auth?.local?.accessToken || "",
-      })
-    );
-  }, []);
-
-  const followersList = useSelector<RootState, RootState["followers"]["list"]>(
-    (store) => store.followers.list
-  );
-  console.log(followersList);
-  //Artlee----------------------------------------------------------------
+  const handleOnMouseOver = () => {
+    if (buttonText === t("common.following")) {
+      setButtonText(t("common.unfollow"));
+    }
+  };
+  const handleOnMouseLeave = () => {
+    if (isFollowed) {
+      setButtonText(t("common.following"));
+    } else {
+      setButtonText(t("common.follow"));
+    }
+  };
 
   return (
     <>
@@ -292,12 +308,15 @@ const Banner = ({ isEditBanner, user }: BannerProps) => {
         {user?._id === authUser._id ? (
           !isEditBanner && <EditProfileForm />
         ) : (
-          <Button
+          <StyledButton
             className="rounded-pill fw-bold px-2 mt-3 me-3"
             variant="dark"
+            onClick={handleFollowClick}
+            onMouseOver={handleOnMouseOver}
+            onMouseLeave={handleOnMouseLeave}
           >
-            {t("common.follow")}++
-          </Button>
+            {buttonText}
+          </StyledButton>
         )}
       </Layout>
     </>
