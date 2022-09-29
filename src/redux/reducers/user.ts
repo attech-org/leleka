@@ -149,7 +149,7 @@ const fetchUser = createAsyncThunk<User, string>(
   }
 );
 
-const addFollower = createAsyncThunk<User, string>(
+const follow = createAsyncThunk<User, string>(
   "profile/followUser",
   async (followedUserId) => {
     const response = await instance.post("api/followers", {
@@ -159,7 +159,7 @@ const addFollower = createAsyncThunk<User, string>(
   }
 );
 
-const deleteFollower = createAsyncThunk<User, string>(
+const unfollow = createAsyncThunk<User, string>(
   "profile/deleteFollower",
   async (id) => {
     const response = await instance.delete(`api/followers/${id}`);
@@ -276,26 +276,24 @@ const userSlice = createSlice({
       store.authUser.error = "Failed to add avatar";
     });
 
-    builder.addCase(addFollower.pending, (store) => {
+    builder.addCase(follow.pending, (store) => {
       store.followedUser.isLoading = true;
     });
-    builder.addCase(addFollower.fulfilled, (store, { payload }) => {
-      store.followedUser = { ...payload };
+    builder.addCase(follow.fulfilled, (store) => {
       store.followedUser.isLoading = false;
     });
-    builder.addCase(addFollower.rejected, (store) => {
+    builder.addCase(follow.rejected, (store) => {
       store.followedUser.isLoading = false;
       store.followedUser.error = "Failed to fetch to follow user";
     });
 
-    builder.addCase(deleteFollower.pending, (store) => {
+    builder.addCase(unfollow.pending, (store) => {
       store.followedUser.isLoading = true;
     });
-    builder.addCase(deleteFollower.fulfilled, (store, { payload }) => {
-      store.followedUser = { ...payload };
+    builder.addCase(unfollow.fulfilled, (store) => {
       store.followedUser.isLoading = false;
     });
-    builder.addCase(deleteFollower.rejected, (store) => {
+    builder.addCase(unfollow.rejected, (store) => {
       store.followedUser.isLoading = false;
       store.followedUser.error = "Failed to fetch to unfollow user";
     });
@@ -309,8 +307,8 @@ export const userActions = {
   fetchUser,
   editProfileUser,
   addAvatar,
-  addFollower,
-  deleteFollower,
+  follow,
+  unfollow,
 };
 
 export default userSlice.reducer;

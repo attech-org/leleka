@@ -155,46 +155,19 @@ const Banner = ({ isEditBanner, user }: BannerProps) => {
     }
   }, [avatar]);
 
-  const [isFollowed, setIsFollowed] = useState(user?.isFollowed);
-
-  const initialText = () => {
-    if (isFollowed || false) {
-      return t("common.following");
-    } else {
-      return t("common.follow");
-    }
-  };
-
-  const [buttonText, setButtonText] = useState(initialText);
-
-  const userByUsernameId = useSelector<
+  const currentUser = useSelector<
     RootState,
-    RootState["user"]["userByUsername"]["_id"]
-  >((store) => store.user.userByUsername._id);
+    RootState["user"]["userByUsername"]
+  >((store) => store.user.userByUsername);
 
-  const handleFollowClick = () => {
-    if (isFollowed) {
-      dispatch(userActions.deleteFollower(userByUsernameId));
-      setIsFollowed(false);
-      setButtonText(t("common.follow"));
+  const handleFollowClick = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (currentUser.isFollowed) {
+      await dispatch(userActions.unfollow(currentUser._id));
     } else {
-      dispatch(userActions.addFollower(userByUsernameId));
-      setIsFollowed(true);
-      setButtonText(t("common.following"));
+      await dispatch(userActions.follow(currentUser._id));
     }
-  };
-
-  const handleOnMouseOver = () => {
-    if (buttonText === t("common.following")) {
-      setButtonText(t("common.unfollow"));
-    }
-  };
-  const handleOnMouseLeave = () => {
-    if (isFollowed) {
-      setButtonText(t("common.following"));
-    } else {
-      setButtonText(t("common.follow"));
-    }
+    dispatch(userActions.fetchUser(currentUser.username));
   };
 
   return (
@@ -309,13 +282,24 @@ const Banner = ({ isEditBanner, user }: BannerProps) => {
           !isEditBanner && <EditProfileForm />
         ) : (
           <StyledButton
-            className="rounded-pill fw-bold px-2 mt-3 me-3"
+            className="btn rounded-pill fw-bold px-2 mt-3 me-3"
+            type="button"
+            disabled={currentUser.isLoading}
             variant="dark"
-            onClick={handleFollowClick}
-            onMouseOver={handleOnMouseOver}
-            onMouseLeave={handleOnMouseLeave}
+            onClick={(e: React.FormEvent) => handleFollowClick(e)}
           >
-            {buttonText}
+            {currentUser.isLoading ? (
+              <span
+                className="spinner-border spinner-border-sm"
+                role="status"
+                aria-hidden="true"
+              />
+            ) : (
+              ""
+            )}
+            {currentUser.isFollowed
+              ? t("common.following")
+              : t("common.follow")}
           </StyledButton>
         )}
       </Layout>
