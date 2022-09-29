@@ -164,9 +164,6 @@ const userSlice = createSlice({
   name: "user",
   initialState: userInitialState,
   reducers: {
-    removeBanner: (state) => {
-      state.authUser.profile.banner = undefined;
-    },
     clearError: (state) => {
       state.authUser.error = "";
     },

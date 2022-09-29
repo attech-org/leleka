@@ -3,12 +3,11 @@ import { useEffect, useState } from "react";
 import { Button, OverlayTrigger, Tooltip } from "react-bootstrap";
 import { XLg, Camera } from "react-bootstrap-icons";
 import { useTranslation } from "react-i18next";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import styled from "styled-components";
 
 import EditProfileForm from "../components/EditProfileForm";
-import { userActions } from "../redux/reducers/user";
-import { AppDispatch, RootState } from "../redux/store";
+import { RootState } from "../redux/store";
 
 const Layout = styled.div`
   position: relative;
@@ -90,8 +89,6 @@ const Banner = ({
   const [temporaryAvatar, setTemporaryAvatar] = useState<string>();
   const [temporaryBanner, setTemporaryBanner] = useState<string>();
 
-  const dispatch = useDispatch<AppDispatch>();
-
   const authUser = useSelector<RootState, RootState["user"]["authUser"]>(
     (store) => store.user.authUser
   );
@@ -100,21 +97,26 @@ const Banner = ({
     RootState,
     RootState["user"]["userByUsername"]
   >((store) => store.user.userByUsername);
-  //------------------------------ avatar image ------------------------
+  //------------------------------ avatar & banner image ------------------------
 
   const avatar =
     userByUsername?._id !== authUser._id && userByUsername
       ? userByUsername?.profile?.avatar
       : authUser.profile.avatar;
 
-  // ------------------------------ banner image ------------------------
-  const banner = useSelector<
-    RootState,
-    RootState["user"]["authUser"]["profile"]["banner"]
-  >((store) => store.user.authUser.profile.banner);
+  const banner =
+    userByUsername?._id !== authUser._id && userByUsername
+      ? userByUsername?.profile?.banner
+      : authUser.profile.banner;
 
   const removeBanner = () => {
-    dispatch(userActions.removeBanner()); //
+    // const formData = new FormData();
+    // const file = new File([""], "");
+    // formData.append("banner", file);
+    // setTemporaryBanner("");
+    // if (uploadedBanner) {
+    //   uploadedBanner(formData);
+    // }
   };
   //-----------------------------handleUpload-----------------------------
 
@@ -151,8 +153,9 @@ const Banner = ({
     const fac = new FastAverageColor();
     if (avatar) {
       fac
-        .getColorAsync(avatar)
-        // .getColorAsync(`data:image/png;base64,${avatar}`)
+        .getColorAsync(
+          temporaryAvatar && isEditBanner ? temporaryAvatar : avatar
+        )
         .then((color) => {
           setBackgroundColor(color.rgba);
         })
@@ -226,11 +229,7 @@ const Banner = ({
               />
             ) : (
               banner && (
-                <img
-                  className="img-fluid w-100 h-100"
-                  src={`data:image/png;base64,${banner}`}
-                  alt=""
-                />
+                <img className="img-fluid w-100 h-100" src={banner} alt="" />
               )
             )}
           </div>
@@ -271,10 +270,7 @@ const Banner = ({
           {temporaryAvatar && isEditBanner ? (
             <AvatarImg className="rounded-circle" src={temporaryAvatar} />
           ) : avatar ? (
-            <AvatarImg
-              className="rounded-circle"
-              src={`data:image/png;base64,${avatar}`}
-            />
+            <AvatarImg className="rounded-circle" src={avatar} />
           ) : (
             <AvatarImg
               className="rounded-circle"

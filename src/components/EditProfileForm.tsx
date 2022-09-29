@@ -125,7 +125,7 @@ const EditProfileForm = () => {
       dispatch(userActions.addAvatarAsync({ avatarImage, userId }));
     }
     if (bannerImage) {
-      dispatch(userActions.addBannerAsync({ bannerImage, userId }));
+      // dispatch(userActions.addBannerAsync({ bannerImage, userId }));
     }
   };
 
