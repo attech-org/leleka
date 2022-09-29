@@ -25,7 +25,7 @@ const NotificationsList = ({ tabKey }: TabKeyProps) => {
   const tabsData = [
     {
       label: t("notifications.tabsLabel.all"),
-      content: <NotificationsPage tabKey="all" />, // tabKey="all" prop is not required for logic, but requiered for TypeScript
+      content: <NotificationsPage />, // tabKey="all" prop is not required for logic, but requiered for TypeScript
       key: "all",
       route: "/notifications",
     },

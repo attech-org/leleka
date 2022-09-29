@@ -22,6 +22,8 @@ export interface TweetsStore {
   userTweets: LE<Pagination<Tweet2>>;
   userTweetsAndReplies: LE<Pagination<Tweet2>>;
   userLikes: LE<Pagination<Like>>;
+  userNotifications: LE<Pagination<Tweet2>>;
+  tweetLikes: LE<Pagination<Like>>;
 }
 
 const initialStore = {
@@ -45,12 +47,9 @@ const tweetsInitialStore: TweetsStore = {
   userTweets: initialStore,
   userTweetsAndReplies: initialStore,
   userLikes: initialStore,
-  myMentions: {
-    page: 1,
-    limit: 10,
-    docs: [],
-    hasNextPage: true,
-  },
+  userNotifications: initialStore,
+  myMentions: initialStore,
+  tweetLikes: initialStore,
   likeInfo: {
     user: "",
     tweet: "",
@@ -283,6 +282,39 @@ export const likeDislike = createAsyncThunk<TweetLike, { tweet: string }>(
   }
 );
 
+const fetchNotifications = createAsyncThunk<
+  Pagination<Tweet2>,
+  Pagination<Tweet2> | undefined
+>("notifications", async (filters) => {
+  const { limit = 10, nextPage = 1 } = filters || {};
+
+  const response = await instance.get("api/tweets/my", {
+    params: {
+      limit,
+      page: nextPage,
+      query: { "stats.likes": { $gt: 0 } },
+      sort: "-createdAt",
+    },
+  });
+  return response.data;
+});
+
+const fetchTweetLikes = createAsyncThunk<
+  Pagination<Like>,
+  (Pagination<Like> & { tweetId: string }) | undefined
+>("tweet/likes", async (filters) => {
+  const { limit = 10, nextPage = 1, tweetId } = filters || {};
+  const response = await instance.get("api/likes", {
+    params: {
+      limit,
+      page: nextPage,
+      query: { tweet: tweetId },
+    },
+  });
+  response.data.init = filters?.init;
+  return response.data;
+});
+
 const tweetsSlice = createSlice<TweetsStore, SliceCaseReducers<TweetsStore>>({
   name: "tweets",
   initialState: tweetsInitialStore,
@@ -505,6 +537,49 @@ const tweetsSlice = createSlice<TweetsStore, SliceCaseReducers<TweetsStore>>({
       store.userTweets.isLoading = false;
       store.userTweets.init = false;
     });
+    builder.addCase(fetchNotifications.pending, (store) => {
+      store.userNotifications.isLoading = true;
+    });
+    builder.addCase(fetchNotifications.fulfilled, (store, { payload }) => {
+      if (payload.init) {
+        store.userNotifications = { ...payload, docs: [...payload.docs] };
+        store.userNotifications.isLoading = false;
+        store.userNotifications.init = false;
+      } else {
+        if (store.userNotifications.docs.length === 0 || payload.page !== 1) {
+          store.userNotifications = {
+            ...store.userNotifications,
+            ...payload,
+            docs: [...store.userNotifications.docs, ...payload.docs],
+          };
+        }
+      }
+      store.userNotifications.isLoading = false;
+    });
+    builder.addCase(fetchNotifications.rejected, (store) => {
+      store.userNotifications.isLoading = false;
+      store.userNotifications.error = "Failed to fetch tweets for feed";
+    });
+    builder.addCase(fetchTweetLikes.pending, (store) => {
+      store.tweetLikes.isLoading = true;
+    });
+    builder.addCase(fetchTweetLikes.fulfilled, (store, { payload }) => {
+      store.tweetLikes = {
+        ...store.tweetLikes,
+        ...payload,
+        docs: [
+          ...store.tweetLikes.docs.filter(
+            (item) => item.tweet._id !== payload.docs[0].tweet._id
+          ),
+          ...payload.docs,
+        ],
+      };
+      store.tweetLikes.isLoading = false;
+    });
+    builder.addCase(fetchTweetLikes.rejected, (store) => {
+      store.tweetLikes.isLoading = false;
+      store.tweetLikes.error = "Failed to fetch tweets for feed";
+    });
   },
 });
 
@@ -523,6 +598,8 @@ export const tweetsActions = {
   fetchUserTweetsReplies,
   fetchUserLikes,
   initUserTweets,
+  fetchNotifications,
+  fetchTweetLikes,
 };
 
 export default tweetsSlice.reducer;
