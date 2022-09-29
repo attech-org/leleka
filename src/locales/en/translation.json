@@ -114,7 +114,8 @@
     "tweets": "tweets:",
     "trendInterest": "I'm not interested",
     "trendSpam": "This trend is harmful or spammy",
-    "windowTitle": "Trends for you"
+    "windowTitle": "Trends for you",
+    "search": "Search for trends"
   },
   "login": {
     "loginButton": "Login",
@@ -142,7 +143,8 @@
     "menuAdd": "Follow",
     "menuRemove": "Add/Remove",
     "menuMute": "Mute",
-    "replyingTo": "Replying to"
+    "replyingTo": "Replying to",
+    "noBookmarks": "You have no bookmarks yet"
   },
   "retweetButton": {
     "retweet": "Retweet",
@@ -152,6 +154,10 @@
       "undoRetweet": "Undo Retweet",
       "quote": "Quote Tweet"
     }
+  },
+  "sharebutton": {
+    "share": "share",
+    "bookmarks": "add to bookmarks"
   },
   "likeButton": {
     "like": "Like",

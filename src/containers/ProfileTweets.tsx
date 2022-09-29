@@ -16,6 +16,12 @@ const ProfileTweets = ({ userProps }: { userProps: LE<User> }) => {
   const userPosts = useSelector<RootState, RootState["tweets"]["userTweets"]>(
     (store) => store.tweets.userTweets
   );
+
+  const userByUsername = useSelector<
+    RootState,
+    RootState["user"]["userByUsername"]
+  >((store) => store.user.userByUsername);
+
   const handleShowMore = () => {
     return (
       !userPosts.isLoading &&
@@ -24,9 +30,10 @@ const ProfileTweets = ({ userProps }: { userProps: LE<User> }) => {
       dispatch(tweetsActions.fetchUserTweets({ ...userPosts, userId }))
     );
   };
+
   useEffect(() => {
     dispatch(
-      tweetsActions.fetchUserTweets({
+      tweetsActions.initUserTweets({
         ...({} as LE<Pagination<Tweet2>>),
         userId,
         nextPage: 1,
@@ -34,14 +41,15 @@ const ProfileTweets = ({ userProps }: { userProps: LE<User> }) => {
         init: true,
       })
     );
-  }, [userProps]);
+  }, [userProps, userByUsername]);
+
   return (
     <>
       <InfiniteList<Tweet2>
         showMore={handleShowMore}
         data={userPosts}
         itemComponent={(itemData) => (
-          <FeedSingleTweet key={itemData._id} {...itemData} />
+          <FeedSingleTweet key={`proftweet${itemData._id}`} {...itemData} />
         )}
       />
     </>

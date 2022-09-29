@@ -8,9 +8,12 @@ import {
   ThreeDots,
 } from "react-bootstrap-icons";
 import { useTranslation } from "react-i18next";
+import { useDispatch } from "react-redux";
 import styled from "styled-components";
 
 import { LinkWithLanguageQueryParam } from "../containers/LinkWithLanguageQueryParam";
+import { tweetsActions } from "../redux/reducers/tweets";
+import { AppDispatch } from "../redux/store";
 import localDateTime from "../services/localDateTime";
 import { Like } from "../types";
 import UserAvatar from "./Avatar";
@@ -79,6 +82,12 @@ const StyledButton = styled(Button)`
 
 const FeedLikesTweet = ({ tweet, user }: Like) => {
   const { t } = useTranslation();
+
+  const dispatch = useDispatch<AppDispatch>();
+
+  const onLike = () => {
+    dispatch(tweetsActions.likeDislike({ tweet: tweet._id }));
+  };
 
   return (
     <>
@@ -192,7 +201,7 @@ const FeedLikesTweet = ({ tweet, user }: Like) => {
               <div className="px-1">{tweet.stats.comments}</div>
             </StatisticOfTweet>
             <RetweetButton retweetCount={tweet.stats.retweets} />
-            <LikeButton likesCount={tweet.stats.likes} />
+            <LikeButton likesCount={tweet.stats.likes} onLike={onLike} />
             <StatisticOfTweet className="d-flex align-items-center">
               <HoverBackgroundBlue className="p-2 rounded-circle d-flex justify-content-center align-items-center">
                 <Upload size="16" />

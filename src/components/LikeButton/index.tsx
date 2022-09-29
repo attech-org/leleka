@@ -2,12 +2,13 @@ import { useState } from "react";
 import { Heart, HeartFill } from "react-bootstrap-icons";
 import { useTranslation } from "react-i18next";
 import styled from "styled-components";
+
 import "./animationLike.css";
 
 interface ILikeButton {
   //     isLiked: boolean;
   likesCount: number;
-  //     onLike: () => void;
+  onLike: () => void;
 }
 
 const bgRed = "rgb(249, 24, 128, 0.1)";
@@ -34,12 +35,14 @@ const Like = styled.div`
 
 const LikeButton: React.FC<ILikeButton> = (
   // { isLiked, likesCount, onLike }
-  { likesCount }
+  { likesCount, onLike }
 ) => {
   const [isLiked, setisLiked] = useState(false);
   const [temporaryСounter, setlikesCount] = useState(likesCount);
   const [countAnimation, setcountAnimation] = useState("static");
-  const clickLike = () => {
+  const clickLike = (e: React.FormEvent): void => {
+    e.preventDefault();
+    onLike();
     if (isLiked) {
       setisLiked(!isLiked);
       setcountAnimation("move up");
@@ -55,16 +58,14 @@ const LikeButton: React.FC<ILikeButton> = (
     }
   };
   const { t } = useTranslation();
-
   return (
     <Like>
       <IconBg
         className="m-0 p-0 rounded-circle align-items-center justify-content-center)"
         title={isLiked ? t("likeButton.unlike") : t("likeButton.like")}
       >
-        <input id="toggle-heart" type="checkbox" defaultChecked={isLiked} />
-
-        <label htmlFor="toggle-heart" onClick={() => clickLike()}>
+        <input id="toggle-heart" type="checkbox" checked={isLiked} readOnly />
+        <label htmlFor="toggle-heart" onClick={(e) => clickLike(e)}>
           {isLiked ? (
             <HeartFill className="p-0 m-0" />
           ) : (
