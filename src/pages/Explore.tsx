@@ -15,7 +15,7 @@ const ExplorePage: React.FunctionComponent = () => {
 
   ws.onmessage = (currentMessage) => {
     setMessages([
-      { dateTime: new Date(), message: currentMessage.data },
+      { dateTime: new Date(), message: currentMessage.data.toString() },
       ...messages,
     ]);
     if (messages.length > 10) {
