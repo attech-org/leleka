@@ -6,6 +6,7 @@ import { LE, User } from "../../types";
 export interface UserStore {
   authUser: LE<User>;
   userByUsername: LE<User>;
+  followedUser: LE<User>;
 }
 
 const initialState = {
@@ -53,6 +54,7 @@ const initialState = {
 const userInitialState: UserStore = {
   authUser: initialState,
   userByUsername: initialState,
+  followedUser: initialState,
 };
 interface RegisterResponse {
   user: Partial<User>;
@@ -160,6 +162,24 @@ const fetchUser = createAsyncThunk<User, string>(
   }
 );
 
+const follow = createAsyncThunk<User, string>(
+  "profile/follow",
+  async (followedUserId) => {
+    const response = await instance.post("api/followers", {
+      following: followedUserId,
+    });
+    return response.data;
+  }
+);
+
+const unfollow = createAsyncThunk<User, string>(
+  "profile/unfollow",
+  async (id) => {
+    const response = await instance.delete(`api/followers/${id}`);
+    return response.data;
+  }
+);
+
 const userSlice = createSlice({
   name: "user",
   initialState: userInitialState,
@@ -217,6 +237,7 @@ const userSlice = createSlice({
       store.authUser.isLoading = false;
       store.authUser.error = "Failed to login user";
     });
+
     builder.addCase(fetchUser.pending, (store) => {
       store.userByUsername.isLoading = true;
     });
@@ -264,6 +285,28 @@ const userSlice = createSlice({
       store.authUser.isLoading = false;
       store.authUser.error = "Failed to add avatar";
     });
+
+    builder.addCase(follow.pending, (store) => {
+      store.followedUser.isLoading = true;
+    });
+    builder.addCase(follow.fulfilled, (store) => {
+      store.followedUser.isLoading = false;
+    });
+    builder.addCase(follow.rejected, (store) => {
+      store.followedUser.isLoading = false;
+      store.followedUser.error = "Failed to fetch to follow user";
+    });
+
+    builder.addCase(unfollow.pending, (store) => {
+      store.followedUser.isLoading = true;
+    });
+    builder.addCase(unfollow.fulfilled, (store) => {
+      store.followedUser.isLoading = false;
+    });
+    builder.addCase(unfollow.rejected, (store) => {
+      store.followedUser.isLoading = false;
+      store.followedUser.error = "Failed to fetch to unfollow user";
+    });
   },
 });
 
@@ -275,6 +318,8 @@ export const userActions = {
   editProfileUser,
   addAvatarAsync,
   addBannerAsync,
+  follow,
+  unfollow,
 };
 
 export default userSlice.reducer;
