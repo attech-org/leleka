@@ -129,7 +129,9 @@
     "forgotPassword": "Забули пароль?",
     "requiredName": "Заповніть ім'я!",
     "noAccount": "Не маєте профілю?",
-    "signUp": "Зареєструйтеся"
+    "haveAccount": "Вже маєте профіль?",
+    "signUp": "Зареєструйтеся",
+    "signIn": "Увійти"
   },
   "search": {
     "placeholder": "Пошук у Твіттері"
@@ -167,5 +169,9 @@
     "placeholder": "Твiтнiть вiдповiдь",
     "tooltip": "Відповісти",
     "replyContent": "У відповідь "
+  },
+  "authorization": {
+    "mainTitle": "Будь у центрі подій",
+    "secondTitle": "Приєднуйся до Leleka сьогодні!"
   }
 }
