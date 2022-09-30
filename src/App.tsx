@@ -15,6 +15,7 @@ import MessagesPage from "./pages/Messages";
 import MorePage from "./pages/More";
 import NotificationsPage from "./pages/Notifications";
 import ProfilePage from "./pages/Profile";
+import RecommendationsPage from "./pages/RecommendationUsers";
 import Trends from "./pages/Trends";
 import Tweet from "./pages/Tweet";
 import { RootState } from "./redux/store";
@@ -150,6 +151,12 @@ const App: React.FunctionComponent = () => {
             ) : (
               <AuthorizationPage />
             )
+          }
+        />
+        <Route
+          path="/recommendationUsers"
+          element={
+            currentUserId ? <RecommendationsPage /> : <AuthorizationPage />
           }
         />
       </Routes>
