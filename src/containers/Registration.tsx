@@ -96,6 +96,10 @@ const Registration = () => {
   };
 
   const watchusername = watch("username");
+  const watchemail = watch("email");
+  const watchdateOfBirth = watch("dateOfBirth");
+  const watchpassword = watch("password");
+  const watchconfirmPassword = watch("confirmPassword");
 
   const registerForm = (
     <section className="w-50 mt-4 m-auto d-grid gap-4">
@@ -217,7 +221,22 @@ const Registration = () => {
           <Button
             className="fw-700 w-100 d-block my-4 rounded-5 py-2 border border-gray-400"
             type="submit"
-            variant="secondary"
+            variant={
+              watchusername &&
+              watchemail &&
+              watchdateOfBirth &&
+              watchpassword &&
+              watchconfirmPassword &&
+              !(
+                errors.username?.message ||
+                errors.email?.message ||
+                errors.dateOfBirth?.message ||
+                errors.password?.message ||
+                errors.confirmPassword?.message
+              )
+                ? "primary"
+                : "secondary"
+            }
           >
             {t("validation:fields.register")}
           </Button>
