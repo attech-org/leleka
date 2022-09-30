@@ -6,8 +6,10 @@ import { useDispatch, useSelector } from "react-redux";
 import styled, { css } from "styled-components";
 import * as yup from "yup";
 
+import icon_1 from "../images/icon_1.png";
 import { userActions } from "../redux/reducers/user";
 import { AppDispatch, RootState } from "../redux/store";
+// import { LinkWithLanguageQueryParam } from "./LinkWithLanguageQueryParam";
 import ModalUniversal from "./ModalUniversal";
 
 // export const windowTitle = "Створіть свій профіль";
@@ -67,6 +69,12 @@ const schema = yup.object().shape({
     ),
 });
 
+const logo = (
+  <header className="d-flex justify-content-center align-items-center w-100">
+    <img src={icon_1} width="50px" alt="Logo" />
+  </header>
+);
+
 const Registration = () => {
   const dispatch = useDispatch<AppDispatch>();
   const { t } = useTranslation();
@@ -77,7 +85,6 @@ const Registration = () => {
     (store) => store.user.authUser.username
   );
 
-  const registrationButtonName = t("validation:fields.buttonName");
   const registrationTitle = t("validation:fields.createProfile");
 
   const {
@@ -96,6 +103,10 @@ const Registration = () => {
   };
 
   const watchusername = watch("username");
+  const watchemail = watch("email");
+  const watchdateOfBirth = watch("dateOfBirth");
+  const watchpassword = watch("password");
+  const watchconfirmPassword = watch("confirmPassword");
 
   const registerForm = (
     <section className="w-50 mt-4 m-auto d-grid gap-4">
@@ -217,18 +228,52 @@ const Registration = () => {
           <Button
             className="fw-700 w-100 d-block my-4 rounded-5 py-2 border border-gray-400"
             type="submit"
-            variant="secondary"
+            variant={
+              watchusername &&
+              watchemail &&
+              watchdateOfBirth &&
+              watchpassword &&
+              watchconfirmPassword &&
+              !(
+                errors.username?.message ||
+                errors.email?.message ||
+                errors.dateOfBirth?.message ||
+                errors.password?.message ||
+                errors.confirmPassword?.message
+              )
+                ? "primary"
+                : "secondary"
+            }
           >
             {t("validation:fields.register")}
           </Button>
+
+          {/* <div>
+            <span className="text-secondary">{t("login.haveAccount")}</span>
+            <LinkWithLanguageQueryParam
+              className="ms-1 text-decoration-none"
+              to="/authorization"
+            >
+              {t("login.signIn")}
+            </LinkWithLanguageQueryParam>
+          </div> */}
         </div>
       </Form>
     </section>
   );
 
+  const registrationButton = (
+    <div className="d-grid w-100">
+      <div className="rounded-5 p-3 fw-semibold text-center bg-primary text-white">
+        {t("validation:fields.buttonName")}
+      </div>
+    </div>
+  );
+
   return (
     <ModalUniversal
-      button={registrationButtonName}
+      button={registrationButton}
+      header={logo}
       title={currentUserId ? `Welcome, ${currentUserName}` : registrationTitle}
       content={currentUserId ? null : registerForm}
     />

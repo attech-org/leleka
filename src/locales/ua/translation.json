@@ -59,7 +59,7 @@
     "fields": {
       "liked": "вподобав(ла)",
       "retweeted": "ретвітнув(ла)",
-      "yourTweets": "ваших твітів:"
+      "yourTweets": "ваш твіт"
     },
     "links": {
       "showAll": "Показати всі"
@@ -129,10 +129,12 @@
     "forgotPassword": "Забули пароль?",
     "requiredName": "Заповніть ім'я!",
     "noAccount": "Не маєте профілю?",
-    "signUp": "Зареєструйтеся"
+    "haveAccount": "Вже маєте профіль?",
+    "signUp": "Зареєструйтеся",
+    "signIn": "Увійти"
   },
   "search": {
-    "placeholder": "Пошук у Твіттері"
+    "placeholder": "Пошук у Лелеці"
   },
   "recommendations": {
     "windowTitle": "Рекомендовані"
@@ -155,6 +157,10 @@
       "quote": "Цитувати Твіт"
     }
   },
+  "sharebutton": {
+    "share": "Поділитися",
+    "bookmarks": "Додати у закладки"
+  },
   "likeButton": {
     "like": "Вподобати",
     "unlike": "Видалити вподобання"
@@ -163,5 +169,9 @@
     "placeholder": "Твiтнiть вiдповiдь",
     "tooltip": "Відповісти",
     "replyContent": "У відповідь "
+  },
+  "authorization": {
+    "mainTitle": "Будь у центрі подій",
+    "secondTitle": "Приєднуйся до Leleka сьогодні!"
   }
 }

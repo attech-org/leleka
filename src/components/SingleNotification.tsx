@@ -1,7 +1,15 @@
-import { Image } from "react-bootstrap";
+import { useEffect } from "react";
+import { Nav } from "react-bootstrap";
 import { HeartFill, ArrowRepeat } from "react-bootstrap-icons";
 import { useTranslation } from "react-i18next";
+import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
+
+import { LinkWithLanguageQueryParam } from "../containers/LinkWithLanguageQueryParam";
+import { tweetsActions } from "../redux/reducers/tweets";
+import { AppDispatch, RootState } from "../redux/store";
+import { Tweet2 } from "../types";
+import UserAvatar from "./Avatar";
 
 const StyledSection = styled.section`
   transition: 0.3s;
@@ -10,29 +18,43 @@ const StyledSection = styled.section`
   }
 `;
 
-const StyledImage = styled(Image)`
-  width: 2.5rem;
-  height: 2.5rem;
+const UnderlineHover = styled(Nav.Link)<{ eventkey: string }>`
+  transition-duration: 0.2s;
+  text-decoration: none;
 `;
 
-export interface SingleNotificationInterface {
-  id?: string;
-  username: string;
-  userlogo: string;
-  content: string;
-  mentionedTweets: number;
-  retweet?: boolean;
-}
+const retweet = false;
 
-const SingleNotification = ({
-  id,
-  username,
-  userlogo,
-  content,
-  mentionedTweets,
-  retweet,
-}: SingleNotificationInterface) => {
+export const Usernames = ({ username }: { username: string }) => {
+  return (
+    <>
+      <span className="fw-bold"> </span>
+      <UnderlineHover
+        as={LinkWithLanguageQueryParam}
+        to={`/${username}`}
+        className="fw-600 pe-1 fw-bold text-dark"
+        eventkey={username}
+      >
+        {`${username}, `}
+      </UnderlineHover>
+    </>
+  );
+};
+
+const SingleNotification = ({ _id, content }: Tweet2) => {
   const { t } = useTranslation();
+
+  const dispatch = useDispatch<AppDispatch>();
+
+  const likes = useSelector<RootState, RootState["tweets"]["tweetLikes"]>(
+    (store) => store.tweets.tweetLikes
+  );
+
+  const tweetId = _id;
+
+  useEffect(() => {
+    dispatch(tweetsActions.fetchTweetLikes({ ...likes, tweetId }));
+  }, [_id]);
 
   return (
     <div>
@@ -51,26 +73,30 @@ const SingleNotification = ({
           <div>
             <div className="d-flex justify-content-start">
               <div className="pb-3 pe-1">
-                <StyledImage roundedCircle fluid src={userlogo} />
+                {likes.docs.map((item) => (
+                  <span className="me-1" key={item._id}>
+                    <UserAvatar user={item.user} key={item._id} />
+                  </span>
+                ))}
               </div>
             </div>
-            <div className="pb-3 text-start" id={id}>
-              <span className="fw-bold">{username}</span>{" "}
+            <div className="pb-3 text-start" id={_id}>
+              {likes.docs.map((item) =>
+                item.tweet._id === _id ? (
+                  <Usernames username={item.user.username} key={item._id} />
+                ) : null
+              )}
               <span>
                 {retweet
                   ? t("notifications.fields.retweeted")
                   : t("notifications.fields.liked")}{" "}
                 {t("notifications.fields.yourTweets")}
               </span>{" "}
-              <span>{mentionedTweets}</span>
             </div>
             <div className="pb-3 text-start text-secondary">
-              <span>{content}</span>
-            </div>
-            <div className="pb-3 text-start text-secondary">
-              <a href="#" className="text-decoration-none py-1 link-info">
-                {t("notifications.links.showAll")}
-              </a>
+              <Nav.Link as={LinkWithLanguageQueryParam} to={`/tweet/${_id}`}>
+                <div dangerouslySetInnerHTML={{ __html: content || "" }} />
+              </Nav.Link>
             </div>
           </div>
         </div>

@@ -1,4 +1,5 @@
 import { yupResolver } from "@hookform/resolvers/yup";
+import { useState } from "react";
 import { Form, Button, FloatingLabel, Container } from "react-bootstrap";
 import { ChevronRight } from "react-bootstrap-icons";
 import { useForm } from "react-hook-form";
@@ -108,14 +109,33 @@ const EditProfileForm = () => {
     (store) => store.user.authUser._id
   );
 
+  const [avatarImage, setAvatarImage] = useState<FormData>();
+  const [bannerImage, setBannerImage] = useState<FormData>();
+
+  const uploadedAvatar = (avatarImageProps: FormData) => {
+    setAvatarImage(avatarImageProps);
+  };
+  const uploadedBanner = (bannerImageProps: FormData) => {
+    setBannerImage(bannerImageProps);
+  };
+
   const submitForm = (data: IFormInput) => {
     dispatch(userActions.editProfileUser({ ...data, userId }));
+    if (avatarImage) {
+      dispatch(userActions.addAvatarAsync({ avatarImage, userId }));
+    }
+    if (bannerImage) {
+      // dispatch(userActions.addBannerAsync({ bannerImage, userId }));
+    }
   };
 
   const ProfileForm = (
     <Container className="p-0">
-      <Banner isEditBanner />
-
+      <Banner
+        isEditBanner
+        uploadedAvatar={(formData: FormData) => uploadedAvatar(formData)}
+        uploadedBanner={(formData: FormData) => uploadedBanner(formData)}
+      />
       <Form onSubmit={handleSubmit(submitForm)}>
         {/*----NameUser input -------*/}
         <FloatingLabel
