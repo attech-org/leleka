@@ -44,26 +44,74 @@ const App: React.FunctionComponent = () => {
   return (
     <div>
       <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/about" element={<AboutPage />} />
-        <Route path="/explore" element={<ExplorePage />} />
+        <Route
+          path="/"
+          element={currentUserId ? <HomePage /> : <AuthorizationPage />}
+        />
+        <Route
+          path="/about"
+          element={currentUserId ? <AboutPage /> : <AuthorizationPage />}
+        />
+        <Route
+          path="/explore"
+          element={currentUserId ? <ExplorePage /> : <AuthorizationPage />}
+        />
         <Route
           path="/notifications"
-          element={<NotificationsPage tabKey="all" />}
+          element={
+            currentUserId ? (
+              <NotificationsPage tabKey="all" />
+            ) : (
+              <AuthorizationPage />
+            )
+          }
         />
         <Route
           path="/notifications/mentions"
-          element={<NotificationsPage tabKey="mentions" />}
+          element={
+            currentUserId ? (
+              <NotificationsPage tabKey="mentions" />
+            ) : (
+              <AuthorizationPage />
+            )
+          }
         />
-        <Route path="/messages" element={<MessagesPage />} />
-        <Route path="/bookmarks" element={<BookmarksPage />} />
-        <Route path="/lists" element={<ListsPage />} />
-        <Route path="/more" element={<MorePage />} />
-        <Route path="/authorization" element={<AuthorizationPage />} />
-        <Route path="/followers" element={<Followers />} />
-        <Route path="/following" element={<Following />} />
-        <Route path="/trends" element={<Trends />} />
-        <Route path="/tweet/:id" element={<Tweet />} />
+        <Route
+          path="/messages"
+          element={currentUserId ? <MessagesPage /> : <AuthorizationPage />}
+        />
+        <Route
+          path="/bookmarks"
+          element={currentUserId ? <BookmarksPage /> : <AuthorizationPage />}
+        />
+        <Route
+          path="/lists"
+          element={currentUserId ? <ListsPage /> : <AuthorizationPage />}
+        />
+        <Route
+          path="/more"
+          element={currentUserId ? <MorePage /> : <AuthorizationPage />}
+        />
+        <Route
+          path="/authorization"
+          element={currentUserId ? <HomePage /> : <AuthorizationPage />}
+        />
+        <Route
+          path="/followers"
+          element={currentUserId ? <Followers /> : <AuthorizationPage />}
+        />
+        <Route
+          path="/following"
+          element={currentUserId ? <Following /> : <AuthorizationPage />}
+        />
+        <Route
+          path="/trends"
+          element={currentUserId ? <Trends /> : <AuthorizationPage />}
+        />
+        <Route
+          path="/tweet/:id"
+          element={currentUserId ? <Tweet /> : <AuthorizationPage />}
+        />
         <Route
           path="/:id/with_replies"
           element={
@@ -104,9 +152,6 @@ const App: React.FunctionComponent = () => {
             )
           }
         />
-        <Route path="/:id/media" element={<ProfilePage tabKey="media" />} />
-        <Route path="/:id/likes" element={<ProfilePage tabKey="likes" />} />
-        <Route path="/:id" element={<ProfilePage tabKey="tweets" />} />
       </Routes>
     </div>
   );
