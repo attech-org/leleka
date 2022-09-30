@@ -2,7 +2,9 @@ import { Container, Button, Image } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
 import styled from "styled-components";
 
-const StyledLink = styled.a`
+import { LinkWithLanguageQueryParam } from "./LinkWithLanguageQueryParam";
+
+const StyledLink = styled(LinkWithLanguageQueryParam)`
   transition: 0.3s;
   :hover {
     background-color: rgba(0, 0, 0, 0.03);
@@ -22,7 +24,7 @@ const Recommendations = () => {
         {t("recommendations.windowTitle")}
       </div>
       <StyledLink
-        href="#"
+        to="#"
         className="text-decoration-none text-reset d-flex py-2 px-3 align-items-center justify-content-between"
       >
         <div className="d-flex align-items-center flex-shrink-0">
@@ -49,7 +51,7 @@ const Recommendations = () => {
         </div>
       </StyledLink>
       <StyledLink
-        href="#"
+        to="#"
         className="text-decoration-none text-reset d-flex py-2 px-3 align-items-center justify-content-between"
       >
         <div className="d-flex align-items-center flex-shrink-0">
@@ -76,7 +78,7 @@ const Recommendations = () => {
         </div>
       </StyledLink>
       <StyledLink
-        href="#"
+        to="/recommendationUsers"
         className="text-decoration-none text-reset d-flex flex-row py-2"
       >
         <Container className="py-2 px-4">
