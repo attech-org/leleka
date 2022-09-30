@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 import instance from "../../services/api";
+import ws from "../../services/getWebSocket";
 import { LE, User } from "../../types";
 
 export interface UserStore {
@@ -188,6 +189,9 @@ const userSlice = createSlice({
       state.authUser.error = "";
     },
     resetUserData: () => {
+      if (ws.readyState == ws.OPEN) {
+        ws.send(JSON.stringify({ event: "disconnect" }));
+      }
       return userInitialState;
     },
   },
@@ -199,6 +203,10 @@ const userSlice = createSlice({
       store.authUser.error = undefined;
       localStorage.setItem("accessToken", payload.accessToken);
       localStorage.setItem("refreshToken", payload.refreshToken);
+      // send to WebSocket
+      if (ws.readyState == ws.OPEN) {
+        ws.send(JSON.stringify({ event: "connect", userid: payload.user._id }));
+      }
       Object.assign(store.authUser, {
         ...userInitialState.authUser,
         ...payload.user,
@@ -222,6 +230,10 @@ const userSlice = createSlice({
       store.authUser.error = undefined;
       localStorage.setItem("accessToken", payload.accessToken);
       localStorage.setItem("refreshToken", payload.refreshToken);
+      // send to WebSocket
+      if (ws.readyState == ws.OPEN) {
+        ws.send(JSON.stringify({ event: "connect", userid: payload.user._id }));
+      }
       Object.assign(store.authUser, {
         ...userInitialState.authUser,
         ...payload.user,
