@@ -12,6 +12,12 @@ const StickySearch = styled.div`
   top: 1.5%;
 `;
 
+const FixMenu = styled.div`
+  position: fixed;
+  width: 24.5%;
+  padding-top: 0.5%;
+`;
+
 export const RightPanel = () => {
   const location = useLocation();
 
@@ -20,8 +26,10 @@ export const RightPanel = () => {
       <StickySearch>
         <AsyncSearch />
       </StickySearch>
-      {!location.pathname.includes("trends") && <Trends />}
-      <Recommendations />
+      <FixMenu>
+        {!location.pathname.includes("trends") && <Trends />}
+        <Recommendations />
+      </FixMenu>
     </Wrapper>
   );
 };
