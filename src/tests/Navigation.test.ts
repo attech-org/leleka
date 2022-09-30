@@ -68,9 +68,4 @@ describe("NavigationBar", () => {
     userEvent.click(ProfilePageLink);
     expect(screen.getByTestId("ProfilePage")).toBeInTheDocument();
   });
-
-  test("not found page", () => {
-    render(RenderWithRoutes(<NavigationBar />, "/asd"));
-    expect(screen.getByTestId("NotFoundPage")).toBeInTheDocument();
-  });
 });
