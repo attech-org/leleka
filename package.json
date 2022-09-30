@@ -29,11 +29,11 @@
     },
     {
       "name": "Mykyta Paukov",
-      "email": "@gmail.com"
+      "email": "nikpaukov8214@gmail.com"
     },
     {
       "name": "Andrey Kaenko",
-      "email": "@gmail.com"
+      "email": "kaenkoa@gmail.com"
     },
     {
       "name": "Dmytro Tykhostup",
@@ -41,7 +41,7 @@
     },
     {
       "name": "Maxim Fomin",
-      "email": "@gmail.com"
+      "email": "fomin.max.13@gmail.com"
     },
     {
       "name": "Vladislav Pokhyl",
@@ -54,6 +54,10 @@
     {
       "name": "David Korystov",
       "email": "david.korystov@gmail.com"
+    },
+    {
+      "name": "Maxim Tretyakov",
+      "email": "1tretmax1@gmail.com"
     }
   ],
   "dependencies": {
