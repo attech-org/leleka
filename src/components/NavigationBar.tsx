@@ -39,13 +39,21 @@ const NavigationBar = () => {
     <StyledNav className="d-flex flex-column " defaultActiveKey="/">
       <Nav.Item className="d-flex align-items-center ps-2 pb-2 pt-3">
         <House size={20} className="my-2" />
-        <Nav.Link as={LinkWithLanguageQueryParam} to="/">
+        <Nav.Link
+          data-testId="HomePageLink"
+          as={LinkWithLanguageQueryParam}
+          to="/"
+        >
           <StyledSpan className="fs-5">{t("navigationBar.home")}</StyledSpan>
         </Nav.Link>
       </Nav.Item>
       <Nav.Item className="d-flex align-items-center ps-2 py-2">
         <Hash size={20} className="my-2" />
-        <Nav.Link as={LinkWithLanguageQueryParam} to="/explore">
+        <Nav.Link
+          data-testId="ExplorePageLink"
+          as={LinkWithLanguageQueryParam}
+          to="/explore"
+        >
           <StyledSpan className="fs-5">{t("navigationBar.explore")}</StyledSpan>
         </Nav.Link>
       </Nav.Item>
@@ -59,7 +67,11 @@ const NavigationBar = () => {
       </Nav.Item>
       <Nav.Item className="d-flex align-items-center ps-2 py-2">
         <Envelope size={20} className="my-2" />
-        <Nav.Link as={LinkWithLanguageQueryParam} to="/messages">
+        <Nav.Link
+          data-testId="MessagesPageLink"
+          as={LinkWithLanguageQueryParam}
+          to="/messages"
+        >
           <StyledSpan className="fs-5">
             {t("navigationBar.messages")}
           </StyledSpan>
@@ -67,7 +79,11 @@ const NavigationBar = () => {
       </Nav.Item>
       <Nav.Item className="d-flex align-items-center ps-2 py-2">
         <Bookmark size={20} className="my-2" />
-        <Nav.Link as={LinkWithLanguageQueryParam} to="/bookmarks">
+        <Nav.Link
+          data-testId="BookmarksPageLink"
+          as={LinkWithLanguageQueryParam}
+          to="/bookmarks"
+        >
           <StyledSpan className="fs-5">
             {t("navigationBar.bookmarks")}
           </StyledSpan>
@@ -75,13 +91,18 @@ const NavigationBar = () => {
       </Nav.Item>
       <Nav.Item className="d-flex align-items-center ps-2 py-2">
         <CardText size={20} className="my-2" />
-        <Nav.Link as={LinkWithLanguageQueryParam} to="/lists">
+        <Nav.Link
+          data-testId="ListsPageLink"
+          as={LinkWithLanguageQueryParam}
+          to="/lists"
+        >
           <StyledSpan className="fs-5">{t("navigationBar.lists")}</StyledSpan>
         </Nav.Link>
       </Nav.Item>
       <Nav.Item className="d-flex align-items-center ps-2 py-2">
         <Person size={20} className="my-2" />
         <Nav.Link
+          data-testId="ProfilePageLink"
           as={LinkWithLanguageQueryParam}
           to={`/${user.authUser.username}`}
         >
@@ -90,7 +111,11 @@ const NavigationBar = () => {
       </Nav.Item>
       <Nav.Item className="d-flex align-items-center ps-2 pt-2 pb-3">
         <ChatDots size={20} className="my-2" />
-        <Nav.Link as={LinkWithLanguageQueryParam} to="/more">
+        <Nav.Link
+          data-testId="MorePageLink"
+          as={LinkWithLanguageQueryParam}
+          to="/more"
+        >
           <StyledSpan className="fs-5">{t("navigationBar.more")}</StyledSpan>
         </Nav.Link>
       </Nav.Item>

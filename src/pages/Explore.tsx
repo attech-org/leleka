@@ -28,7 +28,7 @@ const ExplorePage: React.FunctionComponent = () => {
 
   const { t } = useTranslation();
   return (
-    <Layout title={t("pageTitles:explorePage")}>
+    <Layout data-testId="ExplorePage" title={t("pageTitles:explorePage")}>
       Explore
       <ul>
         {messages.map((currentMessage, index) => (

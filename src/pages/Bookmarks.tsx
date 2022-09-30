@@ -6,7 +6,7 @@ import Layout from "../containers/Layout";
 const BookmarksPage: React.FunctionComponent = () => {
   const { t } = useTranslation();
   return (
-    <Layout title={t("pageTitles:bookmarksPage")}>
+    <Layout data-testId="BookmarksPage" title={t("pageTitles:bookmarksPage")}>
       <BookmarksList />
     </Layout>
   );

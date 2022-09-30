@@ -78,7 +78,7 @@ const ProfilePage = ({ tabKey }: TabKeyProps) => {
   ];
 
   return authUser._id ? (
-    <Layout title={t("pageTitles:profilePage")}>
+    <Layout data-testId="ProfilePage" title={t("pageTitles:profilePage")}>
       <div className="border-start border-end">
         <div className="d-flex justify-content-between p-2 align-items-center justify-content-center">
           <h1 className="fs-5 fw-bold ps-3">{t("profile.title")}</h1>

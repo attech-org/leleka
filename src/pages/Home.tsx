@@ -36,7 +36,7 @@ const HomePage: React.FunctionComponent = () => {
   const { t } = useTranslation();
 
   return (
-    <Layout title={t("pageTitles:homePage")}>
+    <Layout data-testId="HomePage" title={t("pageTitles:homePage")}>
       <div className="border">
         <StyledNavbar sticky="top" expand="false" variant="light" bg="white">
           <StyledDiv>
