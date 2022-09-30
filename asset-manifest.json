@@ -1,14 +1,15 @@
 {
   "files": {
     "main.css": "/leleka/static/css/main.c8d3752a.css",
-    "main.js": "/leleka/static/js/main.25fa2e9e.js",
+    "main.js": "/leleka/static/js/main.e3aa385f.js",
+    "static/media/bg.png": "/leleka/static/media/bg.36dbbe347e30e4be16a2.png",
     "service-worker.js": "/leleka/service-worker.js",
     "index.html": "/leleka/index.html",
     "main.c8d3752a.css.map": "/leleka/static/css/main.c8d3752a.css.map",
-    "main.25fa2e9e.js.map": "/leleka/static/js/main.25fa2e9e.js.map"
+    "main.e3aa385f.js.map": "/leleka/static/js/main.e3aa385f.js.map"
   },
   "entrypoints": [
     "static/css/main.c8d3752a.css",
-    "static/js/main.25fa2e9e.js"
+    "static/js/main.e3aa385f.js"
   ]
 }
