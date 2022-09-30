@@ -7,11 +7,6 @@ import Trends from "../containers/Trends";
 
 const Wrapper = styled.div``;
 
-const StickySearch = styled.div`
-  position: sticky;
-  top: 1.5%;
-`;
-
 const FixMenu = styled.div`
   position: fixed;
   width: 24.5%;
@@ -23,10 +18,8 @@ export const RightPanel = () => {
 
   return (
     <Wrapper className="col-xl-4 col-lg-4">
-      <StickySearch>
-        <AsyncSearch />
-      </StickySearch>
       <FixMenu>
+        <AsyncSearch />
         {!location.pathname.includes("trends") && <Trends />}
         <Recommendations />
       </FixMenu>
