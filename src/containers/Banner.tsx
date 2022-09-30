@@ -3,11 +3,12 @@ import { useEffect, useState } from "react";
 import { Button, OverlayTrigger, Tooltip } from "react-bootstrap";
 import { XLg, Camera } from "react-bootstrap-icons";
 import { useTranslation } from "react-i18next";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 
 import EditProfileForm from "../components/EditProfileForm";
-import { RootState } from "../redux/store";
+import { userActions } from "../redux/reducers/user";
+import { AppDispatch, RootState } from "../redux/store";
 
 const Layout = styled.div`
   position: relative;
@@ -71,6 +72,10 @@ const AddLogoDiv = styled(AddPhotoDiv)`
 const StyledInput = styled.input`
   width: 42px;
   height: 42px;
+`;
+
+const StyledButton = styled(Button)`
+  width: 120px;
 `;
 
 interface BannerProps {
@@ -166,6 +171,23 @@ const Banner = ({
       setBackgroundColor("rgba(181,192,200,1)");
     }
   }, [avatar]);
+
+  const dispatch = useDispatch<AppDispatch>();
+
+  const currentUser = useSelector<
+    RootState,
+    RootState["user"]["userByUsername"]
+  >((store) => store.user.userByUsername);
+
+  const handleFollowClick = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (currentUser.isFollowed) {
+      await dispatch(userActions.unfollow(currentUser._id));
+    } else {
+      await dispatch(userActions.follow(currentUser._id));
+    }
+    dispatch(userActions.fetchUser(currentUser.username));
+  };
 
   return (
     <>
@@ -279,12 +301,26 @@ const Banner = ({
           )}
         </LogoDiv>
         {userByUsername?._id !== authUser._id && userByUsername ? (
-          <Button
-            className="rounded-pill fw-bold px-2 mt-3 me-3"
+          <StyledButton
+            className="btn rounded-pill fw-bold px-2 mt-3 me-3"
+            type="button"
+            disabled={currentUser.isLoading}
             variant="dark"
+            onClick={(e: React.FormEvent) => handleFollowClick(e)}
           >
-            {t("common.follow")}
-          </Button>
+            {currentUser.isLoading ? (
+              <span
+                className="spinner-border spinner-border-sm"
+                role="status"
+                aria-hidden="true"
+              />
+            ) : (
+              ""
+            )}
+            {currentUser.isFollowed
+              ? t("common.following")
+              : t("common.follow")}
+          </StyledButton>
         ) : (
           !isEditBanner && <EditProfileForm />
         )}

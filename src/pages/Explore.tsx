@@ -13,11 +13,9 @@ interface InfoMessage {
 const ExplorePage: React.FunctionComponent = () => {
   const [messages, setMessages] = useState<InfoMessage[]>([]);
 
-  ws.onopen = () =>
-    setMessages([{ dateTime: new Date(), message: "connected" }, ...messages]);
   ws.onmessage = (currentMessage) => {
     setMessages([
-      { dateTime: new Date(), message: currentMessage.data },
+      { dateTime: new Date(), message: currentMessage.data.toString() },
       ...messages,
     ]);
     if (messages.length > 10) {
@@ -31,8 +29,8 @@ const ExplorePage: React.FunctionComponent = () => {
     <Layout title={t("pageTitles:explorePage")}>
       Explore
       <ul>
-        {messages.map((currentMessage, index) => (
-          <li key={index}>
+        {messages.map((currentMessage) => (
+          <li key={`ws ${currentMessage.dateTime.getTime()}`}>
             <strong>{localDateTime(currentMessage.dateTime)}</strong>
             {currentMessage.message}
           </li>

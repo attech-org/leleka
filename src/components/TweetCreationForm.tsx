@@ -106,6 +106,7 @@ const TweetCreationForm: React.FC<TweetCreationFormProps> = ({ repliedId }) => {
         <div className="flex-grow-1 ms-2">
           <Form.Control
             as="textarea"
+            style={{ resize: "none", paddingLeft: "8px" }}
             plaintext
             placeholder={
               repliedId

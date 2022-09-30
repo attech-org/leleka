@@ -3,18 +3,15 @@ import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 
 import LanguageSwitcher from "../containers/LanguageSwitcher";
-import LoginForm from "../containers/LoginForm";
-import Registration from "../containers/Registration";
 import { userActions } from "../redux/reducers/user";
 import { AppDispatch, RootState } from "../redux/store";
 import NavigationBar from "./NavigationBar";
 
 const Wrapper = styled.div``;
 
-const FixMenu = styled.div`
-  position: fixed;
-  width: 13%;
-  padding-top: 0.5%;
+const Sticky = styled.div`
+  position: sticky;
+  top: 1.5%;
 `;
 
 export const LeftPanel = () => {
@@ -25,12 +22,9 @@ export const LeftPanel = () => {
 
   return (
     <Wrapper className="col-xl-2 col-lg-2 col-md-1 col-sm-1 col-12">
-      <FixMenu>
+      <Sticky>
         <LanguageSwitcher />
         <NavigationBar />
-
-        <LoginForm />
-        <Registration />
 
         {!currentUserId ? (
           <span />
@@ -42,7 +36,7 @@ export const LeftPanel = () => {
             logout
           </Button>
         )}
-      </FixMenu>
+      </Sticky>
     </Wrapper>
   );
 };

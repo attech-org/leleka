@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { useTranslation } from "react-i18next";
+import { useSelector } from "react-redux";
 import { Routes, Route, useSearchParams } from "react-router-dom";
 
 import AboutPage from "./pages/About";
@@ -14,9 +15,9 @@ import MessagesPage from "./pages/Messages";
 import MorePage from "./pages/More";
 import NotificationsPage from "./pages/Notifications";
 import ProfilePage from "./pages/Profile";
-import RecommendationsPage from "./pages/RecommendationUsers";
 import Trends from "./pages/Trends";
 import Tweet from "./pages/Tweet";
+import { RootState } from "./redux/store";
 
 const App: React.FunctionComponent = () => {
   const { i18n } = useTranslation();
@@ -35,6 +36,10 @@ const App: React.FunctionComponent = () => {
       i18n.changeLanguage(lang);
     }
   }, [searchParams]);
+
+  const currentUserId = useSelector<RootState>(
+    (store) => store.user.authUser._id
+  );
 
   return (
     <div>
@@ -61,17 +66,47 @@ const App: React.FunctionComponent = () => {
         <Route path="/tweet/:id" element={<Tweet />} />
         <Route
           path="/:id/with_replies"
-          element={<ProfilePage tabKey="tweets-with-replies" />}
+          element={
+            currentUserId ? (
+              <ProfilePage tabKey="tweets-with-replies" />
+            ) : (
+              <AuthorizationPage />
+            )
+          }
+        />
+        <Route
+          path="/:id/media"
+          element={
+            currentUserId ? (
+              <ProfilePage tabKey="media" />
+            ) : (
+              <AuthorizationPage />
+            )
+          }
+        />
+        <Route
+          path="/:id/likes"
+          element={
+            currentUserId ? (
+              <ProfilePage tabKey="likes" />
+            ) : (
+              <AuthorizationPage />
+            )
+          }
+        />
+        <Route
+          path="/:id"
+          element={
+            currentUserId ? (
+              <ProfilePage tabKey="tweets" />
+            ) : (
+              <AuthorizationPage />
+            )
+          }
         />
         <Route path="/:id/media" element={<ProfilePage tabKey="media" />} />
         <Route path="/:id/likes" element={<ProfilePage tabKey="likes" />} />
-        <Route path="/more" element={<MorePage />} />
-        <Route path="/authorization" element={<AuthorizationPage />} />
-        <Route path="/followers" element={<Followers />} />
-        <Route path="/following" element={<Following />} />
-        <Route path="/trends" element={<Trends />} />
-        <Route path="/tweet/:id" element={<Tweet />} />
-        <Route path="/recommendationUsers" element={<RecommendationsPage />} />
+        <Route path="/:id" element={<ProfilePage tabKey="tweets" />} />
       </Routes>
     </div>
   );

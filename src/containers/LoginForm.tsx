@@ -1,6 +1,5 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Container, Form, Button } from "react-bootstrap";
-import { Apple, Google } from "react-bootstrap-icons";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
@@ -9,7 +8,7 @@ import * as yup from "yup";
 import icon_1 from "../images/icon_1.png";
 import { userActions } from "../redux/reducers/user";
 import { AppDispatch, RootState } from "../redux/store";
-import { LinkWithLanguageQueryParam } from "./LinkWithLanguageQueryParam";
+// import { LinkWithLanguageQueryParam } from "./LinkWithLanguageQueryParam";
 import ModalUniversal from "./ModalUniversal";
 
 interface MyForm {
@@ -61,40 +60,22 @@ const LoginForm = () => {
     </header>
   );
 
+  const loginButton = (
+    <div className="d-grid w-100">
+      <div className="rounded-5 p-3 fw-semibold text-center bg-light border text-primary">
+        {t("login.loginButton")}
+      </div>
+    </div>
+  );
+
   const LoginFormContainer = (
     <Container className="rounded-4 w-50 p-2">
-      <section className="mt-4 m-auto d-grid gap-4">
+      <section className="m-auto d-grid gap-4">
         <h1 className="text-center text-nowrap fs-2 fw-bold">
           {t("login.loginTitle")}
         </h1>
 
         <Form onSubmit={handleSubmit(submitForm)} className="d-grid gap-2">
-          <Button
-            variant="light"
-            className="d-flex justify-content-center align-items-center fw-500 w-100 d-block mb-3 rounded-5 py-2 border border-gray-400"
-          >
-            <Google className="me-2" />
-            <a className="text-decoration-none text-black" href="#">
-              {t("login.signGoogle")}
-            </a>
-          </Button>
-
-          <Button
-            variant="light"
-            className=" d-flex justify-content-center align-items-center  fw-500 w-100 d-block mb-3 rounded-5 py-2 border  border-gray-400"
-          >
-            <Apple className="me-2" />
-            <a className="text-decoration-none text-black" href="#">
-              {t("login.signApple")}
-            </a>
-          </Button>
-
-          <div className="d-flex justify-content-between align-items-center">
-            <div className="bg-secondary border-bottom border-secondary w-50" />
-            <div className="fs-6 text-secondary mx-2">{t("login.or")}</div>
-            <div className="bg-secondary border-bottom border-secondary w-50" />
-          </div>
-
           <div className="form-floating mt-3">
             <input
               {...register("username")}
@@ -142,13 +123,7 @@ const LoginForm = () => {
             {t("login.nextButton")}
           </Button>
 
-          <Button
-            variant="light"
-            className="fw-700 w-100 d-block mb-4 rounded-5 py-2 border border-gray-400"
-          >
-            {t("login.forgotPassword")}
-          </Button>
-          <div>
+          {/* <div>
             <span className="text-secondary">{t("login.noAccount")}</span>
             <LinkWithLanguageQueryParam
               className="ms-1 text-decoration-none"
@@ -156,7 +131,7 @@ const LoginForm = () => {
             >
               {t("login.signUp")}
             </LinkWithLanguageQueryParam>
-          </div>
+          </div> */}
         </Form>
       </section>
     </Container>
@@ -164,7 +139,7 @@ const LoginForm = () => {
 
   return (
     <ModalUniversal
-      button={t("login.loginButton")}
+      button={loginButton}
       header={logo}
       title={currentUserId ? `Welcome, ${currentUserName}` : ""}
       content={currentUserId ? null : LoginFormContainer}

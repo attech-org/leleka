@@ -129,10 +129,12 @@
     "forgotPassword": "Forgot password?",
     "requiredName": "Name is required!",
     "noAccount": "Don't have an account?",
-    "signUp": "Sign up"
+    "haveAccount": "Have an account?",
+    "signUp": "Sign up",
+    "signIn": "Sign in"
   },
   "search": {
-    "placeholder": "Search Twitter"
+    "placeholder": "Search Leleka"
   },
   "recommendations": {
     "windowTitle": "Who to follow"
@@ -167,5 +169,9 @@
     "placeholder": "Tweet your reply",
     "tooltip": "Reply",
     "replyContent": "Replying to "
+  },
+  "authorization": {
+    "mainTitle": "Happening now",
+    "secondTitle": "Join Leleka today!"
   }
 }
