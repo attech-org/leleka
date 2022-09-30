@@ -3,8 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 
 import LanguageSwitcher from "../containers/LanguageSwitcher";
-import LoginForm from "../containers/LoginForm";
-import Registration from "../containers/Registration";
 import { userActions } from "../redux/reducers/user";
 import { AppDispatch, RootState } from "../redux/store";
 import NavigationBar from "./NavigationBar";
@@ -28,9 +26,6 @@ export const LeftPanel = () => {
       <FixMenu>
         <LanguageSwitcher />
         <NavigationBar />
-
-        <LoginForm />
-        <Registration />
 
         {!currentUserId ? (
           <span />

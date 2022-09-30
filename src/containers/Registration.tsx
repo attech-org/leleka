@@ -6,8 +6,10 @@ import { useDispatch, useSelector } from "react-redux";
 import styled, { css } from "styled-components";
 import * as yup from "yup";
 
+import icon_1 from "../images/icon_1.png";
 import { userActions } from "../redux/reducers/user";
 import { AppDispatch, RootState } from "../redux/store";
+// import { LinkWithLanguageQueryParam } from "./LinkWithLanguageQueryParam";
 import ModalUniversal from "./ModalUniversal";
 
 // export const windowTitle = "Створіть свій профіль";
@@ -67,6 +69,12 @@ const schema = yup.object().shape({
     ),
 });
 
+const logo = (
+  <header className="d-flex justify-content-center align-items-center w-100">
+    <img src={icon_1} width="50px" alt="Logo" />
+  </header>
+);
+
 const Registration = () => {
   const dispatch = useDispatch<AppDispatch>();
   const { t } = useTranslation();
@@ -77,7 +85,6 @@ const Registration = () => {
     (store) => store.user.authUser.username
   );
 
-  const registrationButtonName = t("validation:fields.buttonName");
   const registrationTitle = t("validation:fields.createProfile");
 
   const {
@@ -240,14 +247,33 @@ const Registration = () => {
           >
             {t("validation:fields.register")}
           </Button>
+
+          {/* <div>
+            <span className="text-secondary">{t("login.haveAccount")}</span>
+            <LinkWithLanguageQueryParam
+              className="ms-1 text-decoration-none"
+              to="/authorization"
+            >
+              {t("login.signIn")}
+            </LinkWithLanguageQueryParam>
+          </div> */}
         </div>
       </Form>
     </section>
   );
 
+  const registrationButton = (
+    <div className="d-grid w-100">
+      <div className="rounded-5 p-3 fw-semibold text-center bg-primary text-white">
+        {t("validation:fields.buttonName")}
+      </div>
+    </div>
+  );
+
   return (
     <ModalUniversal
-      button={registrationButtonName}
+      button={registrationButton}
+      header={logo}
       title={currentUserId ? `Welcome, ${currentUserName}` : registrationTitle}
       content={currentUserId ? null : registerForm}
     />
