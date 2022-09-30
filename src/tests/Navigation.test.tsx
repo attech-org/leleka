@@ -6,7 +6,7 @@ import { MemoryRouter, Route, Routes } from "react-router-dom";
 import NavigationBar from "../components/NavigationBar";
 import ProfilePage from "../pages/Profile";
 import { store } from "../redux/store";
-import { RenderWithRoutes } from "./RenderWithRouter";
+import { RenderWithRoutes } from "./helpers/RenderWithRouter";
 
 describe("NavigationBar", () => {
   test("HomePageLink", () => {
